@@ -1,0 +1,6 @@
+# PDD 测试系统依赖（Python 3.13+）
+# 安装: pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+pyyaml>=6.0
+mcp>=1.0
+openai>=1.0
+pymysql>=1.0
