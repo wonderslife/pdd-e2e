@@ -51,6 +51,43 @@ $env:CHROME_PATH = "C:\Users\name\AppData\Local\Google\Chrome\Application\chrome
 "C:\Users\name\.workbuddy\binaries\python\envs\pdd-test\Scripts\python.exe" tests\testcase-ai.py testcases\frontend\PRESALE-001-goods-create.yaml
 ```
 
+## Think 模式（LLM 思维链）
+
+启用 DeepSeek LLM，每步自动输出「🧠 执行前分析 + 执行后反思」，用于调试/深度分析（元素定位失败排查、断言异常归因）。
+
+```powershell
+# 标准思维链模式（每步 AI 决策过程输出）
+.\run-test testcases\frontend\PRESALE-100-goods-create.yaml --think
+
+# 深度思维模式（更详细的推理链）
+.\run-test testcases\frontend\PRESALE-100-goods-create.yaml --think-deep
+
+# 参数顺序无所谓
+.\run-test --think testcases\frontend\PRESALE-100-goods-create.yaml
+```
+
+> run-test.cmd 已用 `%*` 透传全部参数，`--think`/`--think-deep` 可任意追加在 yaml 前后。
+
+### 两种模式取舍
+
+| 模式 | 耗时 | 用途 |
+|------|------|------|
+| 普通模式（不加参数） | ~2-5 分钟 | 日常回归（默认） |
+| `--think` | 每步 × DeepSeek 推理（36 步约 20 分钟） | 调试/深度分析，每步 AI 诊断 |
+| `--think-deep` | 更长 | 每步完整推理链，最深排障 |
+
+### 前置条件
+
+- LLM 配置在 `tests/.env.test`（`LLM_BASE_URL=https://api.deepseek.com`、`LLM_API_KEY`、`LLM_MODEL=deepseek-v4-flash`）
+- venv 已安装 `openai` 库（`pip install openai`）
+- 被测系统已启动（后端 + 前端）
+
+### 实际效果示例（步骤 14 自动诊断框架问题）
+
+> **参数异常**：执行参数显示 `{"text": [""]}`，目标文本被错误解析为空字符串，而非预期的商品标题
+> **根因**：测试脚本生成 `wait_for` 步骤时未正确传递目标文本参数
+> **建议**：人工确认业务正确性，脚本参数传递问题需修复
+
 ## 配置
 
 ### `tests/.env.test`（全局配置）
