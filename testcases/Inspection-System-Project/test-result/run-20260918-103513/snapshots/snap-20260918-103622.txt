@@ -1,0 +1,5 @@
+## Latest page snapshot
+uid=77_0 RootWebArea url="about:blank"
+  uid=77_1 ignored
+    uid=77_2 ignored
+

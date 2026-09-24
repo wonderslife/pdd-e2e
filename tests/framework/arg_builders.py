@@ -17,6 +17,49 @@ from typing import Callable, Dict, List, Optional, Set, Tuple
 from tests.framework.snapshot_models import StepResult
 from tests.framework.snapshot_matcher import SnapshotParser
 from tests.framework.logger import log
+from tests.framework.constants import INPUT_ROLES
+
+
+# 需要「把纯文本回退到相邻输入框」的动作：这些都是要往输入控件里写值的
+_FILL_ACTIONS = frozenset({"fill", "type", "input", "select_option", "select", "choose"})
+
+
+def _sibling_input_uid(parser, elem, max_distance: int = 2) -> Optional[str]:
+    """占位符文本节点 → 相邻输入框。
+
+    部分前端框架（uni-app / uView 的 H5 产物）把 placeholder 渲染成独立的
+    纯文本节点，真正的输入框自身不带任何文本，于是 `target: "请输入账号"`
+    只能匹配到那个文本节点。若把它的 uid 交给 fill，动作会落到页面上第一个
+    可编辑元素，表现为「账号和密码都填进了账号框」。
+    这里按快照行序就近回溯，优先取后继元素（placeholder 通常排在输入框之前）。
+
+    位置优先在 element_lines 上按对象身份取：MCP 快照里同一 uid 会被多个节点复用，
+    elements[uid] 只剩最后写入的那一份，用它做邻居查找会串到完全无关的元素上。
+    """
+    lines = getattr(parser, "element_lines", None)
+    if lines:
+        idx = next((i for i, c in enumerate(lines) if c is elem), None)
+        if idx is not None:
+            for distance in range(1, max_distance + 1):
+                for pos in (idx + distance, idx - distance):
+                    if 0 <= pos < len(lines):
+                        candidate = lines[pos]
+                        if candidate is not None and candidate.role in INPUT_ROLES:
+                            return candidate.uid
+        return None
+
+    # 兼容只有 element_order 的旧解析器
+    order = getattr(parser, "element_order", None) or []
+    if elem.uid not in order:
+        return None
+    idx = order.index(elem.uid)
+    for distance in range(1, max_distance + 1):
+        for pos in (idx + distance, idx - distance):
+            if 0 <= pos < len(order):
+                candidate = parser.elements.get(order[pos])
+                if candidate is not None and candidate.role in INPUT_ROLES:
+                    return candidate.uid
+    return None
 
 
 def resolve_env_vars(value):
@@ -130,8 +173,12 @@ def _resolve_uid(step: Dict, parser, cache, prefer_role: Optional[str] = None,
 
     if require_interactive is None:
         action = (step.get("action") or "").lower()
+        # 注意：这里**不含** click / tap。uni-app 的 <button> 在快照里表现为
+        # statictext（没有 button 角色），若强制要求交互元素，点击类动作会一个
+        # 候选都找不到，随后被 desc 兜底误判到输入框上（表现为「登录按钮点了没反应」）。
+        # 精确匹配内部按「交互元素优先」排序，放宽不会把按钮让给普通文本节点。
         require_interactive = action in (
-            "fill", "type", "input", "click", "tap", "select_option",
+            "fill", "type", "input", "select_option",
             "select", "choose", "hover", "drag_drop", "upload", "upload_file",
         )
 
@@ -149,6 +196,21 @@ def _resolve_uid(step: Dict, parser, cache, prefer_role: Optional[str] = None,
 
     if target:
         results = parser.find_by_text_contains(target)
+        # find_by_text_contains 不做交互性过滤，可能返回纯文本节点
+        # （如 uni-app 把 placeholder 渲染成静态文本）。交互元素优先。
+        for elem in results:
+            if elem.is_interactive:
+                return elem.uid
+        # 仅「填表」类动作才回退到相邻输入框：此时文本节点只是输入框的标签。
+        # click 类动作的目标本身就是那个文本节点（uni-app 的 button 在快照里
+        # 常表现为 statictext），回退会点到隔壁输入框上。
+        if (step.get("action") or "").lower() in _FILL_ACTIONS:
+            for elem in results:
+                sibling = _sibling_input_uid(parser, elem)
+                if sibling:
+                    log(f"[Placeholder-Sibling] '{target}' -> {sibling} "
+                        f"(文本节点 {elem.uid} 不可交互，回退到相邻输入框)", 2)
+                    return sibling
         if results:
             return results[0].uid
 

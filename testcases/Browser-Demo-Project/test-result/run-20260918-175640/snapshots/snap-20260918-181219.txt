@@ -1,0 +1,1448 @@
+## Latest page snapshot
+uid=469_0 RootWebArea "火柴人超炫手翻画 - 抖音" url="https://www.douyin.com/video/6611776156595129614"
+  uid=469_1 ignored
+    uid=469_2 generic
+      uid=469_3 button "开启读屏标签"
+        uid=469_4 StaticText "开启读屏标签"
+          uid=469_5 InlineTextBox "开"
+          uid=469_5 InlineTextBox "启"
+          uid=469_5 InlineTextBox "读"
+          uid=469_5 InlineTextBox "屏"
+          uid=469_5 InlineTextBox "标"
+          uid=469_5 InlineTextBox "签"
+      uid=469_6 generic live="assertive" relevant="additions text"
+        uid=469_7 StaticText "读屏标签已关闭"
+          uid=469_5 InlineTextBox "读"
+          uid=469_5 InlineTextBox "屏"
+          uid=469_5 InlineTextBox "标"
+          uid=469_5 InlineTextBox "签"
+          uid=469_5 InlineTextBox "已"
+          uid=469_5 InlineTextBox "关"
+          uid=469_5 InlineTextBox "闭"
+      uid=469_8 generic
+        uid=469_9 generic
+          uid=469_10 generic
+          uid=469_11 ignored
+          uid=469_12 generic
+            uid=469_13 link url="https://www.douyin.com/jingxuan"
+            uid=469_14 generic
+              uid=469_15 generic
+                uid=469_16 generic
+              uid=469_17 generic
+                uid=469_18 generic
+                  uid=469_19 ignored
+                    uid=469_20 ignored
+                      uid=469_21 ignored
+                        uid=469_22 ignored
+                          uid=469_23 ignored
+                            uid=469_24 generic
+                              uid=469_25 link "精选" url="https://www.douyin.com/jingxuan?from_nav=1"
+                                uid=469_26 ignored
+                                  uid=469_27 ignored
+                                uid=469_28 generic
+                                  uid=469_29 StaticText "精选"
+                                    uid=469_5 InlineTextBox "精选"
+                                uid=469_30 ignored
+                        uid=469_31 ignored
+                          uid=469_32 ignored
+                            uid=469_33 generic
+                              uid=469_34 link "推荐" url="https://www.douyin.com/?recommend=1&from_nav=1"
+                                uid=469_35 ignored
+                                  uid=469_36 ignored
+                                uid=469_37 generic
+                                  uid=469_38 StaticText "推荐"
+                                    uid=469_5 InlineTextBox "推荐"
+                                uid=469_39 ignored
+                        uid=469_40 ignored
+                          uid=469_41 ignored
+                            uid=469_42 generic
+                              uid=469_43 link "AI抖音" url="https://www.douyin.com/aisearch?from_nav=1"
+                                uid=469_44 image
+                                uid=469_45 generic
+                                  uid=469_46 StaticText "AI抖音"
+                                    uid=469_5 InlineTextBox "AI抖音"
+                                uid=469_47 ignored
+                        uid=469_48 ignored
+                        uid=469_49 ignored
+                          uid=469_50 ignored
+                            uid=469_51 generic
+                              uid=469_52 link "关注" url="https://www.douyin.com/follow?from_nav=1"
+                                uid=469_53 ignored
+                                  uid=469_54 ignored
+                                uid=469_55 generic
+                                  uid=469_56 StaticText "关注"
+                                    uid=469_5 InlineTextBox "关注"
+                                uid=469_57 ignored
+                        uid=469_58 ignored
+                          uid=469_59 ignored
+                            uid=469_60 generic
+                              uid=469_61 link "朋友" url="https://www.douyin.com/friend?from_nav=1"
+                                uid=469_62 ignored
+                                  uid=469_63 ignored
+                                uid=469_64 generic
+                                  uid=469_65 StaticText "朋友"
+                                    uid=469_5 InlineTextBox "朋友"
+                                uid=469_66 ignored
+                        uid=469_67 ignored
+                          uid=469_68 ignored
+                            uid=469_69 generic
+                              uid=469_70 link "我的" url="https://www.douyin.com/user/self?from_nav=1"
+                                uid=469_71 ignored
+                                  uid=469_72 ignored
+                                uid=469_73 generic
+                                  uid=469_74 StaticText "我的"
+                                    uid=469_5 InlineTextBox "我的"
+                                uid=469_75 ignored
+                        uid=469_76 ignored
+                        uid=469_77 ignored
+                          uid=469_78 ignored
+                            uid=469_79 generic
+                              uid=469_80 link "直播" url="https://live.douyin.com/?from_nav=1"
+                                uid=469_81 ignored
+                                  uid=469_82 ignored
+                                uid=469_83 generic
+                                  uid=469_84 StaticText "直播"
+                                    uid=469_5 InlineTextBox "直播"
+                                uid=469_85 ignored
+                        uid=469_86 ignored
+                          uid=469_87 ignored
+                            uid=469_88 generic
+                              uid=469_89 link "放映厅" url="https://www.douyin.com/vs?from_nav=1"
+                                uid=469_90 ignored
+                                  uid=469_91 ignored
+                                uid=469_92 generic
+                                  uid=469_93 StaticText "放映厅"
+                                    uid=469_5 InlineTextBox "放映厅"
+                                uid=469_94 ignored
+                        uid=469_95 ignored
+                          uid=469_96 ignored
+                            uid=469_97 generic
+                              uid=469_98 link "短剧" url="https://www.douyin.com/series?from_nav=1"
+                                uid=469_99 ignored
+                                  uid=469_100 ignored
+                                uid=469_101 generic
+                                  uid=469_102 StaticText "短剧"
+                                    uid=469_5 InlineTextBox "短剧"
+                                uid=469_103 ignored
+                        uid=469_104 ignored
+                          uid=469_105 ignored
+                            uid=469_106 generic
+                              uid=469_107 link "小游戏" url="https://www.douyin.com/microgame?from_nav=1"
+                                uid=469_108 ignored
+                                  uid=469_109 ignored
+                                uid=469_110 generic
+                                  uid=469_111 StaticText "小游戏"
+                                    uid=469_5 InlineTextBox "小游戏"
+                                uid=469_112 ignored
+                                  uid=469_113 generic
+                        uid=469_114 ignored
+                          uid=469_115 ignored
+                        uid=469_116 ignored
+                          uid=469_117 ignored
+                        uid=469_118 ignored
+                          uid=469_119 ignored
+                        uid=469_120 ignored
+                          uid=469_121 ignored
+                        uid=469_122 ignored
+                          uid=469_123 ignored
+                        uid=469_124 ignored
+                          uid=469_125 ignored
+                        uid=469_126 ignored
+                          uid=469_127 ignored
+                        uid=469_128 ignored
+                          uid=469_129 ignored
+                        uid=469_130 ignored
+                          uid=469_131 ignored
+                    uid=469_132 generic
+                      uid=469_133 generic
+                        uid=469_134 image url="https://lf-douyin-pc-web.douyinstatic.com/obj/douyin-pc-web/ies/douyin_web/media/jxWeakBtnBg.b27e25d68aab9de7.png"
+                        uid=469_135 generic
+                          uid=469_136 image url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAYAAABHomvIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQzSURBVHgBzVk9aBxHFP52rSaQ+K5JIBDZ16QziQSpHIxO6RICOlcpUkhpQkgRqUgRAkGCgCE/xRFICG4kF8a4uhMYy92d8E9l0Mk/lYs7/4AtubiTZXBje/2+HZ9uZ3Z2ds+3sv3B43ZnZ2a//ebNm5l3wFsOz1q6+7AML5hBEJQRoAjPKwJBEfm+uif996TvjrBoIfBW8d77zVgt7e7J/RKeHlgWMmW8CXheCweeHcc7H3b2ivYePt6eELUa+Ss1NKjqNN79oMUbRVApt7Gv5G7fVb+Hx7PU7mHs+SSV9MPbp35tX8hdvAJ8dRz46GPgyGfKeP3DT8Cdu66WReVqVHD3fhnwG8gbv/wG/Hsy+fkhUXKtpn4T4U+Lgl4FeSONHEEFqaQTzypC0P8UeeL02XRyfdAFXPD8KV9iUQl54sRfe5elUgntdhvLy8uoVCooFi1uftvli0HRV0E4J1CRiPNPTEyEJOfm5lCr1dDtdsOyzJBFws919l7Sh2xmZgYjougjTxg+VS6X09tcv+F8PIZhsPMIuCYdnltTQ7mzo8oLBeDYUSF4ea9qf3hNkHSr1RoUUPWvv0QydreCVLt3K8CvPwcoHAxAz8hg4neBDY1GQ69bKKj+E96dPsQctqNfyOz8WymYEUn+RwUXFhYGBRyFE386enIp9/8/mRUzTWZs4IKQ1NvwXTYOieTOnLK+WBQIJGRoBDY2NgKJdVqdLGAb8dVB/3SjTARvXo35mzh86D9JiPrW0tJS7LkEbGu7arWqi3BoXKlJDokEv/0mRi7pBX2QVL+++SFsm9QH1U50lU+OWAiSeaSSLE+p5KIvYn0T/eEnyZWVFe0Z67t8OR4H/9MX+vn5eWs8azabWF9fD685Y3lP2ILz6upq+NvpdMJlj3VnZ2fDsl6vBzdMBUNZB18w7LDQp0ykqeS22KwZPOQMMxH1NZtxRkcRC8xDmh6ojW24bWjr9TqSwPrmbmVzcxOjwLmS2PZvLp+x+Z/rg7JAJ1g4qN3SqU249nNTU1PaPT+mP3leHaYPHh7XQoy5ZHHS2Jze5q+i3kj+h5gPEsc+1xTQtkZQfiYTIQwXvKYtLi5CJkOsq1GHV8FU8HwttoqkLfw2UGmMqB6sYcYYZhp3HsOS44flRHC7m6YizbYB2H9y6AKPttpWFX/8PtbAtpb2QTfgR4y2asSsLamPLUkawR47ePLnQdwA42P0zMGJZE6mnNCUIX5Qde6qLUq+RqvyXOyOBX/8DtlAZk2b5Y26yg/ubjeQJavK4+a5C3JUvJySssgF9JlJRbArCcyxIROYPB/zTEvCkfNwTuCCPynWyS8FfPHKQN1rNzACSG4aSkEjiR4qyWwrhsjwWMDzM1Ud3h2aYt+JdfoFCX9DMOvKxKbkDpmeG/VvCO4zQ4XXFOFemADoRYxnh/pLghpeAKra17jyXmwUAAAAAElFTkSuQmCC"
+                          uid=469_137 generic
+                            uid=469_138 StaticText "下载抖音精选"
+                              uid=469_5 InlineTextBox "下载抖音精选"
+                    uid=469_139 generic
+                      uid=469_140 generic
+                        uid=469_141 ignored
+                          uid=469_142 generic
+                            uid=469_143 StaticText "2026 © 抖音"
+                              uid=469_5 InlineTextBox "2026 © 抖音"
+                          uid=469_144 generic
+                            uid=469_145 link "京ICP备16016397号-3" url="https://beian.miit.gov.cn/"
+                              uid=469_146 StaticText "京ICP备16016397号-3"
+                                uid=469_5 InlineTextBox "京ICP备16016397号-3"
+                        uid=469_147 ignored
+                          uid=469_148 generic
+                            uid=469_149 generic
+                              uid=469_150 image
+                          uid=469_151 generic
+                            uid=469_152 generic
+                              uid=469_153 image
+                          uid=469_154 generic
+                            uid=469_155 generic
+                              uid=469_156 image
+                  uid=469_157 ignored
+                    uid=469_158 contentinfo
+                      uid=469_159 generic
+                        uid=469_160 ignored
+                          uid=469_161 generic
+                            uid=469_162 link "icon 京公网安备11010802050006号" url="https://beian.mps.gov.cn/"
+                              uid=469_163 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/emblem-new.png"
+                              uid=469_164 StaticText "京公网安备11010802050006号"
+                                uid=469_5 InlineTextBox "京公网安备"
+                                uid=469_5 InlineTextBox "11010802050006号"
+                          uid=469_165 generic
+                            uid=469_166 link "icon 电子营业执照" url="https://zzlz.gsxt.gov.cn/businessCheck/verifKey.do"
+                              uid=469_167 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/c7085f453e58f78fe403594d0bab6890.png"
+                              uid=469_168 StaticText "电子营业执照"
+                                uid=469_5 InlineTextBox "电子营业执照"
+                          uid=469_169 generic
+                            uid=469_170 StaticText "信息网络传播视听节目许可证 0126733"
+                              uid=469_5 InlineTextBox "信息网络传播视听节目"
+                              uid=469_5 InlineTextBox "许可证 0126733"
+                          uid=469_171 generic
+                            uid=469_172 StaticText "广播电视节目制作经营许可证 （京）字第11313号"
+                              uid=469_5 InlineTextBox "广播电视节目制作经营"
+                              uid=469_5 InlineTextBox "许可证 （京）字第"
+                              uid=469_5 InlineTextBox "11313号"
+                          uid=469_173 generic
+                            uid=469_174 StaticText "增值电信业务经营许可证 京B2-20170846"
+                              uid=469_5 InlineTextBox "增值电信业务经营许可"
+                              uid=469_5 InlineTextBox "证 京B2-20170846"
+                          uid=469_175 generic
+                            uid=469_176 StaticText "网络文化经营许可证 京网文〔2025〕0181-061号"
+                              uid=469_5 InlineTextBox "网络文化经营许可证 京"
+                              uid=469_5 InlineTextBox "网文〔2025〕0181-"
+                              uid=469_5 InlineTextBox "061号"
+                          uid=469_177 generic
+                            uid=469_178 StaticText "互联网宗教信息服务许可证 京（2025）0000017"
+                              uid=469_5 InlineTextBox "互联网宗教信息服务许"
+                              uid=469_5 InlineTextBox "可证 京（2025）"
+                              uid=469_5 InlineTextBox "0000017"
+                          uid=469_179 generic
+                            uid=469_180 StaticText "药品医疗器械网络信息服务备案 （京）网药械信息备字（2023）第00570号"
+                              uid=469_5 InlineTextBox "药品医疗器械网络信息"
+                              uid=469_5 InlineTextBox "服务备案 （京）网药械"
+                              uid=469_5 InlineTextBox "信息备字（2023）第"
+                              uid=469_5 InlineTextBox "00570号"
+                          uid=469_181 generic
+                            uid=469_182 StaticText "互联网新闻信息服务许可证 11220230001"
+                              uid=469_5 InlineTextBox "互联网新闻信息服务许"
+                              uid=469_5 InlineTextBox "可证 11220230001"
+                          uid=469_183 generic
+                            uid=469_184 link "（京）人服证字〔2026〕第0600005023号" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/d1cb34abe8ebb5600b51bac36ce3247f.jpg"
+                              uid=469_185 StaticText "（京）人服证字〔2026〕第0600005023号"
+                                uid=469_5 InlineTextBox "（京）人服证字"
+                                uid=469_5 InlineTextBox "〔2026〕第"
+                                uid=469_5 InlineTextBox "0600005023号"
+                        uid=469_186 ignored
+                        uid=469_187 ignored
+                          uid=469_188 generic
+                            uid=469_189 link "网络谣言曝光台" url="https://www.piyao.org.cn/yybgt/index.htm"
+                              uid=469_190 StaticText "网络谣言曝光台"
+                                uid=469_5 InlineTextBox "网络谣言曝光台"
+                          uid=469_191 generic
+                            uid=469_192 link "网上有害信息举报" url="https://www.12377.cn/"
+                              uid=469_193 StaticText "网上有害信息举报"
+                                uid=469_5 InlineTextBox "网上有害信息举报"
+                          uid=469_194 generic
+                            uid=469_195 StaticText "违法和不良信息举报 400-140-2108 feedback@douyin.com"
+                              uid=469_5 InlineTextBox "违法和不良信息举报 "
+                              uid=469_5 InlineTextBox "400-140-2108 "
+                              uid=469_5 InlineTextBox "feedback@douyin.com"
+                          uid=469_196 generic
+                            uid=469_197 StaticText "算法推荐专项举报 sfjubao@bytedance.com"
+                              uid=469_5 InlineTextBox "算法推荐专项举报 "
+                              uid=469_5 InlineTextBox "sfjubao@bytedance.com"
+                          uid=469_198 generic
+                            uid=469_199 StaticText "体育饭圈专项举报 tyfq@bytedance.com"
+                              uid=469_5 InlineTextBox "体育饭圈专项举报 "
+                              uid=469_5 InlineTextBox "tyfq@bytedance.com"
+                        uid=469_200 ignored
+                        uid=469_201 ignored
+                          uid=469_202 generic
+                            uid=469_203 link "广告投放" url="https://www.oceanengine.com/resource/douyin"
+                              uid=469_204 StaticText "广告投放"
+                                uid=469_5 InlineTextBox "广告投放"
+                          uid=469_205 generic
+                            uid=469_206 link "用户服务协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                              uid=469_207 StaticText "用户服务协议"
+                                uid=469_5 InlineTextBox "用户服务协议"
+                          uid=469_208 generic
+                            uid=469_209 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                              uid=469_210 StaticText "隐私政策"
+                                uid=469_5 InlineTextBox "隐私政策"
+                          uid=469_211 generic
+                            uid=469_212 link "账号找回" url="https://www.douyin.com/recovery_account/"
+                              uid=469_213 StaticText "账号找回"
+                                uid=469_5 InlineTextBox "账号找回"
+                          uid=469_214 generic
+                            uid=469_215 link "联系我们" url="https://www.douyin.com/aboutus/"
+                              uid=469_216 StaticText "联系我们"
+                                uid=469_5 InlineTextBox "联系我们"
+                          uid=469_217 generic
+                            uid=469_218 link "加入我们" url="https://www.douyin.com/aboutus/"
+                              uid=469_219 StaticText "加入我们"
+                                uid=469_5 InlineTextBox "加入我们"
+                          uid=469_220 generic
+                            uid=469_221 link "友情链接" url="https://www.douyin.com/friend_links"
+                              uid=469_222 StaticText "友情链接"
+                                uid=469_5 InlineTextBox "友情链接"
+                          uid=469_223 generic
+                            uid=469_224 link "站点地图" url="https://www.douyin.com/htmlmap/hotauthor_0_1"
+                              uid=469_225 StaticText "站点地图"
+                                uid=469_5 InlineTextBox "站点地图"
+                          uid=469_226 generic
+                            uid=469_227 link "下载抖音" url="https://www.douyin.com/downloadpage/pc"
+                              uid=469_228 StaticText "下载抖音"
+                                uid=469_5 InlineTextBox "下载抖音"
+                          uid=469_229 generic
+                            uid=469_230 link "抖音电商" url="https://mix.jinritemai.com/falcon/mix_page/index.html"
+                              uid=469_231 StaticText "抖音电商"
+                                uid=469_5 InlineTextBox "抖音电商"
+          uid=469_232 generic
+            uid=469_233 generic
+              uid=469_234 ignored
+                uid=469_235 banner
+                  uid=469_236 ignored
+                    uid=469_237 generic
+                      uid=469_238 generic
+                        uid=469_239 generic
+                          uid=469_240 ignored
+                          uid=469_241 generic
+                            uid=469_242 ignored
+                              uid=469_243 generic
+                                uid=469_244 textbox "搜索你感兴趣的内容"
+                                  uid=469_245 ignored
+                                  uid=469_246 generic
+                              uid=469_247 generic
+                              uid=469_248 button "搜索"
+                                uid=469_249 image
+                                uid=469_250 ignored
+                                  uid=469_251 StaticText "搜索"
+                                    uid=469_5 InlineTextBox "搜索"
+                          uid=469_252 ignored
+                            uid=469_253 ignored
+                      uid=469_254 generic
+                        uid=469_255 ignored
+                          uid=469_256 generic
+                            uid=469_257 ignored
+                              uid=469_258 generic
+                                uid=469_259 ignored
+                                  uid=469_260 generic
+                                    uid=469_261 generic
+                                      uid=469_262 generic
+                                        uid=469_263 ignored
+                                          uid=469_264 image
+                                            uid=469_265 image
+                                        uid=469_266 paragraph
+                                          uid=469_267 StaticText "充钻石"
+                                            uid=469_5 InlineTextBox "充钻石"
+                              uid=469_268 generic
+                                uid=469_269 generic
+                                  uid=469_270 ignored
+                                    uid=469_271 generic
+                                      uid=469_272 link "客户端" url="https://www.douyin.com/download/pc/obj/douyin-pc-web/douyin-pc-client/7044145585217083655/releases/469669512/8.5.1/win32-ia32/douyin-downloader-v8.5.1-win32-ia32-douyincold.exe"
+                                        uid=469_273 generic
+                                          uid=469_274 ignored
+                                            uid=469_275 ignored
+                                              uid=469_276 image
+                                                uid=469_277 image
+                                            uid=469_278 paragraph
+                                              uid=469_279 StaticText "客户端"
+                                                uid=469_5 InlineTextBox "客户端"
+                                          uid=469_280 generic
+                                            uid=469_281 image
+                              uid=469_282 generic
+                                uid=469_283 ignored
+                                  uid=469_284 generic
+                                    uid=469_285 generic
+                                      uid=469_286 generic
+                                        uid=469_287 generic
+                                        uid=469_288 image
+                                          uid=469_289 image
+                                      uid=469_290 generic
+                                        uid=469_291 StaticText "壁纸"
+                                          uid=469_5 InlineTextBox "壁纸"
+                              uid=469_292 list
+                                uid=469_293 ignored
+                                  uid=469_294 generic
+                                    uid=469_295 generic
+                                      uid=469_296 ignored
+                                        uid=469_297 ignored
+                                          uid=469_298 image
+                                            uid=469_299 image
+                                        uid=469_300 paragraph
+                                          uid=469_301 StaticText "通知"
+                                            uid=469_5 InlineTextBox "通知"
+                              uid=469_302 list
+                                uid=469_303 ignored
+                                  uid=469_304 generic
+                                    uid=469_305 generic
+                                      uid=469_306 ignored
+                                        uid=469_307 ignored
+                                          uid=469_308 ignored
+                                        uid=469_309 paragraph
+                                          uid=469_310 StaticText "消息"
+                                            uid=469_5 InlineTextBox "消息"
+                              uid=469_311 ignored
+                                uid=469_312 generic
+                                  uid=469_313 generic
+                                    uid=469_314 generic
+                                      uid=469_315 ignored
+                                        uid=469_316 image
+                                          uid=469_317 image
+                                      uid=469_318 paragraph
+                                        uid=469_319 StaticText "投稿"
+                                          uid=469_5 InlineTextBox "投稿"
+                                    uid=469_320 generic description="发布作品 作品数据 开直播 直播数据 剪映专业版 AI音乐创作" haspopup="menu"
+                              uid=469_321 ignored
+                                uid=469_322 generic
+                                  uid=469_323 generic
+                                    uid=469_324 button "登录"
+                                      uid=469_325 generic
+                                        uid=469_326 image
+                                        uid=469_327 paragraph
+                                          uid=469_328 StaticText "登录"
+                                            uid=469_5 InlineTextBox "登录"
+                                  uid=469_329 generic
+              uid=469_330 generic
+                uid=469_331 ignored
+            uid=469_332 generic
+            uid=469_333 ignored
+              uid=469_334 ignored
+                uid=469_335 ignored
+                  uid=469_336 generic
+                    uid=469_337 ignored
+                      uid=469_338 ignored
+                        uid=469_339 ignored
+                          uid=469_340 ignored
+                          uid=469_341 generic
+                            uid=469_342 ignored
+                              uid=469_343 generic
+                                uid=469_344 generic
+                                  uid=469_345 Canvas
+                                    uid=469_346 StaticText "
+        "
+                                  uid=469_347 generic
+                                uid=469_348 generic
+                                  uid=469_349 generic
+                                    uid=469_350 generic
+                                      uid=469_351 generic
+                                        uid=469_352 generic
+                                          uid=469_353 image
+                                            uid=469_354 image
+                                      uid=469_355 generic
+                                        uid=469_356 generic
+                                          uid=469_357 StaticText "00:11"
+                                            uid=469_5 InlineTextBox "00:11"
+                                        uid=469_358 generic
+                                          uid=469_359 StaticText "/"
+                                            uid=469_5 InlineTextBox "/"
+                                        uid=469_360 generic
+                                          uid=469_361 StaticText "00:14"
+                                            uid=469_5 InlineTextBox "00:14"
+                                      uid=469_362 generic
+                                        uid=469_363 ignored
+                                          uid=469_364 generic
+                                            uid=469_365 image
+                                              uid=469_366 image
+                                    uid=469_367 generic
+                                      uid=469_368 generic
+                                        uid=469_369 generic
+                                          uid=469_370 ignored
+                                            uid=469_371 generic
+                                              uid=469_372 generic
+                                              uid=469_373 generic
+                                          uid=469_374 generic
+                                    uid=469_375 generic
+                                      uid=469_376 generic
+                                        uid=469_377 generic
+                                          uid=469_378 image
+                                            uid=469_379 image
+                                      uid=469_380 generic
+                                        uid=469_381 generic
+                                          uid=469_382 image
+                                      uid=469_383 generic
+                                      uid=469_384 generic
+                                        uid=469_385 generic
+                                          uid=469_386 image
+                                            uid=469_387 image
+                                      uid=469_388 generic
+                                        uid=469_389 generic
+                                          uid=469_390 image
+                                            uid=469_391 image
+                                      uid=469_392 generic
+                                        uid=469_393 generic
+                                          uid=469_394 generic
+                                            uid=469_395 ignored
+                                              uid=469_396 image
+                                      uid=469_397 generic
+                                        uid=469_398 generic
+                                          uid=469_399 StaticText "倍速"
+                                            uid=469_5 InlineTextBox "倍速"
+                                        uid=469_400 ignored
+                                      uid=469_401 generic
+                                        uid=469_402 ignored
+                                          uid=469_403 generic
+                                            uid=469_404 StaticText "智能"
+                                              uid=469_5 InlineTextBox "智能"
+                                        uid=469_405 ignored
+                                        uid=469_406 ignored
+                                      uid=469_407 generic
+                                        uid=469_408 generic
+                                          uid=469_409 generic
+                                            uid=469_410 button
+                                              uid=469_411 ignored
+                                            uid=469_412 ignored
+                                              uid=469_413 StaticText "清屏"
+                                                uid=469_5 InlineTextBox "清屏"
+                                      uid=469_414 generic
+                                        uid=469_415 generic
+                                          uid=469_416 ignored
+                                            uid=469_417 button
+                                              uid=469_418 ignored
+                                            uid=469_419 ignored
+                                              uid=469_420 StaticText "连播"
+                                                uid=469_5 InlineTextBox "连播"
+                                uid=469_421 generic
+                                  uid=469_422 ignored
+                                    uid=469_423 ignored
+                                      uid=469_424 generic
+                                        uid=469_425 generic
+                                          uid=469_426 image
+                                            uid=469_427 image
+                                        uid=469_428 generic
+                                          uid=469_429 image
+                                            uid=469_430 image
+                                uid=469_431 generic
+                                  uid=469_432 image
+                                  uid=469_433 image
+                                    uid=469_434 image
+                                uid=469_435 generic
+                                uid=469_436 generic
+                                uid=469_437 ignored
+                                uid=469_438 generic
+                                  uid=469_439 Video
+                                    uid=469_440 ignored
+                                      uid=469_441 ignored
+                                      uid=469_442 ignored
+                                        uid=469_443 ignored
+                                      uid=469_444 ignored
+                                        uid=469_445 ignored
+                                          uid=469_446 ignored
+                                          uid=469_447 ignored
+                                            uid=469_448 ignored
+                                              uid=469_449 ignored
+                                            uid=469_450 ignored
+                                            uid=469_451 ignored
+                                              uid=469_452 ignored
+                                              uid=469_453 ignored
+                                              uid=469_454 ignored
+                                            uid=469_455 ignored
+                                              uid=469_456 ignored
+                                            uid=469_457 ignored
+                                              uid=469_458 ignored
+                                          uid=469_459 ignored
+                                      uid=469_460 ignored
+                                      uid=469_461 ignored
+                                      uid=469_462 ignored
+                                      uid=469_463 ignored
+                                      uid=469_464 ignored
+                                        uid=469_465 ignored
+                                        uid=469_466 ignored
+                                        uid=469_467 ignored
+                                        uid=469_468 ignored
+                                        uid=469_469 ignored
+                                        uid=469_470 ignored
+                                        uid=469_471 ignored
+                                        uid=469_472 ignored
+                                        uid=469_473 ignored
+                                        uid=469_474 ignored
+                                  uid=469_475 generic
+                              uid=469_476 ignored
+                              uid=469_477 ignored
+                          uid=469_478 ignored
+                            uid=469_479 ignored
+                              uid=469_480 generic
+                                uid=469_481 generic
+                                  uid=469_482 heading "火柴人超炫手翻画" level="1"
+                                    uid=469_483 StaticText "火柴人超炫手翻画"
+                                      uid=469_5 InlineTextBox "火柴人超炫手翻画"
+                              uid=469_484 ignored
+                                uid=469_485 ignored
+                                  uid=469_486 generic
+                                    uid=469_487 generic
+                                      uid=469_488 generic
+                                        uid=469_489 image
+                                    uid=469_490 ignored
+                                      uid=469_491 StaticText "3"
+                                        uid=469_5 InlineTextBox "3"
+                                  uid=469_492 generic
+                                    uid=469_493 generic
+                                      uid=469_494 generic
+                                        uid=469_495 image
+                                    uid=469_496 ignored
+                                      uid=469_497 StaticText "1"
+                                        uid=469_5 InlineTextBox "1"
+                                  uid=469_498 generic
+                                    uid=469_499 generic
+                                      uid=469_500 generic
+                                        uid=469_501 image
+                                    uid=469_502 ignored
+                                      uid=469_503 StaticText "收藏"
+                                        uid=469_5 InlineTextBox "收藏"
+                                  uid=469_504 generic
+                                    uid=469_505 generic
+                                      uid=469_506 generic
+                                        uid=469_507 image
+                                    uid=469_508 ignored
+                                      uid=469_509 StaticText "分享"
+                                        uid=469_5 InlineTextBox "分享"
+                                    uid=469_510 ignored
+                                uid=469_511 ignored
+                                  uid=469_512 generic
+                                    uid=469_513 image
+                                    uid=469_514 ignored
+                                      uid=469_515 StaticText "举报"
+                                        uid=469_5 InlineTextBox "举报"
+                                  uid=469_516 ignored
+                                    uid=469_517 StaticText "发布时间："
+                                      uid=469_5 InlineTextBox "发布时间："
+                                    uid=469_518 StaticText "2018-10-13 17:48"
+                                      uid=469_5 InlineTextBox "2018-10-13 17:48"
+                          uid=469_519 ignored
+                            uid=469_520 ignored
+                              uid=469_521 generic
+                                uid=469_522 ignored
+                                uid=469_523 ignored
+                                  uid=469_524 generic
+                                    uid=469_525 generic
+                                      uid=469_526 StaticText "全部评论"
+                                        uid=469_5 InlineTextBox "全部评论"
+                                    uid=469_527 generic
+                                      uid=469_528 generic
+                                  uid=469_529 generic
+                                    uid=469_530 ignored
+                                      uid=469_531 generic
+                                        uid=469_532 image
+                                    uid=469_533 ignored
+                                      uid=469_534 generic
+                                        uid=469_535 generic
+                                          uid=469_536 StaticText "请先"
+                                            uid=469_5 InlineTextBox "请先"
+                                          uid=469_537 StaticText "登录"
+                                            uid=469_5 InlineTextBox "登录"
+                                          uid=469_538 StaticText "后发表评论"
+                                            uid=469_5 InlineTextBox "后发表评论"
+                                uid=469_539 ignored
+                                  uid=469_540 ignored
+                                    uid=469_541 generic
+                                      uid=469_542 ignored
+                                        uid=469_543 generic
+                                      uid=469_544 ignored
+                                        uid=469_545 generic
+                                          uid=469_546 ignored
+                                            uid=469_547 generic
+                                              uid=469_548 generic
+                                                uid=469_549 link "李蛋蛋" url="https://www.douyin.com/user/MS4wLjABAAAA3ZPfHZw7kNXA0OUS03VvLmkIxFNhRNrTqz34V6cGgxo"
+                                                  uid=469_550 StaticText "李蛋蛋"
+                                                    uid=469_5 InlineTextBox "李蛋蛋"
+                                            uid=469_551 generic
+                                              uid=469_552 generic
+                                                uid=469_553 StaticText "..."
+                                                  uid=469_5 InlineTextBox "..."
+                                          uid=469_554 generic
+                                            uid=469_555 StaticText "法式赞美"
+                                              uid=469_5 InlineTextBox "法式赞美"
+                                          uid=469_556 generic
+                                            uid=469_557 StaticText "7年前"
+                                              uid=469_5 InlineTextBox "7年前"
+                                          uid=469_558 generic
+                                            uid=469_559 ignored
+                                              uid=469_560 ignored
+                                                uid=469_561 paragraph
+                                                  uid=469_562 image
+                                                  uid=469_563 ignored
+                                                    uid=469_564 StaticText "0"
+                                                      uid=469_5 InlineTextBox "0"
+                                                uid=469_565 paragraph
+                                                  uid=469_566 image
+                                              uid=469_567 generic
+                                                uid=469_568 ignored
+                                                  uid=469_569 image
+                                                  uid=469_570 generic
+                                                    uid=469_571 StaticText "分享"
+                                                      uid=469_5 InlineTextBox "分享"
+                                              uid=469_572 generic
+                                                uid=469_573 generic
+                                                  uid=469_574 image
+                                                  uid=469_575 ignored
+                                                    uid=469_576 StaticText "回复"
+                                                      uid=469_5 InlineTextBox "回复"
+                                  uid=469_577 generic
+                                    uid=469_578 StaticText "暂时没有更多评论"
+                                      uid=469_5 InlineTextBox "暂时没有更多评论"
+                                  uid=469_579 generic
+                                    uid=469_580 generic
+                                      uid=469_581 StaticText "登录后即可参与互动讨论"
+                                        uid=469_5 InlineTextBox "登录后即可参与互动讨论"
+                                    uid=469_582 generic
+                                      uid=469_583 button "立即登录"
+                                        uid=469_584 generic
+                                          uid=469_585 StaticText "立即登录"
+                                            uid=469_5 InlineTextBox "立即登录"
+                          uid=469_586 generic
+                            uid=469_587 generic
+                        uid=469_588 ignored
+                          uid=469_589 ignored
+                            uid=469_590 generic
+                              uid=469_591 ignored
+                                uid=469_592 generic
+                                  uid=469_593 link "T Kaven T" url="https://www.douyin.com/user/MS4wLjABAAAA3OjjjV2EdHWEOJDTODOq0W-MI-BWp2EAxvzcKceAtj4"
+                                    uid=469_594 generic
+                                      uid=469_595 image "T Kaven T" url="https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/aweme_default_avatar.png.jpeg?from=327834062"
+                              uid=469_596 ignored
+                                uid=469_597 link "T Kaven T" url="https://www.douyin.com/user/MS4wLjABAAAA3OjjjV2EdHWEOJDTODOq0W-MI-BWp2EAxvzcKceAtj4"
+                                  uid=469_598 ignored
+                                    uid=469_599 ignored
+                                      uid=469_600 StaticText "T Kaven T"
+                                        uid=469_5 InlineTextBox "T Kaven T"
+                                uid=469_601 paragraph
+                                  uid=469_602 StaticText "粉丝"
+                                    uid=469_5 InlineTextBox "粉丝"
+                                  uid=469_603 StaticText "56"
+                                    uid=469_5 InlineTextBox "56"
+                                  uid=469_604 StaticText "获赞"
+                                    uid=469_5 InlineTextBox "获赞"
+                                  uid=469_605 StaticText "59"
+                                    uid=469_5 InlineTextBox "59"
+                              uid=469_606 generic
+                                uid=469_607 button "关注"
+                                  uid=469_608 generic
+                                    uid=469_609 StaticText "关注"
+                                      uid=469_5 InlineTextBox "关注"
+                            uid=469_610 generic
+                            uid=469_611 ignored
+                              uid=469_612 ignored
+                                uid=469_613 heading "推荐视频" level="2"
+                                  uid=469_614 StaticText "推荐视频"
+                                    uid=469_5 InlineTextBox "推荐视频"
+                                uid=469_615 ignored
+                              uid=469_616 list
+                                uid=469_617 listitem level="1"
+                                  uid=469_618 ignored
+                                    uid=469_619 generic
+                                      uid=469_620 link "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈 00:57" url="https://www.douyin.com/video/7671351629618220298"
+                                        uid=469_621 generic
+                                          uid=469_622 generic
+                                          uid=469_623 generic
+                                          uid=469_624 image "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/cdbcb8a81c2b1b68081840fd0bc73115~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=iHURiyfi%2FqpWk24Mn6DZx4NwCoA%3D"
+                                        uid=469_625 generic
+                                        uid=469_626 generic
+                                          uid=469_627 StaticText "00:57"
+                                            uid=469_5 InlineTextBox "00:57"
+                                    uid=469_628 ignored
+                                      uid=469_629 heading "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" level="3"
+                                        uid=469_630 link "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" url="https://www.douyin.com/video/7671351629618220298"
+                                          uid=469_631 StaticText "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈"
+                                            uid=469_5 InlineTextBox "小叽咕认识了两个新朋"
+                                            uid=469_5 InlineTextBox "友 #癞蛤蟆 #癞疙宝 #治"
+                                            uid=469_5 InlineTextBox "愈"
+                                      uid=469_632 ignored
+                                        uid=469_633 ignored
+                                          uid=469_634 image
+                                          uid=469_635 StaticText "9080"
+                                            uid=469_5 InlineTextBox "9080"
+                                        uid=469_636 ignored
+                                          uid=469_637 link "小叽咕和朋友们" url="https://www.douyin.com/user/MS4wLjABAAAAjiTF8i0DE-3HXPsabySDLUAVgFFdDokbBXZdnHOlYPPbMoE1eGZH9i15_Ta90nH_?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_638 StaticText "小叽咕和朋友们"
+                                              uid=469_5 InlineTextBox "小叽咕和朋友们"
+                                uid=469_639 listitem level="1"
+                                  uid=469_640 ignored
+                                    uid=469_641 generic
+                                      uid=469_642 link "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa 00:53" url="https://www.douyin.com/video/7673004287978491062"
+                                        uid=469_643 generic
+                                          uid=469_644 generic
+                                          uid=469_645 generic
+                                          uid=469_646 image "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" url="https://p9-pc-sign.douyinpic.com/image-cut-tos-priv/fceae937d35bf732a51b4a53a0dd2e5d~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=n%2F45WlSH7r09lZT8lYAxH5UBBig%3D"
+                                        uid=469_647 generic
+                                        uid=469_648 generic
+                                          uid=469_649 StaticText "00:53"
+                                            uid=469_5 InlineTextBox "00:53"
+                                    uid=469_650 ignored
+                                      uid=469_651 heading "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" level="3"
+                                        uid=469_652 link "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" url="https://www.douyin.com/video/7673004287978491062"
+                                          uid=469_653 StaticText "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa"
+                                            uid=469_5 InlineTextBox "【papa偷偷写暑假作"
+                                            uid=469_5 InlineTextBox "业！】此视频使用Drea"
+                                            uid=469_5 InlineTextBox "mo进行创作。#Dreamo"
+                                            uid=469_5 InlineTextBox "mo进行创作。#Drea"
+                                            uid=469_5 InlineTextBox "…"
+                                            uid=469_5 InlineTextBox "TV #DreamoTV超创计"
+                                            uid=469_5 InlineTextBox "划 #绘梦工坊AI #火花宝"
+                                            uid=469_5 InlineTextBox "宝 #papa"
+                                      uid=469_654 ignored
+                                        uid=469_655 ignored
+                                          uid=469_656 image
+                                          uid=469_657 StaticText "1.1万"
+                                            uid=469_5 InlineTextBox "1.1万"
+                                        uid=469_658 ignored
+                                          uid=469_659 link "火花宝宝小剧场" url="https://www.douyin.com/user/MS4wLjABAAAAUHKFF7LfMYrWEFuMuh1F1LR1tACaKnnwAsPiPc8WlgE?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_660 StaticText "火花宝宝小剧场"
+                                              uid=469_5 InlineTextBox "火花宝宝小剧场"
+                                uid=469_661 listitem level="1"
+                                  uid=469_662 ignored
+                                    uid=469_663 generic
+                                      uid=469_664 link "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常 04:48" url="https://www.douyin.com/video/7675679453885276111"
+                                        uid=469_665 generic
+                                          uid=469_666 generic
+                                          uid=469_667 generic
+                                          uid=469_668 image "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" url="https://p3-pc-sign.douyinpic.com/image-cut-tos/5a530317a44c606f92d02b9520eeac28~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=c4rmEDfh1e5qhF%2B2YPIV6Bn1a%2F0%3D"
+                                        uid=469_669 generic
+                                        uid=469_670 generic
+                                          uid=469_671 StaticText "04:48"
+                                            uid=469_5 InlineTextBox "04:48"
+                                    uid=469_672 ignored
+                                      uid=469_673 heading "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" level="3"
+                                        uid=469_674 link "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" url="https://www.douyin.com/video/7675679453885276111"
+                                          uid=469_675 StaticText "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常"
+                                            uid=469_5 InlineTextBox "红妹的孩子刚出院，中"
+                                            uid=469_5 InlineTextBox "国姐夫给她留点钱，丈"
+                                            uid=469_5 InlineTextBox "母娘说女婿帮忙太多了 #"
+                                            uid=469_5 InlineTextBox "母娘说女婿帮忙太多"
+                                            uid=469_5 InlineTextBox "…"
+                                            uid=469_5 InlineTextBox "vlog日常"
+                                      uid=469_676 ignored
+                                        uid=469_677 ignored
+                                          uid=469_678 image
+                                          uid=469_679 StaticText "7678"
+                                            uid=469_5 InlineTextBox "7678"
+                                        uid=469_680 ignored
+                                          uid=469_681 link "越南小柔和老崔一家" url="https://www.douyin.com/user/MS4wLjABAAAAxqgU8VLcCa6Kf-2dgkz_FXpwt47x67Q4wfGVO8kmQtg?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_682 StaticText "越南小柔和老崔一家"
+                                              uid=469_5 InlineTextBox "越南小柔和老崔一家"
+                                              uid=469_5 InlineTextBox "越南小柔和老"
+                                              uid=469_5 InlineTextBox "…"
+                                uid=469_683 listitem level="1"
+                                  uid=469_684 ignored
+                                    uid=469_685 generic
+                                      uid=469_686 link "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划 00:20" url="https://www.douyin.com/video/7679014314615357352"
+                                        uid=469_687 generic
+                                          uid=469_688 generic
+                                          uid=469_689 generic
+                                          uid=469_690 image "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/7ee86c9acbbf14e925c0d4d1c9dcfe8f~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=ND44vYagYmZRbyCpQ582Sl%2BH6fM%3D"
+                                        uid=469_691 generic
+                                        uid=469_692 generic
+                                          uid=469_693 StaticText "00:20"
+                                            uid=469_5 InlineTextBox "00:20"
+                                    uid=469_694 ignored
+                                      uid=469_695 heading "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" level="3"
+                                        uid=469_696 link "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://www.douyin.com/video/7679014314615357352"
+                                          uid=469_697 StaticText "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划"
+                                            uid=469_5 InlineTextBox "#可爱萌娃日常 #创作者"
+                                            uid=469_5 InlineTextBox "中心 #创作灵感 #抖音二"
+                                            uid=469_5 InlineTextBox "创激励计划"
+                                      uid=469_698 ignored
+                                        uid=469_699 ignored
+                                          uid=469_700 image
+                                          uid=469_701 StaticText "1476"
+                                            uid=469_5 InlineTextBox "1476"
+                                        uid=469_702 ignored
+                                          uid=469_703 link "🌈 搞笑母子" url="https://www.douyin.com/user/MS4wLjABAAAA1ZU0JD7aap3S7TluZ9AtoRGf2ObCGEA4rlcbij11KrprU8itfiq75rMpLCscV6EC?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_704 image "🌈" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f308.png"
+                                            uid=469_705 StaticText "搞笑母子"
+                                              uid=469_5 InlineTextBox "搞笑母子"
+                                uid=469_706 listitem level="1"
+                                  uid=469_707 ignored
+                                    uid=469_708 generic
+                                      uid=469_709 link "和 @嘿咻 一起 #合拍 #合拍小宝贝太可爱了👍👍👍 #抖音二创激励计划 #感谢抖音感谢抖音平台 02:42" url="https://www.douyin.com/video/7657344543989730737"
+                                        uid=469_710 generic
+                                          uid=469_711 generic
+                                          uid=469_712 generic
+                                          uid=469_713 image "和 @嘿咻 一起 #合拍 #合拍小宝贝太可爱了👍👍👍 #抖音二创激励计划 #感谢抖音感谢抖音平台" url="https://p9-pc-sign.douyinpic.com/image-cut-tos-priv/f161aeea81e0c4c363033cc7f4b02db2~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=9NcAUivXSrrE%2BoTvRFmlEJp6LEs%3D"
+                                        uid=469_714 generic
+                                        uid=469_715 generic
+                                          uid=469_716 StaticText "02:42"
+                                            uid=469_5 InlineTextBox "02:42"
+                                    uid=469_717 ignored
+                                      uid=469_718 heading "和 @嘿咻 一起 #合拍 #合拍小宝贝太可爱了 👍 👍 👍 #抖音二创激励计划 #感谢抖音感谢抖音平台" level="3"
+                                        uid=469_719 link "和 @嘿咻 一起 #合拍 #合拍小宝贝太可爱了 👍 👍 👍 #抖音二创激励计划 #感谢抖音感谢抖音平台" url="https://www.douyin.com/video/7657344543989730737"
+                                          uid=469_720 StaticText "和 @嘿咻 一起 #合拍 #合拍小宝贝太可爱了"
+                                            uid=469_5 InlineTextBox "和 @嘿咻 一起 #合拍 #"
+                                            uid=469_5 InlineTextBox "合拍小宝贝太可爱了"
+                                          uid=469_721 image "👍" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f44d.png"
+                                          uid=469_722 image "👍" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f44d.png"
+                                          uid=469_723 image "👍" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f44d.png"
+                                          uid=469_724 StaticText " #抖音二创激励计划 #感谢抖音感谢抖音平台"
+                                            uid=469_5 InlineTextBox " #抖音二创激励计"
+                                            uid=469_5 InlineTextBox " #抖音二创激励"
+                                            uid=469_5 InlineTextBox "…"
+                                            uid=469_5 InlineTextBox "划 #感谢抖音感谢抖音平"
+                                            uid=469_5 InlineTextBox "台"
+                                      uid=469_725 ignored
+                                        uid=469_726 ignored
+                                          uid=469_727 image
+                                          uid=469_728 StaticText "1.9万"
+                                            uid=469_5 InlineTextBox "1.9万"
+                                        uid=469_729 ignored
+                                          uid=469_730 link "喜洋洋" url="https://www.douyin.com/user/MS4wLjABAAAAOPSo83uZzY2Kfufn8uamDtDwPtI7yjlfNXzXCAjJED79MPdweRc4TwwUFVCGpEhg?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_731 StaticText "喜洋洋"
+                                              uid=469_5 InlineTextBox "喜洋洋"
+                                uid=469_732 listitem level="1"
+                                  uid=469_733 ignored
+                                    uid=469_734 generic
+                                      uid=469_735 link "#唯美食不能辜负 #创作者中心 #创作灵感 01:01" url="https://www.douyin.com/video/7657827563133228634"
+                                        uid=469_736 generic
+                                          uid=469_737 generic
+                                          uid=469_738 generic
+                                          uid=469_739 image "#唯美食不能辜负 #创作者中心 #创作灵感" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/c7c1183e61b9c7fe22bad06e17bc5826~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=%2B7kP5dHA%2B%2FBvE1EhwMRcXxSzL7w%3D"
+                                        uid=469_740 generic
+                                        uid=469_741 generic
+                                          uid=469_742 StaticText "01:01"
+                                            uid=469_5 InlineTextBox "01:01"
+                                    uid=469_743 ignored
+                                      uid=469_744 heading "#唯美食不能辜负 #创作者中心 #创作灵感" level="3"
+                                        uid=469_745 link "#唯美食不能辜负 #创作者中心 #创作灵感" url="https://www.douyin.com/video/7657827563133228634"
+                                          uid=469_746 StaticText "#唯美食不能辜负 #创作者中心 #创作灵感"
+                                            uid=469_5 InlineTextBox "#唯美食不能辜负 #创作"
+                                            uid=469_5 InlineTextBox "者中心 #创作灵感"
+                                      uid=469_747 ignored
+                                        uid=469_748 ignored
+                                          uid=469_749 image
+                                          uid=469_750 StaticText "3254"
+                                            uid=469_5 InlineTextBox "3254"
+                                        uid=469_751 ignored
+                                          uid=469_752 link "小阿静" url="https://www.douyin.com/user/MS4wLjABAAAA5AO9Yra8f2pWSWPvDqs6J-HqzQi_L9yn82fO2-eflUbWBj0HiWo4Uk4x70nCqxE-?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_753 StaticText "小阿静"
+                                              uid=469_5 InlineTextBox "小阿静"
+                                uid=469_754 listitem level="1"
+                                  uid=469_755 ignored
+                                    uid=469_756 generic
+                                      uid=469_757 link "#搞笑互怼 #搞笑甜梗日常 00:20" url="https://www.douyin.com/video/7657165242405404261"
+                                        uid=469_758 generic
+                                          uid=469_759 generic
+                                          uid=469_760 generic
+                                          uid=469_761 image "#搞笑互怼 #搞笑甜梗日常" url="https://p9-pc-sign.douyinpic.com/image-cut-tos-priv/49af72db38e3df18456f1db59ffc07d0~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=pp0%2BgELIuj2B8lnWUbkE%2BF30Vps%3D"
+                                        uid=469_762 generic
+                                        uid=469_763 generic
+                                          uid=469_764 StaticText "00:20"
+                                            uid=469_5 InlineTextBox "00:20"
+                                    uid=469_765 ignored
+                                      uid=469_766 heading "#搞笑互怼 #搞笑甜梗日常" level="3"
+                                        uid=469_767 link "#搞笑互怼 #搞笑甜梗日常" url="https://www.douyin.com/video/7657165242405404261"
+                                          uid=469_768 StaticText "#搞笑互怼 #搞笑甜梗日常"
+                                            uid=469_5 InlineTextBox "#搞笑互怼 #搞笑甜梗日"
+                                            uid=469_5 InlineTextBox "常"
+                                      uid=469_769 ignored
+                                        uid=469_770 ignored
+                                          uid=469_771 image
+                                          uid=469_772 StaticText "3141"
+                                            uid=469_5 InlineTextBox "3141"
+                                        uid=469_773 ignored
+                                          uid=469_774 link "小禾苗耶" url="https://www.douyin.com/user/MS4wLjABAAAA0ZYeH9LhajpO3cAMULFOrHwED3FYslDqFxvYs0wmO3Lts3JcLnDAwtdPqFHUncT5?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_775 StaticText "小禾苗耶"
+                                              uid=469_5 InlineTextBox "小禾苗耶"
+                                uid=469_776 listitem level="1"
+                                  uid=469_777 ignored
+                                    uid=469_778 generic
+                                      uid=469_779 link "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划 00:30" url="https://www.douyin.com/video/7671533897918248933"
+                                        uid=469_780 generic
+                                          uid=469_781 generic
+                                          uid=469_782 generic
+                                          uid=469_783 image "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/8432aed79d171509d8e372bc0e5d7cc4~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=1ytc%2FEnCazdMZBvHE7VjtERB5yc%3D"
+                                        uid=469_784 generic
+                                        uid=469_785 generic
+                                          uid=469_786 StaticText "00:30"
+                                            uid=469_5 InlineTextBox "00:30"
+                                    uid=469_787 ignored
+                                      uid=469_788 heading "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划" level="3"
+                                        uid=469_789 link "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://www.douyin.com/video/7671533897918248933"
+                                          uid=469_790 StaticText "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划"
+                                            uid=469_5 InlineTextBox "我自有妙招哈哈 #你的亲"
+                                            uid=469_5 InlineTextBox "子互动日常 #创作者中心 "
+                                            uid=469_5 InlineTextBox "#创作灵感 #抖音二创激"
+                                            uid=469_5 InlineTextBox "#创作灵感 #抖音二创"
+                                            uid=469_5 InlineTextBox "…"
+                                            uid=469_5 InlineTextBox "励计划"
+                                      uid=469_791 ignored
+                                        uid=469_792 ignored
+                                          uid=469_793 image
+                                          uid=469_794 StaticText "2521"
+                                            uid=469_5 InlineTextBox "2521"
+                                        uid=469_795 ignored
+                                          uid=469_796 link "🌈 母子快乐小剧场" url="https://www.douyin.com/user/MS4wLjABAAAAdBzJu4dX3cOXUopFZt1hMszZDUYXrj_cOAJa2vSDoHg?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_797 image "🌈" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f308.png"
+                                            uid=469_798 StaticText "母子快乐小剧场"
+                                              uid=469_5 InlineTextBox "母子快乐小剧场"
+                                              uid=469_5 InlineTextBox "母子快乐小"
+                                              uid=469_5 InlineTextBox "…"
+                                uid=469_799 listitem level="1"
+                                  uid=469_800 ignored
+                                    uid=469_801 generic
+                                      uid=469_802 link "#萌娃的可爱瞬间 #创作者中心 #创作灵感 #抖音二创激励计划 00:28" url="https://www.douyin.com/video/7681525435104650211"
+                                        uid=469_803 generic
+                                          uid=469_804 generic
+                                          uid=469_805 generic
+                                          uid=469_806 image "#萌娃的可爱瞬间 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/6e4fa789be89aa158523604a2c0fbe07~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=jjPIcSxPvrQllVIiijY7b4LZSVw%3D"
+                                        uid=469_807 generic
+                                        uid=469_808 generic
+                                          uid=469_809 StaticText "00:28"
+                                            uid=469_5 InlineTextBox "00:28"
+                                    uid=469_810 ignored
+                                      uid=469_811 heading "#萌娃的可爱瞬间 #创作者中心 #创作灵感 #抖音二创激励计划" level="3"
+                                        uid=469_812 link "#萌娃的可爱瞬间 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://www.douyin.com/video/7681525435104650211"
+                                          uid=469_813 StaticText "#萌娃的可爱瞬间 #创作者中心 #创作灵感 #抖音二创激励计划"
+                                            uid=469_5 InlineTextBox "#萌娃的可爱瞬间 #创作"
+                                            uid=469_5 InlineTextBox "者中心 #创作灵感 #抖音"
+                                            uid=469_5 InlineTextBox "二创激励计划"
+                                      uid=469_814 ignored
+                                        uid=469_815 ignored
+                                          uid=469_816 image
+                                          uid=469_817 StaticText "1094"
+                                            uid=469_5 InlineTextBox "1094"
+                                        uid=469_818 ignored
+                                          uid=469_819 link "🌈 搞笑母子" url="https://www.douyin.com/user/MS4wLjABAAAA1ZU0JD7aap3S7TluZ9AtoRGf2ObCGEA4rlcbij11KrprU8itfiq75rMpLCscV6EC?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_820 image "🌈" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f308.png"
+                                            uid=469_821 StaticText "搞笑母子"
+                                              uid=469_5 InlineTextBox "搞笑母子"
+                                uid=469_822 listitem level="1"
+                                  uid=469_823 ignored
+                                    uid=469_824 generic
+                                      uid=469_825 link "佳丽来好几天了还没去厂里看看呢，今天不用看她小弟了，带她来看看 04:41" url="https://www.douyin.com/video/7663439235358347938"
+                                        uid=469_826 generic
+                                          uid=469_827 generic
+                                          uid=469_828 generic
+                                          uid=469_829 image "佳丽来好几天了还没去厂里看看呢，今天不用看她小弟了，带她来看看" url="https://p3-pc-sign.douyinpic.com/image-cut-tos/c6ef77bc7d41c767d97fb9e07646ee05~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105085600&x-signature=bU2quIFITSPO0jRcCn8gSutD1C0%3D"
+                                        uid=469_830 generic
+                                        uid=469_831 generic
+                                          uid=469_832 StaticText "04:41"
+                                            uid=469_5 InlineTextBox "04:41"
+                                    uid=469_833 ignored
+                                      uid=469_834 heading "佳丽来好几天了还没去厂里看看呢，今天不用看她小弟了，带她来看看" level="3"
+                                        uid=469_835 link "佳丽来好几天了还没去厂里看看呢，今天不用看她小弟了，带她来看看" url="https://www.douyin.com/video/7663439235358347938"
+                                          uid=469_836 StaticText "佳丽来好几天了还没去厂里看看呢，今天不用看她小弟了，带她来看看"
+                                            uid=469_5 InlineTextBox "佳丽来好几天了还没去"
+                                            uid=469_5 InlineTextBox "厂里看看呢，今天不用"
+                                            uid=469_5 InlineTextBox "看她小弟了，带她来看"
+                                            uid=469_5 InlineTextBox "看她小弟了，带她来"
+                                            uid=469_5 InlineTextBox "…"
+                                            uid=469_5 InlineTextBox "看"
+                                      uid=469_837 ignored
+                                        uid=469_838 ignored
+                                          uid=469_839 image
+                                          uid=469_840 StaticText "2.0万"
+                                            uid=469_5 InlineTextBox "2.0万"
+                                        uid=469_841 ignored
+                                          uid=469_842 link "春花婆婆大儿媳" url="https://www.douyin.com/user/MS4wLjABAAAABzAh1KXaLnV40unL7rWHR43nhJqMuuN435CkxmZ_hX6bVl8A9vvFWQna31QB7x6N?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918181207E2DA4AD33579677F3CD6%22%7D&relation=0"
+                                            uid=469_843 StaticText "春花婆婆大儿媳"
+                                              uid=469_5 InlineTextBox "春花婆婆大儿媳"
+                      uid=469_844 contentinfo
+                        uid=469_845 generic
+                          uid=469_846 generic
+                            uid=469_847 generic
+                              uid=469_848 link "广告投放" url="https://www.oceanengine.com/resource/douyin"
+                                uid=469_849 StaticText "广告投放"
+                                  uid=469_5 InlineTextBox "广告投放"
+                            uid=469_850 generic
+                              uid=469_851 link "用户服务协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                                uid=469_852 StaticText "用户服务协议"
+                                  uid=469_5 InlineTextBox "用户服务协议"
+                            uid=469_853 generic
+                              uid=469_854 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                                uid=469_855 StaticText "隐私政策"
+                                  uid=469_5 InlineTextBox "隐私政策"
+                            uid=469_856 generic
+                              uid=469_857 link "账号找回" url="https://www.douyin.com/recovery_account/"
+                                uid=469_858 StaticText "账号找回"
+                                  uid=469_5 InlineTextBox "账号找回"
+                            uid=469_859 generic
+                              uid=469_860 link "联系我们" url="https://www.douyin.com/aboutus/"
+                                uid=469_861 StaticText "联系我们"
+                                  uid=469_5 InlineTextBox "联系我们"
+                            uid=469_862 generic
+                              uid=469_863 link "加入我们" url="https://www.douyin.com/aboutus/"
+                                uid=469_864 StaticText "加入我们"
+                                  uid=469_5 InlineTextBox "加入我们"
+                            uid=469_865 generic
+                              uid=469_866 link "友情链接" url="https://www.douyin.com/friend_links"
+                                uid=469_867 StaticText "友情链接"
+                                  uid=469_5 InlineTextBox "友情链接"
+                            uid=469_868 generic
+                              uid=469_869 link "站点地图" url="https://www.douyin.com/htmlmap/hotauthor_0_1"
+                                uid=469_870 StaticText "站点地图"
+                                  uid=469_5 InlineTextBox "站点地图"
+                            uid=469_871 generic
+                              uid=469_872 link "下载抖音" url="https://www.douyin.com/downloadpage/pc"
+                                uid=469_873 StaticText "下载抖音"
+                                  uid=469_5 InlineTextBox "下载抖音"
+                            uid=469_874 generic
+                              uid=469_875 link "抖音电商" url="https://mix.jinritemai.com/falcon/mix_page/index.html"
+                                uid=469_876 StaticText "抖音电商"
+                                  uid=469_5 InlineTextBox "抖音电商"
+                          uid=469_877 generic
+                            uid=469_878 generic
+                              uid=469_879 link "网络谣言曝光台 ｜" url="https://www.piyao.org.cn/yybgt/index.htm"
+                                uid=469_880 StaticText "网络谣言曝光台 ｜"
+                                  uid=469_5 InlineTextBox "网络谣言曝光台 ｜"
+                            uid=469_881 generic
+                              uid=469_882 link "网上有害信息举报" url="https://www.12377.cn/"
+                                uid=469_883 StaticText "网上有害信息举报"
+                                  uid=469_5 InlineTextBox "网上有害信息举报"
+                            uid=469_884 generic
+                              uid=469_885 StaticText "｜ 违法和不良信息举报：400-140-2108 feedback@douyin.com ｜ 算法推荐专项举报：sfjubao@bytedance.com | 体育饭圈专项举报：tyfq@bytedance.com"
+                                uid=469_5 InlineTextBox "｜ 违法和不良信息举报：400-140-2108 feedback@douyin.com ｜ 算法推荐专项举报：sfjubao@bytedance.com | 体育饭圈专项举报：tyfq@bytedance.com"
+                              uid=469_886 ignored
+                          uid=469_887 generic
+                            uid=469_888 generic
+                              uid=469_889 link "京ICP备16016397号-3" url="https://beian.miit.gov.cn/"
+                                uid=469_890 StaticText "京ICP备16016397号-3"
+                                  uid=469_5 InlineTextBox "京ICP备16016397号-3"
+                            uid=469_891 generic
+                              uid=469_892 StaticText "｜ 信息网络传播视听节目许可证 0126733"
+                                uid=469_5 InlineTextBox "｜ 信息网络传播视听节目许可证 0126733"
+                            uid=469_893 generic
+                              uid=469_894 StaticText "｜ 广播电视节目制作经营许可证 （京）字第11313号"
+                                uid=469_5 InlineTextBox "｜ 广播电视节目制作经营许可证 （京）字第11313号"
+                            uid=469_895 generic
+                              uid=469_896 StaticText "｜ 增值电信业务经营许可证 京B2-20170846"
+                                uid=469_5 InlineTextBox "｜ 增值电信业务经营许可证 京B2-20170846"
+                            uid=469_897 generic
+                              uid=469_898 StaticText "｜ 网络文化经营许可证 京网文〔2025〕0181-061号 ｜"
+                                uid=469_5 InlineTextBox "｜ 网络文化经营许可证 京网文〔2025〕0181-061号 ｜"
+                            uid=469_899 generic
+                              uid=469_900 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/emblem-new.png"
+                              uid=469_901 link "京公网安备11010802050006号" url="https://beian.mps.gov.cn/"
+                                uid=469_902 StaticText "京公网安备11010802050006号"
+                                  uid=469_5 InlineTextBox "京公网安备11010802050006号"
+                            uid=469_903 generic
+                              uid=469_904 StaticText "｜ 互联网宗教信息服务许可证 京（2025）0000017 ｜"
+                                uid=469_5 InlineTextBox "｜ 互联网宗教信息服务许可证 京（2025）0000017 ｜"
+                            uid=469_905 generic
+                              uid=469_906 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/c7085f453e58f78fe403594d0bab6890.png"
+                              uid=469_907 link "电子营业执照" url="https://zzlz.gsxt.gov.cn/businessCheck/verifKey.do"
+                                uid=469_908 StaticText "电子营业执照"
+                                  uid=469_5 InlineTextBox "电子营业执照"
+                            uid=469_909 generic
+                              uid=469_910 link "｜（京）人服证字〔2026〕第0600005023号" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/d1cb34abe8ebb5600b51bac36ce3247f.jpg"
+                                uid=469_911 StaticText "｜（京）人服证字〔2026〕第0600005023号"
+                                  uid=469_5 InlineTextBox "｜（京）人服证字〔2026〕第0600005023号"
+                              uid=469_912 ignored
+                          uid=469_913 ignored
+                            uid=469_914 ignored
+                            uid=469_915 generic
+                              uid=469_916 StaticText "热门："
+                                uid=469_5 InlineTextBox "热门："
+                            uid=469_917 generic
+                              uid=469_918 link "抖音" url="https://www.douyin.com/jingxuan"
+                                uid=469_919 StaticText "抖音"
+                                  uid=469_5 InlineTextBox "抖音"
+                            uid=469_920 generic
+                              uid=469_921 link "游戏攻略" url="https://www.douyin.com/jingxuan/game"
+                                uid=469_922 StaticText "游戏攻略"
+                                  uid=469_5 InlineTextBox "游戏攻略"
+                            uid=469_923 generic
+                              uid=469_924 link "好便宜二手汽车行" url="https://www.douyin.com/user/MS4wLjABAAAArqpWctC8AqQYCHtV8pUob1jJ9pHcEBmS1B9_gSqIeL9GWa4h7cRDKPOlwMz1S8qD"
+                                uid=469_925 StaticText "好便宜二手汽车行"
+                                  uid=469_5 InlineTextBox "好便宜二手汽车行"
+                            uid=469_926 generic
+                              uid=469_927 link "我希望你能承受足够的痛苦和折磨 #dou上热门#英语口语#英语演讲#英语#黄仁勋" url="https://www.douyin.com/video/7686799657745423859"
+                                uid=469_928 StaticText "我希望你能承受足够的痛苦和折磨 #dou上热门#英语口语#英语演讲#英语#黄仁勋"
+                                  uid=469_5 InlineTextBox "我希望你能承受足够的痛苦和折磨 #dou上热门#英语口语#英语演讲#英语#黄仁勋"
+                                  uid=469_5 InlineTextBox "我希望你能承受足够的痛苦和"
+                                  uid=469_5 InlineTextBox "…"
+                            uid=469_929 generic
+                              uid=469_930 link "分数排名是全国还是全省" url="https://www.douyin.com/topic/7509885643422484519"
+                                uid=469_931 StaticText "分数排名是全国还是全省"
+                                  uid=469_5 InlineTextBox "分数排名是全国还是全省"
+                            uid=469_932 generic
+                              uid=469_933 link "内蒙古重本分数线" url="https://www.douyin.com/shipin/7509918547582306354"
+                                uid=469_934 StaticText "内蒙古重本分数线"
+                                  uid=469_5 InlineTextBox "内蒙古重本分数线"
+                            uid=469_935 generic
+                              uid=469_936 link "西安工程大学录取分数线 理科" url="https://www.douyin.com/search/%E8%A5%BF%E5%AE%89%E5%B7%A5%E7%A8%8B%E5%A4%A7%E5%AD%A6%E5%BD%95%E5%8F%96%E5%88%86%E6%95%B0%E7%BA%BF+%E7%90%86%E7%A7%91"
+                                uid=469_937 StaticText "西安工程大学录取分数线 理科"
+                                  uid=469_5 InlineTextBox "西安工程大学录取分数线 理科"
+                            uid=469_938 generic
+                              uid=469_939 link "一条视频记录我在广西抗洪抢险" url="https://www.douyin.com/video/7661055984550284550?source=Baiduspider"
+                                uid=469_940 StaticText "一条视频记录我在广西抗洪抢险"
+                                  uid=469_5 InlineTextBox "一条视频记录我在广西抗洪抢险"
+                            uid=469_941 generic
+                              uid=469_942 link "茅系假酒梳理合集，希望大家引以为戒，告别假酒！#白酒知识 #茅台真假鉴定 #白酒 #闻酒都脸红" url="https://www.douyin.com/video/7274475141927669050?source=Baiduspider"
+                                uid=469_943 StaticText "茅系假酒梳理合集，希望大家引以为戒，告别假酒！#白酒知识 #茅台真假鉴定 #白酒 #闻酒都脸红"
+                                  uid=469_5 InlineTextBox "茅系假酒梳理合集，希望大家引以为戒，告别假酒！#白酒知识 #茅台真假鉴定 #白酒 #闻酒都脸红"
+                                  uid=469_5 InlineTextBox "茅系假酒梳理合集，希望大家"
+                                  uid=469_5 InlineTextBox "…"
+                            uid=469_944 generic
+                              uid=469_945 link "今天分享做澳门烧肉常用的制作方法，熟烧澳门烧肉，这样做出来皮超级脆，烤制环节参考《生烧澳门烧肉03》那期#广州烧腊培训总部 #烧肉培训哪家好#烤鸭技术培训 #烧鹅培训 #广东脆皮烤全猪的做法" url="https://www.douyin.com/video/7262285846609464633?source=Baiduspider"
+                                uid=469_946 StaticText "今天分享做澳门烧肉常用的制作方法，熟烧澳门烧肉，这样做出来皮超级脆，烤制环节参考《生烧澳门烧肉03》那期#广州烧腊培训总部 #烧肉培训哪家好#烤鸭技术培训 #烧鹅培训 #广东脆皮烤全猪的做法"
+                                  uid=469_5 InlineTextBox "今天分享做澳门烧肉常用的制作方法，熟烧澳门烧肉，这样做出来皮超级脆，烤制环节参考《生烧澳门烧肉03》那期#广州烧腊培训总部 #烧肉培训哪家好#烤鸭技术培训 #烧鹅培训 #广东脆皮烤全猪的做法"
+                                  uid=469_5 InlineTextBox "今天分享做澳门烧肉常用的制"
+                                  uid=469_5 InlineTextBox "…"
+                            uid=469_947 generic
+                              uid=469_948 link "🎙《人在中秋》文素：书虫📖 今夜 我在故乡望他乡 你在他乡望故乡 多情的月光 把长满思念的心照亮 不怨时光易逝 不怨独守寒天 只想还有半世情长 月正圆 酒正酣 夜未央 泪千行 #人在中秋#每逢佳节倍思亲#中秋快乐阖家幸福#中秋诵读#追逐之声🎧🥮🎉" url="https://www.douyin.com/video/7558032634565627195?source=Baiduspider-sdc"
+                                uid=469_949 StaticText "🎙《人在中秋》文素：书虫📖 今夜 我在故乡望他乡 你在他乡望故乡 多情的月光 把长满思念的心照亮 不怨时光易逝 不怨独守寒天 只想还有半世情长 月正圆 酒正酣 夜未央 泪千行 #人在中秋#每逢佳节倍思亲#中秋快乐阖家幸福#中秋诵读#追逐之声🎧🥮🎉"
+                                  uid=469_5 InlineTextBox "🎙《人在中秋》文素：书虫📖 今夜 我在故乡望他乡 你在他乡望故乡 多情的月光 把长满思念的心照亮 不怨时光易逝 不怨独守寒天 只想还有半世情长 月正圆 酒正酣 夜未央 泪千行 #人在中秋#每逢佳节倍思亲#中秋快乐阖家幸福#中秋诵读#追逐之声🎧🥮🎉"
+                                  uid=469_5 InlineTextBox "🎙《人在中秋》文素：书虫📖 "
+                                  uid=469_5 InlineTextBox "…"
+                            uid=469_950 generic
+                              uid=469_951 link "几十年龙眼树改良品种#三农 #嫁接技术 #抖音助农 #农业种植 #果园管理" url="https://www.douyin.com/video/7361022015781850378?source=Baiduspider"
+                                uid=469_952 StaticText "几十年龙眼树改良品种#三农 #嫁接技术 #抖音助农 #农业种植 #果园管理"
+                                  uid=469_5 InlineTextBox "几十年龙眼树改良品种#三农 #嫁接技术 #抖音助农 #农业种植 #果园管理"
+                                  uid=469_5 InlineTextBox "几十年龙眼树改良品种#三农 #"
+                                  uid=469_5 InlineTextBox "…"
+                            uid=469_953 generic
+                              uid=469_954 link "#美食制作分享 金怎么存放更新鲜 小时候的回忆 这道菜都爱吃 又存放时间长的原因 今天我分享给大家 能存放一年都是新鲜的方法分享给大家" url="https://www.douyin.com/video/7526048911783611658?source=Baiduspider"
+                                uid=469_955 StaticText "#美食制作分享 金怎么存放更新鲜 小时候的回忆 这道菜都爱吃 又存放时间长的原因 今天我分享给大家 能存放一年都是新鲜的方法分享给大家"
+                                  uid=469_5 InlineTextBox "#美食制作分享 金怎么存放更新鲜 小时候的回忆 这道菜都爱吃 又存放时间长的原因 今天我分享给大家 能存放一年都是新鲜的方法分享给大家"
+                                  uid=469_5 InlineTextBox "#美食制作分享 金怎么存放更"
+                                  uid=469_5 InlineTextBox "…"
+                            uid=469_956 generic
+                              uid=469_957 link "甩完籽的鲫鱼并没走远，稍做调整大鲫鱼上岸，方法用对钓鱼更轻松 #户外钓鱼 #野钓 #钓鱼 #钓鱼技巧" url="https://www.douyin.com/video/7098543425481346317?source=Baiduspider-sdc"
+                                uid=469_958 StaticText "甩完籽的鲫鱼并没走远，稍做调整大鲫鱼上岸，方法用对钓鱼更轻松 #户外钓鱼 #野钓 #钓鱼 #钓鱼技巧"
+                                  uid=469_5 InlineTextBox "甩完籽的鲫鱼并没走远，稍做调整大鲫鱼上岸，方法用对钓鱼更轻松 #户外钓鱼 #野钓 #钓鱼 #钓鱼技巧"
+                                  uid=469_5 InlineTextBox "甩完籽的鲫鱼并没走远，稍做"
+                                  uid=469_5 InlineTextBox "…"
+        uid=469_959 generic
+        uid=469_960 generic
+      uid=469_961 ignored
+      uid=469_962 ignored
+      uid=469_963 ignored
+      uid=469_964 ignored
+      uid=469_965 ignored
+      uid=469_966 ignored
+      uid=469_967 ignored
+      uid=469_968 ignored
+      uid=469_969 ignored
+      uid=469_970 ignored
+      uid=469_971 ignored
+      uid=469_972 ignored
+      uid=469_973 ignored
+      uid=469_974 ignored
+      uid=469_975 ignored
+      uid=469_976 ignored
+      uid=469_977 ignored
+      uid=469_978 ignored
+      uid=469_979 ignored
+      uid=469_980 ignored
+      uid=469_981 ignored
+      uid=469_982 ignored
+      uid=469_983 ignored
+      uid=469_984 ignored
+      uid=469_985 ignored
+      uid=469_986 ignored
+      uid=469_987 ignored
+      uid=469_988 ignored
+      uid=469_989 ignored
+      uid=469_990 ignored
+      uid=469_991 ignored
+      uid=469_992 ignored
+      uid=469_993 ignored
+      uid=469_994 ignored
+      uid=469_995 ignored
+      uid=469_996 ignored
+      uid=469_997 ignored
+      uid=469_998 ignored
+      uid=469_999 ignored
+        uid=469_1000 ignored
+          uid=469_1001 ignored
+          uid=469_1002 ignored
+            uid=469_1003 ignored
+          uid=469_1004 ignored
+            uid=469_1005 ignored
+              uid=469_1006 ignored
+              uid=469_1007 ignored
+                uid=469_1008 ignored
+                  uid=469_1009 ignored
+                uid=469_1010 ignored
+                uid=469_1011 ignored
+                  uid=469_1012 ignored
+                  uid=469_1013 ignored
+                  uid=469_1014 ignored
+                uid=469_1015 ignored
+                  uid=469_1016 ignored
+                uid=469_1017 ignored
+                  uid=469_1018 ignored
+              uid=469_1019 ignored
+          uid=469_1020 ignored
+          uid=469_1021 ignored
+          uid=469_1022 ignored
+          uid=469_1023 ignored
+          uid=469_1024 ignored
+            uid=469_1025 ignored
+            uid=469_1026 ignored
+            uid=469_1027 ignored
+            uid=469_1028 ignored
+            uid=469_1029 ignored
+            uid=469_1030 ignored
+            uid=469_1031 ignored
+            uid=469_1032 ignored
+            uid=469_1033 ignored
+            uid=469_1034 ignored
+      uid=469_1035 generic
+        uid=469_1036 generic
+          uid=469_1037 generic
+            uid=469_1038 generic
+              uid=469_1039 generic
+                uid=469_1040 ignored
+                  uid=469_1041 article
+                    uid=469_1042 generic
+                      uid=469_1043 image url="https://lf-ucenter-web.yhgfb-cn-static.com/obj/passport-fe/flat_bg_2_small.avif"
+                    uid=469_1044 generic
+                      uid=469_1045 generic
+                        uid=469_1046 generic
+                          uid=469_1047 StaticText "登录后免费畅享高清视频"
+                            uid=469_5 InlineTextBox "登录后免费畅享高清视频"
+                        uid=469_1048 generic
+                          uid=469_1049 image
+                      uid=469_1050 ignored
+                        uid=469_1051 generic
+                          uid=469_1052 ignored
+                            uid=469_1053 ignored
+                              uid=469_1054 ignored
+                                uid=469_1055 ignored
+                                  uid=469_1056 generic
+                                    uid=469_1057 StaticText "扫码登录"
+                                      uid=469_5 InlineTextBox "扫码登录"
+                                uid=469_1058 ignored
+                                  uid=469_1059 generic
+                                    uid=469_1060 generic
+                                      uid=469_1061 ignored
+                                        uid=469_1062 generic
+                                          uid=469_1063 generic
+                                            uid=469_1064 StaticText "如何扫码"
+                                              uid=469_5 InlineTextBox "如何扫码"
+                                          uid=469_1065 generic
+                                            uid=469_1066 image "二维码" url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIAAQMAAADOtka5AAAABlBMVEX///8AAABVwtN+AAACuUlEQVR42uzcPZLqMAzAcTNbUHIEjrJHg6NxFI5AmYJZvYllfTgEljfzihfzV7UZk99WGtuynEIQBEEQBEEQBPG/x7d4XEopO/3zXAeupRzq490H5vgBAABYA+xxPwPHn/aKyGXXgKkO7+S2fAMAYDTgWNNnL5cvT5/z1wz0WXYrmlcAAADvAC3pTu13/QAAwOcAugLbezLpk67SAAAAfgN8mVeBgyhQoy3zIk1frxMBALYMpO2/TUBTm5mOM+Az0xv1AwCATwZyWDbWPy9lBko51ZeubxWpAQA2DNgqbbHLt1qaFdm8rnwHAAB4Akgcy9ybNUX94FZO0zxQgXn383RqAwDYOFBj3s70g3WS0lVafT6KL9/WAgAAIA75p7zMs2zUAU1Tm7Ie0xkAYBBA5sGTxC5/amP1rfabKDgDAACsAsXOYqJ+ME9A9kqtpdkhDQDAyECdmfIhv0Qj2bVteTyv9CSzAAAArABl2Yop0rfSaAHNgMdaGgDAIEB/LqlH/inLUl3A/slaKw0AAEDk31RfaYc02kqjU1ZUrDUbAQAGBjRnbPm1uAgjnmXrhWkAAIBuZvIC2kGyvLx62Z4AAAYFtK5s3WNpMaYzU4mrlyv1AwAAgLL43XdqxYweTW8re3V7AABgCEBnJmuf9EaA1hZwTjdkavfys6kNAABA28q6rhr93dEKC3HiuVqYBgAYBFjeNk6fsYi2AMktMgAAAL/eKrOrAGG168ptL/Sk4RkAYPtA/+E9a6r0mUn7lSWuIctKKw0AAMDjdzCiY8ZvlaUi2xvfhAEA2DCQV2mSc8a2PHnKKgAAAH8JeC0tXcS0m2cAAMMDuXW5dE3KO28re1k/AAD4aMCXeXGwmZv/tTAdyzwAgEGB7sN7qUXfLoWl3n1vCwAAAHgECIIgCIIgCIIg/n38CQAA///WHfhEaNgnuAAAAABJRU5ErkJggg=="
+                                            uid=469_1067 ignored
+                                              uid=469_1068 image
+                                          uid=469_1069 generic
+                                            uid=469_1070 generic
+                                              uid=469_1071 generic
+                                                uid=469_1072 image
+                                                  uid=469_1073 ignored
+                                                  uid=469_1074 ignored
+                                        uid=469_1075 paragraph
+                                          uid=469_1076 paragraph
+                                            uid=469_1077 StaticText "打开"
+                                              uid=469_5 InlineTextBox "打开"
+                                            uid=469_1078 StaticText "「抖音APP」"
+                                              uid=469_5 InlineTextBox "「抖音APP」"
+                                            uid=469_1079 StaticText "点击左上角"
+                                              uid=469_5 InlineTextBox "点击左上角"
+                                          uid=469_1080 image
+                                          uid=469_1081 paragraph
+                                            uid=469_1082 StaticText "扫一扫"
+                                              uid=469_5 InlineTextBox "扫一扫"
+                          uid=469_1083 ignored
+                            uid=469_1084 ignored
+                              uid=469_1085 ignored
+                                uid=469_1086 ignored
+                                  uid=469_1087 generic
+                                    uid=469_1088 StaticText "验证码登录"
+                                      uid=469_5 InlineTextBox "验证码登录"
+                                  uid=469_1089 ignored
+                                    uid=469_1090 image
+                                  uid=469_1091 generic
+                                    uid=469_1092 StaticText "密码登录"
+                                      uid=469_5 InlineTextBox "密码登录"
+                                uid=469_1093 ignored
+                                  uid=469_1094 ignored
+                                    uid=469_1095 generic
+                                      uid=469_1096 generic
+                                        uid=469_1097 ignored
+                                          uid=469_1098 generic
+                                            uid=469_1099 generic
+                                              uid=469_1100 ignored
+                                                uid=469_1101 combobox "国家/地区" haspopup="listbox" value="+86"
+                                                  uid=469_1102 generic
+                                                    uid=469_1103 StaticText "+86"
+                                                      uid=469_5 InlineTextBox "+86"
+                                                uid=469_1104 ignored
+                                            uid=469_1105 ignored
+                                              uid=469_1106 image
+                                            uid=469_1107 textbox "请输入手机号"
+                                              uid=469_1108 ignored
+                                              uid=469_1109 generic
+                                        uid=469_1110 ignored
+                                          uid=469_1111 generic
+                                            uid=469_1112 generic
+                                              uid=469_1113 textbox "请输入验证码"
+                                                uid=469_1114 ignored
+                                                uid=469_1115 generic
+                                            uid=469_1116 generic
+                                              uid=469_1117 StaticText "获取验证码"
+                                                uid=469_5 InlineTextBox "获取验证码"
+                                        uid=469_1118 generic
+                                        uid=469_1119 ignored
+                                          uid=469_1120 generic
+                                            uid=469_1121 StaticText "登录"
+                                              uid=469_5 InlineTextBox "登录"
+                                        uid=469_1122 ignored
+                                          uid=469_1123 generic "登录即代表同意用户协议和隐私政策"
+                                            uid=469_1124 StaticText "登录即代表同意"
+                                              uid=469_5 InlineTextBox "登录即代表同意"
+                                            uid=469_1125 link "用户协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                                              uid=469_1126 StaticText "用户协议"
+                                                uid=469_5 InlineTextBox "用户协议"
+                                            uid=469_1127 StaticText "和"
+                                              uid=469_5 InlineTextBox "和"
+                                            uid=469_1128 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                                              uid=469_1129 StaticText "隐私政策"
+                                                uid=469_5 InlineTextBox "隐私政策"
+      uid=469_1130 ignored
+      uid=469_1131 generic
+      uid=469_1132 generic
+        uid=469_1133 generic
+          uid=469_1134 ignored
+            uid=469_1135 ignored
+              uid=469_1136 ignored
+                uid=469_1137 ignored
+                  uid=469_1138 ignored
+                    uid=469_1139 ignored
+                      uid=469_1140 ignored
+                        uid=469_1141 ignored
+                          uid=469_1142 ignored
+                            uid=469_1143 ignored
+                              uid=469_1144 ignored
+                          uid=469_1145 ignored
+                    uid=469_1146 ignored
+                      uid=469_1147 ignored
+                        uid=469_1148 ignored
+                          uid=469_1149 ignored
+                            uid=469_1150 ignored
+                              uid=469_1151 ignored
+                          uid=469_1152 ignored
+                    uid=469_1153 ignored
+                      uid=469_1154 ignored
+                        uid=469_1155 ignored
+                          uid=469_1156 ignored
+                            uid=469_1157 ignored
+                              uid=469_1158 ignored
+                          uid=469_1159 ignored
+                    uid=469_1160 ignored
+                      uid=469_1161 ignored
+                        uid=469_1162 ignored
+                          uid=469_1163 ignored
+                            uid=469_1164 ignored
+                              uid=469_1165 ignored
+                          uid=469_1166 ignored
+                    uid=469_1167 ignored
+                      uid=469_1168 ignored
+                        uid=469_1169 ignored
+                          uid=469_1170 ignored
+                            uid=469_1171 ignored
+                              uid=469_1172 ignored
+                          uid=469_1173 ignored
+                    uid=469_1174 ignored
+                      uid=469_1175 ignored
+                        uid=469_1176 ignored
+                          uid=469_1177 ignored
+                            uid=469_1178 ignored
+                              uid=469_1179 ignored
+                            uid=469_1180 ignored
+                              uid=469_1181 ignored
+                              uid=469_1182 ignored
+                          uid=469_1183 ignored
+      uid=469_1184 generic
+

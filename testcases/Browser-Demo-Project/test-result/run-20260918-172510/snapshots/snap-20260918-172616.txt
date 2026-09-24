@@ -1,0 +1,1441 @@
+## Latest page snapshot
+uid=23_0 RootWebArea "火柴人超炫手翻画 - 抖音" url="https://www.douyin.com/video/6611776156595129614"
+  uid=23_1 ignored
+    uid=23_2 generic
+      uid=23_3 button "开启读屏标签"
+        uid=23_4 StaticText "开启读屏标签"
+          uid=23_5 InlineTextBox "开"
+          uid=23_5 InlineTextBox "启"
+          uid=23_5 InlineTextBox "读"
+          uid=23_5 InlineTextBox "屏"
+          uid=23_5 InlineTextBox "标"
+          uid=23_5 InlineTextBox "签"
+      uid=23_6 generic live="assertive" relevant="additions text"
+        uid=23_7 StaticText "读屏标签已关闭"
+          uid=23_5 InlineTextBox "读"
+          uid=23_5 InlineTextBox "屏"
+          uid=23_5 InlineTextBox "标"
+          uid=23_5 InlineTextBox "签"
+          uid=23_5 InlineTextBox "已"
+          uid=23_5 InlineTextBox "关"
+          uid=23_5 InlineTextBox "闭"
+      uid=23_8 generic
+        uid=23_9 generic
+          uid=23_10 generic
+          uid=23_11 ignored
+          uid=23_12 generic
+            uid=23_13 link url="https://www.douyin.com/jingxuan"
+            uid=23_14 generic
+              uid=23_15 generic
+                uid=23_16 generic
+              uid=23_17 generic
+                uid=23_18 generic
+                  uid=23_19 ignored
+                    uid=23_20 ignored
+                      uid=23_21 ignored
+                        uid=23_22 ignored
+                          uid=23_23 ignored
+                            uid=23_24 generic
+                              uid=23_25 link "精选" url="https://www.douyin.com/jingxuan?from_nav=1"
+                                uid=23_26 ignored
+                                  uid=23_27 ignored
+                                uid=23_28 generic
+                                  uid=23_29 StaticText "精选"
+                                    uid=23_5 InlineTextBox "精选"
+                                uid=23_30 ignored
+                        uid=23_31 ignored
+                          uid=23_32 ignored
+                            uid=23_33 generic
+                              uid=23_34 link "推荐" url="https://www.douyin.com/?recommend=1&from_nav=1"
+                                uid=23_35 ignored
+                                  uid=23_36 ignored
+                                uid=23_37 generic
+                                  uid=23_38 StaticText "推荐"
+                                    uid=23_5 InlineTextBox "推荐"
+                                uid=23_39 ignored
+                        uid=23_40 ignored
+                          uid=23_41 ignored
+                            uid=23_42 generic
+                              uid=23_43 link "AI抖音" url="https://www.douyin.com/aisearch?from_nav=1"
+                                uid=23_44 image
+                                uid=23_45 generic
+                                  uid=23_46 StaticText "AI抖音"
+                                    uid=23_5 InlineTextBox "AI抖音"
+                                uid=23_47 ignored
+                        uid=23_48 ignored
+                        uid=23_49 ignored
+                          uid=23_50 ignored
+                            uid=23_51 generic
+                              uid=23_52 link "关注" url="https://www.douyin.com/follow?from_nav=1"
+                                uid=23_53 ignored
+                                  uid=23_54 ignored
+                                uid=23_55 generic
+                                  uid=23_56 StaticText "关注"
+                                    uid=23_5 InlineTextBox "关注"
+                                uid=23_57 ignored
+                        uid=23_58 ignored
+                          uid=23_59 ignored
+                            uid=23_60 generic
+                              uid=23_61 link "朋友" url="https://www.douyin.com/friend?from_nav=1"
+                                uid=23_62 ignored
+                                  uid=23_63 ignored
+                                uid=23_64 generic
+                                  uid=23_65 StaticText "朋友"
+                                    uid=23_5 InlineTextBox "朋友"
+                                uid=23_66 ignored
+                        uid=23_67 ignored
+                          uid=23_68 ignored
+                            uid=23_69 generic
+                              uid=23_70 link "我的" url="https://www.douyin.com/user/self?from_nav=1"
+                                uid=23_71 ignored
+                                  uid=23_72 ignored
+                                uid=23_73 generic
+                                  uid=23_74 StaticText "我的"
+                                    uid=23_5 InlineTextBox "我的"
+                                uid=23_75 ignored
+                        uid=23_76 ignored
+                        uid=23_77 ignored
+                          uid=23_78 ignored
+                            uid=23_79 generic
+                              uid=23_80 link "直播" url="https://live.douyin.com/?from_nav=1"
+                                uid=23_81 ignored
+                                  uid=23_82 ignored
+                                uid=23_83 generic
+                                  uid=23_84 StaticText "直播"
+                                    uid=23_5 InlineTextBox "直播"
+                                uid=23_85 ignored
+                        uid=23_86 ignored
+                          uid=23_87 ignored
+                            uid=23_88 generic
+                              uid=23_89 link "放映厅" url="https://www.douyin.com/vs?from_nav=1"
+                                uid=23_90 ignored
+                                  uid=23_91 ignored
+                                uid=23_92 generic
+                                  uid=23_93 StaticText "放映厅"
+                                    uid=23_5 InlineTextBox "放映厅"
+                                uid=23_94 ignored
+                        uid=23_95 ignored
+                          uid=23_96 ignored
+                            uid=23_97 generic
+                              uid=23_98 link "短剧" url="https://www.douyin.com/series?from_nav=1"
+                                uid=23_99 ignored
+                                  uid=23_100 ignored
+                                uid=23_101 generic
+                                  uid=23_102 StaticText "短剧"
+                                    uid=23_5 InlineTextBox "短剧"
+                                uid=23_103 ignored
+                        uid=23_104 ignored
+                          uid=23_105 ignored
+                            uid=23_106 generic
+                              uid=23_107 link "小游戏" url="https://www.douyin.com/microgame?from_nav=1"
+                                uid=23_108 ignored
+                                  uid=23_109 ignored
+                                uid=23_110 generic
+                                  uid=23_111 StaticText "小游戏"
+                                    uid=23_5 InlineTextBox "小游戏"
+                                uid=23_112 ignored
+                                  uid=23_113 generic
+                        uid=23_114 ignored
+                          uid=23_115 ignored
+                        uid=23_116 ignored
+                          uid=23_117 ignored
+                        uid=23_118 ignored
+                          uid=23_119 ignored
+                        uid=23_120 ignored
+                          uid=23_121 ignored
+                        uid=23_122 ignored
+                          uid=23_123 ignored
+                        uid=23_124 ignored
+                          uid=23_125 ignored
+                        uid=23_126 ignored
+                          uid=23_127 ignored
+                        uid=23_128 ignored
+                          uid=23_129 ignored
+                        uid=23_130 ignored
+                          uid=23_131 ignored
+                    uid=23_132 generic
+                      uid=23_133 generic
+                        uid=23_134 image url="https://lf-douyin-pc-web.douyinstatic.com/obj/douyin-pc-web/ies/douyin_web/media/jxWeakBtnBg.b27e25d68aab9de7.png"
+                        uid=23_135 generic
+                          uid=23_136 image url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAYAAABHomvIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQzSURBVHgBzVk9aBxHFP52rSaQ+K5JIBDZ16QziQSpHIxO6RICOlcpUkhpQkgRqUgRAkGCgCE/xRFICG4kF8a4uhMYy92d8E9l0Mk/lYs7/4AtubiTZXBje/2+HZ9uZ3Z2ds+3sv3B43ZnZ2a//ebNm5l3wFsOz1q6+7AML5hBEJQRoAjPKwJBEfm+uif996TvjrBoIfBW8d77zVgt7e7J/RKeHlgWMmW8CXheCweeHcc7H3b2ivYePt6eELUa+Ss1NKjqNN79oMUbRVApt7Gv5G7fVb+Hx7PU7mHs+SSV9MPbp35tX8hdvAJ8dRz46GPgyGfKeP3DT8Cdu66WReVqVHD3fhnwG8gbv/wG/Hsy+fkhUXKtpn4T4U+Lgl4FeSONHEEFqaQTzypC0P8UeeL02XRyfdAFXPD8KV9iUQl54sRfe5elUgntdhvLy8uoVCooFi1uftvli0HRV0E4J1CRiPNPTEyEJOfm5lCr1dDtdsOyzJBFws919l7Sh2xmZgYjougjTxg+VS6X09tcv+F8PIZhsPMIuCYdnltTQ7mzo8oLBeDYUSF4ea9qf3hNkHSr1RoUUPWvv0QydreCVLt3K8CvPwcoHAxAz8hg4neBDY1GQ69bKKj+E96dPsQctqNfyOz8WymYEUn+RwUXFhYGBRyFE386enIp9/8/mRUzTWZs4IKQ1NvwXTYOieTOnLK+WBQIJGRoBDY2NgKJdVqdLGAb8dVB/3SjTARvXo35mzh86D9JiPrW0tJS7LkEbGu7arWqi3BoXKlJDokEv/0mRi7pBX2QVL+++SFsm9QH1U50lU+OWAiSeaSSLE+p5KIvYn0T/eEnyZWVFe0Z67t8OR4H/9MX+vn5eWs8azabWF9fD685Y3lP2ILz6upq+NvpdMJlj3VnZ2fDsl6vBzdMBUNZB18w7LDQp0ykqeS22KwZPOQMMxH1NZtxRkcRC8xDmh6ojW24bWjr9TqSwPrmbmVzcxOjwLmS2PZvLp+x+Z/rg7JAJ1g4qN3SqU249nNTU1PaPT+mP3leHaYPHh7XQoy5ZHHS2Jze5q+i3kj+h5gPEsc+1xTQtkZQfiYTIQwXvKYtLi5CJkOsq1GHV8FU8HwttoqkLfw2UGmMqB6sYcYYZhp3HsOS44flRHC7m6YizbYB2H9y6AKPttpWFX/8PtbAtpb2QTfgR4y2asSsLamPLUkawR47ePLnQdwA42P0zMGJZE6mnNCUIX5Qde6qLUq+RqvyXOyOBX/8DtlAZk2b5Y26yg/ubjeQJavK4+a5C3JUvJySssgF9JlJRbArCcyxIROYPB/zTEvCkfNwTuCCPynWyS8FfPHKQN1rNzACSG4aSkEjiR4qyWwrhsjwWMDzM1Ud3h2aYt+JdfoFCX9DMOvKxKbkDpmeG/VvCO4zQ4XXFOFemADoRYxnh/pLghpeAKra17jyXmwUAAAAAElFTkSuQmCC"
+                          uid=23_137 generic
+                            uid=23_138 StaticText "下载抖音精选"
+                              uid=23_5 InlineTextBox "下载抖音精选"
+                    uid=23_139 generic
+                      uid=23_140 generic
+                        uid=23_141 ignored
+                          uid=23_142 generic
+                            uid=23_143 StaticText "2026 © 抖音"
+                              uid=23_5 InlineTextBox "2026 © 抖音"
+                          uid=23_144 generic
+                            uid=23_145 link "京ICP备16016397号-3" url="https://beian.miit.gov.cn/"
+                              uid=23_146 StaticText "京ICP备16016397号-3"
+                                uid=23_5 InlineTextBox "京ICP备16016397号-3"
+                        uid=23_147 ignored
+                          uid=23_148 generic
+                            uid=23_149 generic
+                              uid=23_150 image
+                          uid=23_151 generic
+                            uid=23_152 generic
+                              uid=23_153 image
+                          uid=23_154 generic
+                            uid=23_155 generic
+                              uid=23_156 image
+                  uid=23_157 ignored
+                    uid=23_158 contentinfo
+                      uid=23_159 generic
+                        uid=23_160 ignored
+                          uid=23_161 generic
+                            uid=23_162 link "icon 京公网安备11010802050006号" url="https://beian.mps.gov.cn/"
+                              uid=23_163 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/emblem-new.png"
+                              uid=23_164 StaticText "京公网安备11010802050006号"
+                                uid=23_5 InlineTextBox "京公网安备"
+                                uid=23_5 InlineTextBox "11010802050006号"
+                          uid=23_165 generic
+                            uid=23_166 link "icon 电子营业执照" url="https://zzlz.gsxt.gov.cn/businessCheck/verifKey.do"
+                              uid=23_167 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/c7085f453e58f78fe403594d0bab6890.png"
+                              uid=23_168 StaticText "电子营业执照"
+                                uid=23_5 InlineTextBox "电子营业执照"
+                          uid=23_169 generic
+                            uid=23_170 StaticText "信息网络传播视听节目许可证 0126733"
+                              uid=23_5 InlineTextBox "信息网络传播视听节目"
+                              uid=23_5 InlineTextBox "许可证 0126733"
+                          uid=23_171 generic
+                            uid=23_172 StaticText "广播电视节目制作经营许可证 （京）字第11313号"
+                              uid=23_5 InlineTextBox "广播电视节目制作经营"
+                              uid=23_5 InlineTextBox "许可证 （京）字第"
+                              uid=23_5 InlineTextBox "11313号"
+                          uid=23_173 generic
+                            uid=23_174 StaticText "增值电信业务经营许可证 京B2-20170846"
+                              uid=23_5 InlineTextBox "增值电信业务经营许可"
+                              uid=23_5 InlineTextBox "证 京B2-20170846"
+                          uid=23_175 generic
+                            uid=23_176 StaticText "网络文化经营许可证 京网文〔2025〕0181-061号"
+                              uid=23_5 InlineTextBox "网络文化经营许可证 京"
+                              uid=23_5 InlineTextBox "网文〔2025〕0181-"
+                              uid=23_5 InlineTextBox "061号"
+                          uid=23_177 generic
+                            uid=23_178 StaticText "互联网宗教信息服务许可证 京（2025）0000017"
+                              uid=23_5 InlineTextBox "互联网宗教信息服务许"
+                              uid=23_5 InlineTextBox "可证 京（2025）"
+                              uid=23_5 InlineTextBox "0000017"
+                          uid=23_179 generic
+                            uid=23_180 StaticText "药品医疗器械网络信息服务备案 （京）网药械信息备字（2023）第00570号"
+                              uid=23_5 InlineTextBox "药品医疗器械网络信息"
+                              uid=23_5 InlineTextBox "服务备案 （京）网药械"
+                              uid=23_5 InlineTextBox "信息备字（2023）第"
+                              uid=23_5 InlineTextBox "00570号"
+                          uid=23_181 generic
+                            uid=23_182 StaticText "互联网新闻信息服务许可证 11220230001"
+                              uid=23_5 InlineTextBox "互联网新闻信息服务许"
+                              uid=23_5 InlineTextBox "可证 11220230001"
+                          uid=23_183 generic
+                            uid=23_184 link "（京）人服证字〔2026〕第0600005023号" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/d1cb34abe8ebb5600b51bac36ce3247f.jpg"
+                              uid=23_185 StaticText "（京）人服证字〔2026〕第0600005023号"
+                                uid=23_5 InlineTextBox "（京）人服证字"
+                                uid=23_5 InlineTextBox "〔2026〕第"
+                                uid=23_5 InlineTextBox "0600005023号"
+                        uid=23_186 ignored
+                        uid=23_187 ignored
+                          uid=23_188 generic
+                            uid=23_189 link "网络谣言曝光台" url="https://www.piyao.org.cn/yybgt/index.htm"
+                              uid=23_190 StaticText "网络谣言曝光台"
+                                uid=23_5 InlineTextBox "网络谣言曝光台"
+                          uid=23_191 generic
+                            uid=23_192 link "网上有害信息举报" url="https://www.12377.cn/"
+                              uid=23_193 StaticText "网上有害信息举报"
+                                uid=23_5 InlineTextBox "网上有害信息举报"
+                          uid=23_194 generic
+                            uid=23_195 StaticText "违法和不良信息举报 400-140-2108 feedback@douyin.com"
+                              uid=23_5 InlineTextBox "违法和不良信息举报 "
+                              uid=23_5 InlineTextBox "400-140-2108 "
+                              uid=23_5 InlineTextBox "feedback@douyin.com"
+                          uid=23_196 generic
+                            uid=23_197 StaticText "算法推荐专项举报 sfjubao@bytedance.com"
+                              uid=23_5 InlineTextBox "算法推荐专项举报 "
+                              uid=23_5 InlineTextBox "sfjubao@bytedance.com"
+                          uid=23_198 generic
+                            uid=23_199 StaticText "体育饭圈专项举报 tyfq@bytedance.com"
+                              uid=23_5 InlineTextBox "体育饭圈专项举报 "
+                              uid=23_5 InlineTextBox "tyfq@bytedance.com"
+                        uid=23_200 ignored
+                        uid=23_201 ignored
+                          uid=23_202 generic
+                            uid=23_203 link "广告投放" url="https://www.oceanengine.com/resource/douyin"
+                              uid=23_204 StaticText "广告投放"
+                                uid=23_5 InlineTextBox "广告投放"
+                          uid=23_205 generic
+                            uid=23_206 link "用户服务协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                              uid=23_207 StaticText "用户服务协议"
+                                uid=23_5 InlineTextBox "用户服务协议"
+                          uid=23_208 generic
+                            uid=23_209 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                              uid=23_210 StaticText "隐私政策"
+                                uid=23_5 InlineTextBox "隐私政策"
+                          uid=23_211 generic
+                            uid=23_212 link "账号找回" url="https://www.douyin.com/recovery_account/"
+                              uid=23_213 StaticText "账号找回"
+                                uid=23_5 InlineTextBox "账号找回"
+                          uid=23_214 generic
+                            uid=23_215 link "联系我们" url="https://www.douyin.com/aboutus/"
+                              uid=23_216 StaticText "联系我们"
+                                uid=23_5 InlineTextBox "联系我们"
+                          uid=23_217 generic
+                            uid=23_218 link "加入我们" url="https://www.douyin.com/aboutus/"
+                              uid=23_219 StaticText "加入我们"
+                                uid=23_5 InlineTextBox "加入我们"
+                          uid=23_220 generic
+                            uid=23_221 link "友情链接" url="https://www.douyin.com/friend_links"
+                              uid=23_222 StaticText "友情链接"
+                                uid=23_5 InlineTextBox "友情链接"
+                          uid=23_223 generic
+                            uid=23_224 link "站点地图" url="https://www.douyin.com/htmlmap/hotauthor_0_1"
+                              uid=23_225 StaticText "站点地图"
+                                uid=23_5 InlineTextBox "站点地图"
+                          uid=23_226 generic
+                            uid=23_227 link "下载抖音" url="https://www.douyin.com/downloadpage/pc"
+                              uid=23_228 StaticText "下载抖音"
+                                uid=23_5 InlineTextBox "下载抖音"
+                          uid=23_229 generic
+                            uid=23_230 link "抖音电商" url="https://mix.jinritemai.com/falcon/mix_page/index.html"
+                              uid=23_231 StaticText "抖音电商"
+                                uid=23_5 InlineTextBox "抖音电商"
+          uid=23_232 generic
+            uid=23_233 generic
+              uid=23_234 ignored
+                uid=23_235 banner
+                  uid=23_236 ignored
+                    uid=23_237 generic
+                      uid=23_238 generic
+                        uid=23_239 generic
+                          uid=23_240 ignored
+                          uid=23_241 generic
+                            uid=23_242 ignored
+                              uid=23_243 generic
+                                uid=23_244 textbox "搜索你感兴趣的内容"
+                                  uid=23_245 ignored
+                                  uid=23_246 generic
+                              uid=23_247 generic
+                              uid=23_248 button "搜索"
+                                uid=23_249 image
+                                uid=23_250 ignored
+                                  uid=23_251 StaticText "搜索"
+                                    uid=23_5 InlineTextBox "搜索"
+                          uid=23_252 ignored
+                            uid=23_253 ignored
+                      uid=23_254 generic
+                        uid=23_255 ignored
+                          uid=23_256 generic
+                            uid=23_257 ignored
+                              uid=23_258 generic
+                                uid=23_259 ignored
+                                  uid=23_260 generic
+                                    uid=23_261 generic
+                                      uid=23_262 generic
+                                        uid=23_263 ignored
+                                          uid=23_264 image
+                                            uid=23_265 image
+                                        uid=23_266 paragraph
+                                          uid=23_267 StaticText "充钻石"
+                                            uid=23_5 InlineTextBox "充钻石"
+                              uid=23_268 generic
+                                uid=23_269 generic
+                                  uid=23_270 ignored
+                                    uid=23_271 generic
+                                      uid=23_272 link "客户端" url="https://www.douyin.com/download/pc/obj/douyin-pc-web/douyin-pc-client/7044145585217083655/releases/469669512/8.5.1/win32-ia32/douyin-downloader-v8.5.1-win32-ia32-douyincold.exe"
+                                        uid=23_273 generic
+                                          uid=23_274 ignored
+                                            uid=23_275 ignored
+                                              uid=23_276 image
+                                                uid=23_277 image
+                                            uid=23_278 paragraph
+                                              uid=23_279 StaticText "客户端"
+                                                uid=23_5 InlineTextBox "客户端"
+                                          uid=23_280 generic
+                                            uid=23_281 image
+                              uid=23_282 generic
+                                uid=23_283 ignored
+                                  uid=23_284 generic
+                                    uid=23_285 generic
+                                      uid=23_286 generic
+                                        uid=23_287 generic
+                                        uid=23_288 image
+                                          uid=23_289 image
+                                      uid=23_290 generic
+                                        uid=23_291 StaticText "壁纸"
+                                          uid=23_5 InlineTextBox "壁纸"
+                              uid=23_292 list
+                                uid=23_293 ignored
+                                  uid=23_294 generic
+                                    uid=23_295 generic
+                                      uid=23_296 ignored
+                                        uid=23_297 ignored
+                                          uid=23_298 image
+                                            uid=23_299 image
+                                        uid=23_300 paragraph
+                                          uid=23_301 StaticText "通知"
+                                            uid=23_5 InlineTextBox "通知"
+                              uid=23_302 list
+                                uid=23_303 ignored
+                                  uid=23_304 generic
+                                    uid=23_305 generic
+                                      uid=23_306 ignored
+                                        uid=23_307 ignored
+                                          uid=23_308 ignored
+                                        uid=23_309 paragraph
+                                          uid=23_310 StaticText "消息"
+                                            uid=23_5 InlineTextBox "消息"
+                              uid=23_311 ignored
+                                uid=23_312 generic
+                                  uid=23_313 generic
+                                    uid=23_314 generic
+                                      uid=23_315 ignored
+                                        uid=23_316 image
+                                          uid=23_317 image
+                                      uid=23_318 paragraph
+                                        uid=23_319 StaticText "投稿"
+                                          uid=23_5 InlineTextBox "投稿"
+                                    uid=23_320 generic description="发布作品 作品数据 开直播 直播数据 剪映专业版 AI音乐创作" haspopup="menu"
+                              uid=23_321 ignored
+                                uid=23_322 generic
+                                  uid=23_323 generic
+                                    uid=23_324 button "登录"
+                                      uid=23_325 generic
+                                        uid=23_326 image
+                                        uid=23_327 paragraph
+                                          uid=23_328 StaticText "登录"
+                                            uid=23_5 InlineTextBox "登录"
+                                  uid=23_329 generic
+              uid=23_330 generic
+                uid=23_331 ignored
+            uid=23_332 ignored
+              uid=23_333 ignored
+                uid=23_334 generic
+                  uid=23_335 ignored
+                    uid=23_336 ignored
+                      uid=23_337 ignored
+                        uid=23_338 ignored
+                        uid=23_339 generic
+                          uid=23_340 ignored
+                            uid=23_341 generic
+                              uid=23_342 generic
+                                uid=23_343 Canvas
+                                  uid=23_344 StaticText "
+        "
+                                uid=23_345 generic
+                              uid=23_346 generic
+                                uid=23_347 generic
+                                  uid=23_348 generic
+                                    uid=23_349 generic
+                                      uid=23_350 generic
+                                        uid=23_351 image
+                                          uid=23_352 image
+                                    uid=23_353 generic
+                                      uid=23_354 generic
+                                        uid=26_0 StaticText "00:09"
+                                          uid=23_5 InlineTextBox "00:09"
+                                      uid=23_356 generic
+                                        uid=23_357 StaticText "/"
+                                          uid=23_5 InlineTextBox "/"
+                                      uid=23_358 generic
+                                        uid=26_1 StaticText "00:14"
+                                          uid=23_5 InlineTextBox "00:14"
+                                    uid=23_360 generic
+                                      uid=23_361 ignored
+                                        uid=23_362 generic
+                                          uid=23_363 image
+                                            uid=23_364 image
+                                  uid=23_365 generic
+                                    uid=23_366 generic
+                                      uid=23_367 generic
+                                        uid=23_368 ignored
+                                          uid=23_369 generic
+                                            uid=23_370 generic
+                                            uid=23_371 generic
+                                        uid=23_372 generic
+                                  uid=23_373 generic
+                                    uid=23_374 generic
+                                      uid=23_375 generic
+                                        uid=23_376 image
+                                          uid=23_377 image
+                                    uid=23_378 generic
+                                      uid=23_379 generic
+                                        uid=23_380 image
+                                    uid=24_2 generic
+                                    uid=23_382 generic
+                                      uid=23_383 generic
+                                        uid=23_384 image
+                                          uid=23_385 image
+                                    uid=23_386 generic
+                                      uid=23_387 generic
+                                        uid=23_388 image
+                                          uid=23_389 image
+                                    uid=24_3 generic
+                                      uid=24_4 generic
+                                        uid=24_5 generic
+                                          uid=24_6 ignored
+                                            uid=24_7 image
+                                    uid=23_395 generic
+                                      uid=23_396 generic
+                                        uid=23_397 StaticText "倍速"
+                                          uid=23_5 InlineTextBox "倍速"
+                                      uid=23_398 ignored
+                                    uid=24_8 generic
+                                      uid=24_9 ignored
+                                        uid=24_10 generic
+                                          uid=24_11 StaticText "智能"
+                                            uid=23_5 InlineTextBox "智能"
+                                      uid=24_12 ignored
+                                      uid=24_13 ignored
+                                    uid=24_14 generic
+                                      uid=24_15 generic
+                                        uid=24_16 generic
+                                          uid=24_17 button
+                                            uid=24_18 ignored
+                                          uid=24_19 ignored
+                                            uid=24_20 StaticText "清屏"
+                                              uid=23_5 InlineTextBox "清屏"
+                                    uid=23_412 generic
+                                      uid=23_413 generic
+                                        uid=23_414 ignored
+                                          uid=23_415 button
+                                            uid=23_416 ignored
+                                          uid=23_417 ignored
+                                            uid=23_418 StaticText "连播"
+                                              uid=23_5 InlineTextBox "连播"
+                              uid=23_419 generic
+                                uid=23_420 ignored
+                                  uid=23_421 ignored
+                                    uid=23_422 generic
+                                      uid=23_423 generic
+                                        uid=23_424 image
+                                          uid=23_425 image
+                                      uid=23_426 generic
+                                        uid=23_427 image
+                                          uid=23_428 image
+                              uid=23_429 generic
+                                uid=23_430 image
+                                uid=23_431 image
+                                  uid=23_432 image
+                              uid=23_433 generic
+                              uid=23_434 generic
+                              uid=23_435 ignored
+                              uid=23_436 generic
+                                uid=23_437 Video
+                                  uid=23_438 ignored
+                                    uid=23_439 ignored
+                                    uid=23_440 ignored
+                                      uid=23_441 ignored
+                                    uid=23_442 ignored
+                                      uid=23_443 ignored
+                                        uid=23_444 ignored
+                                        uid=23_445 ignored
+                                          uid=23_446 ignored
+                                            uid=23_447 ignored
+                                          uid=23_448 ignored
+                                          uid=23_449 ignored
+                                            uid=23_450 ignored
+                                            uid=23_451 ignored
+                                            uid=23_452 ignored
+                                          uid=23_453 ignored
+                                            uid=23_454 ignored
+                                          uid=23_455 ignored
+                                            uid=23_456 ignored
+                                        uid=23_457 ignored
+                                    uid=23_458 ignored
+                                    uid=23_459 ignored
+                                    uid=23_460 ignored
+                                    uid=23_461 ignored
+                                    uid=23_462 ignored
+                                      uid=23_463 ignored
+                                      uid=23_464 ignored
+                                      uid=23_465 ignored
+                                      uid=23_466 ignored
+                                      uid=23_467 ignored
+                                      uid=23_468 ignored
+                                      uid=23_469 ignored
+                                      uid=23_470 ignored
+                                      uid=23_471 ignored
+                                      uid=23_472 ignored
+                                uid=23_473 generic
+                            uid=23_474 ignored
+                            uid=23_475 ignored
+                        uid=23_476 ignored
+                          uid=23_477 ignored
+                            uid=23_478 generic
+                              uid=23_479 generic
+                                uid=23_480 heading "火柴人超炫手翻画" level="1"
+                                  uid=23_481 StaticText "火柴人超炫手翻画"
+                                    uid=23_5 InlineTextBox "火柴人超炫手翻画"
+                            uid=23_482 ignored
+                              uid=23_483 ignored
+                                uid=23_484 generic
+                                  uid=23_485 generic
+                                    uid=23_486 generic
+                                      uid=23_487 image
+                                  uid=23_488 ignored
+                                    uid=23_489 StaticText "3"
+                                      uid=23_5 InlineTextBox "3"
+                                uid=23_490 generic
+                                  uid=23_491 generic
+                                    uid=23_492 generic
+                                      uid=23_493 image
+                                  uid=23_494 ignored
+                                    uid=23_495 StaticText "1"
+                                      uid=23_5 InlineTextBox "1"
+                                uid=23_496 generic
+                                  uid=23_497 generic
+                                    uid=23_498 generic
+                                      uid=23_499 image
+                                  uid=23_500 ignored
+                                    uid=23_501 StaticText "收藏"
+                                      uid=23_5 InlineTextBox "收藏"
+                                uid=23_502 generic
+                                  uid=23_503 generic
+                                    uid=23_504 generic
+                                      uid=23_505 image
+                                  uid=23_506 ignored
+                                    uid=23_507 StaticText "分享"
+                                      uid=23_5 InlineTextBox "分享"
+                                  uid=23_508 ignored
+                              uid=23_509 ignored
+                                uid=23_510 generic
+                                  uid=23_511 image
+                                  uid=23_512 ignored
+                                    uid=23_513 StaticText "举报"
+                                      uid=23_5 InlineTextBox "举报"
+                                uid=23_514 ignored
+                                  uid=23_515 StaticText "发布时间："
+                                    uid=23_5 InlineTextBox "发布时间："
+                                  uid=23_516 StaticText "2018-10-13 17:48"
+                                    uid=23_5 InlineTextBox "2018-10-13 17:48"
+                        uid=23_517 ignored
+                          uid=23_518 ignored
+                            uid=23_519 generic
+                              uid=23_520 ignored
+                              uid=23_521 ignored
+                                uid=23_522 generic
+                                  uid=23_523 generic
+                                    uid=23_524 StaticText "全部评论"
+                                      uid=23_5 InlineTextBox "全部评论"
+                                  uid=23_525 generic
+                                    uid=23_526 generic
+                                uid=23_527 generic
+                                  uid=23_528 ignored
+                                    uid=23_529 generic
+                                      uid=23_530 image
+                                  uid=23_531 ignored
+                                    uid=23_532 generic
+                                      uid=23_533 generic
+                                        uid=23_534 StaticText "请先"
+                                          uid=23_5 InlineTextBox "请先"
+                                        uid=23_535 StaticText "登录"
+                                          uid=23_5 InlineTextBox "登录"
+                                        uid=23_536 StaticText "后发表评论"
+                                          uid=23_5 InlineTextBox "后发表评论"
+                              uid=23_537 ignored
+                                uid=23_538 ignored
+                                  uid=23_539 generic
+                                    uid=23_540 ignored
+                                      uid=23_541 generic
+                                    uid=23_542 ignored
+                                      uid=23_543 generic
+                                        uid=23_544 ignored
+                                          uid=23_545 generic
+                                            uid=23_546 generic
+                                              uid=23_547 link "李蛋蛋" url="https://www.douyin.com/user/MS4wLjABAAAA3ZPfHZw7kNXA0OUS03VvLmkIxFNhRNrTqz34V6cGgxo"
+                                                uid=23_548 StaticText "李蛋蛋"
+                                                  uid=23_5 InlineTextBox "李蛋蛋"
+                                          uid=23_549 generic
+                                            uid=23_550 generic
+                                              uid=23_551 StaticText "..."
+                                                uid=23_5 InlineTextBox "..."
+                                        uid=23_552 generic
+                                          uid=23_553 StaticText "法式赞美"
+                                            uid=23_5 InlineTextBox "法式赞美"
+                                        uid=23_554 generic
+                                          uid=23_555 StaticText "7年前"
+                                            uid=23_5 InlineTextBox "7年前"
+                                        uid=23_556 generic
+                                          uid=23_557 ignored
+                                            uid=23_558 ignored
+                                              uid=23_559 paragraph
+                                                uid=23_560 image
+                                                uid=23_561 ignored
+                                                  uid=23_562 StaticText "0"
+                                                    uid=23_5 InlineTextBox "0"
+                                              uid=23_563 paragraph
+                                                uid=23_564 image
+                                            uid=23_565 generic
+                                              uid=23_566 ignored
+                                                uid=23_567 image
+                                                uid=23_568 generic
+                                                  uid=23_569 StaticText "分享"
+                                                    uid=23_5 InlineTextBox "分享"
+                                            uid=23_570 generic
+                                              uid=23_571 generic
+                                                uid=23_572 image
+                                                uid=23_573 ignored
+                                                  uid=23_574 StaticText "回复"
+                                                    uid=23_5 InlineTextBox "回复"
+                                uid=23_575 generic
+                                  uid=23_576 StaticText "暂时没有更多评论"
+                                    uid=23_5 InlineTextBox "暂时没有更多评论"
+                                uid=23_577 generic
+                                  uid=23_578 generic
+                                    uid=23_579 StaticText "登录后即可参与互动讨论"
+                                      uid=23_5 InlineTextBox "登录后即可参与互动讨论"
+                                  uid=23_580 generic
+                                    uid=23_581 button "立即登录"
+                                      uid=23_582 generic
+                                        uid=23_583 StaticText "立即登录"
+                                          uid=23_5 InlineTextBox "立即登录"
+                        uid=23_584 generic
+                          uid=23_585 generic
+                      uid=23_586 ignored
+                        uid=23_587 ignored
+                          uid=23_588 generic
+                            uid=23_589 ignored
+                              uid=23_590 generic
+                                uid=23_591 link "T Kaven T" url="https://www.douyin.com/user/MS4wLjABAAAA3OjjjV2EdHWEOJDTODOq0W-MI-BWp2EAxvzcKceAtj4"
+                                  uid=23_592 generic
+                                    uid=23_593 image "T Kaven T" url="https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/aweme_default_avatar.png.jpeg?from=327834062"
+                            uid=23_594 ignored
+                              uid=23_595 link "T Kaven T" url="https://www.douyin.com/user/MS4wLjABAAAA3OjjjV2EdHWEOJDTODOq0W-MI-BWp2EAxvzcKceAtj4"
+                                uid=23_596 ignored
+                                  uid=23_597 ignored
+                                    uid=23_598 StaticText "T Kaven T"
+                                      uid=23_5 InlineTextBox "T Kaven T"
+                              uid=23_599 paragraph
+                                uid=23_600 StaticText "粉丝"
+                                  uid=23_5 InlineTextBox "粉丝"
+                                uid=23_601 StaticText "56"
+                                  uid=23_5 InlineTextBox "56"
+                                uid=23_602 StaticText "获赞"
+                                  uid=23_5 InlineTextBox "获赞"
+                                uid=23_603 StaticText "59"
+                                  uid=23_5 InlineTextBox "59"
+                            uid=23_604 generic
+                              uid=23_605 button "关注"
+                                uid=23_606 generic
+                                  uid=23_607 StaticText "关注"
+                                    uid=23_5 InlineTextBox "关注"
+                          uid=23_608 generic
+                          uid=23_609 ignored
+                            uid=23_610 ignored
+                              uid=23_611 heading "推荐视频" level="2"
+                                uid=23_612 StaticText "推荐视频"
+                                  uid=23_5 InlineTextBox "推荐视频"
+                              uid=23_613 ignored
+                            uid=23_614 list
+                              uid=23_615 listitem level="1"
+                                uid=23_616 ignored
+                                  uid=23_617 generic
+                                    uid=23_618 link "#沉浸式玩泥 #治愈玩泥 00:50" url="https://www.douyin.com/video/7678993774558978926"
+                                      uid=23_619 generic
+                                        uid=23_620 generic
+                                        uid=23_621 generic
+                                        uid=23_622 image "#沉浸式玩泥 #治愈玩泥" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/12c287f4fdac9157a2b88a6a389d2d7e~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=Yq1ghrATHh6ViQcbSW%2BCKp621tg%3D"
+                                      uid=23_623 generic
+                                      uid=23_624 generic
+                                        uid=23_625 StaticText "00:50"
+                                          uid=23_5 InlineTextBox "00:50"
+                                  uid=23_626 ignored
+                                    uid=23_627 heading "#沉浸式玩泥 #治愈玩泥" level="3"
+                                      uid=23_628 link "#沉浸式玩泥 #治愈玩泥" url="https://www.douyin.com/video/7678993774558978926"
+                                        uid=23_629 StaticText "#沉浸式玩泥 #治愈玩泥"
+                                          uid=23_5 InlineTextBox "#沉浸式玩泥 #治愈玩泥"
+                                    uid=23_630 ignored
+                                      uid=23_631 ignored
+                                        uid=23_632 image
+                                        uid=23_633 StaticText "1.4万"
+                                          uid=23_5 InlineTextBox "1.4万"
+                                      uid=23_634 ignored
+                                        uid=23_635 link "敏叽" url="https://www.douyin.com/user/MS4wLjABAAAARRIsTVvX_AMExfGzW4vJqs0Lii5BKUmxPJaueMkDc1JrPdV_sYpW5NxTuc0_b3mo?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_636 StaticText "敏叽"
+                                            uid=23_5 InlineTextBox "敏叽"
+                              uid=23_637 listitem level="1"
+                                uid=23_638 ignored
+                                  uid=23_639 generic
+                                    uid=23_640 link "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa 00:53" url="https://www.douyin.com/video/7673004287978491062"
+                                      uid=23_641 generic
+                                        uid=23_642 generic
+                                        uid=23_643 generic
+                                        uid=23_644 image "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/fceae937d35bf732a51b4a53a0dd2e5d~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=MrG93rn6d6p3%2BhPVPnn9UDAk66U%3D"
+                                      uid=23_645 generic
+                                      uid=23_646 generic
+                                        uid=23_647 StaticText "00:53"
+                                          uid=23_5 InlineTextBox "00:53"
+                                  uid=23_648 ignored
+                                    uid=23_649 heading "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" level="3"
+                                      uid=23_650 link "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" url="https://www.douyin.com/video/7673004287978491062"
+                                        uid=23_651 StaticText "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa"
+                                          uid=23_5 InlineTextBox "【papa偷偷写暑假作"
+                                          uid=23_5 InlineTextBox "业！】此视频使用Drea"
+                                          uid=23_5 InlineTextBox "mo进行创作。#Dreamo"
+                                          uid=23_5 InlineTextBox "mo进行创作。#Drea"
+                                          uid=23_5 InlineTextBox "…"
+                                          uid=23_5 InlineTextBox "TV #DreamoTV超创计"
+                                          uid=23_5 InlineTextBox "划 #绘梦工坊AI #火花宝"
+                                          uid=23_5 InlineTextBox "宝 #papa"
+                                    uid=23_652 ignored
+                                      uid=23_653 ignored
+                                        uid=23_654 image
+                                        uid=23_655 StaticText "1.1万"
+                                          uid=23_5 InlineTextBox "1.1万"
+                                      uid=23_656 ignored
+                                        uid=23_657 link "火花宝宝小剧场" url="https://www.douyin.com/user/MS4wLjABAAAAUHKFF7LfMYrWEFuMuh1F1LR1tACaKnnwAsPiPc8WlgE?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_658 StaticText "火花宝宝小剧场"
+                                            uid=23_5 InlineTextBox "火花宝宝小剧场"
+                              uid=23_659 listitem level="1"
+                                uid=23_660 ignored
+                                  uid=23_661 generic
+                                    uid=23_662 link "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常 04:48" url="https://www.douyin.com/video/7675679453885276111"
+                                      uid=23_663 generic
+                                        uid=23_664 generic
+                                        uid=23_665 generic
+                                        uid=23_666 image "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" url="https://p3-pc-sign.douyinpic.com/image-cut-tos/5a530317a44c606f92d02b9520eeac28~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=xFGY9im4Qg11rZeK%2F5Fqt4a7vQU%3D"
+                                      uid=23_667 generic
+                                      uid=23_668 generic
+                                        uid=23_669 StaticText "04:48"
+                                          uid=23_5 InlineTextBox "04:48"
+                                  uid=23_670 ignored
+                                    uid=23_671 heading "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" level="3"
+                                      uid=23_672 link "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" url="https://www.douyin.com/video/7675679453885276111"
+                                        uid=23_673 StaticText "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常"
+                                          uid=23_5 InlineTextBox "红妹的孩子刚出院，中"
+                                          uid=23_5 InlineTextBox "国姐夫给她留点钱，丈"
+                                          uid=23_5 InlineTextBox "母娘说女婿帮忙太多了 #"
+                                          uid=23_5 InlineTextBox "母娘说女婿帮忙太多"
+                                          uid=23_5 InlineTextBox "…"
+                                          uid=23_5 InlineTextBox "vlog日常"
+                                    uid=23_674 ignored
+                                      uid=23_675 ignored
+                                        uid=23_676 image
+                                        uid=23_677 StaticText "7677"
+                                          uid=23_5 InlineTextBox "7677"
+                                      uid=23_678 ignored
+                                        uid=23_679 link "越南小柔和老崔一家" url="https://www.douyin.com/user/MS4wLjABAAAAxqgU8VLcCa6Kf-2dgkz_FXpwt47x67Q4wfGVO8kmQtg?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_680 StaticText "越南小柔和老崔一家"
+                                            uid=23_5 InlineTextBox "越南小柔和老崔一家"
+                                            uid=23_5 InlineTextBox "越南小柔和老"
+                                            uid=23_5 InlineTextBox "…"
+                              uid=23_681 listitem level="1"
+                                uid=23_682 ignored
+                                  uid=23_683 generic
+                                    uid=23_684 link "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈 00:57" url="https://www.douyin.com/video/7671351629618220298"
+                                      uid=23_685 generic
+                                        uid=23_686 generic
+                                        uid=23_687 generic
+                                        uid=23_688 image "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/cdbcb8a81c2b1b68081840fd0bc73115~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=73Dvo9tsNse3t3vUwc2swAyyEII%3D"
+                                      uid=23_689 generic
+                                      uid=23_690 generic
+                                        uid=23_691 StaticText "00:57"
+                                          uid=23_5 InlineTextBox "00:57"
+                                  uid=23_692 ignored
+                                    uid=23_693 heading "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" level="3"
+                                      uid=23_694 link "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" url="https://www.douyin.com/video/7671351629618220298"
+                                        uid=23_695 StaticText "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈"
+                                          uid=23_5 InlineTextBox "小叽咕认识了两个新朋"
+                                          uid=23_5 InlineTextBox "友 #癞蛤蟆 #癞疙宝 #治"
+                                          uid=23_5 InlineTextBox "愈"
+                                    uid=23_696 ignored
+                                      uid=23_697 ignored
+                                        uid=23_698 image
+                                        uid=23_699 StaticText "9078"
+                                          uid=23_5 InlineTextBox "9078"
+                                      uid=23_700 ignored
+                                        uid=23_701 link "小叽咕和朋友们" url="https://www.douyin.com/user/MS4wLjABAAAAjiTF8i0DE-3HXPsabySDLUAVgFFdDokbBXZdnHOlYPPbMoE1eGZH9i15_Ta90nH_?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_702 StaticText "小叽咕和朋友们"
+                                            uid=23_5 InlineTextBox "小叽咕和朋友们"
+                              uid=23_703 listitem level="1"
+                                uid=23_704 ignored
+                                  uid=23_705 generic
+                                    uid=23_706 link "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇 00:40" url="https://www.douyin.com/video/7679373313084341066"
+                                      uid=23_707 generic
+                                        uid=23_708 generic
+                                        uid=23_709 generic
+                                        uid=23_710 image "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/ae3a805ceee6ce704df5135fd311135a~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=j%2FCu8c6BrEjy8mqcP02h75lntQY%3D"
+                                      uid=23_711 generic
+                                      uid=23_712 generic
+                                        uid=23_713 StaticText "00:40"
+                                          uid=23_5 InlineTextBox "00:40"
+                                  uid=23_714 ignored
+                                    uid=23_715 heading "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇" level="3"
+                                      uid=23_716 link "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇" url="https://www.douyin.com/video/7679373313084341066"
+                                        uid=23_717 StaticText "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇"
+                                          uid=23_5 InlineTextBox "有一个满眼都是你的老"
+                                          uid=23_5 InlineTextBox "婆是什么体验？#夫妻日"
+                                          uid=23_5 InlineTextBox "常 #我家傻媳妇"
+                                    uid=23_718 ignored
+                                      uid=23_719 ignored
+                                        uid=23_720 image
+                                        uid=23_721 StaticText "5205"
+                                          uid=23_5 InlineTextBox "5205"
+                                      uid=23_722 ignored
+                                        uid=23_723 link "你家小彩妞" url="https://www.douyin.com/user/MS4wLjABAAAA3qPKWnCTV5_7d9l1UjCxkPkvxVrCdYL0dmCiQwgQVqo?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_724 StaticText "你家小彩妞"
+                                            uid=23_5 InlineTextBox "你家小彩妞"
+                              uid=23_725 listitem level="1"
+                                uid=23_726 ignored
+                                  uid=23_727 generic
+                                    uid=23_728 link "圆圆pro max发布会 #发布会 #猫 #豆包ai 00:30" url="https://www.douyin.com/video/7684691341562023537"
+                                      uid=23_729 generic
+                                        uid=23_730 generic
+                                        uid=23_731 generic
+                                        uid=23_732 image "圆圆pro max发布会 #发布会 #猫 #豆包ai" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/6fc0b044b202e16d420ac62fcf376b1a~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=kfr8C0qm%2Bin%2B7KpzP9iJ4yeQuEE%3D"
+                                      uid=23_733 generic
+                                      uid=23_734 generic
+                                        uid=23_735 StaticText "00:30"
+                                          uid=23_5 InlineTextBox "00:30"
+                                  uid=23_736 ignored
+                                    uid=23_737 heading "圆圆pro max发布会 #发布会 #猫 #豆包ai" level="3"
+                                      uid=23_738 link "圆圆pro max发布会 #发布会 #猫 #豆包ai" url="https://www.douyin.com/video/7684691341562023537"
+                                        uid=23_739 StaticText "圆圆pro max发布会 #发布会 #猫 #豆包ai"
+                                          uid=23_5 InlineTextBox "圆圆pro max发布会 #发"
+                                          uid=23_5 InlineTextBox "布会 #猫 #豆包ai"
+                                    uid=23_740 ignored
+                                      uid=23_741 ignored
+                                        uid=23_742 image
+                                        uid=23_743 StaticText "4377"
+                                          uid=23_5 InlineTextBox "4377"
+                                      uid=23_744 ignored
+                                        uid=23_745 link "香槟BB" url="https://www.douyin.com/user/MS4wLjABAAAAO3yX18do466whTGQJYwmoiXTzlCc4nb4udUFdsNMp0Y?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_746 StaticText "香槟BB"
+                                            uid=23_5 InlineTextBox "香槟BB"
+                              uid=23_747 listitem level="1"
+                                uid=23_748 ignored
+                                  uid=23_749 generic
+                                    uid=23_750 link "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划 00:20" url="https://www.douyin.com/video/7679014314615357352"
+                                      uid=23_751 generic
+                                        uid=23_752 generic
+                                        uid=23_753 generic
+                                        uid=23_754 image "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/7ee86c9acbbf14e925c0d4d1c9dcfe8f~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=eMnN8j4wgq8LS2xjgtQTbtgfoCo%3D"
+                                      uid=23_755 generic
+                                      uid=23_756 generic
+                                        uid=23_757 StaticText "00:20"
+                                          uid=23_5 InlineTextBox "00:20"
+                                  uid=23_758 ignored
+                                    uid=23_759 heading "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" level="3"
+                                      uid=23_760 link "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://www.douyin.com/video/7679014314615357352"
+                                        uid=23_761 StaticText "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划"
+                                          uid=23_5 InlineTextBox "#可爱萌娃日常 #创作者"
+                                          uid=23_5 InlineTextBox "中心 #创作灵感 #抖音二"
+                                          uid=23_5 InlineTextBox "创激励计划"
+                                    uid=23_762 ignored
+                                      uid=23_763 ignored
+                                        uid=23_764 image
+                                        uid=23_765 StaticText "1475"
+                                          uid=23_5 InlineTextBox "1475"
+                                      uid=23_766 ignored
+                                        uid=23_767 link "🌈 搞笑母子" url="https://www.douyin.com/user/MS4wLjABAAAA1ZU0JD7aap3S7TluZ9AtoRGf2ObCGEA4rlcbij11KrprU8itfiq75rMpLCscV6EC?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_768 image "🌈" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f308.png"
+                                          uid=23_769 StaticText "搞笑母子"
+                                            uid=23_5 InlineTextBox "搞笑母子"
+                              uid=23_770 listitem level="1"
+                                uid=23_771 ignored
+                                  uid=23_772 generic
+                                    uid=23_773 link "我一天真是其乐无穷。视觉科学有这说法吗？有没有懂的？#内容过于真实的段子 #夫妻日常 #备孕日记 #抖音记录真实生活 00:45" url="https://www.douyin.com/video/7679304536896949753"
+                                      uid=23_774 generic
+                                        uid=23_775 generic
+                                        uid=23_776 generic
+                                        uid=23_777 image "我一天真是其乐无穷。视觉科学有这说法吗？有没有懂的？#内容过于真实的段子 #夫妻日常 #备孕日记 #抖音记录真实生活" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/92cf30ad51306c576f613311545c694c~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=KYst19mRL6RD0QAo5Owr4sMrroU%3D"
+                                      uid=23_778 generic
+                                      uid=23_779 generic
+                                        uid=23_780 StaticText "00:45"
+                                          uid=23_5 InlineTextBox "00:45"
+                                  uid=23_781 ignored
+                                    uid=23_782 heading "我一天真是其乐无穷。视觉科学有这说法吗？有没有懂的？#内容过于真实的段子 #夫妻日常 #备孕日记 #抖音记录真实生活" level="3"
+                                      uid=23_783 link "我一天真是其乐无穷。视觉科学有这说法吗？有没有懂的？#内容过于真实的段子 #夫妻日常 #备孕日记 #抖音记录真实生活" url="https://www.douyin.com/video/7679304536896949753"
+                                        uid=23_784 StaticText "我一天真是其乐无穷。视觉科学有这说法吗？有没有懂的？#内容过于真实的段子 #夫妻日常 #备孕日记 #抖音记录真实生活"
+                                          uid=23_5 InlineTextBox "我一天真是其乐无穷。"
+                                          uid=23_5 InlineTextBox "视觉科学有这说法吗？"
+                                          uid=23_5 InlineTextBox "有没有懂的？#内容过于"
+                                          uid=23_5 InlineTextBox "有没有懂的？#内容过"
+                                          uid=23_5 InlineTextBox "…"
+                                          uid=23_5 InlineTextBox "真实的段子 #夫妻日常 #"
+                                          uid=23_5 InlineTextBox "备孕日记 #抖音记录真实"
+                                          uid=23_5 InlineTextBox "生活"
+                                    uid=23_785 ignored
+                                      uid=23_786 ignored
+                                        uid=23_787 image
+                                        uid=23_788 StaticText "3252"
+                                          uid=23_5 InlineTextBox "3252"
+                                      uid=23_789 ignored
+                                        uid=23_790 link "松松见过龙" url="https://www.douyin.com/user/MS4wLjABAAAAPn6uboKqwlhgefhw1WS5iuzX-uk6JKWbBfuG8IADTUhAKgy-CGnPlki47z2K6s2T?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_791 StaticText "松松见过龙"
+                                            uid=23_5 InlineTextBox "松松见过龙"
+                              uid=23_792 listitem level="1"
+                                uid=23_793 ignored
+                                  uid=23_794 generic
+                                    uid=23_795 link "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划 00:30" url="https://www.douyin.com/video/7671533897918248933"
+                                      uid=23_796 generic
+                                        uid=23_797 generic
+                                        uid=23_798 generic
+                                        uid=23_799 image "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/8432aed79d171509d8e372bc0e5d7cc4~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=eY8iMIjg2IxPEjymhyCBXcEcUZc%3D"
+                                      uid=23_800 generic
+                                      uid=23_801 generic
+                                        uid=23_802 StaticText "00:30"
+                                          uid=23_5 InlineTextBox "00:30"
+                                  uid=23_803 ignored
+                                    uid=23_804 heading "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划" level="3"
+                                      uid=23_805 link "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://www.douyin.com/video/7671533897918248933"
+                                        uid=23_806 StaticText "我自有妙招哈哈 #你的亲子互动日常 #创作者中心 #创作灵感 #抖音二创激励计划"
+                                          uid=23_5 InlineTextBox "我自有妙招哈哈 #你的亲"
+                                          uid=23_5 InlineTextBox "子互动日常 #创作者中心 "
+                                          uid=23_5 InlineTextBox "#创作灵感 #抖音二创激"
+                                          uid=23_5 InlineTextBox "#创作灵感 #抖音二创"
+                                          uid=23_5 InlineTextBox "…"
+                                          uid=23_5 InlineTextBox "励计划"
+                                    uid=23_807 ignored
+                                      uid=23_808 ignored
+                                        uid=23_809 image
+                                        uid=23_810 StaticText "2518"
+                                          uid=23_5 InlineTextBox "2518"
+                                      uid=23_811 ignored
+                                        uid=23_812 link "🌈 母子快乐小剧场" url="https://www.douyin.com/user/MS4wLjABAAAAdBzJu4dX3cOXUopFZt1hMszZDUYXrj_cOAJa2vSDoHg?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_813 image "🌈" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f308.png"
+                                          uid=23_814 StaticText "母子快乐小剧场"
+                                            uid=23_5 InlineTextBox "母子快乐小剧场"
+                                            uid=23_5 InlineTextBox "母子快乐小"
+                                            uid=23_5 InlineTextBox "…"
+                              uid=23_815 listitem level="1"
+                                uid=23_816 ignored
+                                  uid=23_817 generic
+                                    uid=23_818 link "媳妇腰疼折磨2年，看完医生回娘家，回家后女儿举动破防#闺女#宝妈#记录真实生活 03:56" url="https://www.douyin.com/video/7681706474573569114"
+                                      uid=23_819 generic
+                                        uid=23_820 generic
+                                        uid=23_821 generic
+                                        uid=23_822 image "媳妇腰疼折磨2年，看完医生回娘家，回家后女儿举动破防#闺女#宝妈#记录真实生活" url="https://p3-pc-sign.douyinpic.com/image-cut-tos/dcd8ff4fd5659626bb9bbf260cb55dd3~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=vw7BvPc%2B86QkLNG67r0kkD2rKJ4%3D"
+                                      uid=23_823 generic
+                                      uid=23_824 generic
+                                        uid=23_825 StaticText "03:56"
+                                          uid=23_5 InlineTextBox "03:56"
+                                  uid=23_826 ignored
+                                    uid=23_827 heading "媳妇腰疼折磨2年，看完医生回娘家，回家后女儿举动破防#闺女#宝妈#记录真实生活" level="3"
+                                      uid=23_828 link "媳妇腰疼折磨2年，看完医生回娘家，回家后女儿举动破防#闺女#宝妈#记录真实生活" url="https://www.douyin.com/video/7681706474573569114"
+                                        uid=23_829 StaticText "媳妇腰疼折磨2年，看完医生回娘家，回家后女儿举动破防#闺女#宝妈#记录真实生活"
+                                          uid=23_5 InlineTextBox "媳妇腰疼折磨2年，看完"
+                                          uid=23_5 InlineTextBox "医生回娘家，回家后女"
+                                          uid=23_5 InlineTextBox "儿举动破防#闺女#宝妈#"
+                                          uid=23_5 InlineTextBox "儿举动破防#闺女#宝"
+                                          uid=23_5 InlineTextBox "…"
+                                          uid=23_5 InlineTextBox "记录真实生活"
+                                    uid=23_830 ignored
+                                      uid=23_831 ignored
+                                        uid=23_832 image
+                                        uid=23_833 StaticText "3859"
+                                          uid=23_5 InlineTextBox "3859"
+                                      uid=23_834 ignored
+                                        uid=23_835 link "深圳小杰哥9.18日早9点百年堂阿胶专场" url="https://www.douyin.com/user/MS4wLjABAAAAPe1uYswfLxxtG5ydk0Kb4q2wKRfBIbevcDGIE1ogJ5s?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%2220260918172606EC7F2E3A882C6278123A%22%7D&relation=0"
+                                          uid=23_836 StaticText "深圳小杰哥9.18日早9点百年堂阿胶专场"
+                                            uid=23_5 InlineTextBox "深圳小杰哥9.18日早9点百年堂阿胶专场"
+                                            uid=23_5 InlineTextBox "深圳小杰哥9.1"
+                                            uid=23_5 InlineTextBox "…"
+                    uid=23_837 contentinfo
+                      uid=23_838 generic
+                        uid=23_839 generic
+                          uid=23_840 generic
+                            uid=23_841 link "广告投放" url="https://www.oceanengine.com/resource/douyin"
+                              uid=23_842 StaticText "广告投放"
+                                uid=23_5 InlineTextBox "广告投放"
+                          uid=23_843 generic
+                            uid=23_844 link "用户服务协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                              uid=23_845 StaticText "用户服务协议"
+                                uid=23_5 InlineTextBox "用户服务协议"
+                          uid=23_846 generic
+                            uid=23_847 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                              uid=23_848 StaticText "隐私政策"
+                                uid=23_5 InlineTextBox "隐私政策"
+                          uid=23_849 generic
+                            uid=23_850 link "账号找回" url="https://www.douyin.com/recovery_account/"
+                              uid=23_851 StaticText "账号找回"
+                                uid=23_5 InlineTextBox "账号找回"
+                          uid=23_852 generic
+                            uid=23_853 link "联系我们" url="https://www.douyin.com/aboutus/"
+                              uid=23_854 StaticText "联系我们"
+                                uid=23_5 InlineTextBox "联系我们"
+                          uid=23_855 generic
+                            uid=23_856 link "加入我们" url="https://www.douyin.com/aboutus/"
+                              uid=23_857 StaticText "加入我们"
+                                uid=23_5 InlineTextBox "加入我们"
+                          uid=23_858 generic
+                            uid=23_859 link "友情链接" url="https://www.douyin.com/friend_links"
+                              uid=23_860 StaticText "友情链接"
+                                uid=23_5 InlineTextBox "友情链接"
+                          uid=23_861 generic
+                            uid=23_862 link "站点地图" url="https://www.douyin.com/htmlmap/hotauthor_0_1"
+                              uid=23_863 StaticText "站点地图"
+                                uid=23_5 InlineTextBox "站点地图"
+                          uid=23_864 generic
+                            uid=23_865 link "下载抖音" url="https://www.douyin.com/downloadpage/pc"
+                              uid=23_866 StaticText "下载抖音"
+                                uid=23_5 InlineTextBox "下载抖音"
+                          uid=23_867 generic
+                            uid=23_868 link "抖音电商" url="https://mix.jinritemai.com/falcon/mix_page/index.html"
+                              uid=23_869 StaticText "抖音电商"
+                                uid=23_5 InlineTextBox "抖音电商"
+                        uid=23_870 generic
+                          uid=23_871 generic
+                            uid=23_872 link "网络谣言曝光台 ｜" url="https://www.piyao.org.cn/yybgt/index.htm"
+                              uid=23_873 StaticText "网络谣言曝光台 ｜"
+                                uid=23_5 InlineTextBox "网络谣言曝光台 ｜"
+                          uid=23_874 generic
+                            uid=23_875 link "网上有害信息举报" url="https://www.12377.cn/"
+                              uid=23_876 StaticText "网上有害信息举报"
+                                uid=23_5 InlineTextBox "网上有害信息举报"
+                          uid=23_877 generic
+                            uid=23_878 StaticText "｜ 违法和不良信息举报：400-140-2108 feedback@douyin.com ｜ 算法推荐专项举报：sfjubao@bytedance.com | 体育饭圈专项举报：tyfq@bytedance.com"
+                              uid=23_5 InlineTextBox "｜ 违法和不良信息举报：400-140-2108 feedback@douyin.com ｜ 算法推荐专项举报：sfjubao@bytedance.com | 体育饭圈专项举报：tyfq@bytedance.com"
+                            uid=23_879 ignored
+                        uid=23_880 generic
+                          uid=23_881 generic
+                            uid=23_882 link "京ICP备16016397号-3" url="https://beian.miit.gov.cn/"
+                              uid=23_883 StaticText "京ICP备16016397号-3"
+                                uid=23_5 InlineTextBox "京ICP备16016397号-3"
+                          uid=23_884 generic
+                            uid=23_885 StaticText "｜ 信息网络传播视听节目许可证 0126733"
+                              uid=23_5 InlineTextBox "｜ 信息网络传播视听节目许可证 0126733"
+                          uid=23_886 generic
+                            uid=23_887 StaticText "｜ 广播电视节目制作经营许可证 （京）字第11313号"
+                              uid=23_5 InlineTextBox "｜ 广播电视节目制作经营许可证 （京）字第11313号"
+                          uid=23_888 generic
+                            uid=23_889 StaticText "｜ 增值电信业务经营许可证 京B2-20170846"
+                              uid=23_5 InlineTextBox "｜ 增值电信业务经营许可证 京B2-20170846"
+                          uid=23_890 generic
+                            uid=23_891 StaticText "｜ 网络文化经营许可证 京网文〔2025〕0181-061号 ｜"
+                              uid=23_5 InlineTextBox "｜ 网络文化经营许可证 京网文〔2025〕0181-061号 ｜"
+                          uid=23_892 generic
+                            uid=23_893 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/emblem-new.png"
+                            uid=23_894 link "京公网安备11010802050006号" url="https://beian.mps.gov.cn/"
+                              uid=23_895 StaticText "京公网安备11010802050006号"
+                                uid=23_5 InlineTextBox "京公网安备11010802050006号"
+                          uid=23_896 generic
+                            uid=23_897 StaticText "｜ 互联网宗教信息服务许可证 京（2025）0000017 ｜"
+                              uid=23_5 InlineTextBox "｜ 互联网宗教信息服务许可证 京（2025）0000017 ｜"
+                          uid=23_898 generic
+                            uid=23_899 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/c7085f453e58f78fe403594d0bab6890.png"
+                            uid=23_900 link "电子营业执照" url="https://zzlz.gsxt.gov.cn/businessCheck/verifKey.do"
+                              uid=23_901 StaticText "电子营业执照"
+                                uid=23_5 InlineTextBox "电子营业执照"
+                          uid=23_902 generic
+                            uid=23_903 link "｜（京）人服证字〔2026〕第0600005023号" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/d1cb34abe8ebb5600b51bac36ce3247f.jpg"
+                              uid=23_904 StaticText "｜（京）人服证字〔2026〕第0600005023号"
+                                uid=23_5 InlineTextBox "｜（京）人服证字〔2026〕第0600005023号"
+                            uid=23_905 ignored
+                        uid=23_906 ignored
+                          uid=23_907 ignored
+                          uid=23_908 generic
+                            uid=23_909 StaticText "热门："
+                              uid=23_5 InlineTextBox "热门："
+                          uid=23_910 generic
+                            uid=23_911 link "游戏解说" url="https://www.douyin.com/jingxuan/game"
+                              uid=23_912 StaticText "游戏解说"
+                                uid=23_5 InlineTextBox "游戏解说"
+                          uid=23_913 generic
+                            uid=23_914 link "抖音体育" url="https://www.douyin.com/jingxuan/sports"
+                              uid=23_915 StaticText "抖音体育"
+                                uid=23_5 InlineTextBox "抖音体育"
+                          uid=23_916 generic
+                            uid=23_917 link "正信商贸" url="https://www.douyin.com/user/MS4wLjABAAAAVGP2b0dKnu-tFkX6iqs9xNnVLYmVArzhevljrnnsb9yX_SCFcXsBXAgTQbAfv9Ak"
+                              uid=23_918 StaticText "正信商贸"
+                                uid=23_5 InlineTextBox "正信商贸"
+                          uid=23_919 generic
+                            uid=23_920 link "PET模拟考试 #热点话题 #英语口语 #pet考试模拟" url="https://www.douyin.com/video/7686661113170240394"
+                              uid=23_921 StaticText "PET模拟考试 #热点话题 #英语口语 #pet考试模拟"
+                                uid=23_5 InlineTextBox "PET模拟考试 #热点话题 #英语口语 #pet考试模拟"
+                                uid=23_5 InlineTextBox "PET模拟考试 #热点话题 #英语"
+                                uid=23_5 InlineTextBox "…"
+                          uid=23_922 generic
+                            uid=23_923 link "山东文科547能上哪些大学" url="https://www.douyin.com/topic/7509892414325213221"
+                              uid=23_924 StaticText "山东文科547能上哪些大学"
+                                uid=23_5 InlineTextBox "山东文科547能上哪些大学"
+                          uid=23_925 generic
+                            uid=23_926 link "职高落榜参加高考要怎么报名2025" url="https://www.douyin.com/shipin/7509906320171157558"
+                              uid=23_927 StaticText "职高落榜参加高考要怎么报名2025"
+                                uid=23_5 InlineTextBox "职高落榜参加高考要怎么报名2025"
+                                uid=23_5 InlineTextBox "职高落榜参加高考要怎么报名2"
+                                uid=23_5 InlineTextBox "…"
+                          uid=23_928 generic
+                            uid=23_929 link "高于本科分数线30分" url="https://www.douyin.com/search/%E9%AB%98%E4%BA%8E%E6%9C%AC%E7%A7%91%E5%88%86%E6%95%B0%E7%BA%BF30%E5%88%86"
+                              uid=23_930 StaticText "高于本科分数线30分"
+                                uid=23_5 InlineTextBox "高于本科分数线30分"
+                          uid=23_931 generic
+                            uid=23_932 link "陈星旭卢昱晓轧戏首播观后感" url="https://www.douyin.com/video/7593413293163711763?source=Baiduspider"
+                              uid=23_933 StaticText "陈星旭卢昱晓轧戏首播观后感"
+                                uid=23_5 InlineTextBox "陈星旭卢昱晓轧戏首播观后感"
+                          uid=23_934 generic
+                            uid=23_935 link "小明出品08年6月标志307#标志307 #法系 #二手车 #万元代步车" url="https://www.douyin.com/video/7132274079138155789?source=Baiduspider"
+                              uid=23_936 StaticText "小明出品08年6月标志307#标志307 #法系 #二手车 #万元代步车"
+                                uid=23_5 InlineTextBox "小明出品08年6月标志307#标志307 #法系 #二手车 #万元代步车"
+                                uid=23_5 InlineTextBox "小明出品08年6月标志307#标"
+                                uid=23_5 InlineTextBox "…"
+                          uid=23_937 generic
+                            uid=23_938 link "全国计算机二级office真题讲解-第32套真题word题【4/6】 #二级office #计算机二级office #全国计算机二级office #真题 #word #二级 #计算机二级 #全国计算机二级 #全国计算机等级考试 @计算机二级成老师" url="https://www.douyin.com/video/7031952665953242407?source=Baiduspider"
+                              uid=23_939 StaticText "全国计算机二级office真题讲解-第32套真题word题【4/6】 #二级office #计算机二级office #全国计算机二级office #真题 #word #二级 #计算机二级 #全国计算机二级 #全国计算机等级考试 @计算机二级成老师"
+                                uid=23_5 InlineTextBox "全国计算机二级office真题讲解-第32套真题word题【4/6】 #二级office #计算机二级office #全国计算机二级office #真题 #word #二级 #计算机二级 #全国计算机二级 #全国计算机等级考试 @计算机二级成老师"
+                                uid=23_5 InlineTextBox "全国计算机二级office真题讲解"
+                                uid=23_5 InlineTextBox "…"
+                          uid=23_940 generic
+                            uid=23_941 link url="https://www.douyin.com/video/7580767997864160613?source=Baiduspider-sdc"
+                          uid=23_942 generic
+                            uid=23_943 link "漫剪教程画面背景 #漫剪教程 #二次元" url="https://www.douyin.com/video/7440749869448318262?source=Baiduspider"
+                              uid=23_944 StaticText "漫剪教程画面背景 #漫剪教程 #二次元"
+                                uid=23_5 InlineTextBox "漫剪教程画面背景 #漫剪教程 #二次元"
+                                uid=23_5 InlineTextBox "漫剪教程画面背景 #漫剪教程 #"
+                                uid=23_5 InlineTextBox "…"
+                          uid=23_945 generic
+                            uid=23_946 link "婚庆公司员工提成如何设计 #干货分享 #婚庆#婚礼策划#经验分享" url="https://www.douyin.com/video/7143181185433210146?source=Baiduspider"
+                              uid=23_947 StaticText "婚庆公司员工提成如何设计 #干货分享 #婚庆#婚礼策划#经验分享"
+                                uid=23_5 InlineTextBox "婚庆公司员工提成如何设计 #干货分享 #婚庆#婚礼策划#经验分享"
+                                uid=23_5 InlineTextBox "婚庆公司员工提成如何设计 #"
+                                uid=23_5 InlineTextBox "…"
+                          uid=23_948 generic
+                            uid=23_949 link "考生家长必看！高考志愿如何填报？平行志愿是什么？（2/4）" url="https://www.douyin.com/video/7519319347265850664?source=Baiduspider-sdc"
+                              uid=23_950 StaticText "考生家长必看！高考志愿如何填报？平行志愿是什么？（2/4）"
+                                uid=23_5 InlineTextBox "考生家长必看！高考志愿如何填报？平行志愿是什么？（2/4）"
+                                uid=23_5 InlineTextBox "考生家长必看！高考志愿如何"
+                                uid=23_5 InlineTextBox "…"
+        uid=23_951 generic
+        uid=23_952 generic
+      uid=23_953 ignored
+      uid=23_954 ignored
+      uid=23_955 ignored
+      uid=23_956 ignored
+      uid=23_957 ignored
+      uid=23_958 ignored
+      uid=23_959 ignored
+      uid=23_960 ignored
+      uid=23_961 ignored
+      uid=23_962 ignored
+      uid=23_963 ignored
+      uid=23_964 ignored
+      uid=23_965 ignored
+      uid=23_966 ignored
+      uid=23_967 ignored
+      uid=23_968 ignored
+      uid=23_969 ignored
+      uid=23_970 ignored
+      uid=23_971 ignored
+      uid=23_972 ignored
+      uid=23_973 ignored
+      uid=23_974 ignored
+      uid=23_975 ignored
+      uid=23_976 ignored
+      uid=23_977 ignored
+      uid=23_978 ignored
+      uid=23_979 ignored
+      uid=23_980 ignored
+      uid=23_981 ignored
+      uid=23_982 ignored
+      uid=23_983 ignored
+      uid=23_984 ignored
+      uid=23_985 ignored
+      uid=23_986 ignored
+      uid=23_987 ignored
+      uid=23_988 ignored
+      uid=23_989 ignored
+      uid=23_990 ignored
+      uid=23_991 generic
+        uid=23_992 generic
+          uid=23_993 generic
+            uid=23_994 generic
+              uid=23_995 generic
+                uid=23_996 ignored
+                  uid=23_997 article
+                    uid=23_998 generic
+                      uid=23_999 image url="https://lf-ucenter-web.yhgfb-cn-static.com/obj/passport-fe/flat_bg_2_small.avif"
+                    uid=23_1000 generic
+                      uid=23_1001 generic
+                        uid=23_1002 generic
+                          uid=23_1003 StaticText "登录后免费畅享高清视频"
+                            uid=23_5 InlineTextBox "登录后免费畅享高清视频"
+                        uid=23_1004 generic
+                          uid=23_1005 image
+                      uid=23_1006 ignored
+                        uid=23_1007 generic
+                          uid=23_1008 ignored
+                            uid=23_1009 ignored
+                              uid=23_1010 ignored
+                                uid=23_1011 ignored
+                                  uid=23_1012 generic
+                                    uid=23_1013 StaticText "扫码登录"
+                                      uid=23_5 InlineTextBox "扫码登录"
+                                uid=23_1014 ignored
+                                  uid=23_1015 generic
+                                    uid=23_1016 generic
+                                      uid=23_1017 ignored
+                                        uid=23_1018 generic
+                                          uid=23_1019 generic
+                                            uid=23_1020 StaticText "如何扫码"
+                                              uid=23_5 InlineTextBox "如何扫码"
+                                          uid=23_1021 generic
+                                            uid=23_1022 image "二维码" url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIAAQMAAADOtka5AAAABlBMVEX///8AAABVwtN+AAAC1klEQVR42uzcPbLiMAzAcTEUKTkCR3lHexwtR+EIKSkyaCfWhx0IG4otFvNX8x5k8qPy2JJlC0EQBEEQBEEQxP8eP5oxHvVavhtUZ5GDXsWflE8ZdwAAgC0gPg4LoKrT8talPDhr/sj1oNPjGwAAvQHn5b3LoKMs/06iN5FiXUVOiyVHA2xcAQAA7AJHm3lE5NcnoHwAAPBVQP3211dpcorlGwAAwD6QyzwxS4YyHXmS4/Jb60QAgE8G1un/wVZpv7OnPKc6M71XPwAA+FqgjbrMEx+NDrxbpAYA+GDAVmlTSXJmOXueo3N9cMv0f5myjht1ZQAAAC86l1esgHZfkpw6Mxnw45s0MmxPbQAAPQAWZQKKhwZY+i8FUJdj9wYAAGADiNVctXLQRZFN1VIeKywAAPQJ2MxUVmmR5eezMjN5ieBu9bZXqzQAAIBHaxmNNReyzU/rNzvFJwEA6BLwTkovH0eLZZPZrOvK89PvAgAANMDkmU2UzGKTP9+ySWoAAOgX2Kor37yt7Bw7mdF7qQAAAC8B8f6ZS+x4xl7MWNvKVLOtbDPlAQDoAjjk0qztpNTs3bcWGQsrOAsAAMAW0ExSczsB2TJv8gSo/Ijtio4AAH0CnvK0Of+QS7Pauy/tAwAAgGcgD8JE6/Lk7Zpj7Nfsnx4AAOgBkNWYadKZn+awZa2lvciZAAAAVt1jcx7db3o0fcryuGwv8wAAPh/Iq1+GOmaeNvlr+v/iIAwAAMDDqbKm/jxGLhQ9NuI3LwEA9AlsXbwnWT5u+5Xt4iQAAIBXwPrmPj9VFuFtAXU0btbSAAA6AdqL9+7Zrxz3I12aAbe1YQkAAPAMHPOEZdNjk0U2a/7fu/oPAKAboJmZ2iblOLq/P5gAAL4XyGVe+ZvHlVf7n3YQ5iZ7V/8BAHwusEr/VdumGDthaXfCSL3fQgAAAP7ebkwQBEEQBEEQBPGP4k8AAAD//xGvK4lnD1PIAAAAAElFTkSuQmCC"
+                                            uid=23_1023 ignored
+                                              uid=23_1024 image
+                                          uid=23_1025 generic
+                                            uid=23_1026 generic
+                                              uid=23_1027 generic
+                                                uid=23_1028 image
+                                                  uid=23_1029 ignored
+                                                  uid=23_1030 ignored
+                                        uid=23_1031 paragraph
+                                          uid=23_1032 paragraph
+                                            uid=23_1033 StaticText "打开"
+                                              uid=23_5 InlineTextBox "打开"
+                                            uid=23_1034 StaticText "「抖音APP」"
+                                              uid=23_5 InlineTextBox "「抖音APP」"
+                                            uid=23_1035 StaticText "点击左上角"
+                                              uid=23_5 InlineTextBox "点击左上角"
+                                          uid=23_1036 image
+                                          uid=23_1037 paragraph
+                                            uid=23_1038 StaticText "扫一扫"
+                                              uid=23_5 InlineTextBox "扫一扫"
+                          uid=23_1039 ignored
+                            uid=23_1040 ignored
+                              uid=23_1041 ignored
+                                uid=23_1042 ignored
+                                  uid=23_1043 generic
+                                    uid=23_1044 StaticText "验证码登录"
+                                      uid=23_5 InlineTextBox "验证码登录"
+                                  uid=23_1045 ignored
+                                    uid=23_1046 image
+                                  uid=23_1047 generic
+                                    uid=23_1048 StaticText "密码登录"
+                                      uid=23_5 InlineTextBox "密码登录"
+                                uid=23_1049 ignored
+                                  uid=23_1050 ignored
+                                    uid=23_1051 generic
+                                      uid=23_1052 generic
+                                        uid=23_1053 ignored
+                                          uid=23_1054 generic
+                                            uid=23_1055 generic
+                                              uid=23_1056 ignored
+                                                uid=23_1057 combobox "国家/地区" haspopup="listbox" value="+86"
+                                                  uid=23_1058 generic
+                                                    uid=23_1059 StaticText "+86"
+                                                      uid=23_5 InlineTextBox "+86"
+                                                uid=23_1060 ignored
+                                            uid=23_1061 ignored
+                                              uid=23_1062 image
+                                            uid=23_1063 textbox "请输入手机号"
+                                              uid=23_1064 ignored
+                                              uid=23_1065 generic
+                                        uid=23_1066 ignored
+                                          uid=23_1067 generic
+                                            uid=23_1068 generic
+                                              uid=23_1069 textbox "请输入验证码"
+                                                uid=23_1070 ignored
+                                                uid=23_1071 generic
+                                            uid=23_1072 generic
+                                              uid=23_1073 StaticText "获取验证码"
+                                                uid=23_5 InlineTextBox "获取验证码"
+                                        uid=23_1074 generic
+                                        uid=23_1075 ignored
+                                          uid=23_1076 generic
+                                            uid=23_1077 StaticText "登录"
+                                              uid=23_5 InlineTextBox "登录"
+                                        uid=23_1078 ignored
+                                          uid=23_1079 generic "登录即代表同意用户协议和隐私政策"
+                                            uid=23_1080 StaticText "登录即代表同意"
+                                              uid=23_5 InlineTextBox "登录即代表同意"
+                                            uid=23_1081 link "用户协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                                              uid=23_1082 StaticText "用户协议"
+                                                uid=23_5 InlineTextBox "用户协议"
+                                            uid=23_1083 StaticText "和"
+                                              uid=23_5 InlineTextBox "和"
+                                            uid=23_1084 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                                              uid=23_1085 StaticText "隐私政策"
+                                                uid=23_5 InlineTextBox "隐私政策"
+      uid=23_1086 ignored
+        uid=23_1087 ignored
+          uid=23_1088 ignored
+          uid=23_1089 ignored
+            uid=23_1090 ignored
+          uid=23_1091 ignored
+            uid=23_1092 ignored
+              uid=23_1093 ignored
+              uid=23_1094 ignored
+                uid=23_1095 ignored
+                  uid=23_1096 ignored
+                uid=23_1097 ignored
+                uid=23_1098 ignored
+                  uid=23_1099 ignored
+                  uid=23_1100 ignored
+                  uid=23_1101 ignored
+                uid=23_1102 ignored
+                  uid=23_1103 ignored
+                uid=23_1104 ignored
+                  uid=23_1105 ignored
+              uid=23_1106 ignored
+          uid=23_1107 ignored
+          uid=23_1108 ignored
+          uid=23_1109 ignored
+          uid=23_1110 ignored
+          uid=23_1111 ignored
+            uid=23_1112 ignored
+            uid=23_1113 ignored
+            uid=23_1114 ignored
+            uid=23_1115 ignored
+            uid=23_1116 ignored
+            uid=23_1117 ignored
+            uid=23_1118 ignored
+            uid=23_1119 ignored
+            uid=23_1120 ignored
+            uid=23_1121 ignored
+      uid=23_1122 ignored
+      uid=23_1123 generic
+      uid=23_1124 generic
+        uid=23_1125 generic
+          uid=23_1126 ignored
+            uid=23_1127 ignored
+              uid=23_1128 ignored
+                uid=23_1129 ignored
+                  uid=23_1130 ignored
+                    uid=23_1131 ignored
+                      uid=23_1132 ignored
+                        uid=23_1133 ignored
+                          uid=23_1134 ignored
+                            uid=23_1135 ignored
+                              uid=23_1136 ignored
+                          uid=23_1137 ignored
+                    uid=23_1138 ignored
+                      uid=23_1139 ignored
+                        uid=23_1140 ignored
+                          uid=23_1141 ignored
+                            uid=23_1142 ignored
+                              uid=23_1143 ignored
+                          uid=23_1144 ignored
+                    uid=23_1145 ignored
+                      uid=23_1146 ignored
+                        uid=23_1147 ignored
+                          uid=23_1148 ignored
+                            uid=23_1149 ignored
+                              uid=23_1150 ignored
+                          uid=23_1151 ignored
+                    uid=23_1152 ignored
+                      uid=23_1153 ignored
+                        uid=23_1154 ignored
+                          uid=23_1155 ignored
+                            uid=23_1156 ignored
+                              uid=23_1157 ignored
+                          uid=23_1158 ignored
+                    uid=23_1159 ignored
+                      uid=23_1160 ignored
+                        uid=23_1161 ignored
+                          uid=23_1162 ignored
+                            uid=23_1163 ignored
+                              uid=23_1164 ignored
+                          uid=23_1165 ignored
+                    uid=23_1166 ignored
+                      uid=23_1167 ignored
+                        uid=23_1168 ignored
+                          uid=23_1169 ignored
+                            uid=23_1170 ignored
+                              uid=23_1171 ignored
+                            uid=23_1172 ignored
+                              uid=23_1173 ignored
+                              uid=23_1174 ignored
+                          uid=23_1175 ignored
+      uid=23_1176 generic
+

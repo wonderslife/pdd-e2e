@@ -1,0 +1,19 @@
+{
+  "observed_egress_ips": {},
+  "detail": {
+    "inspector01": {
+      "avd": "emulator-5554",
+      "proxy": "http://127.0.0.1:3128",
+      "expected_egress_ip": "203.0.113.10",
+      "actual_egress_ip": "",
+      "error": "ProxyError：HTTPSConnectionPool(host='api.ipify.org', port=443): Max retries exceeded with url: / (Caused by ProxyError('Unable to connect to proxy', ConnectTimeoutError(<HTTPSConnection(host='127.0.0.1', port=3128) at 0x216e6a134d0>, 'Connection to 127.0.0.1 timed out. (connect timeout=2.0)')))"
+    },
+    "inspector02": {
+      "avd": "emulator-5556",
+      "proxy": "http://127.0.0.1:3129",
+      "expected_egress_ip": "203.0.113.11",
+      "actual_egress_ip": "",
+      "error": "ProxyError：HTTPSConnectionPool(host='api.ipify.org', port=443): Max retries exceeded with url: / (Caused by ProxyError('Unable to connect to proxy', ConnectTimeoutError(<HTTPSConnection(host='127.0.0.1', port=3129) at 0x216e6a174d0>, 'Connection to 127.0.0.1 timed out. (connect timeout=2.0)')))"
+    }
+  }
+}

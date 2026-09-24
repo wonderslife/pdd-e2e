@@ -1,0 +1,1456 @@
+## Latest page snapshot
+uid=90_0 RootWebArea "火柴人超炫手翻画 - 抖音" url="https://www.douyin.com/video/6611776156595129614"
+  uid=90_1 ignored
+    uid=90_2 generic
+      uid=90_3 button "开启读屏标签"
+        uid=90_4 StaticText "开启读屏标签"
+          uid=90_5 InlineTextBox "开"
+          uid=90_5 InlineTextBox "启"
+          uid=90_5 InlineTextBox "读"
+          uid=90_5 InlineTextBox "屏"
+          uid=90_5 InlineTextBox "标"
+          uid=90_5 InlineTextBox "签"
+      uid=90_6 generic live="assertive" relevant="additions text"
+        uid=90_7 StaticText "读屏标签已关闭"
+          uid=90_5 InlineTextBox "读"
+          uid=90_5 InlineTextBox "屏"
+          uid=90_5 InlineTextBox "标"
+          uid=90_5 InlineTextBox "签"
+          uid=90_5 InlineTextBox "已"
+          uid=90_5 InlineTextBox "关"
+          uid=90_5 InlineTextBox "闭"
+      uid=90_8 generic
+        uid=90_9 generic
+          uid=90_10 generic
+          uid=90_11 ignored
+          uid=90_12 generic
+            uid=90_13 link url="https://www.douyin.com/jingxuan"
+            uid=90_14 generic
+              uid=90_15 generic
+                uid=90_16 generic
+              uid=90_17 generic
+                uid=90_18 generic
+                  uid=90_19 ignored
+                    uid=90_20 ignored
+                      uid=90_21 ignored
+                        uid=90_22 ignored
+                          uid=90_23 ignored
+                            uid=90_24 generic
+                              uid=90_25 link "精选" url="https://www.douyin.com/jingxuan?from_nav=1"
+                                uid=90_26 ignored
+                                  uid=90_27 ignored
+                                uid=90_28 generic
+                                  uid=90_29 StaticText "精选"
+                                    uid=90_5 InlineTextBox "精选"
+                                uid=90_30 ignored
+                        uid=90_31 ignored
+                          uid=90_32 ignored
+                            uid=90_33 generic
+                              uid=90_34 link "推荐" url="https://www.douyin.com/?recommend=1&from_nav=1"
+                                uid=90_35 ignored
+                                  uid=90_36 ignored
+                                uid=90_37 generic
+                                  uid=90_38 StaticText "推荐"
+                                    uid=90_5 InlineTextBox "推荐"
+                                uid=90_39 ignored
+                        uid=90_40 ignored
+                          uid=90_41 ignored
+                            uid=90_42 generic
+                              uid=90_43 link "AI抖音" url="https://www.douyin.com/aisearch?from_nav=1"
+                                uid=90_44 image
+                                uid=90_45 generic
+                                  uid=90_46 StaticText "AI抖音"
+                                    uid=90_5 InlineTextBox "AI抖音"
+                                uid=90_47 ignored
+                        uid=90_48 ignored
+                        uid=90_49 ignored
+                          uid=90_50 ignored
+                            uid=90_51 generic
+                              uid=90_52 link "关注" url="https://www.douyin.com/follow?from_nav=1"
+                                uid=90_53 ignored
+                                  uid=90_54 ignored
+                                uid=90_55 generic
+                                  uid=90_56 StaticText "关注"
+                                    uid=90_5 InlineTextBox "关注"
+                                uid=90_57 ignored
+                        uid=90_58 ignored
+                          uid=90_59 ignored
+                            uid=90_60 generic
+                              uid=90_61 link "朋友" url="https://www.douyin.com/friend?from_nav=1"
+                                uid=90_62 ignored
+                                  uid=90_63 ignored
+                                uid=90_64 generic
+                                  uid=90_65 StaticText "朋友"
+                                    uid=90_5 InlineTextBox "朋友"
+                                uid=90_66 ignored
+                        uid=90_67 ignored
+                          uid=90_68 ignored
+                            uid=90_69 generic
+                              uid=90_70 link "我的" url="https://www.douyin.com/user/self?from_nav=1"
+                                uid=90_71 ignored
+                                  uid=90_72 ignored
+                                uid=90_73 generic
+                                  uid=90_74 StaticText "我的"
+                                    uid=90_5 InlineTextBox "我的"
+                                uid=90_75 ignored
+                        uid=90_76 ignored
+                        uid=90_77 ignored
+                          uid=90_78 ignored
+                            uid=90_79 generic
+                              uid=90_80 link "直播" url="https://live.douyin.com/?from_nav=1"
+                                uid=90_81 ignored
+                                  uid=90_82 ignored
+                                uid=90_83 generic
+                                  uid=90_84 StaticText "直播"
+                                    uid=90_5 InlineTextBox "直播"
+                                uid=90_85 ignored
+                        uid=90_86 ignored
+                          uid=90_87 ignored
+                            uid=90_88 generic
+                              uid=90_89 link "放映厅" url="https://www.douyin.com/vs?from_nav=1"
+                                uid=90_90 ignored
+                                  uid=90_91 ignored
+                                uid=90_92 generic
+                                  uid=90_93 StaticText "放映厅"
+                                    uid=90_5 InlineTextBox "放映厅"
+                                uid=90_94 ignored
+                        uid=90_95 ignored
+                          uid=90_96 ignored
+                            uid=90_97 generic
+                              uid=90_98 link "短剧" url="https://www.douyin.com/series?from_nav=1"
+                                uid=90_99 ignored
+                                  uid=90_100 ignored
+                                uid=90_101 generic
+                                  uid=90_102 StaticText "短剧"
+                                    uid=90_5 InlineTextBox "短剧"
+                                uid=90_103 ignored
+                        uid=90_104 ignored
+                          uid=90_105 ignored
+                            uid=90_106 generic
+                              uid=90_107 link "小游戏" url="https://www.douyin.com/microgame?from_nav=1"
+                                uid=90_108 ignored
+                                  uid=90_109 ignored
+                                uid=90_110 generic
+                                  uid=90_111 StaticText "小游戏"
+                                    uid=90_5 InlineTextBox "小游戏"
+                                uid=90_112 ignored
+                                  uid=90_113 generic
+                        uid=90_114 ignored
+                          uid=90_115 ignored
+                        uid=90_116 ignored
+                          uid=90_117 ignored
+                        uid=90_118 ignored
+                          uid=90_119 ignored
+                        uid=90_120 ignored
+                          uid=90_121 ignored
+                        uid=90_122 ignored
+                          uid=90_123 ignored
+                        uid=90_124 ignored
+                          uid=90_125 ignored
+                        uid=90_126 ignored
+                          uid=90_127 ignored
+                        uid=90_128 ignored
+                          uid=90_129 ignored
+                        uid=90_130 ignored
+                          uid=90_131 ignored
+                    uid=90_132 generic
+                      uid=90_133 generic
+                        uid=90_134 image url="https://lf-douyin-pc-web.douyinstatic.com/obj/douyin-pc-web/ies/douyin_web/media/jxWeakBtnBg.b27e25d68aab9de7.png"
+                        uid=90_135 generic
+                          uid=90_136 image url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAYAAABHomvIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQzSURBVHgBzVk9aBxHFP52rSaQ+K5JIBDZ16QziQSpHIxO6RICOlcpUkhpQkgRqUgRAkGCgCE/xRFICG4kF8a4uhMYy92d8E9l0Mk/lYs7/4AtubiTZXBje/2+HZ9uZ3Z2ds+3sv3B43ZnZ2a//ebNm5l3wFsOz1q6+7AML5hBEJQRoAjPKwJBEfm+uif996TvjrBoIfBW8d77zVgt7e7J/RKeHlgWMmW8CXheCweeHcc7H3b2ivYePt6eELUa+Ss1NKjqNN79oMUbRVApt7Gv5G7fVb+Hx7PU7mHs+SSV9MPbp35tX8hdvAJ8dRz46GPgyGfKeP3DT8Cdu66WReVqVHD3fhnwG8gbv/wG/Hsy+fkhUXKtpn4T4U+Lgl4FeSONHEEFqaQTzypC0P8UeeL02XRyfdAFXPD8KV9iUQl54sRfe5elUgntdhvLy8uoVCooFi1uftvli0HRV0E4J1CRiPNPTEyEJOfm5lCr1dDtdsOyzJBFws919l7Sh2xmZgYjougjTxg+VS6X09tcv+F8PIZhsPMIuCYdnltTQ7mzo8oLBeDYUSF4ea9qf3hNkHSr1RoUUPWvv0QydreCVLt3K8CvPwcoHAxAz8hg4neBDY1GQ69bKKj+E96dPsQctqNfyOz8WymYEUn+RwUXFhYGBRyFE386enIp9/8/mRUzTWZs4IKQ1NvwXTYOieTOnLK+WBQIJGRoBDY2NgKJdVqdLGAb8dVB/3SjTARvXo35mzh86D9JiPrW0tJS7LkEbGu7arWqi3BoXKlJDokEv/0mRi7pBX2QVL+++SFsm9QH1U50lU+OWAiSeaSSLE+p5KIvYn0T/eEnyZWVFe0Z67t8OR4H/9MX+vn5eWs8azabWF9fD685Y3lP2ILz6upq+NvpdMJlj3VnZ2fDsl6vBzdMBUNZB18w7LDQp0ykqeS22KwZPOQMMxH1NZtxRkcRC8xDmh6ojW24bWjr9TqSwPrmbmVzcxOjwLmS2PZvLp+x+Z/rg7JAJ1g4qN3SqU249nNTU1PaPT+mP3leHaYPHh7XQoy5ZHHS2Jze5q+i3kj+h5gPEsc+1xTQtkZQfiYTIQwXvKYtLi5CJkOsq1GHV8FU8HwttoqkLfw2UGmMqB6sYcYYZhp3HsOS44flRHC7m6YizbYB2H9y6AKPttpWFX/8PtbAtpb2QTfgR4y2asSsLamPLUkawR47ePLnQdwA42P0zMGJZE6mnNCUIX5Qde6qLUq+RqvyXOyOBX/8DtlAZk2b5Y26yg/ubjeQJavK4+a5C3JUvJySssgF9JlJRbArCcyxIROYPB/zTEvCkfNwTuCCPynWyS8FfPHKQN1rNzACSG4aSkEjiR4qyWwrhsjwWMDzM1Ud3h2aYt+JdfoFCX9DMOvKxKbkDpmeG/VvCO4zQ4XXFOFemADoRYxnh/pLghpeAKra17jyXmwUAAAAAElFTkSuQmCC"
+                          uid=90_137 generic
+                            uid=90_138 StaticText "下载抖音精选"
+                              uid=90_5 InlineTextBox "下载抖音精选"
+                    uid=90_139 generic
+                      uid=90_140 generic
+                        uid=90_141 ignored
+                          uid=90_142 generic
+                            uid=90_143 StaticText "2026 © 抖音"
+                              uid=90_5 InlineTextBox "2026 © 抖音"
+                          uid=90_144 generic
+                            uid=90_145 link "京ICP备16016397号-3" url="https://beian.miit.gov.cn/"
+                              uid=90_146 StaticText "京ICP备16016397号-3"
+                                uid=90_5 InlineTextBox "京ICP备16016397号-3"
+                        uid=90_147 ignored
+                          uid=90_148 generic
+                            uid=90_149 generic
+                              uid=90_150 image
+                          uid=90_151 generic
+                            uid=90_152 generic
+                              uid=90_153 image
+                          uid=90_154 generic
+                            uid=90_155 generic
+                              uid=90_156 image
+                  uid=90_157 ignored
+                    uid=90_158 contentinfo
+                      uid=90_159 generic
+                        uid=90_160 ignored
+                          uid=90_161 generic
+                            uid=90_162 link "icon 京公网安备11010802050006号" url="https://beian.mps.gov.cn/"
+                              uid=90_163 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/emblem-new.png"
+                              uid=90_164 StaticText "京公网安备11010802050006号"
+                                uid=90_5 InlineTextBox "京公网安备"
+                                uid=90_5 InlineTextBox "11010802050006号"
+                          uid=90_165 generic
+                            uid=90_166 link "icon 电子营业执照" url="https://zzlz.gsxt.gov.cn/businessCheck/verifKey.do"
+                              uid=90_167 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/c7085f453e58f78fe403594d0bab6890.png"
+                              uid=90_168 StaticText "电子营业执照"
+                                uid=90_5 InlineTextBox "电子营业执照"
+                          uid=90_169 generic
+                            uid=90_170 StaticText "信息网络传播视听节目许可证 0126733"
+                              uid=90_5 InlineTextBox "信息网络传播视听节目"
+                              uid=90_5 InlineTextBox "许可证 0126733"
+                          uid=90_171 generic
+                            uid=90_172 StaticText "广播电视节目制作经营许可证 （京）字第11313号"
+                              uid=90_5 InlineTextBox "广播电视节目制作经营"
+                              uid=90_5 InlineTextBox "许可证 （京）字第"
+                              uid=90_5 InlineTextBox "11313号"
+                          uid=90_173 generic
+                            uid=90_174 StaticText "增值电信业务经营许可证 京B2-20170846"
+                              uid=90_5 InlineTextBox "增值电信业务经营许可"
+                              uid=90_5 InlineTextBox "证 京B2-20170846"
+                          uid=90_175 generic
+                            uid=90_176 StaticText "网络文化经营许可证 京网文〔2025〕0181-061号"
+                              uid=90_5 InlineTextBox "网络文化经营许可证 京"
+                              uid=90_5 InlineTextBox "网文〔2025〕0181-"
+                              uid=90_5 InlineTextBox "061号"
+                          uid=90_177 generic
+                            uid=90_178 StaticText "互联网宗教信息服务许可证 京（2025）0000017"
+                              uid=90_5 InlineTextBox "互联网宗教信息服务许"
+                              uid=90_5 InlineTextBox "可证 京（2025）"
+                              uid=90_5 InlineTextBox "0000017"
+                          uid=90_179 generic
+                            uid=90_180 StaticText "药品医疗器械网络信息服务备案 （京）网药械信息备字（2023）第00570号"
+                              uid=90_5 InlineTextBox "药品医疗器械网络信息"
+                              uid=90_5 InlineTextBox "服务备案 （京）网药械"
+                              uid=90_5 InlineTextBox "信息备字（2023）第"
+                              uid=90_5 InlineTextBox "00570号"
+                          uid=90_181 generic
+                            uid=90_182 StaticText "互联网新闻信息服务许可证 11220230001"
+                              uid=90_5 InlineTextBox "互联网新闻信息服务许"
+                              uid=90_5 InlineTextBox "可证 11220230001"
+                          uid=90_183 generic
+                            uid=90_184 link "（京）人服证字〔2026〕第0600005023号" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/d1cb34abe8ebb5600b51bac36ce3247f.jpg"
+                              uid=90_185 StaticText "（京）人服证字〔2026〕第0600005023号"
+                                uid=90_5 InlineTextBox "（京）人服证字"
+                                uid=90_5 InlineTextBox "〔2026〕第"
+                                uid=90_5 InlineTextBox "0600005023号"
+                        uid=90_186 ignored
+                        uid=90_187 ignored
+                          uid=90_188 generic
+                            uid=90_189 link "网络谣言曝光台" url="https://www.piyao.org.cn/yybgt/index.htm"
+                              uid=90_190 StaticText "网络谣言曝光台"
+                                uid=90_5 InlineTextBox "网络谣言曝光台"
+                          uid=90_191 generic
+                            uid=90_192 link "网上有害信息举报" url="https://www.12377.cn/"
+                              uid=90_193 StaticText "网上有害信息举报"
+                                uid=90_5 InlineTextBox "网上有害信息举报"
+                          uid=90_194 generic
+                            uid=90_195 StaticText "违法和不良信息举报 400-140-2108 feedback@douyin.com"
+                              uid=90_5 InlineTextBox "违法和不良信息举报 "
+                              uid=90_5 InlineTextBox "400-140-2108 "
+                              uid=90_5 InlineTextBox "feedback@douyin.com"
+                          uid=90_196 generic
+                            uid=90_197 StaticText "算法推荐专项举报 sfjubao@bytedance.com"
+                              uid=90_5 InlineTextBox "算法推荐专项举报 "
+                              uid=90_5 InlineTextBox "sfjubao@bytedance.com"
+                          uid=90_198 generic
+                            uid=90_199 StaticText "体育饭圈专项举报 tyfq@bytedance.com"
+                              uid=90_5 InlineTextBox "体育饭圈专项举报 "
+                              uid=90_5 InlineTextBox "tyfq@bytedance.com"
+                        uid=90_200 ignored
+                        uid=90_201 ignored
+                          uid=90_202 generic
+                            uid=90_203 link "广告投放" url="https://www.oceanengine.com/resource/douyin"
+                              uid=90_204 StaticText "广告投放"
+                                uid=90_5 InlineTextBox "广告投放"
+                          uid=90_205 generic
+                            uid=90_206 link "用户服务协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                              uid=90_207 StaticText "用户服务协议"
+                                uid=90_5 InlineTextBox "用户服务协议"
+                          uid=90_208 generic
+                            uid=90_209 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                              uid=90_210 StaticText "隐私政策"
+                                uid=90_5 InlineTextBox "隐私政策"
+                          uid=90_211 generic
+                            uid=90_212 link "账号找回" url="https://www.douyin.com/recovery_account/"
+                              uid=90_213 StaticText "账号找回"
+                                uid=90_5 InlineTextBox "账号找回"
+                          uid=90_214 generic
+                            uid=90_215 link "联系我们" url="https://www.douyin.com/aboutus/"
+                              uid=90_216 StaticText "联系我们"
+                                uid=90_5 InlineTextBox "联系我们"
+                          uid=90_217 generic
+                            uid=90_218 link "加入我们" url="https://www.douyin.com/aboutus/"
+                              uid=90_219 StaticText "加入我们"
+                                uid=90_5 InlineTextBox "加入我们"
+                          uid=90_220 generic
+                            uid=90_221 link "友情链接" url="https://www.douyin.com/friend_links"
+                              uid=90_222 StaticText "友情链接"
+                                uid=90_5 InlineTextBox "友情链接"
+                          uid=90_223 generic
+                            uid=90_224 link "站点地图" url="https://www.douyin.com/htmlmap/hotauthor_0_1"
+                              uid=90_225 StaticText "站点地图"
+                                uid=90_5 InlineTextBox "站点地图"
+                          uid=90_226 generic
+                            uid=90_227 link "下载抖音" url="https://www.douyin.com/downloadpage/pc"
+                              uid=90_228 StaticText "下载抖音"
+                                uid=90_5 InlineTextBox "下载抖音"
+                          uid=90_229 generic
+                            uid=90_230 link "抖音电商" url="https://mix.jinritemai.com/falcon/mix_page/index.html"
+                              uid=90_231 StaticText "抖音电商"
+                                uid=90_5 InlineTextBox "抖音电商"
+          uid=90_232 generic
+            uid=90_233 generic
+              uid=90_234 ignored
+                uid=90_235 banner
+                  uid=90_236 ignored
+                    uid=90_237 generic
+                      uid=90_238 generic
+                        uid=90_239 generic
+                          uid=90_240 ignored
+                          uid=90_241 generic
+                            uid=90_242 ignored
+                              uid=90_243 generic
+                                uid=90_244 textbox "搜索你感兴趣的内容"
+                                  uid=90_245 ignored
+                                  uid=90_246 generic
+                              uid=90_247 generic
+                              uid=90_248 button "搜索"
+                                uid=90_249 image
+                                uid=90_250 ignored
+                                  uid=90_251 StaticText "搜索"
+                                    uid=90_5 InlineTextBox "搜索"
+                          uid=90_252 ignored
+                            uid=90_253 ignored
+                      uid=90_254 generic
+                        uid=90_255 ignored
+                          uid=90_256 generic
+                            uid=90_257 ignored
+                              uid=90_258 generic
+                                uid=90_259 ignored
+                                  uid=90_260 generic
+                                    uid=90_261 generic
+                                      uid=90_262 generic
+                                        uid=90_263 ignored
+                                          uid=90_264 image
+                                            uid=90_265 image
+                                        uid=90_266 paragraph
+                                          uid=90_267 StaticText "充钻石"
+                                            uid=90_5 InlineTextBox "充钻石"
+                              uid=90_268 generic
+                                uid=90_269 generic
+                                  uid=90_270 ignored
+                                    uid=90_271 generic
+                                      uid=90_272 link "客户端" url="https://www.douyin.com/download/pc/obj/douyin-pc-web/douyin-pc-client/7044145585217083655/releases/469669512/8.5.1/win32-ia32/douyin-downloader-v8.5.1-win32-ia32-douyincold.exe"
+                                        uid=90_273 generic
+                                          uid=90_274 ignored
+                                            uid=90_275 ignored
+                                              uid=90_276 image
+                                                uid=90_277 image
+                                            uid=90_278 paragraph
+                                              uid=90_279 StaticText "客户端"
+                                                uid=90_5 InlineTextBox "客户端"
+                                          uid=90_280 generic
+                                            uid=90_281 image
+                              uid=90_282 generic
+                                uid=90_283 ignored
+                                  uid=90_284 generic
+                                    uid=90_285 generic
+                                      uid=90_286 generic
+                                        uid=90_287 generic
+                                        uid=90_288 image
+                                          uid=90_289 image
+                                      uid=90_290 generic
+                                        uid=90_291 StaticText "壁纸"
+                                          uid=90_5 InlineTextBox "壁纸"
+                              uid=90_292 list
+                                uid=90_293 ignored
+                                  uid=90_294 generic
+                                    uid=90_295 generic
+                                      uid=90_296 ignored
+                                        uid=90_297 ignored
+                                          uid=90_298 image
+                                            uid=90_299 image
+                                        uid=90_300 paragraph
+                                          uid=90_301 StaticText "通知"
+                                            uid=90_5 InlineTextBox "通知"
+                              uid=90_302 list
+                                uid=90_303 ignored
+                                  uid=90_304 generic
+                                    uid=90_305 generic
+                                      uid=90_306 ignored
+                                        uid=90_307 ignored
+                                          uid=90_308 ignored
+                                        uid=90_309 paragraph
+                                          uid=90_310 StaticText "消息"
+                                            uid=90_5 InlineTextBox "消息"
+                              uid=90_311 ignored
+                                uid=90_312 generic
+                                  uid=90_313 generic
+                                    uid=90_314 generic
+                                      uid=90_315 ignored
+                                        uid=90_316 image
+                                          uid=90_317 image
+                                      uid=90_318 paragraph
+                                        uid=90_319 StaticText "投稿"
+                                          uid=90_5 InlineTextBox "投稿"
+                                    uid=90_320 generic description="发布作品 作品数据 开直播 直播数据 剪映专业版 AI音乐创作" haspopup="menu"
+                              uid=90_321 ignored
+                                uid=90_322 generic
+                                  uid=90_323 generic
+                                    uid=90_324 button "登录"
+                                      uid=90_325 generic
+                                        uid=90_326 image
+                                        uid=90_327 paragraph
+                                          uid=90_328 StaticText "登录"
+                                            uid=90_5 InlineTextBox "登录"
+                                  uid=90_329 generic
+              uid=90_330 generic
+                uid=90_331 ignored
+            uid=90_332 ignored
+              uid=90_333 ignored
+                uid=90_334 generic
+                  uid=90_335 ignored
+                    uid=90_336 ignored
+                      uid=90_337 ignored
+                        uid=90_338 ignored
+                        uid=90_339 generic
+                          uid=90_340 ignored
+                            uid=90_341 generic
+                              uid=90_342 generic
+                                uid=90_343 Canvas
+                                  uid=90_344 StaticText "
+        "
+                                uid=90_345 generic
+                              uid=90_346 generic
+                                uid=90_347 generic
+                                  uid=90_348 generic
+                                    uid=90_349 generic
+                                      uid=90_350 generic
+                                        uid=90_351 image
+                                          uid=90_352 image
+                                    uid=90_353 generic
+                                      uid=90_354 generic
+                                        uid=92_0 StaticText "00:12"
+                                          uid=90_5 InlineTextBox "00:12"
+                                      uid=90_356 generic
+                                        uid=90_357 StaticText "/"
+                                          uid=90_5 InlineTextBox "/"
+                                      uid=90_358 generic
+                                        uid=92_1 StaticText "00:14"
+                                          uid=90_5 InlineTextBox "00:14"
+                                    uid=90_360 generic
+                                      uid=90_361 ignored
+                                        uid=90_362 generic
+                                          uid=90_363 image
+                                            uid=90_364 image
+                                  uid=90_365 generic
+                                    uid=90_366 generic
+                                      uid=90_367 generic
+                                        uid=90_368 ignored
+                                          uid=90_369 generic
+                                            uid=90_370 generic
+                                            uid=90_371 generic
+                                        uid=90_372 generic
+                                  uid=90_373 generic
+                                    uid=90_374 generic
+                                      uid=90_375 generic
+                                        uid=90_376 image
+                                          uid=90_377 image
+                                    uid=90_378 generic
+                                      uid=90_379 generic
+                                        uid=90_380 image
+                                    uid=90_381 generic
+                                    uid=90_382 generic
+                                      uid=90_383 generic
+                                        uid=90_384 image
+                                          uid=90_385 image
+                                    uid=90_386 generic
+                                      uid=90_387 generic
+                                        uid=90_388 image
+                                          uid=90_389 image
+                                    uid=90_390 generic
+                                      uid=90_391 generic
+                                        uid=90_392 generic
+                                          uid=90_393 ignored
+                                            uid=90_394 image
+                                    uid=90_395 generic
+                                      uid=90_396 generic
+                                        uid=90_397 StaticText "倍速"
+                                          uid=90_5 InlineTextBox "倍速"
+                                      uid=90_398 ignored
+                                    uid=90_399 generic
+                                      uid=90_400 ignored
+                                        uid=90_401 generic
+                                          uid=90_402 StaticText "智能"
+                                            uid=90_5 InlineTextBox "智能"
+                                      uid=90_403 ignored
+                                      uid=90_404 ignored
+                                    uid=90_405 generic
+                                      uid=90_406 generic
+                                        uid=90_407 generic
+                                          uid=90_408 button
+                                            uid=90_409 ignored
+                                          uid=90_410 ignored
+                                            uid=90_411 StaticText "清屏"
+                                              uid=90_5 InlineTextBox "清屏"
+                                    uid=90_412 generic
+                                      uid=90_413 generic
+                                        uid=90_414 ignored
+                                          uid=90_415 button
+                                            uid=90_416 ignored
+                                          uid=90_417 ignored
+                                            uid=90_418 StaticText "连播"
+                                              uid=90_5 InlineTextBox "连播"
+                              uid=90_419 generic
+                                uid=90_420 ignored
+                                  uid=90_421 ignored
+                                    uid=90_422 generic
+                                      uid=90_423 generic
+                                        uid=90_424 image
+                                          uid=90_425 image
+                                      uid=90_426 generic
+                                        uid=90_427 image
+                                          uid=90_428 image
+                              uid=90_429 generic
+                                uid=90_430 image
+                                uid=90_431 image
+                                  uid=90_432 image
+                              uid=90_433 generic
+                              uid=90_434 generic
+                              uid=90_435 ignored
+                              uid=90_436 generic
+                                uid=90_437 Video
+                                  uid=90_438 ignored
+                                    uid=90_439 ignored
+                                    uid=90_440 ignored
+                                      uid=90_441 ignored
+                                    uid=90_442 ignored
+                                      uid=90_443 ignored
+                                        uid=90_444 ignored
+                                        uid=90_445 ignored
+                                          uid=90_446 ignored
+                                            uid=90_447 ignored
+                                          uid=90_448 ignored
+                                          uid=90_449 ignored
+                                            uid=90_450 ignored
+                                            uid=90_451 ignored
+                                            uid=90_452 ignored
+                                          uid=90_453 ignored
+                                            uid=90_454 ignored
+                                          uid=90_455 ignored
+                                            uid=90_456 ignored
+                                        uid=90_457 ignored
+                                    uid=90_458 ignored
+                                    uid=90_459 ignored
+                                    uid=90_460 ignored
+                                    uid=90_461 ignored
+                                    uid=90_462 ignored
+                                      uid=90_463 ignored
+                                      uid=90_464 ignored
+                                      uid=90_465 ignored
+                                      uid=90_466 ignored
+                                      uid=90_467 ignored
+                                      uid=90_468 ignored
+                                      uid=90_469 ignored
+                                      uid=90_470 ignored
+                                      uid=90_471 ignored
+                                      uid=90_472 ignored
+                                uid=90_473 generic
+                                uid=90_474 generic
+                                  uid=90_475 generic
+                                    uid=92_2 StaticText "3s "
+                                      uid=90_5 InlineTextBox "3s "
+                                    uid=90_477 StaticText "后循环播放当前视频"
+                                      uid=90_5 InlineTextBox "后循环播放当前视频"
+                            uid=90_478 ignored
+                            uid=90_479 ignored
+                        uid=90_480 ignored
+                          uid=90_481 ignored
+                            uid=90_482 generic
+                              uid=90_483 generic
+                                uid=90_484 heading "火柴人超炫手翻画" level="1"
+                                  uid=90_485 StaticText "火柴人超炫手翻画"
+                                    uid=90_5 InlineTextBox "火柴人超炫手翻画"
+                            uid=90_486 ignored
+                              uid=90_487 ignored
+                                uid=90_488 generic
+                                  uid=90_489 generic
+                                    uid=90_490 generic
+                                      uid=90_491 image
+                                  uid=90_492 ignored
+                                    uid=90_493 StaticText "3"
+                                      uid=90_5 InlineTextBox "3"
+                                uid=90_494 generic
+                                  uid=90_495 generic
+                                    uid=90_496 generic
+                                      uid=90_497 image
+                                  uid=90_498 ignored
+                                    uid=90_499 StaticText "1"
+                                      uid=90_5 InlineTextBox "1"
+                                uid=90_500 generic
+                                  uid=90_501 generic
+                                    uid=90_502 generic
+                                      uid=90_503 image
+                                  uid=90_504 ignored
+                                    uid=90_505 StaticText "收藏"
+                                      uid=90_5 InlineTextBox "收藏"
+                                uid=90_506 generic
+                                  uid=90_507 generic
+                                    uid=90_508 generic
+                                      uid=90_509 image
+                                  uid=90_510 ignored
+                                    uid=90_511 StaticText "分享"
+                                      uid=90_5 InlineTextBox "分享"
+                                  uid=90_512 ignored
+                              uid=90_513 ignored
+                                uid=90_514 generic
+                                  uid=90_515 image
+                                  uid=90_516 ignored
+                                    uid=90_517 StaticText "举报"
+                                      uid=90_5 InlineTextBox "举报"
+                                uid=90_518 ignored
+                                  uid=90_519 StaticText "发布时间："
+                                    uid=90_5 InlineTextBox "发布时间："
+                                  uid=90_520 StaticText "2018-10-13 17:48"
+                                    uid=90_5 InlineTextBox "2018-10-13 17:48"
+                        uid=90_521 ignored
+                          uid=90_522 ignored
+                            uid=90_523 generic
+                              uid=90_524 ignored
+                              uid=90_525 ignored
+                                uid=90_526 generic
+                                  uid=90_527 generic
+                                    uid=90_528 StaticText "全部评论"
+                                      uid=90_5 InlineTextBox "全部评论"
+                                  uid=90_529 generic
+                                    uid=90_530 generic
+                                uid=90_531 generic
+                                  uid=90_532 ignored
+                                    uid=90_533 generic
+                                      uid=90_534 image
+                                  uid=90_535 ignored
+                                    uid=90_536 generic
+                                      uid=90_537 generic
+                                        uid=90_538 StaticText "请先"
+                                          uid=90_5 InlineTextBox "请先"
+                                        uid=90_539 StaticText "登录"
+                                          uid=90_5 InlineTextBox "登录"
+                                        uid=90_540 StaticText "后发表评论"
+                                          uid=90_5 InlineTextBox "后发表评论"
+                              uid=90_541 ignored
+                                uid=90_542 ignored
+                                  uid=90_543 generic
+                                    uid=90_544 ignored
+                                      uid=90_545 generic
+                                    uid=90_546 ignored
+                                      uid=90_547 generic
+                                        uid=90_548 ignored
+                                          uid=90_549 generic
+                                            uid=90_550 generic
+                                              uid=90_551 link "李蛋蛋" url="https://www.douyin.com/user/MS4wLjABAAAA3ZPfHZw7kNXA0OUS03VvLmkIxFNhRNrTqz34V6cGgxo"
+                                                uid=90_552 StaticText "李蛋蛋"
+                                                  uid=90_5 InlineTextBox "李蛋蛋"
+                                          uid=90_553 generic
+                                            uid=90_554 generic
+                                              uid=90_555 StaticText "..."
+                                                uid=90_5 InlineTextBox "..."
+                                        uid=90_556 generic
+                                          uid=90_557 StaticText "法式赞美"
+                                            uid=90_5 InlineTextBox "法式赞美"
+                                        uid=90_558 generic
+                                          uid=90_559 StaticText "7年前"
+                                            uid=90_5 InlineTextBox "7年前"
+                                        uid=90_560 generic
+                                          uid=90_561 ignored
+                                            uid=90_562 ignored
+                                              uid=90_563 paragraph
+                                                uid=90_564 image
+                                                uid=90_565 ignored
+                                                  uid=90_566 StaticText "0"
+                                                    uid=90_5 InlineTextBox "0"
+                                              uid=90_567 paragraph
+                                                uid=90_568 image
+                                            uid=90_569 generic
+                                              uid=90_570 ignored
+                                                uid=90_571 image
+                                                uid=90_572 generic
+                                                  uid=90_573 StaticText "分享"
+                                                    uid=90_5 InlineTextBox "分享"
+                                            uid=90_574 generic
+                                              uid=90_575 generic
+                                                uid=90_576 image
+                                                uid=90_577 ignored
+                                                  uid=90_578 StaticText "回复"
+                                                    uid=90_5 InlineTextBox "回复"
+                                uid=90_579 generic
+                                  uid=90_580 StaticText "暂时没有更多评论"
+                                    uid=90_5 InlineTextBox "暂时没有更多评论"
+                                uid=90_581 generic
+                                  uid=90_582 generic
+                                    uid=90_583 StaticText "登录后即可参与互动讨论"
+                                      uid=90_5 InlineTextBox "登录后即可参与互动讨论"
+                                  uid=90_584 generic
+                                    uid=90_585 button "立即登录"
+                                      uid=90_586 generic
+                                        uid=90_587 StaticText "立即登录"
+                                          uid=90_5 InlineTextBox "立即登录"
+                        uid=90_588 generic
+                          uid=90_589 generic
+                      uid=90_590 ignored
+                        uid=90_591 ignored
+                          uid=90_592 generic
+                            uid=90_593 ignored
+                              uid=90_594 generic
+                                uid=90_595 link "T Kaven T" url="https://www.douyin.com/user/MS4wLjABAAAA3OjjjV2EdHWEOJDTODOq0W-MI-BWp2EAxvzcKceAtj4"
+                                  uid=90_596 generic
+                                    uid=90_597 image "T Kaven T" url="https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/aweme_default_avatar.png.jpeg?from=327834062"
+                            uid=90_598 ignored
+                              uid=90_599 link "T Kaven T" url="https://www.douyin.com/user/MS4wLjABAAAA3OjjjV2EdHWEOJDTODOq0W-MI-BWp2EAxvzcKceAtj4"
+                                uid=90_600 ignored
+                                  uid=90_601 ignored
+                                    uid=90_602 StaticText "T Kaven T"
+                                      uid=90_5 InlineTextBox "T Kaven T"
+                              uid=90_603 paragraph
+                                uid=90_604 StaticText "粉丝"
+                                  uid=90_5 InlineTextBox "粉丝"
+                                uid=90_605 StaticText "56"
+                                  uid=90_5 InlineTextBox "56"
+                                uid=90_606 StaticText "获赞"
+                                  uid=90_5 InlineTextBox "获赞"
+                                uid=90_607 StaticText "59"
+                                  uid=90_5 InlineTextBox "59"
+                            uid=90_608 generic
+                              uid=90_609 button "关注"
+                                uid=90_610 generic
+                                  uid=90_611 StaticText "关注"
+                                    uid=90_5 InlineTextBox "关注"
+                          uid=90_612 generic
+                          uid=90_613 ignored
+                            uid=90_614 ignored
+                              uid=90_615 heading "推荐视频" level="2"
+                                uid=90_616 StaticText "推荐视频"
+                                  uid=90_5 InlineTextBox "推荐视频"
+                              uid=90_617 ignored
+                            uid=90_618 list
+                              uid=90_619 listitem level="1"
+                                uid=90_620 ignored
+                                  uid=90_621 generic
+                                    uid=90_622 link "Vlog｜小猪单枪匹马去租房，直接撞进面试现场？！ #菜花小猪#租房 #面试 #萌宠出道计划 #可爱到爆炸💥 原创不易，勿盗用角色与照搬脚本，灵感借鉴发布请@居居小猪嘟 ～感谢尊重原创，谢谢大家喜欢小嘟💗 01:35" url="https://www.douyin.com/video/7678390882357349686"
+                                      uid=90_623 generic
+                                        uid=90_624 generic
+                                        uid=90_625 generic
+                                        uid=90_626 image "Vlog｜小猪单枪匹马去租房，直接撞进面试现场？！ #菜花小猪#租房 #面试 #萌宠出道计划 #可爱到爆炸💥 原创不易，勿盗用角色与照搬脚本，灵感借鉴发布请@居居小猪嘟 ～感谢尊重原创，谢谢大家喜欢小嘟💗" url="https://p3-pc-sign.douyinpic.com/image-cut-tos/60d43e9018bb7ba8c4d613cf93d3aa82~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=ythPi8Xx8NjMxRHPeUzPl67HFqs%3D"
+                                      uid=90_627 generic
+                                      uid=90_628 generic
+                                        uid=90_629 StaticText "01:35"
+                                          uid=90_5 InlineTextBox "01:35"
+                                  uid=90_630 ignored
+                                    uid=90_631 heading "Vlog｜小猪单枪匹马去租房，直接撞进面试现场？！ #菜花小猪#租房 #面试 #萌宠出道计划 #可爱到爆炸 💥 原创不易，勿盗用角色与照搬脚本，灵感借鉴发布请@居居小猪嘟 ～感谢尊重原创，谢谢大家喜欢小嘟 💗" level="3"
+                                      uid=90_632 link "Vlog｜小猪单枪匹马去租房，直接撞进面试现场？！ #菜花小猪#租房 #面试 #萌宠出道计划 #可爱到爆炸 💥 原创不易，勿盗用角色与照搬脚本，灵感借鉴发布请@居居小猪嘟 ～感谢尊重原创，谢谢大家喜欢小嘟 💗" url="https://www.douyin.com/video/7678390882357349686"
+                                        uid=90_633 StaticText "Vlog｜小猪单枪匹马去租房，直接撞进面试现场？！ #菜花小猪#租房 #面试 #萌宠出道计划 #可爱到爆炸"
+                                          uid=90_5 InlineTextBox "Vlog｜小猪单枪匹马去"
+                                          uid=90_5 InlineTextBox "租房，直接撞进面试现"
+                                          uid=90_5 InlineTextBox "场？！ #菜花小猪#租房 "
+                                          uid=90_5 InlineTextBox "场？！ #菜花小猪#租"
+                                          uid=90_5 InlineTextBox "…"
+                                          uid=90_5 InlineTextBox "#面试 #萌宠出道计划 #"
+                                          uid=90_5 InlineTextBox "可爱到爆炸"
+                                        uid=90_634 image "💥" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f4a5.png"
+                                        uid=90_635 StaticText " 原创不易，勿盗用角色与照搬脚本，灵感借鉴发布请@居居小猪嘟 ～感谢尊重原创，谢谢大家喜欢小嘟"
+                                          uid=90_5 InlineTextBox " 原创不"
+                                          uid=90_5 InlineTextBox "易，勿盗用角色与照搬"
+                                          uid=90_5 InlineTextBox "脚本，灵感借鉴发布请"
+                                          uid=90_5 InlineTextBox "@居居小猪嘟 ～感谢尊"
+                                          uid=90_5 InlineTextBox "重原创，谢谢大家喜欢"
+                                          uid=90_5 InlineTextBox "小嘟"
+                                        uid=90_636 image "💗" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f497.png"
+                                    uid=90_637 ignored
+                                      uid=90_638 ignored
+                                        uid=90_639 image
+                                        uid=90_640 StaticText "9.5万"
+                                          uid=90_5 InlineTextBox "9.5万"
+                                      uid=90_641 ignored
+                                        uid=90_642 link "居居小猪嘟（菜花小猪）" url="https://www.douyin.com/user/MS4wLjABAAAASk6O1_mKe_HPLqObiyyxjfz-eNR89TBOAM51xBa6mXgARETrLKDeOj3eggK13ZJ5?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_643 StaticText "居居小猪嘟（菜花小猪）"
+                                            uid=90_5 InlineTextBox "居居小猪嘟（菜花小猪）"
+                                            uid=90_5 InlineTextBox "居居小猪嘟（"
+                                            uid=90_5 InlineTextBox "…"
+                              uid=90_644 listitem level="1"
+                                uid=90_645 ignored
+                                  uid=90_646 generic
+                                    uid=90_647 link "#沉浸式玩泥 #治愈玩泥 00:50" url="https://www.douyin.com/video/7678993774558978926"
+                                      uid=90_648 generic
+                                        uid=90_649 generic
+                                        uid=90_650 generic
+                                        uid=90_651 image "#沉浸式玩泥 #治愈玩泥" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/12c287f4fdac9157a2b88a6a389d2d7e~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=Yq1ghrATHh6ViQcbSW%2BCKp621tg%3D"
+                                      uid=90_652 generic
+                                      uid=90_653 generic
+                                        uid=90_654 StaticText "00:50"
+                                          uid=90_5 InlineTextBox "00:50"
+                                  uid=90_655 ignored
+                                    uid=90_656 heading "#沉浸式玩泥 #治愈玩泥" level="3"
+                                      uid=90_657 link "#沉浸式玩泥 #治愈玩泥" url="https://www.douyin.com/video/7678993774558978926"
+                                        uid=90_658 StaticText "#沉浸式玩泥 #治愈玩泥"
+                                          uid=90_5 InlineTextBox "#沉浸式玩泥 #治愈玩泥"
+                                    uid=90_659 ignored
+                                      uid=90_660 ignored
+                                        uid=90_661 image
+                                        uid=90_662 StaticText "1.4万"
+                                          uid=90_5 InlineTextBox "1.4万"
+                                      uid=90_663 ignored
+                                        uid=90_664 link "敏叽" url="https://www.douyin.com/user/MS4wLjABAAAARRIsTVvX_AMExfGzW4vJqs0Lii5BKUmxPJaueMkDc1JrPdV_sYpW5NxTuc0_b3mo?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_665 StaticText "敏叽"
+                                            uid=90_5 InlineTextBox "敏叽"
+                              uid=90_666 listitem level="1"
+                                uid=90_667 ignored
+                                  uid=90_668 generic
+                                    uid=90_669 link "圆圆pro max发布会 #发布会 #猫 #豆包ai 00:30" url="https://www.douyin.com/video/7684691341562023537"
+                                      uid=90_670 generic
+                                        uid=90_671 generic
+                                        uid=90_672 generic
+                                        uid=90_673 image "圆圆pro max发布会 #发布会 #猫 #豆包ai" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/6fc0b044b202e16d420ac62fcf376b1a~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=kfr8C0qm%2Bin%2B7KpzP9iJ4yeQuEE%3D"
+                                      uid=90_674 generic
+                                      uid=90_675 generic
+                                        uid=90_676 StaticText "00:30"
+                                          uid=90_5 InlineTextBox "00:30"
+                                  uid=90_677 ignored
+                                    uid=90_678 heading "圆圆pro max发布会 #发布会 #猫 #豆包ai" level="3"
+                                      uid=90_679 link "圆圆pro max发布会 #发布会 #猫 #豆包ai" url="https://www.douyin.com/video/7684691341562023537"
+                                        uid=90_680 StaticText "圆圆pro max发布会 #发布会 #猫 #豆包ai"
+                                          uid=90_5 InlineTextBox "圆圆pro max发布会 #发"
+                                          uid=90_5 InlineTextBox "布会 #猫 #豆包ai"
+                                    uid=90_681 ignored
+                                      uid=90_682 ignored
+                                        uid=90_683 image
+                                        uid=90_684 StaticText "4376"
+                                          uid=90_5 InlineTextBox "4376"
+                                      uid=90_685 ignored
+                                        uid=90_686 link "香槟BB" url="https://www.douyin.com/user/MS4wLjABAAAAO3yX18do466whTGQJYwmoiXTzlCc4nb4udUFdsNMp0Y?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_687 StaticText "香槟BB"
+                                            uid=90_5 InlineTextBox "香槟BB"
+                              uid=90_688 listitem level="1"
+                                uid=90_689 ignored
+                                  uid=90_690 generic
+                                    uid=90_691 link "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa 00:53" url="https://www.douyin.com/video/7673004287978491062"
+                                      uid=90_692 generic
+                                        uid=90_693 generic
+                                        uid=90_694 generic
+                                        uid=90_695 image "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" url="https://p9-pc-sign.douyinpic.com/image-cut-tos-priv/fceae937d35bf732a51b4a53a0dd2e5d~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=B%2Bmp6CFa5jzDnDdlSPqpzE6%2FfTo%3D"
+                                      uid=90_696 generic
+                                      uid=90_697 generic
+                                        uid=90_698 StaticText "00:53"
+                                          uid=90_5 InlineTextBox "00:53"
+                                  uid=90_699 ignored
+                                    uid=90_700 heading "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" level="3"
+                                      uid=90_701 link "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa" url="https://www.douyin.com/video/7673004287978491062"
+                                        uid=90_702 StaticText "【papa偷偷写暑假作业！】此视频使用Dreamo进行创作。#DreamoTV #DreamoTV超创计划 #绘梦工坊AI #火花宝宝 #papa"
+                                          uid=90_5 InlineTextBox "【papa偷偷写暑假作"
+                                          uid=90_5 InlineTextBox "业！】此视频使用Drea"
+                                          uid=90_5 InlineTextBox "mo进行创作。#Dreamo"
+                                          uid=90_5 InlineTextBox "mo进行创作。#Drea"
+                                          uid=90_5 InlineTextBox "…"
+                                          uid=90_5 InlineTextBox "TV #DreamoTV超创计"
+                                          uid=90_5 InlineTextBox "划 #绘梦工坊AI #火花宝"
+                                          uid=90_5 InlineTextBox "宝 #papa"
+                                    uid=90_703 ignored
+                                      uid=90_704 ignored
+                                        uid=90_705 image
+                                        uid=90_706 StaticText "1.1万"
+                                          uid=90_5 InlineTextBox "1.1万"
+                                      uid=90_707 ignored
+                                        uid=90_708 link "火花宝宝小剧场" url="https://www.douyin.com/user/MS4wLjABAAAAUHKFF7LfMYrWEFuMuh1F1LR1tACaKnnwAsPiPc8WlgE?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_709 StaticText "火花宝宝小剧场"
+                                            uid=90_5 InlineTextBox "火花宝宝小剧场"
+                              uid=90_710 listitem level="1"
+                                uid=90_711 ignored
+                                  uid=90_712 generic
+                                    uid=90_713 link "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常 04:48" url="https://www.douyin.com/video/7675679453885276111"
+                                      uid=90_714 generic
+                                        uid=90_715 generic
+                                        uid=90_716 generic
+                                        uid=90_717 image "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" url="https://p3-pc-sign.douyinpic.com/image-cut-tos/5a530317a44c606f92d02b9520eeac28~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=xFGY9im4Qg11rZeK%2F5Fqt4a7vQU%3D"
+                                      uid=90_718 generic
+                                      uid=90_719 generic
+                                        uid=90_720 StaticText "04:48"
+                                          uid=90_5 InlineTextBox "04:48"
+                                  uid=90_721 ignored
+                                    uid=90_722 heading "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" level="3"
+                                      uid=90_723 link "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常" url="https://www.douyin.com/video/7675679453885276111"
+                                        uid=90_724 StaticText "红妹的孩子刚出院，中国姐夫给她留点钱，丈母娘说女婿帮忙太多了 #vlog日常"
+                                          uid=90_5 InlineTextBox "红妹的孩子刚出院，中"
+                                          uid=90_5 InlineTextBox "国姐夫给她留点钱，丈"
+                                          uid=90_5 InlineTextBox "母娘说女婿帮忙太多了 #"
+                                          uid=90_5 InlineTextBox "母娘说女婿帮忙太多"
+                                          uid=90_5 InlineTextBox "…"
+                                          uid=90_5 InlineTextBox "vlog日常"
+                                    uid=90_725 ignored
+                                      uid=90_726 ignored
+                                        uid=90_727 image
+                                        uid=90_728 StaticText "7677"
+                                          uid=90_5 InlineTextBox "7677"
+                                      uid=90_729 ignored
+                                        uid=90_730 link "越南小柔和老崔一家" url="https://www.douyin.com/user/MS4wLjABAAAAxqgU8VLcCa6Kf-2dgkz_FXpwt47x67Q4wfGVO8kmQtg?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_731 StaticText "越南小柔和老崔一家"
+                                            uid=90_5 InlineTextBox "越南小柔和老崔一家"
+                                            uid=90_5 InlineTextBox "越南小柔和老"
+                                            uid=90_5 InlineTextBox "…"
+                              uid=90_732 listitem level="1"
+                                uid=90_733 ignored
+                                  uid=90_734 generic
+                                    uid=90_735 link "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈 00:57" url="https://www.douyin.com/video/7671351629618220298"
+                                      uid=90_736 generic
+                                        uid=90_737 generic
+                                        uid=90_738 generic
+                                        uid=90_739 image "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/cdbcb8a81c2b1b68081840fd0bc73115~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=73Dvo9tsNse3t3vUwc2swAyyEII%3D"
+                                      uid=90_740 generic
+                                      uid=90_741 generic
+                                        uid=90_742 StaticText "00:57"
+                                          uid=90_5 InlineTextBox "00:57"
+                                  uid=90_743 ignored
+                                    uid=90_744 heading "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" level="3"
+                                      uid=90_745 link "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈" url="https://www.douyin.com/video/7671351629618220298"
+                                        uid=90_746 StaticText "小叽咕认识了两个新朋友 #癞蛤蟆 #癞疙宝 #治愈"
+                                          uid=90_5 InlineTextBox "小叽咕认识了两个新朋"
+                                          uid=90_5 InlineTextBox "友 #癞蛤蟆 #癞疙宝 #治"
+                                          uid=90_5 InlineTextBox "愈"
+                                    uid=90_747 ignored
+                                      uid=90_748 ignored
+                                        uid=90_749 image
+                                        uid=90_750 StaticText "9078"
+                                          uid=90_5 InlineTextBox "9078"
+                                      uid=90_751 ignored
+                                        uid=90_752 link "小叽咕和朋友们" url="https://www.douyin.com/user/MS4wLjABAAAAjiTF8i0DE-3HXPsabySDLUAVgFFdDokbBXZdnHOlYPPbMoE1eGZH9i15_Ta90nH_?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_753 StaticText "小叽咕和朋友们"
+                                            uid=90_5 InlineTextBox "小叽咕和朋友们"
+                              uid=90_754 listitem level="1"
+                                uid=90_755 ignored
+                                  uid=90_756 generic
+                                    uid=90_757 link "VCR来了 你们家买熟食吗 我每次买熟食回去我爸都要念叨不卫生啊贵啊什么的 然后也经常家里明明种着的菜再买点回去被我妈念哈哈哈哈#一人分饰多角 #真实还原 #母女日常 #绍兴方言 #段子演绎生活 06:09" url="https://www.douyin.com/video/7658500598422045297"
+                                      uid=90_758 generic
+                                        uid=90_759 generic
+                                        uid=90_760 generic
+                                        uid=90_761 image "VCR来了 你们家买熟食吗 我每次买熟食回去我爸都要念叨不卫生啊贵啊什么的 然后也经常家里明明种着的菜再买点回去被我妈念哈哈哈哈#一人分饰多角 #真实还原 #母女日常 #绍兴方言 #段子演绎生活" url="https://p3-pc-sign.douyinpic.com/image-cut-tos/49d1b89da0d7ec74866d100f28968534~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=sqUh0bzcbNeuKUQZJdNhnxqpenk%3D"
+                                      uid=90_762 generic
+                                      uid=90_763 generic
+                                        uid=90_764 StaticText "06:09"
+                                          uid=90_5 InlineTextBox "06:09"
+                                  uid=90_765 ignored
+                                    uid=90_766 heading "VCR来了 你们家买熟食吗 我每次买熟食回去我爸都要念叨不卫生啊贵啊什么的 然后也经常家里明明种着的菜再买点回去被我妈念哈哈哈哈#一人分饰多角 #真实还原 #母女日常 #绍兴方言 #段子演绎生活" level="3"
+                                      uid=90_767 link "VCR来了 你们家买熟食吗 我每次买熟食回去我爸都要念叨不卫生啊贵啊什么的 然后也经常家里明明种着的菜再买点回去被我妈念哈哈哈哈#一人分饰多角 #真实还原 #母女日常 #绍兴方言 #段子演绎生活" url="https://www.douyin.com/video/7658500598422045297"
+                                        uid=90_768 StaticText "VCR来了 你们家买熟食吗 我每次买熟食回去我爸都要念叨不卫生啊贵啊什么的 然后也经常家里明明种着的菜再买点回去被我妈念哈哈哈哈#一人分饰多角 #真实还原 #母女日常 #绍兴方言 #段子演绎生活"
+                                          uid=90_5 InlineTextBox "VCR来了 你们家买熟食"
+                                          uid=90_5 InlineTextBox "吗 我每次买熟食回去我"
+                                          uid=90_5 InlineTextBox "爸都要念叨不卫生啊贵"
+                                          uid=90_5 InlineTextBox "爸都要念叨不卫生啊"
+                                          uid=90_5 InlineTextBox "…"
+                                          uid=90_5 InlineTextBox "啊什么的 然后也经常家"
+                                          uid=90_5 InlineTextBox "里明明种着的菜再买点"
+                                          uid=90_5 InlineTextBox "回去被我妈念哈哈哈哈#"
+                                          uid=90_5 InlineTextBox "一人分饰多角 #真实还原 "
+                                          uid=90_5 InlineTextBox "#母女日常 #绍兴方言 #"
+                                          uid=90_5 InlineTextBox "段子演绎生活"
+                                    uid=90_769 ignored
+                                      uid=90_770 ignored
+                                        uid=90_771 image
+                                        uid=90_772 StaticText "4649"
+                                          uid=90_5 InlineTextBox "4649"
+                                      uid=90_773 ignored
+                                        uid=90_774 link "温暖张" url="https://www.douyin.com/user/MS4wLjABAAAA-IlJhNU5tGam7L-vqpYYMMRZ0occw_3kyArKYa1XSvw?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_775 StaticText "温暖张"
+                                            uid=90_5 InlineTextBox "温暖张"
+                              uid=90_776 listitem level="1"
+                                uid=90_777 ignored
+                                  uid=90_778 generic
+                                    uid=90_779 link "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇 00:40" url="https://www.douyin.com/video/7679373313084341066"
+                                      uid=90_780 generic
+                                        uid=90_781 generic
+                                        uid=90_782 generic
+                                        uid=90_783 image "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/ae3a805ceee6ce704df5135fd311135a~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=j%2FCu8c6BrEjy8mqcP02h75lntQY%3D"
+                                      uid=90_784 generic
+                                      uid=90_785 generic
+                                        uid=90_786 StaticText "00:40"
+                                          uid=90_5 InlineTextBox "00:40"
+                                  uid=90_787 ignored
+                                    uid=90_788 heading "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇" level="3"
+                                      uid=90_789 link "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇" url="https://www.douyin.com/video/7679373313084341066"
+                                        uid=90_790 StaticText "有一个满眼都是你的老婆是什么体验？#夫妻日常 #我家傻媳妇"
+                                          uid=90_5 InlineTextBox "有一个满眼都是你的老"
+                                          uid=90_5 InlineTextBox "婆是什么体验？#夫妻日"
+                                          uid=90_5 InlineTextBox "常 #我家傻媳妇"
+                                    uid=90_791 ignored
+                                      uid=90_792 ignored
+                                        uid=90_793 image
+                                        uid=90_794 StaticText "5203"
+                                          uid=90_5 InlineTextBox "5203"
+                                      uid=90_795 ignored
+                                        uid=90_796 link "你家小彩妞" url="https://www.douyin.com/user/MS4wLjABAAAA3qPKWnCTV5_7d9l1UjCxkPkvxVrCdYL0dmCiQwgQVqo?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_797 StaticText "你家小彩妞"
+                                            uid=90_5 InlineTextBox "你家小彩妞"
+                              uid=90_798 listitem level="1"
+                                uid=90_799 ignored
+                                  uid=90_800 generic
+                                    uid=90_801 link "今天去拍写真啦，留下全部属于我们的美好回忆吧 #哈基米 #ai猫咪 #小猫vlog #全明星奶油风派对 #奶油风 01:31" url="https://www.douyin.com/video/7670788012900427365"
+                                      uid=90_802 generic
+                                        uid=90_803 generic
+                                        uid=90_804 generic
+                                        uid=90_805 image "今天去拍写真啦，留下全部属于我们的美好回忆吧 #哈基米 #ai猫咪 #小猫vlog #全明星奶油风派对 #奶油风" url="https://p3-pc-sign.douyinpic.com/image-cut-tos/0339555e2b6a29409e31f43a39e8ef59~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=dVCmYNAbRZoEV11lHwsPpQSen30%3D"
+                                      uid=90_806 generic
+                                      uid=90_807 generic
+                                        uid=90_808 StaticText "01:31"
+                                          uid=90_5 InlineTextBox "01:31"
+                                  uid=90_809 ignored
+                                    uid=90_810 heading "今天去拍写真啦，留下全部属于我们的美好回忆吧 #哈基米 #ai猫咪 #小猫vlog #全明星奶油风派对 #奶油风" level="3"
+                                      uid=90_811 link "今天去拍写真啦，留下全部属于我们的美好回忆吧 #哈基米 #ai猫咪 #小猫vlog #全明星奶油风派对 #奶油风" url="https://www.douyin.com/video/7670788012900427365"
+                                        uid=90_812 StaticText "今天去拍写真啦，留下全部属于我们的美好回忆吧 #哈基米 #ai猫咪 #小猫vlog #全明星奶油风派对 #奶油风"
+                                          uid=90_5 InlineTextBox "今天去拍写真啦，留下"
+                                          uid=90_5 InlineTextBox "全部属于我们的美好回"
+                                          uid=90_5 InlineTextBox "忆吧 #哈基米 #ai猫咪 #"
+                                          uid=90_5 InlineTextBox "忆吧 #哈基米 #ai猫"
+                                          uid=90_5 InlineTextBox "…"
+                                          uid=90_5 InlineTextBox "小猫vlog #全明星奶油风"
+                                          uid=90_5 InlineTextBox "派对 #奶油风"
+                                    uid=90_813 ignored
+                                      uid=90_814 ignored
+                                        uid=90_815 image
+                                        uid=90_816 StaticText "7.4万"
+                                          uid=90_5 InlineTextBox "7.4万"
+                                      uid=90_817 ignored
+                                        uid=90_818 link "橘猫胖墩墩" url="https://www.douyin.com/user/MS4wLjABAAAAIJVvwipHC2fVDP_wxfERGj_fkhFMtPB8BwdehHEavPHJ9yM83sjMuYHsJGqPDw5o?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_819 StaticText "橘猫胖墩墩"
+                                            uid=90_5 InlineTextBox "橘猫胖墩墩"
+                              uid=90_820 listitem level="1"
+                                uid=90_821 ignored
+                                  uid=90_822 generic
+                                    uid=90_823 link "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划 00:20" url="https://www.douyin.com/video/7679014314615357352"
+                                      uid=90_824 generic
+                                        uid=90_825 generic
+                                        uid=90_826 generic
+                                        uid=90_827 image "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://p3-pc-sign.douyinpic.com/image-cut-tos-priv/7ee86c9acbbf14e925c0d4d1c9dcfe8f~tplv-dy-resize-origshort-autoq-75:330.jpeg?biz_tag=pcweb_cover&from=327834062&lk3s=138a59ce&s=PackSourceEnum_WEBPC_RELATED_AWEME&sc=cover&se=false&x-expires=2105082000&x-signature=eMnN8j4wgq8LS2xjgtQTbtgfoCo%3D"
+                                      uid=90_828 generic
+                                      uid=90_829 generic
+                                        uid=90_830 StaticText "00:20"
+                                          uid=90_5 InlineTextBox "00:20"
+                                  uid=90_831 ignored
+                                    uid=90_832 heading "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" level="3"
+                                      uid=90_833 link "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划" url="https://www.douyin.com/video/7679014314615357352"
+                                        uid=90_834 StaticText "#可爱萌娃日常 #创作者中心 #创作灵感 #抖音二创激励计划"
+                                          uid=90_5 InlineTextBox "#可爱萌娃日常 #创作者"
+                                          uid=90_5 InlineTextBox "中心 #创作灵感 #抖音二"
+                                          uid=90_5 InlineTextBox "创激励计划"
+                                    uid=90_835 ignored
+                                      uid=90_836 ignored
+                                        uid=90_837 image
+                                        uid=90_838 StaticText "1475"
+                                          uid=90_5 InlineTextBox "1475"
+                                      uid=90_839 ignored
+                                        uid=90_840 link "🌈 搞笑母子" url="https://www.douyin.com/user/MS4wLjABAAAA1ZU0JD7aap3S7TluZ9AtoRGf2ObCGEA4rlcbij11KrprU8itfiq75rMpLCscV6EC?author_id=105206084395&enter_from=video_detail&enter_method=video_cover_title&from_tab_name=main&group_id=6611776156595129614&log_pb=%7B%22impr_id%22%3A%22202609181722218AC9D4B87FE0193BF526%22%7D&relation=0"
+                                          uid=90_841 image "🌈" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/twemoji/72x72/1f308.png"
+                                          uid=90_842 StaticText "搞笑母子"
+                                            uid=90_5 InlineTextBox "搞笑母子"
+                    uid=90_843 contentinfo
+                      uid=90_844 generic
+                        uid=90_845 generic
+                          uid=90_846 generic
+                            uid=90_847 link "广告投放" url="https://www.oceanengine.com/resource/douyin"
+                              uid=90_848 StaticText "广告投放"
+                                uid=90_5 InlineTextBox "广告投放"
+                          uid=90_849 generic
+                            uid=90_850 link "用户服务协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                              uid=90_851 StaticText "用户服务协议"
+                                uid=90_5 InlineTextBox "用户服务协议"
+                          uid=90_852 generic
+                            uid=90_853 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                              uid=90_854 StaticText "隐私政策"
+                                uid=90_5 InlineTextBox "隐私政策"
+                          uid=90_855 generic
+                            uid=90_856 link "账号找回" url="https://www.douyin.com/recovery_account/"
+                              uid=90_857 StaticText "账号找回"
+                                uid=90_5 InlineTextBox "账号找回"
+                          uid=90_858 generic
+                            uid=90_859 link "联系我们" url="https://www.douyin.com/aboutus/"
+                              uid=90_860 StaticText "联系我们"
+                                uid=90_5 InlineTextBox "联系我们"
+                          uid=90_861 generic
+                            uid=90_862 link "加入我们" url="https://www.douyin.com/aboutus/"
+                              uid=90_863 StaticText "加入我们"
+                                uid=90_5 InlineTextBox "加入我们"
+                          uid=90_864 generic
+                            uid=90_865 link "友情链接" url="https://www.douyin.com/friend_links"
+                              uid=90_866 StaticText "友情链接"
+                                uid=90_5 InlineTextBox "友情链接"
+                          uid=90_867 generic
+                            uid=90_868 link "站点地图" url="https://www.douyin.com/htmlmap/hotauthor_0_1"
+                              uid=90_869 StaticText "站点地图"
+                                uid=90_5 InlineTextBox "站点地图"
+                          uid=90_870 generic
+                            uid=90_871 link "下载抖音" url="https://www.douyin.com/downloadpage/pc"
+                              uid=90_872 StaticText "下载抖音"
+                                uid=90_5 InlineTextBox "下载抖音"
+                          uid=90_873 generic
+                            uid=90_874 link "抖音电商" url="https://mix.jinritemai.com/falcon/mix_page/index.html"
+                              uid=90_875 StaticText "抖音电商"
+                                uid=90_5 InlineTextBox "抖音电商"
+                        uid=90_876 generic
+                          uid=90_877 generic
+                            uid=90_878 link "网络谣言曝光台 ｜" url="https://www.piyao.org.cn/yybgt/index.htm"
+                              uid=90_879 StaticText "网络谣言曝光台 ｜"
+                                uid=90_5 InlineTextBox "网络谣言曝光台 ｜"
+                          uid=90_880 generic
+                            uid=90_881 link "网上有害信息举报" url="https://www.12377.cn/"
+                              uid=90_882 StaticText "网上有害信息举报"
+                                uid=90_5 InlineTextBox "网上有害信息举报"
+                          uid=90_883 generic
+                            uid=90_884 StaticText "｜ 违法和不良信息举报：400-140-2108 feedback@douyin.com ｜ 算法推荐专项举报：sfjubao@bytedance.com | 体育饭圈专项举报：tyfq@bytedance.com"
+                              uid=90_5 InlineTextBox "｜ 违法和不良信息举报：400-140-2108 feedback@douyin.com ｜ 算法推荐专项举报：sfjubao@bytedance.com | 体育饭圈专项举报：tyfq@bytedance.com"
+                            uid=90_885 ignored
+                        uid=90_886 generic
+                          uid=90_887 generic
+                            uid=90_888 link "京ICP备16016397号-3" url="https://beian.miit.gov.cn/"
+                              uid=90_889 StaticText "京ICP备16016397号-3"
+                                uid=90_5 InlineTextBox "京ICP备16016397号-3"
+                          uid=90_890 generic
+                            uid=90_891 StaticText "｜ 信息网络传播视听节目许可证 0126733"
+                              uid=90_5 InlineTextBox "｜ 信息网络传播视听节目许可证 0126733"
+                          uid=90_892 generic
+                            uid=90_893 StaticText "｜ 广播电视节目制作经营许可证 （京）字第11313号"
+                              uid=90_5 InlineTextBox "｜ 广播电视节目制作经营许可证 （京）字第11313号"
+                          uid=90_894 generic
+                            uid=90_895 StaticText "｜ 增值电信业务经营许可证 京B2-20170846"
+                              uid=90_5 InlineTextBox "｜ 增值电信业务经营许可证 京B2-20170846"
+                          uid=90_896 generic
+                            uid=90_897 StaticText "｜ 网络文化经营许可证 京网文〔2025〕0181-061号 ｜"
+                              uid=90_5 InlineTextBox "｜ 网络文化经营许可证 京网文〔2025〕0181-061号 ｜"
+                          uid=90_898 generic
+                            uid=90_899 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/emblem-new.png"
+                            uid=90_900 link "京公网安备11010802050006号" url="https://beian.mps.gov.cn/"
+                              uid=90_901 StaticText "京公网安备11010802050006号"
+                                uid=90_5 InlineTextBox "京公网安备11010802050006号"
+                          uid=90_902 generic
+                            uid=90_903 StaticText "｜ 互联网宗教信息服务许可证 京（2025）0000017 ｜"
+                              uid=90_5 InlineTextBox "｜ 互联网宗教信息服务许可证 京（2025）0000017 ｜"
+                          uid=90_904 generic
+                            uid=90_905 image "icon" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/c7085f453e58f78fe403594d0bab6890.png"
+                            uid=90_906 link "电子营业执照" url="https://zzlz.gsxt.gov.cn/businessCheck/verifKey.do"
+                              uid=90_907 StaticText "电子营业执照"
+                                uid=90_5 InlineTextBox "电子营业执照"
+                          uid=90_908 generic
+                            uid=90_909 link "｜（京）人服证字〔2026〕第0600005023号" url="https://p-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/d1cb34abe8ebb5600b51bac36ce3247f.jpg"
+                              uid=90_910 StaticText "｜（京）人服证字〔2026〕第0600005023号"
+                                uid=90_5 InlineTextBox "｜（京）人服证字〔2026〕第0600005023号"
+                            uid=90_911 ignored
+                        uid=90_912 ignored
+                          uid=90_913 ignored
+                          uid=90_914 generic
+                            uid=90_915 StaticText "热门："
+                              uid=90_5 InlineTextBox "热门："
+                          uid=90_916 generic
+                            uid=90_917 link "游戏视频推荐" url="https://www.douyin.com/jingxuan/game"
+                              uid=90_918 StaticText "游戏视频推荐"
+                                uid=90_5 InlineTextBox "游戏视频推荐"
+                          uid=90_919 generic
+                            uid=90_920 link "抖音二次元" url="https://www.douyin.com/jingxuan/acg"
+                              uid=90_921 StaticText "抖音二次元"
+                                uid=90_5 InlineTextBox "抖音二次元"
+                          uid=90_922 generic
+                            uid=90_923 link "长春站前公安" url="https://www.douyin.com/user/MS4wLjABAAAAyMFWU42JGBxenJIjJiaFDRqY3s4O0E_T5W1WSt68tw4"
+                              uid=90_924 StaticText "长春站前公安"
+                                uid=90_5 InlineTextBox "长春站前公安"
+                          uid=90_925 generic
+                            uid=90_926 link "9月17日 想提升学历的朋友看过来！ 2026 秋季国家开放大学正在报名， 免试入学，学习灵活， 专科本科都有，正规学籍学信网可查， 上班族也适合，抓紧别错过报名!#国家开放大学 #国开 #国家开放大学免试入学" url="https://www.douyin.com/video/7686175929156046086"
+                              uid=90_927 StaticText "9月17日 想提升学历的朋友看过来！ 2026 秋季国家开放大学正在报名， 免试入学，学习灵活， 专科本科都有，正规学籍学信网可查， 上班族也适合，抓紧别错过报名!#国家开放大学 #国开 #国家开放大学免试入学"
+                                uid=90_5 InlineTextBox "9月17日 想提升学历的朋友看过来！ 2026 秋季国家开放大学正在报名， 免试入学，学习灵活， 专科本科都有，正规学籍学信网可查， 上班族也适合，抓紧别错过报名!#国家开放大学 #国开 #国家开放大学免试入学"
+                                uid=90_5 InlineTextBox "9月17日 想提升学历的朋友看"
+                                uid=90_5 InlineTextBox "…"
+                          uid=90_928 generic
+                            uid=90_929 link "福建高考改卷语文放水" url="https://www.douyin.com/topic/7509881223221790739"
+                              uid=90_930 StaticText "福建高考改卷语文放水"
+                                uid=90_5 InlineTextBox "福建高考改卷语文放水"
+                          uid=90_931 generic
+                            uid=90_932 link "内蒙古上大学" url="https://www.douyin.com/shipin/7509920030839343156"
+                              uid=90_933 StaticText "内蒙古上大学"
+                                uid=90_5 InlineTextBox "内蒙古上大学"
+                          uid=90_934 generic
+                            uid=90_935 link "2025保定高考地点" url="https://www.douyin.com/search/2025%E4%BF%9D%E5%AE%9A%E9%AB%98%E8%80%83%E5%9C%B0%E7%82%B9"
+                              uid=90_936 StaticText "2025保定高考地点"
+                                uid=90_5 InlineTextBox "2025保定高考地点"
+                          uid=90_937 generic
+                            uid=90_938 link "U23国足决赛唯一进球被吹无效" url="https://www.douyin.com/video/7599124912541153103?source=Baiduspider"
+                              uid=90_939 StaticText "U23国足决赛唯一进球被吹无效"
+                                uid=90_5 InlineTextBox "U23国足决赛唯一进球被吹无效"
+                          uid=90_940 generic
+                            uid=90_941 link "TED演讲精选｜想要 AI 进步，你必不可少 标题：Your right to repair AI systems 演讲人：Rumman Chowdhury | TED2024 • April 2024 #TED #TED双语 #TED演讲精选" url="https://www.douyin.com/video/7379562145584925986?source=Baiduspider"
+                              uid=90_942 StaticText "TED演讲精选｜想要 AI 进步，你必不可少 标题：Your right to repair AI systems 演讲人：Rumman Chowdhury | TED2024 • April 2024 #TED #TED双语 #TED演讲精选"
+                                uid=90_5 InlineTextBox "TED演讲精选｜想要 AI 进步，你必不可少 标题：Your right to repair AI systems 演讲人：Rumman Chowdhury | TED2024 • April 2024 #TED #TED双语 #TED演讲精选"
+                                uid=90_5 InlineTextBox "TED演讲精选｜想要 AI 进步，"
+                                uid=90_5 InlineTextBox "…"
+                          uid=90_943 generic
+                            uid=90_944 link "今日明盘明码20多台硬通货重机车🔥#二手摩托车 #机车 #每个男人都有一个机车梦 #爱机车爱生活 #潍坊摩界机车俱乐部" url="https://www.douyin.com/video/7385511438326041867?source=Baiduspider"
+                              uid=90_945 StaticText "今日明盘明码20多台硬通货重机车🔥#二手摩托车 #机车 #每个男人都有一个机车梦 #爱机车爱生活 #潍坊摩界机车俱乐部"
+                                uid=90_5 InlineTextBox "今日明盘明码20多台硬通货重机车🔥#二手摩托车 #机车 #每个男人都有一个机车梦 #爱机车爱生活 #潍坊摩界机车俱乐部"
+                                uid=90_5 InlineTextBox "今日明盘明码20多台硬通货重"
+                                uid=90_5 InlineTextBox "…"
+                          uid=90_946 generic
+                            uid=90_947 link url="https://www.douyin.com/video/7559416611422145855?source=Baiduspider-sdc"
+                          uid=90_948 generic
+                            uid=90_949 link "迷你世界：进入兄弟盟成员的大脑！在里面竟然发现了他们的秘密！ #迷你世界" url="https://www.douyin.com/video/7221091511318940961?source=Baiduspider"
+                              uid=90_950 StaticText "迷你世界：进入兄弟盟成员的大脑！在里面竟然发现了他们的秘密！ #迷你世界"
+                                uid=90_5 InlineTextBox "迷你世界：进入兄弟盟成员的大脑！在里面竟然发现了他们的秘密！ #迷你世界"
+                                uid=90_5 InlineTextBox "迷你世界：进入兄弟盟成员的"
+                                uid=90_5 InlineTextBox "…"
+                          uid=90_951 generic
+                            uid=90_952 link "蝶风三昔全员养成攻略，配速 遗器 养成一应俱全#崩坏星穹铁道 #成为昨日的明天 #往昔的涟漪 #崩坏星穹铁道攻略 #昔涟" url="https://www.douyin.com/video/7570719726096125184?source=Baiduspider"
+                              uid=90_953 StaticText "蝶风三昔全员养成攻略，配速 遗器 养成一应俱全#崩坏星穹铁道 #成为昨日的明天 #往昔的涟漪 #崩坏星穹铁道攻略 #昔涟"
+                                uid=90_5 InlineTextBox "蝶风三昔全员养成攻略，配速 遗器 养成一应俱全#崩坏星穹铁道 #成为昨日的明天 #往昔的涟漪 #崩坏星穹铁道攻略 #昔涟"
+                                uid=90_5 InlineTextBox "蝶风三昔全员养成攻略，配速 "
+                                uid=90_5 InlineTextBox "…"
+                          uid=90_954 generic
+                            uid=90_955 link "2025年11月13日，第十五届全运会群众展演舞龙舞狮项目决赛比赛全部结束了！现场压轴表演《龙腾盛世耀湾区》，由15头佛山传统狮 、八个狮鼓 、粤剧刘关张三位大靠、功夫（黄飞鸿、叶问、李小龙） 加百米大金龙、大旗队联合组成表演！#佛山的全运氛围感拉满了#有功夫来佛山·全民燃动迎全运#有功夫来佛山 #跟着全运逛湾区 #粤分享粤精彩" url="https://www.douyin.com/video/7572207875185348709?source=Baiduspider-sdc"
+                              uid=90_956 StaticText "2025年11月13日，第十五届全运会群众展演舞龙舞狮项目决赛比赛全部结束了！现场压轴表演《龙腾盛世耀湾区》，由15头佛山传统狮 、八个狮鼓 、粤剧刘关张三位大靠、功夫（黄飞鸿、叶问、李小龙） 加百米大金龙、大旗队联合组成表演！#佛山的全运氛围感拉满了#有功夫来佛山·全民燃动迎全运#有功夫来佛山 #跟着全运逛湾区 #粤分享粤精彩"
+                                uid=90_5 InlineTextBox "2025年11月13日，第十五届全运会群众展演舞龙舞狮项目决赛比赛全部结束了！现场压轴表演《龙腾盛世耀湾区》，由15头佛山传统狮 、八个狮鼓 、粤剧刘关张三位大靠、功夫（黄飞鸿、叶问、李小龙） 加百米大金龙、大旗队联合组成表演！#佛山的全运氛围感拉满了#有功夫来佛山·全民燃动迎全运#有功夫来佛山 #跟着全运逛湾区 #粤分享粤精彩"
+                                uid=90_5 InlineTextBox "2025年11月13日，第十五届全"
+                                uid=90_5 InlineTextBox "…"
+        uid=90_957 generic
+        uid=90_958 generic
+      uid=90_959 ignored
+      uid=90_960 ignored
+      uid=90_961 ignored
+      uid=90_962 ignored
+      uid=90_963 ignored
+      uid=90_964 ignored
+      uid=90_965 ignored
+      uid=90_966 ignored
+      uid=90_967 ignored
+      uid=90_968 ignored
+      uid=90_969 ignored
+      uid=90_970 ignored
+      uid=90_971 ignored
+      uid=90_972 ignored
+      uid=90_973 ignored
+      uid=90_974 ignored
+      uid=90_975 ignored
+      uid=90_976 ignored
+      uid=90_977 ignored
+      uid=90_978 ignored
+      uid=90_979 ignored
+      uid=90_980 ignored
+      uid=90_981 ignored
+      uid=90_982 ignored
+      uid=90_983 ignored
+      uid=90_984 ignored
+      uid=90_985 ignored
+      uid=90_986 ignored
+      uid=90_987 ignored
+      uid=90_988 ignored
+      uid=90_989 ignored
+      uid=90_990 ignored
+      uid=90_991 ignored
+      uid=90_992 ignored
+      uid=90_993 ignored
+      uid=90_994 ignored
+      uid=90_995 ignored
+      uid=90_996 ignored
+      uid=90_997 generic
+        uid=90_998 generic
+          uid=90_999 generic
+            uid=90_1000 generic
+              uid=90_1001 generic
+                uid=90_1002 ignored
+                  uid=90_1003 article
+                    uid=90_1004 generic
+                      uid=90_1005 image url="https://lf-ucenter-web.yhgfb-cn-static.com/obj/passport-fe/flat_bg_2_small.avif"
+                    uid=90_1006 generic
+                      uid=90_1007 generic
+                        uid=90_1008 generic
+                          uid=90_1009 StaticText "登录后免费畅享高清视频"
+                            uid=90_5 InlineTextBox "登录后免费畅享高清视频"
+                        uid=90_1010 generic
+                          uid=90_1011 image
+                      uid=90_1012 ignored
+                        uid=90_1013 generic
+                          uid=90_1014 ignored
+                            uid=90_1015 ignored
+                              uid=90_1016 ignored
+                                uid=90_1017 ignored
+                                  uid=90_1018 generic
+                                    uid=90_1019 StaticText "扫码登录"
+                                      uid=90_5 InlineTextBox "扫码登录"
+                                uid=90_1020 ignored
+                                  uid=90_1021 generic
+                                    uid=90_1022 generic
+                                      uid=90_1023 ignored
+                                        uid=90_1024 generic
+                                          uid=90_1025 generic
+                                            uid=90_1026 StaticText "如何扫码"
+                                              uid=90_5 InlineTextBox "如何扫码"
+                                          uid=90_1027 generic
+                                            uid=90_1028 image "二维码" url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIAAQMAAADOtka5AAAABlBMVEX///8AAABVwtN+AAAC5ElEQVR42uycMZarOgyG9Q4FZZYwS8nSYGlZSpYwJQUneseSZZuLmaS4xYX5/moywNfpWPolSxBCCCGEEELoX9ddix4iXy8R0UVksF8qItNi7/1X33sBAACgB4ifoz4GfYrc7KU1fWK/ZsmA7z+/AADgaoCv9MUcAGPNm/B5ZICTAQAA8DFA8skkot92Mg36BADgNwGaA2jQRwomDy0/pwAAAPAOUNI8K3lu6p/4A0/zcjS+zRMBADgzoCn/4wBaZFo9yhJgzA8+8A8AAPjNgFY1zZvW+t8xffT8yKQGAODEgK2XpnYyiUzaZmlmMaeTaQwzAAAAADtA+M+6yH11Ay0DzD+wWkhzbFZnDQCACwLiLLLS3pwAb1hqZGn22ILJ0zcBAABAD3BPKVwKOknR6AdQk+bd6oPjmgkAgEsAXm0GZoeU/2lqy38Lpm7JAwAAgKbk8cam1mgMY7oM1mgiz8PRWBkAAGcH6KbIifdqauYjlhFw87DzDwAAANBo09hsbAKPzZTmvUpg3l8AAFwRYD89UNq+5JproUjfzHD2LA0AAABdQHGcw0CzJk07FrBUY2E8CmcAAM4PiGCatDQsVUsy5lnafesLAAAAYOxPhVkvxqPxGW3OodhpzSDzUccTAIDLAHIwRV9Si2Xm3RuRUvJ0y38AAAA0TZppyTaBVGO6hGn2GH7s8gAAcAXAbsTS+zV+dX83ewkAAIADQPgHbWWz5vxPsjEd3Rtdu91/AAAuANCyu6KM6EvN2Xxeuarb/QcAAMDuVllY0U2YzvW62Y8DzwAAnBywXbznayxi4CVKnhRwcQ1Zu6M0AAAA2O/BiC2WjZcWp9fbLZYAAJwb0OxHip0w83aj69BmaV1fGQAAADuASDs9tjOmh7fRCADAJQBa7n61y8aiYWlZGgAAAI4AnTQv3iv3mNsLZgIAwCUB28V7uUkzx4PN7L7UvckAAAA42o+EEEIIIYQQQn9P/wcAAP//wHYgAskAqkAAAAAASUVORK5CYII="
+                                            uid=90_1029 ignored
+                                              uid=90_1030 image
+                                          uid=90_1031 generic
+                                            uid=90_1032 generic
+                                              uid=90_1033 generic
+                                                uid=90_1034 image
+                                                  uid=90_1035 ignored
+                                                  uid=90_1036 ignored
+                                        uid=90_1037 paragraph
+                                          uid=90_1038 paragraph
+                                            uid=90_1039 StaticText "打开"
+                                              uid=90_5 InlineTextBox "打开"
+                                            uid=90_1040 StaticText "「抖音APP」"
+                                              uid=90_5 InlineTextBox "「抖音APP」"
+                                            uid=90_1041 StaticText "点击左上角"
+                                              uid=90_5 InlineTextBox "点击左上角"
+                                          uid=90_1042 image
+                                          uid=90_1043 paragraph
+                                            uid=90_1044 StaticText "扫一扫"
+                                              uid=90_5 InlineTextBox "扫一扫"
+                          uid=90_1045 ignored
+                            uid=90_1046 ignored
+                              uid=90_1047 ignored
+                                uid=90_1048 ignored
+                                  uid=90_1049 generic
+                                    uid=90_1050 StaticText "验证码登录"
+                                      uid=90_5 InlineTextBox "验证码登录"
+                                  uid=90_1051 ignored
+                                    uid=90_1052 image
+                                  uid=90_1053 generic
+                                    uid=90_1054 StaticText "密码登录"
+                                      uid=90_5 InlineTextBox "密码登录"
+                                uid=90_1055 ignored
+                                  uid=90_1056 ignored
+                                    uid=90_1057 generic
+                                      uid=90_1058 generic
+                                        uid=90_1059 ignored
+                                          uid=90_1060 generic
+                                            uid=90_1061 generic
+                                              uid=90_1062 ignored
+                                                uid=90_1063 combobox "国家/地区" haspopup="listbox" value="+86"
+                                                  uid=90_1064 generic
+                                                    uid=90_1065 StaticText "+86"
+                                                      uid=90_5 InlineTextBox "+86"
+                                                uid=90_1066 ignored
+                                            uid=90_1067 ignored
+                                              uid=90_1068 image
+                                            uid=90_1069 textbox "请输入手机号"
+                                              uid=90_1070 ignored
+                                              uid=90_1071 generic
+                                        uid=90_1072 ignored
+                                          uid=90_1073 generic
+                                            uid=90_1074 generic
+                                              uid=90_1075 textbox "请输入验证码"
+                                                uid=90_1076 ignored
+                                                uid=90_1077 generic
+                                            uid=90_1078 generic
+                                              uid=90_1079 StaticText "获取验证码"
+                                                uid=90_5 InlineTextBox "获取验证码"
+                                        uid=90_1080 generic
+                                        uid=90_1081 ignored
+                                          uid=90_1082 generic
+                                            uid=90_1083 StaticText "登录"
+                                              uid=90_5 InlineTextBox "登录"
+                                        uid=90_1084 ignored
+                                          uid=90_1085 generic "登录即代表同意用户协议和隐私政策"
+                                            uid=90_1086 StaticText "登录即代表同意"
+                                              uid=90_5 InlineTextBox "登录即代表同意"
+                                            uid=90_1087 link "用户协议" url="https://www.douyin.com/agreements/?id=6773906068725565448"
+                                              uid=90_1088 StaticText "用户协议"
+                                                uid=90_5 InlineTextBox "用户协议"
+                                            uid=90_1089 StaticText "和"
+                                              uid=90_5 InlineTextBox "和"
+                                            uid=90_1090 link "隐私政策" url="https://www.douyin.com/agreements/?id=6773901168964798477"
+                                              uid=90_1091 StaticText "隐私政策"
+                                                uid=90_5 InlineTextBox "隐私政策"
+      uid=90_1092 ignored
+        uid=90_1093 ignored
+          uid=90_1094 ignored
+          uid=90_1095 ignored
+            uid=90_1096 ignored
+          uid=90_1097 ignored
+            uid=90_1098 ignored
+              uid=90_1099 ignored
+              uid=90_1100 ignored
+                uid=90_1101 ignored
+                  uid=90_1102 ignored
+                uid=90_1103 ignored
+                uid=90_1104 ignored
+                  uid=90_1105 ignored
+                  uid=90_1106 ignored
+                  uid=90_1107 ignored
+                uid=90_1108 ignored
+                  uid=90_1109 ignored
+                uid=90_1110 ignored
+                  uid=90_1111 ignored
+              uid=90_1112 ignored
+          uid=90_1113 ignored
+          uid=90_1114 ignored
+          uid=90_1115 ignored
+          uid=90_1116 ignored
+          uid=90_1117 ignored
+            uid=90_1118 ignored
+            uid=90_1119 ignored
+            uid=90_1120 ignored
+            uid=90_1121 ignored
+            uid=90_1122 ignored
+            uid=90_1123 ignored
+            uid=90_1124 ignored
+            uid=90_1125 ignored
+            uid=90_1126 ignored
+            uid=90_1127 ignored
+      uid=90_1128 ignored
+      uid=90_1129 generic
+      uid=90_1130 generic
+        uid=90_1131 generic
+          uid=90_1132 ignored
+            uid=90_1133 ignored
+              uid=90_1134 ignored
+                uid=90_1135 ignored
+                  uid=90_1136 ignored
+                    uid=90_1137 ignored
+                      uid=90_1138 ignored
+                        uid=90_1139 ignored
+                          uid=90_1140 ignored
+                            uid=90_1141 ignored
+                              uid=90_1142 ignored
+                          uid=90_1143 ignored
+                    uid=90_1144 ignored
+                      uid=90_1145 ignored
+                        uid=90_1146 ignored
+                          uid=90_1147 ignored
+                            uid=90_1148 ignored
+                              uid=90_1149 ignored
+                          uid=90_1150 ignored
+                    uid=90_1151 ignored
+                      uid=90_1152 ignored
+                        uid=90_1153 ignored
+                          uid=90_1154 ignored
+                            uid=90_1155 ignored
+                              uid=90_1156 ignored
+                          uid=90_1157 ignored
+                    uid=90_1158 ignored
+                      uid=90_1159 ignored
+                        uid=90_1160 ignored
+                          uid=90_1161 ignored
+                            uid=90_1162 ignored
+                              uid=90_1163 ignored
+                          uid=90_1164 ignored
+                    uid=90_1165 ignored
+                      uid=90_1166 ignored
+                        uid=90_1167 ignored
+                          uid=90_1168 ignored
+                            uid=90_1169 ignored
+                              uid=90_1170 ignored
+                          uid=90_1171 ignored
+                    uid=90_1172 ignored
+                      uid=90_1173 ignored
+                        uid=90_1174 ignored
+                          uid=90_1175 ignored
+                            uid=90_1176 ignored
+                              uid=90_1177 ignored
+                            uid=90_1178 ignored
+                              uid=90_1179 ignored
+                              uid=90_1180 ignored
+                          uid=90_1181 ignored
+      uid=90_1182 generic
+

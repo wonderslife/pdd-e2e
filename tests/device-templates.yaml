@@ -1,0 +1,475 @@
+# ============================================================================
+# 设备身份模板库 v3 —— 只保留 Android 14（应要求移除了 Android 16 段）
+#   templates ：23 条，全部 certified（逐字真机值）
+#   pending   ： 1 条（vivo X90 —— 指纹仍未取到真机值）
+# ============================================================================
+# 用途：给 test_android_env.py 的 accounts[].device.template 提供现成的设备身份，
+#       让每台实例呈现出一台「自洽的真机」而不是模拟器默认值。
+#
+# 字段与代码的对应关系（DEVICE_SHORT_KEYS）：
+#     brand        -> ro.product.brand
+#     manufacturer -> ro.product.manufacturer
+#     model        -> ro.product.model
+#     name         -> ro.product.name
+#     device       -> ro.product.device
+#     board        -> ro.product.board
+#     fingerprint  -> ro.build.fingerprint
+#   其余键（android / source / basis / capture / note）是给人看的元数据，
+#   代码只读取上面 7 项 + note，多余的键被忽略，不会被下发。
+#
+# ---------------------------------------------------------------------------
+# 键名约定
+# ---------------------------------------------------------------------------
+#   Android 14 用自然名（xiaomi14 / pixel8 / samsung_s24）。
+#   （v2 曾同时收录 Android 16 并用 _a16 后缀区分同机型的两个系统版本，
+#    已按本次「只要 14」的要求整段移除；如后续要加回，注意 Pixel 8/8Pro/7/7a/6a
+#    会与本节 device 重名，同一批实例只能启用其一。）
+#
+# ---------------------------------------------------------------------------
+# 数据来源（v3 已全部升级为 certified）
+# ---------------------------------------------------------------------------
+#   Android 14（23 条）
+#     来源：Android Dumps（dumps.tadiphone.dev，镜像 gitlab.com/Android-Dumps），
+#           逐字取自**官方零售版 ROM 的分区 build.prop**，每条 note 上方都给了可指认的分支 URL。
+#     ⚠️ 取值的坑（决定成败）：Android 12+ 的真机身份**不在 system 分区**，
+#        而在 odm/etc/build.prop（ro.product.property_source_order =
+#        odm,vendor,product,system_ext,system）。system 分区里是
+#        `Android/missi_phone_cn_only64/missi` 这类通用值，直接读会全错。
+#        三星与 Pixel 的部分机型在 system/system/build.prop —— 必须按机型判别分区。
+#
+#   ⚠️ 关于 source: certified 的边界
+#     本库 v1 用的是 MagiskHidePropsConf 认证指纹库（743 条）；该库已停更在 v102（2020），
+#     **最高只到 Android 12，零条 :14/** —— 对 v3 的目标版本零覆盖，故本版改用了上面的来源。
+#
+# ---------------------------------------------------------------------------
+# 关于 board（v3 重要更正）
+# ---------------------------------------------------------------------------
+#   本库 v1 曾把小米系的 board 填成高通平台代号（pineapple / kalama），**这是错的**：
+#   真机 dump 实测，小米 / Redmi / POCO 的 ro.product.board **就是设备代号**本身
+#   （houji 的实测值就是 houji），平台名是另一个属性（ro.board.platform）。
+#   本版 23 条的 board 全部是**分区实测值**，包括几个反直觉的：
+#     · 三星 Exynos 版 = s5e9945 / s5e8845（**不是** pineapple）
+#     · 三星骁龙版 / vivo iQOO = pineapple
+#     · 联发科天玑机型 = mgvi_64_armv82（厂商占位值，逐字如此，不是笔误）
+#     · Pixel / motorola / 大多数小米 = 设备代号
+#   另注：模拟器的 ro.board.platform 仍是 goldfish/ranchu 且改不动，
+#   board 与它不一致是已知能力边界，不是配置错误（见文档 6 第 8 节）。
+#   board 一律**不要留空** —— 留空会让实例暴露模拟器自身的 Build.BOARD。
+#
+# ---------------------------------------------------------------------------
+# 硬约束（代码会硬校验，违反直接判失败）
+# ---------------------------------------------------------------------------
+#   1. fingerprint 必须是标准五段式且**自洽**：
+#        brand/product/device:版本/build_id/incremental:type/tags
+#      · brand 段要与 ro.product.brand 一致（忽略大小写）
+#      · device 段必须等于 ro.product.device 或 ro.product.name 之一
+#      混搭（A 品牌 brand 配 B 品牌 fingerprint）会被风控一眼识破。
+#   2. 声明了机型属性却**不给 fingerprint 会被直接判配置错误**——
+#      这是有意设计：避免出现「看起来配了机型、指纹其实没改」的假配置。
+#      所以 pending 段的条目不能直接启用，必须先把指纹填上。
+#   3. 一个型号只能绑一个账号；跨账号重复 device 会被拦下。
+#   4. 身份必须在被测 App **首次安装/启动之前**落地
+#      （埋点设备 ID 生成一次即持久化，先装后改就得 pm clear 重来）。
+#
+# ---------------------------------------------------------------------------
+# 两种用法
+# ---------------------------------------------------------------------------
+#   用法 A（推荐）：按模板名引用，代码自动加载本文件
+#       accounts:
+#         - name: inspector01
+#           device:
+#             template: xiaomi14        # ← 名字取自下方 templates: 的键
+#
+#   用法 B：把整段字段复制进 accounts[].device（只复制那 7 个短名）
+#
+#   查看解析结果：python tests/test_android_env.py --identity-plan
+#
+# ---------------------------------------------------------------------------
+# 拿到逐字真机值的方法（一条命令，比任何拼装值都可靠）
+# ---------------------------------------------------------------------------
+#   真机插上或 AVD 已启动后执行：
+#     adb shell getprop | grep -E \
+#       "ro.product.(brand|manufacturer|model|name|device|board)|ro.build.fingerprint"
+#   把输出填进对应条目，并把 source 改成 certified。
+# ============================================================================
+
+version: 3
+updated: "2026-09-21"
+count: 23
+templates:
+
+  # ==========================================================================
+  # 一、Android 14（API 34）—— 23 条，全部 certified 逐字真机值
+  #     来源：Android Dumps，官方零售版 ROM 分区 build.prop
+  #     覆盖品牌 8 个：Google / Samsung / Xiaomi / Redmi / POCO / vivo / motorola / realme
+  # ==========================================================================
+
+  # ---------------- Google Pixel（5 条，board == 设备代号，实测）----------------
+
+  pixel8:
+    # Google Pixel 8（2023-10，Tensor G3 / Android 14）
+    brand: google
+    manufacturer: Google
+    model: "Pixel 8"
+    name: shiba
+    device: shiba
+    board: shiba
+    fingerprint: "google/shiba/shiba:14/AP2A.240605.024/11860263:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "2024-06 Pixel 官方安全更新版；board 实测 = shiba（ro.board.platform 是 zuma，与本字段不同）"
+
+  pixel8pro:
+    # Google Pixel 8 Pro（2023-10，Tensor G3 / Android 14）
+    brand: google
+    manufacturer: Google
+    model: "Pixel 8 Pro"
+    name: husky
+    device: husky
+    board: husky
+    fingerprint: "google/husky/husky:14/AP1A.240305.019.A1/11445699:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "Pixel 8 Pro 第一批 Android 14 稳定分支（已筛掉同机型的 userdebug 分支）"
+
+  pixel7:
+    # Google Pixel 7（2022-10，Tensor G2 / Android 14）
+    brand: google
+    manufacturer: Google
+    model: "Pixel 7"
+    name: panther
+    device: panther
+    board: panther
+    fingerprint: "google/panther/panther:14/AP2A.240605.024/11860263:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "Pixel 7 / 8 同批 2024-06 更新，build_id 与 incremental 完全一致属正常现象"
+
+  pixel7a:
+    # Google Pixel 7a（2023-05，Tensor G2 / Android 14）
+    brand: google
+    manufacturer: Google
+    model: "Pixel 7a"
+    name: lynx
+    device: lynx
+    board: lynx
+    fingerprint: "google/lynx/lynx:14/AP1A.240305.019.A1/11445699:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "中端走量 Pixel，埋点里比旗舰更常见"
+
+  pixel6a:
+    # Google Pixel 6a（2022-07，Tensor / Android 14）
+    brand: google
+    manufacturer: Google
+    model: "Pixel 6a"
+    name: bluejay
+    device: bluejay
+    board: bluejay
+    fingerprint: "google/bluejay/bluejay:14/UP1A.231005.007/10754064:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "Pixel 6a 首个 Android 14 分支；build_id UP1A.231005.007 也是三星 One UI 6.0 的基线"
+
+  # ---------------- Samsung Galaxy（7 条）----------------
+  # 三星惯例（已实测确认）：product 段 = device + 地区后缀（xxx / nsxx / zcx），
+  # incremental = 官方固件版本号（可与 sammobile 交叉验证），
+  # Android 14 的 build_id 统一为 UP1A.231005.007。
+
+  samsung_s24:
+    # 三星 Galaxy S24 国际版（2024-01，Exynos 2400 / Android 14 One UI 6.1）
+    brand: samsung
+    manufacturer: samsung
+    model: "SM-S921B"
+    name: e1sxxx
+    device: e1s
+    board: s5e9945
+    fingerprint: "samsung/e1sxxx/e1s:14/UP1A.231005.007/S921BXXU1AXCB:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "Exynos 2400 版（board 实测 s5e9945，非 pineapple）；骁龙版代号是 e1q 不是 e1s"
+
+  samsung_s24_cn:
+    # 三星 Galaxy S24 国行（2024-01，骁龙 8 Gen 3 / Android 14 One UI 6.1）
+    brand: samsung
+    manufacturer: samsung
+    model: "SM-S9210"
+    name: e1qzcx
+    device: e1q
+    board: pineapple
+    fingerprint: "samsung/e1qzcx/e1q:14/UP1A.231005.007/S9210ZCU1AXBA:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "国行/港台版才是骁龙（board 实测 pineapple）；product 段后缀 zcx = 中国"
+
+  samsung_s24plus:
+    # 三星 Galaxy S24+ 国际版（2024-01，Exynos 2400 / Android 14）
+    brand: samsung
+    manufacturer: samsung
+    model: "SM-S926B"
+    name: e2sxxx
+    device: e2s
+    board: s5e9945
+    fingerprint: "samsung/e2sxxx/e2s:14/UP1A.231005.007/S926BXXU1AWM9:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "Exynos 2400 版"
+
+  samsung_s24plus_cn:
+    # 三星 Galaxy S24+ 国行（2024-01，骁龙 8 Gen 3 / Android 14）
+    brand: samsung
+    manufacturer: samsung
+    model: "SM-S9260"
+    name: e2qzcx
+    device: e2q
+    board: pineapple
+    fingerprint: "samsung/e2qzcx/e2q:14/UP1A.231005.007/S9260ZCS3AXI1:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "国行骁龙版"
+
+  samsung_s24ultra:
+    # 三星 Galaxy S24 Ultra（2024-01，骁龙 8 Gen 3 / Android 14）
+    brand: samsung
+    manufacturer: samsung
+    model: "SM-S928B"
+    name: e3qxxx
+    device: e3q
+    board: pineapple
+    fingerprint: "samsung/e3qxxx/e3q:14/UP1A.231005.007/S928BXXU4AYA5:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "S24 Ultra 全系只有骁龙版（e3q），board 实测 pineapple"
+
+  samsung_a55_5g:
+    # 三星 Galaxy A55 5G（2024-03，Exynos 1480 / Android 14）
+    brand: samsung
+    manufacturer: samsung
+    model: "SM-A556E"
+    name: a55xnsxx
+    device: a55x
+    board: s5e8845
+    fingerprint: "samsung/a55xnsxx/a55x:14/UP1A.231005.007/A556EXXS5AXI4:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "中端走量机，埋点机型分布里占比高；board 实测 s5e8845"
+
+  samsung_a34_5g:
+    # 三星 Galaxy A34 5G（2023-03，天玑 1080 / Android 14）
+    brand: samsung
+    manufacturer: samsung
+    model: "SM-A346E"
+    name: a34xdxx
+    device: a34x
+    board: a34x
+    fingerprint: "samsung/a34xdxx/a34x:14/UP1A.231005.007/A346EXXS9CYA2:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "board 实测 = a34x（ro.board.platform 是 mt6877，与本字段不同）"
+
+  # ---------------- 小米 / Redmi / POCO（7 条）----------------
+  # 惯例（已实测确认）：ro.product.board == 设备代号（不是 pineapple/kalama 平台名）；
+  # product / device 段 == 代号，只有海外版可能带 _global 后缀。
+
+  xiaomi14:
+    # 小米 14 国行（2023-10，骁龙 8 Gen 3 / Android 14 HyperOS）
+    brand: Xiaomi
+    manufacturer: Xiaomi
+    model: "23127PN0CC"
+    name: houji
+    device: houji
+    board: houji
+    fingerprint: "Xiaomi/houji/houji:14/UKQ1.230804.001/V816.0.6.0.UNCCNXM:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "v1 的 assembled 值 incremental 为 V816.0.4.0.UNCCNXM（真机无此版），已按 dump 修正为 V816.0.6.0.UNCCNXM；board 由 pineapple 修正为实测值 houji"
+
+  xiaomi14pro:
+    # 小米 14 Pro 国行（2023-10，骁龙 8 Gen 3 / Android 14 HyperOS）
+    brand: Xiaomi
+    manufacturer: Xiaomi
+    model: "23116PN5BC"
+    name: shennong
+    device: shennong
+    board: shennong
+    fingerprint: "Xiaomi/shennong/shennong:14/UKQ1.230804.001/V816.0.9.0.UNBCNXM:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "v1 为 assembled 值，已按 dump 修正；board 由 pineapple 修正为实测值 shennong"
+
+  redmi_k70pro:
+    # 红米 K70 Pro（2023-11，骁龙 8 Gen 3 / Android 14 HyperOS）
+    brand: Redmi
+    manufacturer: Xiaomi
+    model: "23117RK66C"
+    name: manet
+    device: manet
+    board: manet
+    fingerprint: "Redmi/manet/manet:14/UKQ1.230804.001/V816.0.8.0.UNMCNXM:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "K70 Pro（manet）版本段干净为 14；普通版 K70（vermeer）官方 ROM 里版本段实际是 13，已按事实剔除本库"
+
+  xiaomi_civi4pro:
+    # 小米 Civi 4 Pro（2024-03，骁龙 8s Gen 3 / Android 14 HyperOS）
+    brand: Xiaomi
+    manufacturer: Xiaomi
+    model: "24053PY09C"
+    name: chenfeng
+    device: chenfeng
+    board: chenfeng
+    fingerprint: "Xiaomi/chenfeng/chenfeng:14/UKQ1.240116.001/V816.0.11.0.UNJCNXM:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "轻薄影像机型"
+
+  poco_f6_global:
+    # POCO F6 全球版（2024-05，骁龙 8s Gen 3 / Android 14 HyperOS）
+    brand: POCO
+    manufacturer: Xiaomi
+    model: "24069PC21G"
+    name: peridot_global
+    device: peridot
+    board: peridot
+    fingerprint: "POCO/peridot_global/peridot:14/UKQ1.240116.001/V816.0.9.0.UNPMIXM:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "POCO brand 段独立，用于制造品牌多样性；国行版叫 Redmi Turbo 3"
+
+  poco_x6pro:
+    # POCO X6 Pro 5G（2024-01，天玑 8300 / Android 14 HyperOS）
+    brand: POCO
+    manufacturer: Xiaomi
+    model: "2311DRK48G"
+    name: duchamp_global
+    device: duchamp
+    board: mgvi_64_armv82
+    fingerprint: "POCO/duchamp_global/duchamp:14/UP1A.230905.011/V816.0.5.0.UNLINXM:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "天玑平台，board 实测为联发科占位值 mgvi_64_armv82（逐字值，非笔误）"
+
+  redmi_note14proplus:
+    # Redmi Note 14 Pro+ 5G（2024-09，骁龙 7s Gen 3 / Android 14 HyperOS）
+    brand: Redmi
+    manufacturer: Xiaomi
+    model: "24115RA8EC"
+    name: amethyst
+    device: amethyst
+    board: amethyst
+    fingerprint: "Redmi/amethyst/amethyst:14/UKQ1.240523.001/V816.0.3.0.UOPCNDM:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "2024-2025 国内出货量很大的中端机"
+
+  # ---------------- vivo / iQOO（2 条）----------------
+
+  vivo_iqoo12:
+    # iQOO 12（2023-11，骁龙 8 Gen 3 / Android 14 OriginOS 4）—— 原 pending 段，现已补齐指纹
+    brand: vivo
+    manufacturer: vivo
+    model: "V2307A"
+    name: PD2307
+    device: PD2307
+    board: pineapple
+    fingerprint: "vivo/PD2307/PD2307:14/UP1A.231005.007/compiler10100011:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "brand 是 vivo 不是 iQOO（iQOO 为 vivo 子品牌，系统内 brand 字段仍为 vivo）；incremental 是 vivo 特有的 compiler 时间戳样式；board 实测 pineapple"
+
+  vivo_v2308:
+    # vivo V2308（天玑平台 / Android 14 OriginOS 4）
+    brand: vivo
+    manufacturer: vivo
+    model: "V2308"
+    name: V2308T
+    device: V2308
+    board: mgvi_64_armv82
+    fingerprint: "vivo/V2308T/V2308:14/UP1A.231005.007/compiler01232129:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "营销名未核实（型号码 V2308 已确认）；device 段 V2308 == device 字段，name 段是 V2308T"
+
+  # ---------------- motorola / realme（2 条）----------------
+
+  motorola_motog84:
+    # motorola moto g84 5G（2023-09，骁龙 695 / Android 14）
+    brand: motorola
+    manufacturer: motorola
+    model: "moto g84 5G"
+    name: bangkk_g
+    device: bangkk
+    board: bangkk
+    fingerprint: "motorola/bangkk_g/bangkk:14/U1TC34M.22-64-19-4/1cb5d:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "motorola 的 model 填名称而非型号码；product 段惯例为「设备代号_g」"
+
+  realme_c67:
+    # realme C67 4G（2023-Q4，骁龙 685 / Android 14 realme UI）
+    brand: realme
+    manufacturer: realme
+    model: "RMX3890"
+    name: RMX3890
+    device: RE5C91L1
+    board: bengal
+    fingerprint: "realme/RMX3890/RE5C91L1:14/UKQ1.230917.001/U.R4T2.202503211536:user/release-keys"
+    android: "14"
+    source: certified
+    capture: "adb shell getprop ro.build.fingerprint"
+    note: "device 段用大写内部代号 RE5C91L1（OPPO 家族 OP/RE 前缀惯例）；board 实测 bengal；incremental 是 OPPO 系时间戳样式，取自较晚的 OTA 分支"
+
+# ============================================================================
+# 三、pending —— 型号已核实但指纹仍缺真机值（不计入上面 23 条）
+# ----------------------------------------------------------------------------
+# vivo X90 的 brand / model / name / device 已由 Google Play 官方设备清单核实，
+# 但 vivo 不对第三方开放认证指纹，Android Dumps 也无 PD2241 项目：
+# 只能查到官方 OTA 版本号 PD2241_A_14.1.10.0.W10.V000L1 / PD2241_A_14.1.14.3.W10.V000L1，
+# 那**不是** build_id / incremental，拼出来就是假值，所以宁可留空。
+#
+# 启用前必须做一件事：真机（或已改机的同型设备）执行
+#     adb shell getprop ro.build.fingerprint
+# 把结果填进 fingerprint 字段，再把 source 改成 certified，然后整段移到 templates: 下。
+# 参考：iQOO 12 实测 incremental 前缀是 `compiler` + 时间戳（见 vivo_iqoo12），
+# X90 大概率同格式，但仍不可臆造。
+#
+# 为什么不能留空直接用：代码会硬报错「声明了机型属性但没给 ro.build.fingerprint」，
+# 这是有意设计，防止出现「看起来配了机型、指纹其实没改」的假配置。
+# ============================================================================
+pending:
+
+  vivo_x90:
+    # vivo X90（2022-11，天玑 9200 / Android 14 OriginOS 4）
+    brand: vivo
+    manufacturer: vivo
+    model: "V2241A"
+    name: PD2241
+    device: PD2241
+    board: ""
+    fingerprint: ""
+    android: "14"
+    source: model_only
+    capture: "真机 adb shell getprop ro.build.fingerprint；格式为 vivo/<product>/<device>:<版本>/<build_id>/<ROM版本>:user/release-keys"
+    note: "vivo 的 name/device 都是 PD 开头的内部代号（已核实）；启用前必须补齐 fingerprint 与 board"

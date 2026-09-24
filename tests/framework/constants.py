@@ -114,9 +114,13 @@ INTERACTIVE_ROLES = frozenset({
     "button", "link", "textbox", "input", "combobox", "select",
     "checkbox", "radio", "menuitem", "option", "tab", "spinbutton",
     "treeitem", "slider", "switch",
+    # uni-app 的搜索类输入框在快照里是 searchbox（既不是 textbox 也不是 search）。
+    # 漏掉它会让这类输入框既不算交互元素、也进不了邻近文本的加分名单。
+    "searchbox",
 })
 
-INPUT_ROLES = frozenset({"textbox", "input", "textarea", "combobox", "select", "search"})
+INPUT_ROLES = frozenset({"textbox", "input", "textarea", "combobox", "select",
+                         "search", "searchbox"})
 
 
 # ============================================================

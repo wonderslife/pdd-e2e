@@ -41,8 +41,23 @@ python -m venv .venv
 ## 快速开始
 
 ```powershell
-# 在项目根目录
-.\run-test testcases\frontend\PRESALE-001-goods-create.yaml
+
+
+cd D:\APPPROJECTS\pdd-test-system
+
+# 跑一个目录下的全部用例（递归子目录）
+.\run-test testcases\Inspection-System-Project\testcases\frontend\h5
+.\run-test testcases\Inspection-System-Project\testcases\frontend\pc
+
+# 递归跑整个 frontend（pc + h5，14 条）
+.\run-test testcases\Inspection-System-Project\testcases\frontend
+
+# 只跑单条
+.\run-test testcases\Inspection-System-Project\testcases\frontend\pc\pc-001-login.yaml
+
+# 绝对路径也行
+.\run-test D:\APPPROJECTS\pdd-test-system\testcases\Inspection-System-Project\testcases\frontend\h5
+
 ```
 
 或用完整命令：

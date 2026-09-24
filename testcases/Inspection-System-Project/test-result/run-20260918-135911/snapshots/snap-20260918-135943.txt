@@ -1,0 +1,412 @@
+## Latest page snapshot
+uid=2_0 RootWebArea "首页 - RuoYi-Vue-Plus后台管理系统" url="http://localhost/index"
+  uid=31_0 ignored
+    uid=31_1 ignored
+      uid=31_2 generic
+        uid=31_3 generic
+          uid=31_4 generic
+            uid=31_5 generic
+              uid=13_3 link "RuoYi-Vue-Plus" url="http://localhost/"
+                uid=31_6 image url="http://localhost/src/assets/logo/logo.png"
+                uid=13_5 heading "RuoYi-Vue-Plus" level="1"
+                  uid=31_7 StaticText "RuoYi-Vue-Plus"
+                    uid=31_8 InlineTextBox "RuoYi-Vue-Plus"
+            uid=31_9 generic
+              uid=31_10 generic
+                uid=31_11 ignored
+                  uid=13_10 menubar orientation="horizontal"
+                    uid=31_12 generic
+                      uid=13_12 link "首页" url="http://localhost/index"
+                        uid=13_13 menuitem "首页"
+                          uid=31_13 ignored
+                          uid=31_14 ignored
+                            uid=31_15 StaticText "首页"
+                              uid=31_8 InlineTextBox "首页"
+                    uid=31_16 ignored
+                      uid=13_18 menuitem "系统管理" expandable
+                        uid=31_17 generic
+                          uid=31_18 ignored
+                          uid=31_19 ignored
+                            uid=31_20 StaticText "系统管理"
+                              uid=31_8 InlineTextBox "系统管理"
+                          uid=31_21 generic
+                            uid=31_22 image
+                        uid=31_23 ignored
+                          uid=31_24 ignored
+                          uid=31_25 ignored
+                          uid=31_26 ignored
+                          uid=31_27 ignored
+                          uid=31_28 ignored
+                          uid=31_29 ignored
+                          uid=31_30 ignored
+                          uid=31_31 ignored
+                          uid=31_32 ignored
+                          uid=31_33 ignored
+                            uid=31_34 ignored
+                            uid=31_35 ignored
+                          uid=31_36 ignored
+                          uid=31_37 ignored
+                    uid=31_38 ignored
+                      uid=13_41 menuitem "系统监控" expandable
+                        uid=31_39 generic
+                          uid=31_40 ignored
+                          uid=31_41 ignored
+                            uid=31_42 StaticText "系统监控"
+                              uid=31_8 InlineTextBox "系统监控"
+                          uid=31_43 generic
+                            uid=31_44 image
+                        uid=31_45 ignored
+                          uid=31_46 ignored
+                          uid=31_47 ignored
+                          uid=31_48 ignored
+                          uid=31_49 ignored
+                          uid=31_50 ignored
+                    uid=31_51 ignored
+                      uid=13_55 menuitem "系统工具" expandable
+                        uid=31_52 generic
+                          uid=31_53 ignored
+                          uid=31_54 ignored
+                            uid=31_55 StaticText "系统工具"
+                              uid=31_8 InlineTextBox "系统工具"
+                          uid=31_56 generic
+                            uid=31_57 image
+                        uid=31_58 ignored
+                          uid=31_59 ignored
+                    uid=31_60 ignored
+                      uid=13_65 menuitem "测试菜单" expandable
+                        uid=31_61 generic
+                          uid=31_62 ignored
+                          uid=31_63 ignored
+                            uid=31_64 StaticText "测试菜单"
+                              uid=31_8 InlineTextBox "测试菜单"
+                          uid=31_65 generic
+                            uid=31_66 image
+                        uid=31_67 ignored
+                    uid=31_68 ignored
+                      uid=13_74 menuitem "机房巡检" expandable expanded
+                        uid=31_69 generic
+                          uid=31_70 ignored
+                          uid=31_71 ignored
+                            uid=31_72 StaticText "机房巡检"
+                              uid=31_8 InlineTextBox "机房巡检"
+                          uid=31_73 generic
+                            uid=31_74 image
+                        uid=20_75 menu orientation="vertical"
+                          uid=31_75 generic
+                            uid=24_1 link "机房管理" url="http://localhost/inspect/room"
+                              uid=24_2 menuitem "机房管理"
+                                uid=31_76 ignored
+                                uid=31_77 ignored
+                                  uid=31_78 StaticText "机房管理"
+                                    uid=31_8 InlineTextBox "机房管理"
+                          uid=31_79 generic
+                            uid=24_6 link "区域管理" url="http://localhost/inspect/area"
+                              uid=24_7 menuitem "区域管理"
+                                uid=31_80 ignored
+                                uid=31_81 ignored
+                                  uid=31_82 StaticText "区域管理"
+                                    uid=31_8 InlineTextBox "区域管理"
+                          uid=31_83 generic
+                            uid=24_11 link "点位管理" url="http://localhost/inspect/point"
+                              uid=24_12 menuitem "点位管理"
+                                uid=31_84 ignored
+                                uid=31_85 ignored
+                                  uid=31_86 StaticText "点位管理"
+                                    uid=31_8 InlineTextBox "点位管理"
+                          uid=31_87 generic
+                            uid=24_16 link "巡检项模板" url="http://localhost/inspect/itemTemplate"
+                              uid=24_17 menuitem "巡检项模板"
+                                uid=31_88 ignored
+                                uid=31_89 ignored
+                                  uid=31_90 StaticText "巡检项模板"
+                                    uid=31_8 InlineTextBox "巡检项模板"
+                          uid=31_91 generic
+                            uid=24_21 link "巡检记录" url="http://localhost/inspect/record"
+                              uid=24_22 menuitem "巡检记录"
+                                uid=31_92 ignored
+                                uid=31_93 ignored
+                                  uid=31_94 StaticText "巡检记录"
+                                    uid=31_8 InlineTextBox "巡检记录"
+                          uid=31_95 generic
+                            uid=24_26 link "统计报表" url="http://localhost/inspect/stats"
+                              uid=24_27 menuitem "统计报表"
+                                uid=31_96 ignored
+                                uid=31_97 ignored
+                                  uid=31_98 StaticText "统计报表"
+                                    uid=31_8 InlineTextBox "统计报表"
+                          uid=31_99 generic
+                            uid=24_31 link "异常处理" url="http://localhost/inspect/abnormal"
+                              uid=24_32 menuitem "异常处理"
+                                uid=31_100 ignored
+                                uid=31_101 ignored
+                                  uid=31_102 StaticText "异常处理"
+                                    uid=31_8 InlineTextBox "异常处理"
+                    uid=31_103 ignored
+                      uid=13_90 menuitem "预售管理" expandable
+                        uid=31_104 generic
+                          uid=31_105 ignored
+                          uid=31_106 ignored
+                            uid=31_107 StaticText "预售管理"
+                              uid=31_8 InlineTextBox "预售管理"
+                          uid=31_108 generic
+                            uid=31_109 image
+                        uid=31_110 ignored
+                          uid=31_111 ignored
+                    uid=31_112 ignored
+                      uid=13_100 menuitem "工作流" expandable
+                        uid=31_113 generic
+                          uid=31_114 ignored
+                          uid=31_115 ignored
+                            uid=31_116 StaticText "工作流"
+                              uid=31_8 InlineTextBox "工作流"
+                          uid=31_117 generic
+                            uid=31_118 image
+                        uid=31_119 ignored
+                          uid=31_120 ignored
+                          uid=31_121 ignored
+                          uid=31_122 ignored
+                          uid=31_123 ignored
+                          uid=31_124 ignored
+                            uid=31_125 ignored
+                            uid=31_126 ignored
+                    uid=31_127 ignored
+                      uid=13_116 menuitem "我的任务" expandable
+                        uid=31_128 generic
+                          uid=31_129 ignored
+                          uid=31_130 ignored
+                            uid=31_131 StaticText "我的任务"
+                              uid=31_8 InlineTextBox "我的任务"
+                          uid=31_132 generic
+                            uid=31_133 image
+                        uid=31_134 ignored
+                          uid=31_135 ignored
+                          uid=31_136 ignored
+                          uid=31_137 ignored
+                          uid=31_138 ignored
+                    uid=31_139 generic
+                      uid=13_129 link "AI会话" url="http://localhost/aichat"
+                        uid=13_130 menuitem "AI会话"
+                          uid=31_140 ignored
+                          uid=31_141 ignored
+                            uid=31_142 StaticText "AI会话"
+                              uid=31_8 InlineTextBox "AI会话"
+                    uid=31_143 generic
+                      uid=13_135 link "PLUS官网" url="https://gitee.com/dromara/RuoYi-Vue-Plus"
+                        uid=13_136 menuitem "PLUS官网"
+                          uid=31_144 ignored
+                          uid=31_145 generic
+                            uid=31_146 StaticText "PLUS官网"
+                              uid=31_8 InlineTextBox "PLUS官网"
+          uid=31_147 generic
+            uid=31_148 generic
+              uid=31_149 generic
+                uid=31_150 ignored
+                  uid=31_151 ignored
+                    uid=31_152 generic
+                      uid=31_153 image
+                  uid=31_154 ignored
+                    uid=13_148 navigation "面包屑"
+                      uid=31_155 generic
+                        uid=31_156 link "首页"
+                          uid=13_151 StaticText "首页"
+                            uid=31_8 InlineTextBox "首页"
+                uid=31_157 ignored
+                  uid=31_158 ignored
+                  uid=31_159 generic
+                    uid=31_160 ignored
+                  uid=31_161 generic
+                    uid=31_162 generic
+                      uid=31_163 ignored
+                        uid=31_164 ignored
+                      uid=31_165 superscript
+                        uid=13_161 StaticText "99+"
+                          uid=31_8 InlineTextBox "99+"
+                  uid=31_166 generic
+                    uid=31_167 ignored
+                  uid=31_168 generic
+                    uid=13_165 button expandable haspopup="menu"
+                      uid=31_169 ignored
+                        uid=31_170 ignored
+                          uid=31_171 ignored
+                  uid=31_172 generic
+                    uid=31_173 generic
+                      uid=13_171 button expandable haspopup="menu"
+                        uid=31_174 ignored
+                          uid=31_175 ignored
+                            uid=31_176 ignored
+                  uid=31_177 ignored
+                    uid=31_178 generic
+                      uid=13_177 button "疯狂的狮子Li Workspace" expandable haspopup="menu"
+                        uid=31_179 image url="http://localhost/src/assets/images/profile.jpg"
+                        uid=31_180 ignored
+                          uid=31_181 ignored
+                            uid=31_182 StaticText "疯狂的狮子Li"
+                              uid=31_8 InlineTextBox "疯狂的狮子Li"
+                          uid=31_183 ignored
+                            uid=31_184 StaticText "Workspace"
+                              uid=31_8 InlineTextBox "Workspace"
+                        uid=31_185 generic
+                          uid=31_186 image
+              uid=31_187 generic
+                uid=31_188 generic
+                  uid=31_189 ignored
+                    uid=31_190 generic
+                      uid=13_190 link "首页" url="http://localhost/index"
+                        uid=31_191 ignored
+                        uid=31_192 ignored
+                          uid=13_193 StaticText "首页"
+                            uid=31_8 InlineTextBox "首页"
+                uid=31_193 generic
+                  uid=13_195 button expandable haspopup="menu"
+                    uid=31_194 generic
+                      uid=31_195 image
+                uid=31_196 generic description="刷新页面"
+                  uid=31_197 generic
+                    uid=31_198 image
+                  uid=31_199 ignored
+                    uid=13_202 StaticText "刷新"
+                      uid=31_8 InlineTextBox "刷新"
+            uid=31_200 generic
+              uid=31_201 ignored
+                uid=31_202 generic
+                  uid=31_203 ignored
+                    uid=13_207 heading "RuoYi-Vue-Plus 控制台" level="1"
+                      uid=31_204 StaticText "RuoYi-Vue-Plus 控制台"
+                        uid=31_8 InlineTextBox "RuoYi-Vue-Plus 控制台"
+                    uid=31_205 paragraph
+                      uid=13_210 StaticText "企业级后台管理系统 重写 RuoYi-Vue 所有功能 集成 Sa-Token、Mybatis-Plus、WarmFlow、SpringDoc、Hutool、OSS 等组件"
+                        uid=31_8 InlineTextBox "企业级后台管理系统 重写 RuoYi-Vue 所有功能 集成 Sa-Token、Mybatis-Plus、WarmFlow、"
+                        uid=31_8 InlineTextBox "SpringDoc、Hutool、OSS 等组件"
+                uid=31_206 ignored
+                  uid=31_207 generic
+                    uid=31_208 ignored
+                      uid=31_209 ignored
+                        uid=13_215 heading "项目矩阵" level="2"
+                          uid=31_210 StaticText "项目矩阵"
+                            uid=31_8 InlineTextBox "项目矩阵"
+                    uid=31_211 ignored
+                      uid=31_212 article
+                        uid=31_213 ignored
+                          uid=31_214 ignored
+                            uid=13_221 heading "RuoYi-Vue-Plus" level="3"
+                              uid=31_215 StaticText "RuoYi-Vue-Plus"
+                                uid=31_8 InlineTextBox "RuoYi-Vue-Plus"
+                            uid=31_216 paragraph
+                              uid=13_224 StaticText "面向分布式集群场景的后台管理系统，保持现有业务接口与权限逻辑，适合先完成前端壳升级。"
+                                uid=31_8 InlineTextBox "面向分布式集群场景的后台管理系统，保持现有业务接口与权限"
+                                uid=31_8 InlineTextBox "逻辑，适合先完成前端壳升级。"
+                          uid=31_217 ignored
+                            uid=13_226 StaticText "v6.0.0"
+                              uid=31_8 InlineTextBox "v6.0.0"
+                        uid=31_218 ignored
+                          uid=31_219 generic
+                            uid=31_220 ignored
+                              uid=13_230 StaticText "Vue 3"
+                                uid=31_8 InlineTextBox "Vue 3"
+                          uid=31_221 generic
+                            uid=31_222 ignored
+                              uid=13_233 StaticText "Element Plus"
+                                uid=31_8 InlineTextBox "Element Plus"
+                          uid=31_223 generic
+                            uid=31_224 ignored
+                              uid=13_236 StaticText "Spring Boot"
+                                uid=31_8 InlineTextBox "Spring Boot"
+                          uid=31_225 generic
+                            uid=31_226 ignored
+                              uid=13_239 StaticText "Sa-Token"
+                                uid=31_8 InlineTextBox "Sa-Token"
+                        uid=31_227 ignored
+                          uid=13_241 button "访问 GitHub"
+                            uid=31_228 ignored
+                              uid=31_229 StaticText "访问 GitHub"
+                                uid=31_8 InlineTextBox "访问 GitHub"
+                          uid=13_244 button "查看更新日志"
+                            uid=31_230 ignored
+                              uid=31_231 StaticText "查看更新日志"
+                                uid=31_8 InlineTextBox "查看更新日志"
+                      uid=31_232 article
+                        uid=31_233 ignored
+                          uid=31_234 ignored
+                            uid=13_250 heading "RuoYi-Cloud-Plus" level="3"
+                              uid=31_235 StaticText "RuoYi-Cloud-Plus"
+                                uid=31_8 InlineTextBox "RuoYi-Cloud-Plus"
+                            uid=31_236 paragraph
+                              uid=13_253 StaticText "微服务通用权限管理系统，适合更复杂的服务治理场景，也可以沿用同样的前端升级思路。"
+                                uid=31_8 InlineTextBox "微服务通用权限管理系统，适合更复杂的服务治理场景，也可以"
+                                uid=31_8 InlineTextBox "沿用同样的前端升级思路。"
+                          uid=31_237 ignored
+                            uid=13_255 StaticText "v6.0.0"
+                              uid=31_8 InlineTextBox "v6.0.0"
+                        uid=31_238 ignored
+                          uid=31_239 generic
+                            uid=31_240 ignored
+                              uid=13_259 StaticText "Spring Cloud"
+                                uid=31_8 InlineTextBox "Spring Cloud"
+                          uid=31_241 generic
+                            uid=31_242 ignored
+                              uid=13_262 StaticText "Gateway"
+                                uid=31_8 InlineTextBox "Gateway"
+                          uid=31_243 generic
+                            uid=31_244 ignored
+                              uid=13_265 StaticText "Nacos"
+                                uid=31_8 InlineTextBox "Nacos"
+                          uid=31_245 generic
+                            uid=31_246 ignored
+                              uid=13_268 StaticText "Dubbo"
+                                uid=31_8 InlineTextBox "Dubbo"
+                        uid=31_247 ignored
+                          uid=13_270 button "访问 GitHub"
+                            uid=31_248 ignored
+                              uid=31_249 StaticText "访问 GitHub"
+                                uid=31_8 InlineTextBox "访问 GitHub"
+                          uid=13_273 button "查看更新日志"
+                            uid=31_250 ignored
+                              uid=31_251 StaticText "查看更新日志"
+                                uid=31_8 InlineTextBox "查看更新日志"
+                  uid=31_252 generic
+                    uid=31_253 ignored
+                      uid=31_254 ignored
+                        uid=13_279 heading "能力地图" level="2"
+                          uid=31_255 StaticText "能力地图"
+                            uid=31_8 InlineTextBox "能力地图"
+                    uid=31_256 ignored
+                      uid=31_257 article
+                        uid=13_283 heading "后端基建" level="3"
+                          uid=31_258 StaticText "后端基建"
+                            uid=31_8 InlineTextBox "后端基建"
+                        uid=31_259 list
+                          uid=31_260 listitem level="1"
+                            uid=13_287 StaticText "Spring Boot / Spring Cloud"
+                              uid=31_8 InlineTextBox "Spring Boot / Spring Cloud"
+                          uid=31_261 listitem level="1"
+                            uid=13_289 StaticText "Sa-Token 认证与权限"
+                              uid=31_8 InlineTextBox "Sa-Token 认证与权限"
+                          uid=31_262 listitem level="1"
+                            uid=13_291 StaticText "MySQL / Redis"
+                              uid=31_8 InlineTextBox "MySQL / Redis"
+                          uid=31_263 listitem level="1"
+                            uid=13_293 StaticText "代码生成器"
+                              uid=31_8 InlineTextBox "代码生成器"
+                      uid=31_264 article
+                        uid=13_295 heading "平台能力" level="3"
+                          uid=31_265 StaticText "平台能力"
+                            uid=31_8 InlineTextBox "平台能力"
+                        uid=31_266 list
+                          uid=31_267 listitem level="1"
+                            uid=13_299 StaticText "动态菜单与按钮权限"
+                              uid=31_8 InlineTextBox "动态菜单与按钮权限"
+                          uid=31_268 listitem level="1"
+                            uid=13_301 StaticText "监控、日志、在线用户"
+                              uid=31_8 InlineTextBox "监控、日志、在线用户"
+                          uid=31_269 listitem level="1"
+                            uid=13_303 StaticText "任务调度与工作流"
+                              uid=31_8 InlineTextBox "任务调度与工作流"
+                          uid=31_270 listitem level="1"
+                            uid=13_305 StaticText "文件存储与多云适配"
+                              uid=31_8 InlineTextBox "文件存储与多云适配"
+      uid=31_271 generic
+        uid=31_272 ignored
+        uid=31_273 ignored
+        uid=31_274 ignored
+        uid=31_275 ignored
+

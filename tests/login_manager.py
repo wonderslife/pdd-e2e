@@ -17,6 +17,7 @@ FastAI Test Framework - 登录状态管理器
 
 import os
 import re
+import time
 import asyncio
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any
@@ -428,6 +429,194 @@ class LoginManager:
             log(f"[Snapshot Error] {e}", 3)
             return ""
     
+    # ============================================================
+    # 自动登录（补齐 LoginManager 只「检测」不「登录」的能力缺口）
+    # ============================================================
+
+    @staticmethod
+    def _tool_text(result) -> str:
+        """把 MCP 工具返回的 content 拍平成文本"""
+        text = ""
+        try:
+            if result and getattr(result, "content", None):
+                for item in result.content:
+                    if hasattr(item, "text"):
+                        text += item.text + "\n"
+                    elif hasattr(item, "content"):
+                        text += str(item.content) + "\n"
+        except Exception:
+            pass
+        return text
+
+    @staticmethod
+    def _extract_input_uids(snapshot_text: str) -> List[str]:
+        """从快照里按出现顺序取出可输入控件的 uid
+
+        兼容两端差异：
+        - uni-app H5 的输入框是 textbox，placeholder 是独立文本节点
+        - Element Plus 的 el-select 内部是 combobox
+        """
+        if not snapshot_text:
+            return []
+        pattern = re.compile(r"uid=(\S+)\s+(textbox|combobox|searchbox)\b", re.I)
+        seen = set()
+        uids: List[str] = []
+        for m in pattern.finditer(snapshot_text):
+            uid = m.group(1)
+            if uid not in seen:
+                seen.add(uid)
+                uids.append(uid)
+        return uids
+
+    @staticmethod
+    def _extract_login_button_uid(snapshot_text: str) -> str:
+        """从快照里找出「登录」按钮的 uid
+
+        - Element Plus: `uid=4_27 button "登 录"`（中间有空格）
+        - uni-app H5:   `uid=2_201 statictext "登 录"`（<button> 在无障碍树里不是 button 角色）
+
+        两个坑：
+        1. **结构性节点的 name 也可能就是「登录」** —— uni-app 的 RootWebArea 名字
+            干脆就叫「登录」，且排在文档最前面。不做排除就会拿整页根节点去点，
+            表现为「点击登录按钮失败」。
+        2. 真按钮（role=button）> 文案里带空格的（「登 录」是按钮的字距写法）>
+            文档顺序靠后的。
+        """
+        if not snapshot_text:
+            return ""
+        pattern = re.compile(
+            r'uid=(\S+)\s+(\w+)[^\n"]*"((?:登\s*录)|(?:登\s*陆)|Login|Sign\s*in)"',
+            re.I,
+        )
+        skip_roles = {"rootwebarea", "document", "application", "iframe", "webarea",
+                      # InlineTextBox 是 StaticText 的内部文本节点（uid 常被多个节点复用），
+                      # 点它虽然可能生效，但不如点它所属的 StaticText 稳
+                      "inlinetextbox"}
+        cands = []
+        for idx, m in enumerate(pattern.finditer(snapshot_text)):
+            uid, role, label = m.group(1), m.group(2).lower(), m.group(3)
+            if role in skip_roles:
+                continue
+            cands.append((uid, role, label, idx))
+        if not cands:
+            return ""
+        cands.sort(key=lambda c: (c[1] == "button", bool(re.search(r"\s", c[2])), c[3]),
+                   reverse=True)
+        return cands[0][0]
+
+    async def _probe_auth_state(self, session) -> bool:
+        """判断当前页面是否已经脱离登录页（比快照更可靠）
+
+        判据：地址里不含 login，且页面上没有 password 输入框。
+
+        注意：这里让 JS 直接返回**纯字符串**，然后做子串判断。
+        引擎里既有的 evaluate_script 用法都是这个套路 —— 返回 JSON 字符串会被
+        MCP 包成 `Script ran on page and returned:\\n```json\\n"...\\"\\n```` 并转义，
+        再解析 JSON 极易踩坑。
+        """
+        js = (
+            "() => (location.href.toLowerCase().includes('login')"
+            " || document.querySelectorAll('input[type=password]').length > 0)"
+            " ? 'PDD_LOGIN_PAGE' : 'PDD_AUTHED'"
+        )
+        try:
+            result = await session.call_tool("evaluate_script", {"function": js})
+            return "PDD_AUTHED" in self._tool_text(result)
+        except Exception as e:
+            log(f"  [自动登录] 读取页面状态失败: {e}", 3)
+            return False
+
+    async def perform_login(
+        self,
+        session,
+        context_check: Dict[str, Any],
+        return_url: str = "",
+        timeout: float = 25.0,
+    ) -> bool:
+        """按 context_check 真正执行一次登录。
+
+        为什么需要它：
+          `check_and_ensure_login` 只负责**检测**登录态，返回 action="login" 表示
+          「未登录，应由调用方完成登录」。但引擎此前在这个分支里什么都没做，
+          于是所有把登录态寄托在「上一条用例登录过」的用例（pc-002~pc-00x、
+          h5-002、h5-003）在 `--isolated`（每个用例一个全新临时用户目录）下
+          必然跑在登录页上 —— 表现为「用例大量失败但断言还显示 PASS」。
+
+        流程：跳 login_url → 填第 1 个输入框=账号、第 2 个=密码 → 点「登 录」
+              → 轮询到离开登录页 → （可选）跳回 return_url
+
+        Returns:
+            True 表示登录成功
+        """
+        login_url = self._resolve_env_var((context_check or {}).get("login_url", "") or "")
+        creds = (context_check or {}).get("credentials", {}) or {}
+        username = self._resolve_env_var(str(creds.get("username", "") or ""))
+        password = self._resolve_env_var(str(creds.get("password", "") or ""))
+
+        if not login_url or not username or not password:
+            log("  [自动登录] context_check 缺少 login_url 或 credentials，放弃自动登录", 2)
+            return False
+
+        log(f"  🔐 [自动登录] 打开登录页: {login_url}", 2)
+        try:
+            await session.call_tool("navigate_page", {"url": login_url})
+        except Exception as e:
+            log(f"  [自动登录] 打开登录页失败: {e}", 2)
+            return False
+
+        await asyncio.sleep(2.5)
+        snapshot_text = await self._get_snapshot(session, force=True)
+
+        inputs = self._extract_input_uids(snapshot_text)
+        if len(inputs) < 2:
+            log(f"  [自动登录] 登录表单识别失败（仅找到 {len(inputs)} 个输入框）", 2)
+            return False
+
+        button_uid = self._extract_login_button_uid(snapshot_text)
+        if not button_uid:
+            log("  [自动登录] 未找到「登 录」按钮", 2)
+            return False
+
+        for uid, value, label in ((inputs[0], username, "账号"), (inputs[1], password, "密码")):
+            try:
+                res = await session.call_tool("fill", {"uid": uid, "value": value})
+            except Exception as e:
+                log(f"  [自动登录] 填写{label}异常: {e}", 2)
+                return False
+            if check_result_has_error(self._tool_text(res)):
+                log(f"  [自动登录] 填写{label}失败 (uid={uid})", 2)
+                return False
+            await asyncio.sleep(0.4)
+
+        log(f"  🔐 [自动登录] 提交登录 (uid={button_uid})", 2)
+        try:
+            res = await session.call_tool("click", {"uid": button_uid})
+        except Exception as e:
+            log(f"  [自动登录] 点击登录按钮异常: {e}", 2)
+            return False
+        if check_result_has_error(self._tool_text(res)):
+            log("  [自动登录] 点击登录按钮失败", 2)
+            return False
+
+        # 轮询等待登录完成（实测 /auth/login 耗时 2~9s，必须轮询而不是固定等待）
+        deadline = time.time() + max(timeout, 5.0)
+        while time.time() < deadline:
+            await asyncio.sleep(1.0)
+            if await self._probe_auth_state(session):
+                log("  ✅ [自动登录] 登录成功", 2)
+                self._snapshot_cache.clear()
+                if return_url:
+                    log(f"  ↪️ [自动登录] 回到用例目标页: {return_url}", 2)
+                    try:
+                        await session.call_tool("navigate_page", {"url": return_url})
+                        await asyncio.sleep(2.5)
+                    except Exception as e:
+                        log(f"  [自动登录] 返回目标页失败: {e}", 3)
+                return True
+
+        log("  ❌ [自动登录] 等待登录完成超时", 2)
+        return False
+
     async def _auto_logout(self, session, parser) -> bool:
         """
         自动注销 - 支持多种UI模式

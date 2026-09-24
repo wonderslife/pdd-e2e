@@ -1,0 +1,45 @@
+## Latest page snapshot
+uid=12_0 RootWebArea "localhost" url="chrome-error://chromewebdata/"
+  uid=51_0 ignored
+    uid=51_1 ignored
+      uid=51_2 generic
+        uid=51_3 generic
+          uid=51_4 generic
+            uid=51_5 image
+            uid=51_6 generic
+              uid=12_8 heading "无法访问此网站" level="1"
+                uid=51_7 StaticText "无法访问此网站"
+                  uid=51_8 InlineTextBox "无法访问此网站"
+              uid=51_9 strong
+                uid=12_12 StaticText "localhost"
+                  uid=51_8 InlineTextBox "localhost"
+              uid=12_13 StaticText " 拒绝了我们的连接请求。"
+                uid=51_8 InlineTextBox " 拒绝了我们的连接请求。"
+              uid=51_10 generic
+                uid=51_11 paragraph
+                  uid=12_16 StaticText "请试试以下办法："
+                    uid=51_8 InlineTextBox "请试试以下办法："
+                uid=51_12 list
+                  uid=51_13 listitem level="1"
+                    uid=51_14 ListMarker "• "
+                      uid=51_8 ignored
+                    uid=12_20 StaticText "检查网络连接"
+                      uid=51_8 InlineTextBox "检查网络连接"
+                  uid=51_15 listitem level="1"
+                    uid=51_16 ListMarker "• "
+                      uid=51_8 ignored
+                    uid=12_23 link "检查代理服务器和防火墙" url="chrome-error://chromewebdata/#buttons"
+                      uid=12_24 StaticText "检查代理服务器和防火墙"
+                        uid=51_8 InlineTextBox "检查代理服务器和防火墙"
+              uid=51_17 generic
+                uid=12_26 StaticText "ERR_CONNECTION_REFUSED"
+                  uid=51_8 InlineTextBox "ERR_CONNECTION_REFUSED"
+          uid=51_18 generic
+            uid=51_19 generic
+              uid=12_29 button "重新加载"
+                uid=51_20 StaticText "重新加载"
+                  uid=51_8 InlineTextBox "重新加载"
+            uid=12_31 button "详情"
+              uid=51_21 StaticText "详情"
+                uid=51_8 InlineTextBox "详情"
+

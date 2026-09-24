@@ -32,7 +32,7 @@ class SnapshotParser:
         "inlinetextbox", "generic", "image", "heading", "grid", "gridcell",
         "row", "columnheader", "table", "list", "listitem", "group",
         "form", "input", "textarea", "select", "navigation", "banner",
-        "main", "complementary", "contentinfo", "search", "ignored",
+        "main", "complementary", "contentinfo", "search", "searchbox", "ignored",
         "document", "application", "iframe", "section", "sectionheader",
         "separator", "progressbar", "meter", "tooltip", "status",
         "timer", "log", "marquee", "spinbutton", "tree", "treeitem",

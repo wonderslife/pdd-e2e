@@ -25,6 +25,7 @@ v2.0 改进:
 """
 
 import asyncio
+import copy
 import json
 import os
 import re
@@ -47,6 +48,7 @@ def _safe_json_dumps(obj, **kwargs):
         return json.dumps(obj, default=_default, **kwargs)
 import shutil
 import sys
+import tempfile
 import time
 import traceback
 from abc import ABC, abstractmethod
@@ -174,6 +176,11 @@ TESTCASES_ROOT = os.path.join(PROJECT_ROOT, "testcases")
 RESULT_BASE_DIR = os.path.join(PROJECT_ROOT, "test-result")
 ENV_FILE_PATH = os.path.join(BASE_DIR, ".env.test")
 
+# wait_after(type=time) 的单步等待上限（秒）。
+# 原值 10s 是硬编码在 _handle_wait 里的 min(duration, 10.0)，会把
+# 「停留 15 秒」这类诉求静默截断成 10s —— 用例作者无法察觉。
+_MAX_WAIT_AFTER_SEC = 60.0
+
 DEFAULT_CONFIG = {
     "max_retries": 3,
     "retry_delay": 1.0,
@@ -196,9 +203,14 @@ INTERACTIVE_ROLES = frozenset({
     "button", "link", "textbox", "input", "combobox", "select",
     "checkbox", "radio", "menuitem", "option", "tab", "spinbutton",
     "treeitem", "slider", "switch",
+    # uni-app 的搜索类输入框在快照里是 searchbox（既不是 textbox 也不是 search）。
+    # 漏掉它会让这类输入框既不算交互元素、也进不了邻近文本的加分名单，
+    # fill 会直接报「无候选元素」。
+    "searchbox",
 })
 
-INPUT_ROLES = frozenset({"textbox", "input", "textarea", "combobox", "select", "search"})
+INPUT_ROLES = frozenset({"textbox", "input", "textarea", "combobox", "select",
+                         "search", "searchbox"})
 
 
 class StepStatus(Enum):
@@ -220,6 +232,13 @@ class SnapshotElement:
     attributes: Dict[str, str] = field(default_factory=dict)
     raw_line: str = ""
     indent_level: int = 0
+    # 是否位于**当前打开的模态对话框**内部。
+    # 用途：弹窗打开时，页面背后往往有同名控件（如列表页的「机房名称」搜索框
+    # 与新增弹窗里的「机房名称」必填项），命中歧义时必须优先取弹窗内的那个。
+    in_modal: bool = False
+    # 本次快照里该 uid 是否被**多个节点复用**（见 SnapshotParser._mark_reused_uids）。
+    # MCP 的 click/fill 是按 uid 定位的，复用 uid 点不到（报 no longer exists）。
+    uid_reused: bool = False
 
     @property
     def combined_text(self) -> str:
@@ -450,6 +469,86 @@ def _resolve_includes(testcase: Dict, base_dir: str, depth: int = 0) -> Dict:
     for line in renumbered:
         log(f"{indent}           {line}", 2)
 
+    return testcase
+
+
+def _expand_repeats(testcase: Dict) -> Dict:
+    """把顶层 `repeat` 块在**加载期**展开成扁平 steps。
+
+    YAML 写法::
+
+        steps:                 # 可选，放在循环之前执行
+          - action: navigate
+            url: "..."
+        repeat:
+          times: 10            # 也接受 count / iterations
+          as: "第 {i}/{n} 轮"   # 可选，拼在每步 desc 前（{i}=当前轮, {n}=总轮数）
+          steps:
+            - action: navigate
+              url: "https://..."
+              wait_after: {type: time, duration: 10000}
+            - action: close_page
+              pageId: current
+
+    设计取舍：在加载期做**纯文本展开**，而不是往执行器里塞循环控制流。
+    展开后所有下游逻辑（步骤编号、重试、失败策略、断言、报告）完全不变，
+    因此这是零回归风险的加法。展开结果追加在顶层 steps 之后（order: before
+    可改成之前）。
+    """
+    if not isinstance(testcase, dict):
+        return testcase
+
+    rep = testcase.get("repeat")
+    if not rep or not isinstance(rep, dict):
+        return testcase
+
+    raw_steps = rep.get("steps")
+    if not isinstance(raw_steps, list) or not raw_steps:
+        log("[repeat] ⚠️ repeat.steps 为空，跳过展开", 1)
+        del testcase["repeat"]
+        return testcase
+
+    raw_times = rep.get("times", rep.get("count", rep.get("iterations", 1)))
+    # 支持 ${LOOP_TIMES} —— 用例级 .env 在 run_single_testcase 之前已加载，
+    # 所以这里能安全取值；轮数不该逼着人改 YAML 本体。
+    try:
+        times = int(float(resolve_env_vars(str(raw_times))))
+    except (TypeError, ValueError):
+        log(f"[repeat] ⚠️ times 不是整数({raw_times!r})，按 1 次处理", 1)
+        times = 1
+    if times < 1:
+        log(f"[repeat] ⚠️ times={times} < 1，按 1 次处理", 1)
+        times = 1
+
+    prefix_tpl = str(rep.get("as", rep.get("desc_prefix", "")) or "")
+    order = str(rep.get("order", "after")).lower()
+
+    expanded: List[Dict] = []
+    for i in range(1, times + 1):
+        for raw in raw_steps:
+            if not isinstance(raw, dict):
+                continue
+            s = copy.deepcopy(raw)
+            if prefix_tpl:
+                pfx = prefix_tpl.replace("{i}", str(i)).replace("{n}", str(times))
+                s["desc"] = f"{pfx} {s.get('desc', '')}".strip()
+            # 供断言/日志引用轮次（env 变量展开走 resolve_env_vars，故用 os.environ 传递）
+            s.setdefault("_repeat_index", i)
+            s.setdefault("_repeat_total", times)
+            expanded.append(s)
+
+    head = list(testcase.get("steps") or [])
+    merged = (head + expanded) if order != "before" else (expanded + head)
+
+    for idx, s in enumerate(merged, 1):
+        s["step"] = idx
+    testcase["steps"] = merged
+    testcase["_repeat_expanded"] = {"times": times, "per_iteration": len(raw_steps)}
+
+    log(f"[repeat] 🔁 展开 {times} 轮 × {len(raw_steps)} 步 = {len(expanded)} 步"
+        f"（前置 {len(head)} 步，位置={order}）", 1)
+
+    del testcase["repeat"]
     return testcase
 
 
@@ -831,6 +930,39 @@ def should_skip_step(step_idx: int, detection_result: Dict, login_step_indices: 
         return False
     
     return step_idx in login_step_indices
+
+
+# 用例「自带登录」的判据：出现了带登录语义的填写/点击动作
+_LOGIN_ACTION_WORDS = (
+    "登 录", "登录", "登陆", "login", "sign in", "signin",
+    "账号", "帐号", "用户名", "密码", "password", "username",
+)
+_LOGIN_ACTION_TYPES = frozenset({"fill", "type", "input", "click", "tap"})
+
+
+def _case_self_handles_login(steps: List[Dict]) -> bool:
+    """用例自身是否已经写了「填账号/密码 → 点登录」的动作。
+
+    用于决定要不要走引擎的自动登录：
+      - 返回 True  → 用例自己负责登录（pc-001 / h5-001），引擎不干预
+      - 返回 False → 用例把登录态寄托在别处（pc-002~pc-00x / h5-002 / h5-003），
+                     引擎按 context_check 自动登录
+
+    只看「动作型」步骤（fill/click 等），不看 navigate 步骤的 desc ——
+    h5-002 / h5-003 的步骤 1 描述里写着「完成登录」，但实际只是打开页面。
+    """
+    for step in steps or []:
+        action = str(step.get("action", "")).lower()
+        if action not in _LOGIN_ACTION_TYPES:
+            continue
+        text = " ".join([
+            str(step.get("desc", "")),
+            str(step.get("target", "")),
+            str(step.get("value", "")),
+        ]).lower()
+        if any(word in text for word in _LOGIN_ACTION_WORDS):
+            return True
+    return False
 
 
 # ============================================================
@@ -1293,7 +1425,7 @@ class SnapshotParser:
         "inlinetextbox", "generic", "image", "heading", "grid", "gridcell",
         "row", "columnheader", "table", "list", "listitem", "group",
         "form", "input", "textarea", "select", "navigation", "banner",
-        "main", "complementary", "contentinfo", "search", "ignored",
+        "main", "complementary", "contentinfo", "search", "searchbox", "ignored",
         "document", "application", "iframe", "section", "sectionheader",
         "separator", "progressbar", "meter", "tooltip", "status",
         "timer", "log", "marquee", "spinbutton", "tree", "treeitem",
@@ -1305,18 +1437,46 @@ class SnapshotParser:
         "data", "dfn", "kbd", "samp", "var", "wbr", "ruby", "rt", "rp",
     }
 
+    # 结构性 / 容器角色：永远不是「可操作目标」，必须从**所有**候选路径排除
+    # （精确匹配 + 模糊评分都要排）。
+    #
+    # 不排会出真事故：RootWebArea 的 text 是**页面标题**，而 _score_for_button
+    # 只要 text 里含按钮关键词就 +10 —— 页面标题叫「登录」「系统管理」「查询」
+    # 时都会命中。于是当目标在当前页面根本不存在时，那个 +10 会让整页根节点
+    # 成为最高分候选并被当作点击目标：
+    #   click '提交巡检' -> uid=2_0 (role=rootwebarea, text='登录')
+    #   → MCP: "Failed to interact with the element with uid 2_0.
+    #           The element did not become interactive within the timeout."
+    # 而且它还会被写进 uid 缓存，重试 3 次全部命中同一个垃圾节点（实测白跑 28s）。
+    #
+    # 注：旧代码这里本有一组降权分支，但写的是 CamelCase
+    # （"RootWebArea" / "StaticText" / "InlineTextBox"），
+    # 而 _parse_tokens 解析出的 role 一律是小写 —— 那三段降权**从未生效**，
+    # 这正是上面这个 bug 能长期存在的原因。
+    NON_TARGET_ROLES = frozenset({
+        "rootwebarea", "ignored", "document", "application", "iframe",
+    })
+
     INPUT_ROLES = INPUT_ROLES
+
 
     def __init__(self):
         self.elements: Dict[str, SnapshotElement] = {}
         self.raw_text: str = ""
         self.element_order: List[str] = []
+        # 按行顺序保存的元素实例。MCP 快照里同一个 uid 会被多个不同节点复用
+        # （实测见过 uid=2_1 对应 14 个节点，文本从「登录」到「《隐私协议》」），
+        # 于是 elements[uid] 会被后写的那行覆盖，element_order 与 elements 的
+        # 对应关系随之失真。凡是要看「相邻元素」的场合都必须走这个列表，
+        # 用对象身份而不是 uid 去定位。
+        self.element_lines: List[SnapshotElement] = []
 
     def parse(self, snapshot_text: str) -> Dict[str, SnapshotElement]:
         """解析快照文本为结构化元素字典"""
         self.raw_text = snapshot_text
         self.elements = {}
         self.element_order = []
+        self.element_lines = []
 
         for line in snapshot_text.split("\n"):
             line = line.rstrip()
@@ -1327,8 +1487,53 @@ class SnapshotParser:
             if element and element.uid:
                 self.elements[element.uid] = element
                 self.element_order.append(element.uid)
+                self.element_lines.append(element)
 
+        self._mark_modal_elements()
+        self._mark_reused_uids()
         return self.elements
+
+    def _mark_reused_uids(self) -> None:
+        """标出「uid 在本次快照里被多个节点复用」的元素。
+
+        Chrome DevTools 的 a11y 快照里 uid 会被复用：实测 h5 巡检执行页有 **30 处**
+        `uid=22_155 InlineTextBox "<各种不同文本>"`，而真正唯一的可点节点是
+        `uid=38_32 StaticText "提交巡检"`。
+
+        按复用 uid 去 click（MCP 用 uid 定位）会报
+        `Element with uid 22_155 no longer exists on the page` ——
+        实测 h5-001 步骤 13「提交巡检」把 4 次尝试（共 13.6s）全打在这个死 uid 上，
+        请求永远发不出去，后续「提交成功」断言必然 FAIL。
+
+        只用于**打破原本完全打平的排序**（排序键最后一位），不改变任何既有优先级，
+        因此不会影响此前已判定的结果。
+        """
+        counts: Dict[str, int] = {}
+        for el in self.element_lines:
+            counts[el.uid] = counts.get(el.uid, 0) + 1
+        for el in self.element_lines:
+            if counts.get(el.uid, 0) > 1:
+                el.uid_reused = True
+
+    def _mark_modal_elements(self) -> None:
+        """标出「位于模态对话框内部」的元素。
+
+        快照是**按缩进嵌套**的扁平行序列：dialog 的所有后代缩进都更深，
+        因此从 dialog 那一行往下走到第一个缩进不更深的行，就是它的子树范围。
+
+        为什么需要：弹窗打开时页面背后常有同名控件（列表页的搜索框 vs 弹窗里的
+        必填项），文本/角色完全一致，靠遍历顺序决定胜负 —— 实测 5 个必填项里
+        有 3 个被写进了背后的搜索框，提交时被必填校验全部拦下，数据一条没造出来。
+        """
+        lines = self.element_lines
+        for i, el in enumerate(lines):
+            if el.role not in ("dialog", "alertdialog"):
+                continue
+            base = el.indent_level
+            j = i + 1
+            while j < len(lines) and lines[j].indent_level > base:
+                lines[j].in_modal = True
+                j += 1
 
     def _parse_line(self, line: str) -> Optional[SnapshotElement]:
         """解析单行快照"""
@@ -1430,31 +1635,45 @@ class SnapshotParser:
     def find_uid(self, target_description: str, cache: Dict[str, str],
                  prefer_role: Optional[str] = None,
                  exclude_roles: Optional[set] = None,
-                 require_interactive: bool = False) -> Optional[str]:
+                 require_interactive: bool = False,
+                 exact_only: bool = False,
+                 prefer_empty: bool = False) -> Optional[str]:
         """
         三层匹配策略（v3.0）:
           Layer 1: 精确匹配 - target文本与元素text/name/value完全一致或包含
           Layer 2: 模糊评分 - 关键词打分排序（兜底，会打WARN）
-          缓存层贯穿始终
+         缓存层贯穿始终
+
+        exact_only=True 时只做 Layer 1：不行就返回 None，绝不退化成
+        「随便挑一个分最高的」。多个字段的 target 都写占位符（"请输入XX"）时，
+        模糊层会给**每个**输入框同等分数，于是所有字段都落进同一个框。
+
+        prefer_empty=True（填表类动作）：精确匹配出现多个**完全打平**的控件时优先选空值那个。
+        注意此时**不能用 uid 缓存短路**：缓存是按 target 文本存的，第 1 行填完后
+        target 仍映射到第 1 行的 uid，第 2 行会被永久跳过。
         """
         target_lower = (target_description or "").lower().strip()
         target_raw = (target_description or "").strip()
 
         cached = cache.get(target_lower)
-        if cached and cached in self.elements:
+        if cached and cached in self.elements and not prefer_empty:
             log(f"[Cache Hit] '{target_description}' -> {cached}", 3)
             return cached
 
         if not self.elements:
             return None
 
-        exact_uid = self._exact_match_uid(target_raw, target_lower, prefer_role, exclude_roles, require_interactive)
+        exact_uid = self._exact_match_uid(target_raw, target_lower, prefer_role, exclude_roles,
+                                          require_interactive, prefer_empty)
         if exact_uid:
             cache[target_lower] = exact_uid
             elem = self.elements[exact_uid]
             log(f"[Exact] '{target_description}' -> {exact_uid} "
                 f"(role={elem.role}, text='{elem.text[:30]}')", 3)
             return exact_uid
+
+        if exact_only:
+            return None
 
         candidates = self._score_candidates(target_lower, prefer_role, exclude_roles, require_interactive)
 
@@ -1478,16 +1697,45 @@ class SnapshotParser:
 
         return best_uid
 
+    @staticmethod
+    def _cmp_norm(s: str) -> str:
+        """比较用的归一化：去掉所有空白 + 转小写。
+
+        必要性：Element Plus / uni-app 的按钮文案常写成「登 录」「提 交」（中间
+        插空格做字距），而 YAML 里写的是「登录」「提交」。不做空白归一化，
+        `'登录' in '登 录'` 恒为 False —— PC 端的登录按钮永远匹配不到。
+        """
+        return "".join((s or "").split()).lower()
+
     def _exact_match_uid(self, target_raw: str, target_lower: str,
                           prefer_role: Optional[str], exclude_roles: Optional[set],
-                          require_interactive: bool) -> Optional[str]:
-        """Layer 1: 精确文本匹配，交互元素优先"""
+                          require_interactive: bool,
+                          prefer_empty: bool = False) -> Optional[str]:
+        """Layer 1: 精确文本匹配
+
+        排序键是 **(匹配长度, 是否完全相等, 是否交互元素)**，三元组从高到低取优。
+
+        为什么加第 2 项「是否完全相等」：光比长度会让**长句子里偶然包含目标词**的
+        文本节点跟真控件打平，谁先遍历到谁赢。实测 PC 登录页有一句说明文案
+        「使用当前账号体系登录到业务工作台。」，target 写「登录」时它和真正的
+        「登 录」按钮都是 match_len=2；按钮排在后面时就会被判为「不更新」，
+        于是点到了那句说明文字上 —— 登录静默失败，后续 PC 用例全部连锁失败
+        （且 url_contains '/index' 还会因为跳转到 /login?redirect=/index 而误判 PASS）。
+        加上「完全相等」这一维后，按钮（归一化后 '登录' == 目标）必胜说明句（仅包含）。
+
+        prefer_empty=True（填表类动作用）：当多个控件**完全打平**时优先选当前值为空的那个，
+        解决主子表「每行同名输入框」的重复填充问题（见下方注释）。
+        """
         best_uid = None
-        best_match_len = 0
-        best_is_interactive = False
+        best_key = None
+        best_group: List[str] = []      # 与 best_key 打平的候选（按遍历顺序）
+        target_cmp = self._cmp_norm(target_raw)
 
         for uid, elem in self.elements.items():
             if exclude_roles and elem.role in exclude_roles:
+                continue
+            # 结构性节点直接出局，否则页面标题能"精确命中"整个动作（见 NON_TARGET_ROLES）
+            if elem.role in self.NON_TARGET_ROLES:
                 continue
             if require_interactive and not elem.is_interactive:
                 continue
@@ -1495,25 +1743,76 @@ class SnapshotParser:
                 continue
 
             match_len = 0
-            if elem.text and target_raw in elem.text:
-                match_len = len(target_raw)
-            elif elem.text and elem.text in target_raw:
-                match_len = len(elem.text)
-            elif elem.name and target_raw in elem.name:
-                match_len = len(target_raw) // 2
-            elif elem.value and target_raw in elem.value:
-                match_len = len(target_raw) // 2
+            match_len = 0
+            exact_level = 0   # 2=原文完全相等  1=去空白后才相等  0=仅包含
 
-            if match_len > 0:
-                is_interactive = elem.is_interactive
-                should_update = (
-                    match_len > best_match_len or
-                    (match_len == best_match_len and is_interactive and not best_is_interactive)
-                )
-                if should_update:
-                    best_match_len = match_len
-                    best_uid = uid
-                    best_is_interactive = is_interactive
+            def consider(field: str, half: bool = False) -> None:
+                """field 命中目标时更新 match_len / exact_level（闭包写外层局部变量）"""
+                nonlocal match_len, exact_level
+                if not field:
+                    return
+                field_cmp = self._cmp_norm(field)
+                if not field_cmp:
+                    return
+                damp = 2 if half else 1
+                # 原文完全相等 > 去空白后才相等 > 仅包含。
+                # 必须区分前两者：uni-app 登录页的**页面标题**就是「登录」，
+                # 而真正的按钮文案是「登 录」。只比「归一化后相等」会让两者打平，
+                # 标题靠遍历顺序先到就赢（这就是加 exact_level 之前 ①② 回归的原因）。
+                if target_raw and field == target_raw:
+                    exact_level = max(exact_level, 2)
+                    match_len = max(match_len, max(1, len(target_raw) // damp))
+                elif target_cmp and field_cmp == target_cmp:
+                    exact_level = max(exact_level, 1)
+                    match_len = max(match_len, max(1, len(target_raw) // damp))
+                elif target_raw and target_raw in field:
+                    match_len = max(match_len, max(1, len(target_raw) // damp))
+                elif target_cmp and target_cmp in field_cmp:
+                    # 仅去空白后才包含（例如 target「登录」命中「登 录」按钮的兄弟文本）
+                    match_len = max(match_len, max(1, len(target_cmp) // damp))
+
+            consider(elem.text)
+            consider(elem.name, half=True)
+            consider(elem.value, half=True)
+
+            # target 比元素文本更长（desc 兜底时常见）：用元素自身文本长度做弱匹配
+            if elem.text and elem.text not in target_raw and elem.text in target_raw:
+                match_len = max(match_len, len(elem.text))
+
+            if match_len <= 0:
+                continue
+
+            # 排序键：匹配长度 → 是否在弹窗内 → 匹配严格度 → 是否交互元素 → uid 是否唯一
+            # 「弹窗内」优先：弹窗打开时它才是当前操作面，页面背后同名控件应让位。
+            # 「uid 唯一」放最后：只在前面全部打平时才起作用，把「被 30 个节点复用的
+            # 文本叶子 uid」让位给唯一的 StaticText（否则 MCP 按 uid 点不到，见
+            # _mark_reused_uids 的实测）。
+            key = (match_len, 1 if elem.in_modal else 0, exact_level,
+                   1 if elem.is_interactive else 0,
+                   0 if getattr(elem, "uid_reused", False) else 1)
+            if best_key is None or key > best_key:
+                best_key = key
+                best_uid = uid
+                best_group = [uid]
+            elif key == best_key:
+                best_group.append(uid)
+
+        # 「主子表重复行」歧义：同一 target 命中多个**完全打平**的控件时（典型场景是
+        # 明细表每一行都有同名的「请输入XX」输入框），旧实现按遍历顺序取第一个，
+        # 于是第二次 fill 又写回第一行 —— 实测 pc-004 步骤 10 把「指示灯状态」覆盖到
+        # 第 1 行，第 2 行仍为空，后端以「第 2 行模板明细的「巡检项名称」不能为空」
+        # 直接拒绝提交，模板一条也建不出来（下游 pc-005/h5 全断）。
+        # 此时优先取**当前还是空**的那个（= 还没填过的那一行）；一个空的都没有就退回首选。
+        if prefer_empty and best_uid is not None and len(best_group) > 1:
+            best_elem = self.elements.get(best_uid)
+            if best_elem is not None and (best_elem.value or "").strip():
+                for cand in best_group:
+                    ce = self.elements.get(cand)
+                    if ce is not None and not (ce.value or "").strip():
+                        log(f"[Empty-First] '{target_raw}' 命中 {len(best_group)} 个打平控件，"
+                            f"改选空值控件 {cand}（原首选 {best_uid} 已有值 "
+                            f"'{best_elem.value[:20]}'）", 2)
+                        return cand
 
         return best_uid
 
@@ -1571,19 +1870,97 @@ class SnapshotParser:
         if intent["select"]:
             score += self._score_for_select(elem, intent["target_words"])
 
+        # 表单控件自身常常没有任何文本（uni-app / uView 的 H5 产物把 placeholder
+        # 渲染成独立的文本节点）。此时仅凭角色无法区分同页的多个控件——账号框和
+        # 密码框会拿到相同的角色基础分，排序后永远取第一个，表现为「账号和密码
+        # 都填进了账号框」。用邻近文本作为该控件的标签来判定命中。
+        #
+        # 两道门控缺一不可：
+        #   ① require_interactive：等同于「这是填表动作」。不能用 intent["input"]
+        #      代替 —— 像「例如 RM-A-001」这种纯 placeholder 文案，关键词表猜不出
+        #      输入意图，加分会被整体跳过；而 click 动作（require_interactive=False）
+        #      又必须关掉它，否则输入框会因「旁边恰好有某段文字」抢走按钮的 target。
+        #   ② not (elem.text or elem.name)：控件自身有文本时（PC 端 Element Plus
+        #      把 placeholder 挂在 input 上）说明原生匹配已足够，保持原有行为不变。
+        if require_interactive and elem.role in INPUT_ROLES and not (elem.text or elem.name):
+            label = self._nearby_text(elem)
+            if label:
+                label_l = label.lower()
+                if any(kw.lower() in label_l for kw in keywords if len(kw) >= 2):
+                    score += 30
+
         if prefer_role and elem.role == prefer_role:
             score += 25
 
+        # 结构性节点直接出局（必须放在所有加分之后、max() 之前，
+        # 否则 _score_for_button 靠页面标题拿到的 +10 会把它抬成最高分）
+        if elem.role in self.NON_TARGET_ROLES:
+            return 0
+
+        # 旧代码此处有三段降权，但 role 比较写成了 CamelCase
+        # （"RootWebArea" / "StaticText" / "InlineTextBox"），
+        # 而解析出的 role 一律小写 → 从未生效。rootwebarea / ignored 已由上方的
+        # NON_TARGET_ROLES 直接排除；StaticText / InlineTextBox **故意不再降权**：
+        # uni-app 的 <button> 在快照里就是 statictext，降权会把登录/查询这类
+        # 真按钮压到普通文本节点之下（这正是之前「登录按钮点了没反应」的成因）。
         if elem.uid.startswith("1_") and len(elem.uid) <= 3:
             score -= 10
-        elif elem.role == "ignored":
-            score -= 30
-        elif elem.role == "RootWebArea":
-            score -= 25
-        elif elem.role in ("StaticText", "InlineTextBox") and intent.get("need_interactive"):
-            score -= 15
 
         return max(0, score)
+
+    def _nearby_text(self, elem: SnapshotElement, radius: int = 3) -> str:
+        """取归属于该控件的紧邻纯文本，用作它的「标签 / 占位符」。
+
+        uni-app / uView 的 H5 产物把 placeholder 渲染成独立的纯文本节点，真正的
+        输入框自身不带任何文本；PC 端的 Element Plus 则把 placeholder 直接挂在
+        input 上。前者只能靠邻近文本判断「这个框是干什么的」。
+
+        三条规则，每一条都是踩过坑才加上的：
+          · 位置在 element_lines 上按**对象身份**取，不能走 elements[uid] —— MCP
+            快照里同一 uid 会被多个节点复用，字典里只剩最后写入的那一份，曾因此
+            把「《隐私协议》」当成账号框的标签。
+          · 半径放宽到 3：placeholder 与输入框之间可能夹着 form / generic 这类
+            结构节点（扫码页就是 StaticText → form → searchbox）。
+          · 但放宽后必须做「就近归属」：一段文本只算离它最近的控件的标签。否则
+            半径一大，账号框就会把密码框的占位符也算进来，两个框重新无法区分。
+        """
+        lines = getattr(self, "element_lines", None) or []
+        my_idx = next((i for i, candidate in enumerate(lines) if candidate is elem), None)
+        if my_idx is None:
+            return ""
+        control_idx = [i for i, c in enumerate(lines)
+                       if c is not None and c.role in INPUT_ROLES]
+        parts: List[str] = []
+        for offset in range(-radius, radius + 1):
+            if offset == 0:
+                continue
+            pos = my_idx + offset
+            if not (0 <= pos < len(lines)):
+                continue
+            neighbor = lines[pos]
+            if neighbor is None or not neighbor.text:
+                continue
+            if neighbor.role.lower() not in ("statictext", "inlinetextbox",
+                                             "label", "paragraph", "generic"):
+                continue
+            if not self._belongs_to(lines, control_idx, pos, my_idx):
+                continue
+            parts.append(neighbor.text)
+        return " ".join(parts)
+
+    @staticmethod
+    def _belongs_to(lines: List[SnapshotElement], control_idx: List[int],
+                    text_pos: int, my_idx: int) -> bool:
+        """判定 text_pos 处的文本是否归属于 my_idx 这个控件。
+
+        比较各控件到该文本的距离；距离相同时，位于文本**后方**的控件优先
+        （placeholder 通常写在输入框前面，所以「夹在两框之间」的文本属于后者）。
+        """
+        def rank(control_pos: int) -> tuple:
+            return (abs(text_pos - control_pos), 0 if control_pos > text_pos else 1)
+
+        my_rank = rank(my_idx)
+        return all(rank(other) >= my_rank for other in control_idx if other != my_idx)
 
     def _detect_intent(self, target: str) -> Dict[str, bool]:
         """检测用户意图"""
@@ -1615,7 +1992,20 @@ class SnapshotParser:
         }
 
     def _score_for_button(self, elem: SnapshotElement, words: List[str]) -> int:
-        """按钮类元素加分"""
+        """按钮类元素加分
+
+        注意最后的按钮关键词加分**必须与目标相关**：原先的写法是
+        `if any(kw in elem.text for kw in button_keywords)`，完全无视要查找的目标
+        （参数 words 从未被使用），于是**任何**含「登录/提交/搜索/确认」字样的文本
+        都会白拿 +10。典型受害者是页面标题 —— 登录页那行
+        `uid=2_2 StaticText "登录"` 会因此拿到 10 分，在目标当前页面不存在时
+        成为最高分候选被点掉（现象：点『提交巡检』实际点到页面标题上，
+        随后 MCP 报 "did not become interactive"，再重试 3 次白跑 28 秒）。
+
+        收紧后：只有当「该按钮词也出现在目标文案里」才给这 10 分，
+        候选集严格变小 —— 找不到目标时会诚实报「未定位到目标元素」，
+        而不是随便点一个元素。
+        """
         score = 0
         if elem.role == "button":
             score += 20
@@ -1626,7 +2016,12 @@ class SnapshotParser:
 
         button_keywords = ["提交", "保存", "新增", "删除", "确认", "搜索", "登录",
                           "login", "submit", "add", "save", "delete", "confirm"]
-        if any(kw in elem.text for kw in button_keywords):
+        # 去掉空格再比：uni-app 的按钮文案常写成「登 录」「提 交」，
+        # 而词表里是「登录」「提交」，不做空格归一化会永远匹配不上。
+        target_text = " ".join(words).replace(" ", "").lower()
+        elem_text = (elem.text or "").lower()
+        if target_text and any(kw in elem_text and kw in target_text
+                               for kw in button_keywords):
             score += 10
 
         return score
@@ -1635,6 +2030,8 @@ class SnapshotParser:
         """输入框类元素加分"""
         score = 0
         if elem.role in ("textbox", "input"):
+            score += 20
+        elif elem.role == "searchbox":
             score += 20
         elif elem.role == "combobox":
             score += 15
@@ -1737,10 +2134,11 @@ class SnapshotParser:
         return [e for e in self.elements.values() if e.role == role]
 
     def find_by_text_contains(self, text: str) -> List[SnapshotElement]:
-        """查找包含指定文本的所有元素"""
+        """查找包含指定文本的所有元素（排除结构性节点：它们的 text 是页面标题）"""
         text_lower = text.lower()
         return [e for e in self.elements.values()
-                if text_lower in e.text.lower() or text_lower in e.name.lower()]
+                if e.role not in self.NON_TARGET_ROLES
+                and (text_lower in e.text.lower() or text_lower in e.name.lower())]
 
     def get_element_context(self, uid: str, radius: int = 2) -> List[SnapshotElement]:
         """获取元素的上下文（前后相邻元素）"""
@@ -1757,14 +2155,151 @@ class SnapshotParser:
 # Action 参数构建器 v3.0
 # ============================================================
 
+# 需要「把纯文本回退到相邻输入框」的动作：这些都是要往输入控件里写值的
+_FILL_ACTIONS = frozenset({"fill", "type", "input", "select_option", "select", "choose"})
+
+# 「纯文本录入」动作。范围故意比 _FILL_ACTIONS 窄：**不含 select_option/select/choose**。
+# 这两种动作的危险面不同 —— 下拉/选择器的候选节点本来就常挂在弹层里、快照外层，
+# 实测 pc-004 步骤 11 模糊命中弹窗外的 combobox（5_393, score=45）是**正常且通过**的；
+# 若把选择类动作也纳入下面的弹窗越界防护，会把它误杀。
+# 真正需要防的是「把文本静默写进错误的字段」这一种破坏性最强的失败。
+_TEXT_ENTRY_ACTIONS = frozenset({"fill", "type", "input"})
+
+# 界面上常见的占位符前缀。YAML 的 target 常直接照抄 placeholder，
+# 而这些字样在无障碍树里往往根本不存在（见 _resolve_uid 的 P1b 注释）。
+_PLACEHOLDER_PREFIXES = (
+    "请输入", "请选择", "请填写", "请上传", "请描述", "请设置", "请搜索", "请确认",
+    "输入", "选择", "填写", "例如", "如：", "如:", "示例：", "示例:",
+)
+
+
+def _strip_placeholder_prefix(text: str) -> str:
+    """剥掉占位符前缀，返回字段核心名（"请输入机房名称" → "机房名称"）。
+
+    反复剥离以覆盖「请输入：机房名称」这类组合写法；剥到空串则原样返回，
+    避免把整段文本吃光。
+    """
+    core = (text or "").strip()
+    changed = True
+    while changed and core:
+        changed = False
+        for prefix in _PLACEHOLDER_PREFIXES:
+            if core.startswith(prefix) and len(core) > len(prefix):
+                core = core[len(prefix):].strip().lstrip("：:").strip()
+                changed = True
+    return core
+
+
+def _sibling_input_uid(parser, elem, max_distance: int = 2) -> Optional[str]:
+    """占位符文本节点 → 相邻输入框。
+
+    部分前端框架（uni-app / uView 的 H5 产物）把 placeholder 渲染成独立的
+    纯文本节点，真正的输入框自身不带任何文本，于是 `target: "请输入账号"`
+    只能匹配到那个文本节点。若把它的 uid 交给 fill，动作会落到页面上第一个
+    可编辑元素，表现为「账号和密码都填进了账号框」。
+    这里按快照行序就近回溯，优先取后继元素（placeholder 通常排在输入框之前）。
+
+    位置优先在 element_lines 上按对象身份取：MCP 快照里同一 uid 会被多个节点复用，
+    elements[uid] 只剩最后写入的那一份，用它做邻居查找会串到完全无关的元素上。
+    """
+    lines = getattr(parser, "element_lines", None)
+    if lines:
+        idx = next((i for i, c in enumerate(lines) if c is elem), None)
+        if idx is not None:
+            for distance in range(1, max_distance + 1):
+                for pos in (idx + distance, idx - distance):
+                    if 0 <= pos < len(lines):
+                        candidate = lines[pos]
+                        if candidate is not None and candidate.role in INPUT_ROLES:
+                            return candidate.uid
+        return None
+
+    # 兼容只有 element_order 的旧解析器
+    order = getattr(parser, "element_order", None) or []
+    if elem.uid not in order:
+        return None
+    idx = order.index(elem.uid)
+    for distance in range(1, max_distance + 1):
+        for pos in (idx + distance, idx - distance):
+            if 0 <= pos < len(order):
+                candidate = parser.elements.get(order[pos])
+                if candidate is not None and candidate.role in INPUT_ROLES:
+                    return candidate.uid
+    return None
+
+
+_MCP_WRAPPER_RE = re.compile(r'^\s*Script\s+ran\s+on\s+page\s+and\s+returned\s*:?\s*', re.I)
+
+
+def _strip_mcp_wrapper(text: str) -> str:
+    """去掉 Chrome DevTools MCP 对 evaluate_script 结果的外层包裹。
+
+    MCP 把返回值包成 `Script ran on page and returned:\\n<值>`，
+    直接截断 80 字会被这个前缀（31 字）吃掉大半 —— 实测 toast 断言的 detail
+    被截成 `LiveToast: 'Script ran on page and returned:`，真正的 toast 文案
+    （例如「点位状态不能为空」）完全看不见，排查时只能去翻后端日志。
+
+    只影响**展示与子串判断**，不改变断言语义（包含关系不受前后缀剥离影响）。
+    """
+    if not text:
+        return text
+    t = _MCP_WRAPPER_RE.sub('', text).strip()
+    # 即使 evaluate_script 返回的是普通字符串，MCP 也会套一层 ```json ... ``` 围栏，
+    # 只 strip('`') 会留下 "json\n\"值\"" 这种残渣（实测 detail 显示成 LiveToast: 'json）。
+    fence = re.match(r'^```[A-Za-z]*\s*\n?(.*?)\n?```$', t, re.DOTALL)
+    if fence:
+        t = fence.group(1).strip()
+    t = t.strip('`').strip()
+    if len(t) >= 2 and t[0] == '"' and t[-1] == '"':
+        t = t[1:-1]
+    return t.strip()
+
+
+def _modal_guard(parser, uid: str, label: str) -> bool:
+    """弹窗打开时，禁止「纯文本录入」落到弹窗外的控件上。
+
+    返回 True = 放行；False = 拦下（调用方必须当作「没解析到」处理）。
+
+    背景（实测 pc-005 步骤 6/7）：YAML 的 target 写成「全局唯一」「机柜」这类
+    **界面上根本不存在**的文本时，P1a/P1b 精确层必然 Miss，落到 P1c 模糊层；
+    模糊层给列表页背后那个无关的搜索框（5_267）打了 score=25 就静默返回，
+    引擎照样打印 `[Match] ... ✅ 成功`。
+
+    后果：弹窗里的「点位编码」「位置描述」两个必填项始终为空 → 后端必填校验
+    拦下提交 → 点位一条也建不出来（下游 pc-005b / h5-002 / h5-003 全部连锁断供），
+    而报告里这些步骤却显示**通过**。这类「数据没造出来但用例是绿的」是本项目
+    反复踩的坑（引擎 P1b 注释里已记了 pc-003/pc-004 两次同类事故）。
+
+    判定依据：若是同一 target 在弹窗内也存在候选，精确层的排序键里 in_modal 权重
+    高于 exact_level，弹窗内的那个必胜（pc-005 步骤 5「点位名称」→ 7_55 即此机制）。
+    所以「弹窗已打开、结果却在弹窗外」只能说明该 target 对当前操作面无意义 ——
+    此时**大声失败**远好于静默写错位置。
+    """
+    try:
+        modal_open = any(getattr(e, "in_modal", False) for e in parser.elements.values())
+    except Exception:
+        return True
+    if not modal_open:
+        return True
+    elem = parser.elements.get(uid)
+    if elem is None or getattr(elem, "in_modal", False):
+        return True
+    log(f"[Modal-Guard] '{label}' 模糊命中弹窗外控件 {uid}"
+        f"（role={elem.role}, name='{(elem.name or '')[:30]}'）→ 拒绝使用，"
+        f"避免把文本静默写进弹窗背后的同名控件", 1)
+    return False
+
+
 def _resolve_uid(step: Dict, parser, cache, prefer_role: Optional[str] = None,
                 require_interactive: Optional[bool] = None) -> Optional[str]:
     """统一UID解析（优先级从高到低）:
-      P0: locator.uid       YAML强制定位，零开销
-      P0.5: locator.aria_label  通过aria-label属性定位（用于暴露后的隐藏元素）
-      P1: target精确匹配    target文本与页面元素文本包含匹配
-      P2: desc兜底          用步骤描述做模糊匹配
-      P3: text_contains     最宽松的文本包含搜索
+      P0:   locator.uid        YAML强制定位，零开销
+      P0.5: locator.aria_label 通过aria-label属性定位（用于暴露后的隐藏元素）
+      P1a:  target严格匹配     只在真正命中文本时返回，命中不到就继续往下走
+      P1b:  占位符前缀剥离     把「请输入机房名称」还原成「机房名称」再严格匹配一次
+      P1c:  target模糊匹配     关键词打分兜底
+      P2:   desc兜底           用步骤描述做模糊匹配
+      P3:   text_contains      最宽松的文本包含搜索
     """
     locator = step.get("locator", {}) or {}
 
@@ -1788,36 +2323,138 @@ def _resolve_uid(step: Dict, parser, cache, prefer_role: Optional[str] = None,
 
     if require_interactive is None:
         action = (step.get("action") or "").lower()
+        # 注意：这里**不含** click / tap。uni-app 的 <button> 在快照里表现为
+        # statictext（没有 button 角色），若强制要求交互元素，点击类动作会一个
+        # 候选都找不到，随后被 desc 兜底误判到输入框上（表现为「登录按钮点了没反应」）。
+        # 精确匹配内部按「交互元素优先」排序，放宽不会把按钮让给普通文本节点。
         require_interactive = action in (
-            "fill", "type", "input", "click", "tap", "select_option",
+            "fill", "type", "input", "select_option",
             "select", "choose", "hover", "drag_drop", "upload", "upload_file",
         )
 
     target = step.get("target", "")
-    uid = parser.find_uid(target, cache, prefer_role=prefer_role,
-                          require_interactive=require_interactive) if target else None
-    if uid:
-        return uid
+
+    # 「填表」类动作的目标**永远不该**是弹层里的选项节点（option/menuitem/treeitem）：
+    # 这些节点的文本会被字段名意外命中 —— 实测 pc-003 step11，target「请输入区域名称」
+    # 剥前缀后是「区域名称」，而父区域下拉里恰好有个选项叫「区域名称-101」；
+    # step10 刚选完父区域、下拉尚未收起，选项还在无障碍树里，于是精确匹配选中了它，
+    # fill 打到一个不可交互的 option 上 → "did not become interactive within the
+    # configured timeout"（重试 3 次共 27.8s 后失败，子区域建不出来）。
+    # 只对填表类动作排除：click 类动作仍需要能点到 option。
+    _action_now = (step.get("action") or "").lower()
+    fill_exclude = ({"option", "menuitem", "treeitem"}
+                    if _action_now in _FILL_ACTIONS else None)
+    # 填表类动作：同名控件完全打平时优先选「当前为空」的那个。
+    # 主子表里每一行都是同一个「请输入XX」占位符，不这样做第二次 fill 会写回第 1 行
+    # （pc-004 步骤 10 实测：第 2 行留空 → 后端以「第 2 行…不能为空」拒绝整单提交）。
+    prefer_empty = _action_now in _FILL_ACTIONS
+    # 纯文本录入动作：模糊兜底若命中弹窗外控件要拦下（见 _modal_guard 的实测背景）
+    _text_entry = _action_now in _TEXT_ENTRY_ACTIONS
+
+    # ---- P1a: 严格匹配。失败就返回 None，不退化 ----
+    if target:
+        uid = parser.find_uid(target, cache, prefer_role=prefer_role,
+                              exclude_roles=fill_exclude,
+                              require_interactive=require_interactive,
+                              exact_only=True,
+                              prefer_empty=prefer_empty)
+        if uid:
+            return uid
+
+    # ---- P1b: 剥离占位符前缀后再严格匹配一次 ----
+    # 背景：YAML 通常照界面上可见的 placeholder 写 target（"请输入机房名称"），但
+    #   · Element Plus 的输入框在无障碍树里挂的是**字段标签**（"* 机房名称"），
+    #     placeholder 文本根本不在快照里；
+    #   · uni-app 则把 placeholder 渲染成独立的静态文本节点。
+    # 不剥前缀 → 精确匹配落空 → 落到模糊层。而模糊层对「自己没文本」的输入框
+    # 一视同仁地加分，多个字段的 desc 又长得几乎一样（"填入「机房名称」" /
+    # "填入「机房编码」"），结果**所有字段都被写进同一个输入框**，
+    # 提交时被必填校验全部拦下 —— 数据一条也造不出来，但步骤却显示 ✅。
+    if target:
+        core = _strip_placeholder_prefix(target)
+        if core and core != target:
+            uid = parser.find_uid(core, cache, prefer_role=prefer_role,
+                                  exclude_roles=fill_exclude,
+                                  require_interactive=require_interactive,
+                                  exact_only=True,
+                                  prefer_empty=prefer_empty)
+            if uid:
+                log(f"[Placeholder-Strip] '{target}' → '{core}' → {uid}", 2)
+                return uid
+
+    # ---- P1c: 目标文本的整体匹配（含模糊打分兜底）----
+    if target:
+        uid = parser.find_uid(target, cache, prefer_role=prefer_role,
+                              exclude_roles=fill_exclude,
+                              require_interactive=require_interactive,
+                              prefer_empty=prefer_empty)
+        if uid and (not _text_entry or _modal_guard(parser, uid, target)):
+            return uid
 
     desc = step.get("desc", "")
     uid = parser.find_uid(desc, cache, prefer_role=prefer_role,
-                          require_interactive=require_interactive) if desc else None
-    if uid:
+                          exclude_roles=fill_exclude,
+                          require_interactive=require_interactive,
+                          prefer_empty=prefer_empty) if desc else None
+    if uid and (not _text_entry or _modal_guard(parser, uid, desc)):
         return uid
 
     if target:
         results = parser.find_by_text_contains(target)
+        # find_by_text_contains 不做交互性过滤，可能返回纯文本节点
+        # （如 uni-app 把 placeholder 渲染成静态文本）。交互元素优先。
+        for elem in results:
+            if elem.is_interactive:
+                return elem.uid
+        # 仅「填表」类动作才回退到相邻输入框：此时文本节点只是输入框的标签。
+        # click 类动作的目标本身就是那个文本节点（uni-app 的 button 在快照里
+        # 常表现为 statictext），回退会点到隔壁输入框上。
+        if (step.get("action") or "").lower() in _FILL_ACTIONS:
+            for elem in results:
+                sibling = _sibling_input_uid(parser, elem)
+                if sibling:
+                    log(f"[Placeholder-Sibling] '{target}' -> {sibling} "
+                        f"(文本节点 {elem.uid} 不可交互，回退到相邻输入框)", 2)
+                    return sibling
         if results:
             return results[0].uid
 
     return None
 
 
+def _apply_nav_timeout(args: Dict, step: Dict) -> None:
+    """把 YAML 的 `timeout`（毫秒）透传给 MCP 的导航类工具。
+
+    为什么必须支持：chrome-devtools-mcp 的导航默认超时只有 **10s**
+    （new_page / navigate_page 的 timeout 传 0 或省略即"用默认值"）。
+    抖音这类重页面首屏经常 >10s，于是第一次一定报
+    `Error: Navigation timeout of 10000 ms exceeded`。
+    引擎会重试，但**首次那个标签页已经建出来了、不会被回收** ——
+    每失败一次就漏一个孤儿标签页（实测 10 轮循环漏了 Page-3）。
+    所以正确做法是在 YAML 里显式给 timeout，从源头不超时，
+    而不是等超时后再去补救。
+    """
+    raw = step.get("timeout", step.get("nav_timeout"))
+    if raw is None:
+        return
+    try:
+        ms = int(float(resolve_env_vars(str(raw))))
+    except (TypeError, ValueError):
+        log(f"  ⚠️ navigate.timeout 无法解析({raw!r})，回退 MCP 默认值", 2)
+        return
+    if ms > 0:
+        args["timeout"] = ms
+
+
 def _build_navigate_args(action, step, parser, cache) -> Dict:
-    return {"url": resolve_env_vars(step.get("url", ""))}
+    args = {"url": resolve_env_vars(step.get("url", ""))}
+    _apply_nav_timeout(args, step)
+    return args
 
 def _build_new_page_args(action, step, parser, cache) -> Dict:
-    return {"url": resolve_env_vars(step.get("url", ""))}
+    args = {"url": resolve_env_vars(step.get("url", ""))}
+    _apply_nav_timeout(args, step)
+    return args
 
 def _build_click_args(action, step, parser, cache) -> Dict:
     args = {}
@@ -1941,7 +2578,15 @@ def _build_select_page_args(action, step, parser, cache) -> Dict:
     return {"pageId": page_id}
 
 def _build_close_page_args(action, step, parser, cache) -> Dict:
-    page_id = step.get("pageId", 0)
+    # pageId 支持三种写法：
+    #   整数        -> 关闭该索引的标签页（MCP 原生语义）
+    #   "current"   -> 关闭当前选中页（默认）
+    #   "last"      -> 关闭 id 最大的页，即最新打开的那个
+    # 字符串模式无法在同步 builder 里解析，交给 ActionExecutor._resolve_page_id
+    # 异步转成真实索引。
+    # 为什么不能写死整数：chrome-devtools-mcp 的页面 id 由 nextPageId++ 单调分配
+    # （0,1,2,...）且关闭后不复用，循环里每轮新建的页 id 都不同，写死必关错页。
+    page_id = step.get("pageId", step.get("page_id", step.get("page_index", "current")))
     return {"pageId": page_id}
 
 
@@ -2518,6 +3163,14 @@ class ActionExecutor:
                     await self._take_snapshot()
                     await asyncio.sleep(0.2)
 
+                # 重试必须丢弃 uid 缓存。缓存命中只检查「uid 是否还在无障碍树里」，
+                # 而树里的编号在页面重排后会**被复用**，于是同一个 target 文本每次重试
+                # 都被映射回**那个已经失效的 uid**：实测 h5-001 步骤 13「提交巡检」，
+                # 首点在 22_155 上失败（no longer exists），随后 3 次重试全部
+                # `[Cache Hit] '提交巡检' -> 22_155`，13.6s 白烧完，一个快照都没真正用上。
+                # 重试的全部意义就是**重新定位**，沿用旧 uid 等于没重试。
+                self.cache.clear()
+
             try:
                 mcp_args = arg_builder(action_type, step, self.parser, self.cache)
             except Exception as e:
@@ -2556,6 +3209,32 @@ class ActionExecutor:
                 )
                 continue
 
+            # ===== close_page: 把字符串模式（current/last）异步解析成真实 pageId =====
+            # 循环里「新建标签页 → 停留 → 关闭」时，新页 id 由 MCP 单调分配，
+            # YAML 无法预知；若沿用固定整数会关掉错误的页。
+            if action_type in ("close_page", "close_tab") and "pageId" in mcp_args:
+                if not isinstance(mcp_args["pageId"], int):
+                    _mode = mcp_args["pageId"]
+                    _pid = await self._resolve_page_id(_mode)
+                    if _pid is None:
+                        elapsed_ms = int((time.time() - start_time) * 1000)
+                        err_msg = (f"无法解析要关闭的标签页 (pageId={_mode!r})："
+                                   f"可能只剩最后一个标签页（MCP 不允许关闭），"
+                                   f"或 list_pages 未返回页面")
+                        log(f"  ❌ {err_msg}", 1)
+                        last_result = StepResult(
+                            step_num=step_num, desc=desc, action=action_type,
+                            status=StepStatus.FAILED, mcp_tool="list_pages",
+                            error=err_msg, retry_count=attempt,
+                            duration_ms=elapsed_ms,
+                            snapshot_before=self.last_snapshot_text,
+                            snapshot_after=self.last_snapshot_text,
+                            snapshot_path=self.last_snapshot_path,
+                        )
+                        continue
+                    mcp_args["pageId"] = _pid
+                    log(f"  📄 标签页解析: {_mode} -> Page-{_pid}", 2)
+
             log(f"  🔧 MCP工具: {mcp_tool_name}", 2)
             log(f"  📝 参数: {_safe_json_dumps(mcp_args, ensure_ascii=False, indent=2)}", 2)
 
@@ -2571,30 +3250,30 @@ class ActionExecutor:
                         step, step_num, uid, mcp_args.get("value", ""))
 
             try:
-                if readonly_picker_result is not None:
-                    if isinstance(readonly_picker_result, list):
-                        elapsed_ms = int((time.time() - start_time) * 1000)
-                        log(f"  ✅ 成功 ({elapsed_ms}ms) [readonly-picker]", 1)
-                        last_result = StepResult(
-                            step_num=step_num, desc=desc, action=action_type,
-                            status=StepStatus.SUCCESS, mcp_tool="readonly_picker",
-                            mcp_args=mcp_args,
-                            output=str(readonly_picker_result[0]) if readonly_picker_result else "",
-                            duration_ms=elapsed_ms,
-                            snapshot_before=self.last_snapshot_text,
-                            snapshot_after=self.last_snapshot_text,
-                            snapshot_path=self.last_snapshot_path,
-                        )
-                        return last_result
-                    else:
-                        result = readonly_picker_result
+                if readonly_picker_result is not None and isinstance(readonly_picker_result, list):
+                    # 修复（Bug I）: picker 成功后**不再提前 return**。
+                    # 旧实现直接构造 SUCCESS 并 return，跳过了 wait_after 与本步骤的全部断言 ——
+                    # pc-003 step3 的 `element_text: ${ROOM_NAME}` 因此从未执行，
+                    # 「下拉其实没选中」被当成成功（假阳性），直到 step7 提交才以
+                    # 「所属机房ID不能为空」爆出来，把真实原因藏了两层。
+                    elapsed_ms = int((time.time() - start_time) * 1000)
+                    log(f"  ✅ 成功 ({elapsed_ms}ms) [readonly-picker]", 1)
+                    content_str = "".join(
+                        (it.get("text", "") if isinstance(it, dict) else str(it))
+                        for it in readonly_picker_result
+                    )
+                    has_error = False
+                    status = StepStatus.SUCCESS
                 else:
-                    result = await self.session.call_tool(mcp_tool_name, mcp_args)
-                content_str = self._extract_result_content(result)
-                elapsed_ms = int((time.time() - start_time) * 1000)
+                    if readonly_picker_result is not None:
+                        result = readonly_picker_result
+                    else:
+                        result = await self.session.call_tool(mcp_tool_name, mcp_args)
+                    content_str = self._extract_result_content(result)
+                    elapsed_ms = int((time.time() - start_time) * 1000)
 
-                has_error = self._check_result_has_error(content_str)
-                status = StepStatus.FAILED if has_error else StepStatus.SUCCESS
+                    has_error = self._check_result_has_error(content_str)
+                    status = StepStatus.FAILED if has_error else StepStatus.SUCCESS
 
                 # ===== 修复 Bug C: 隐藏 input 组件（el-checkbox/el-switch/el-rate 等）点击降级 =====
                 # Element Plus 的 checkbox/switch 实际 input 是 0x0+opacity:0，MCP 判"不可交互"，
@@ -2691,15 +3370,34 @@ class ActionExecutor:
                             poll_deadline = time.time() + 2.5
                             try:
                                 while time.time() < poll_deadline:
+                                    # 必须同时覆盖两套 UI 库的 toast 容器：
+                                    #   · PC（plus-ui / Element Plus）→ .el-message
+                                    #   · H5（RuoYi-App-Plus / uni-app）→ .uni-toast / .uni-sample-toast
+                                    # 原实现只查 .el-message，而 uni-app 的 uni.showToast 根本不渲染
+                                    # 这个类 —— 于是 h5 全部 toast_visible 断言恒 FAIL，detail 是空串
+                                    # （实测 h5-001「巡检记录已提交」、h5-002「异常说明不能为空」
+                                    # 「上传至少 1 张照片」），把「前端到底提示了什么」这条最关键的
+                                    # 线索整个丢掉，排查只能去翻后端日志。
                                     js_res = await self.session.call_tool("evaluate_script", {
-                                        "function": "() => [...document.querySelectorAll('.el-message')].map(m => m.innerText).join(' | ')"
+                                        "function": (
+                                            "() => { const sels = ['.el-message', '.uni-toast', "
+                                            "'.uni-sample-toast', '.uni-toast__content', "
+                                            "'.el-notification']; const out = []; "
+                                            "for (const s of sels) { document.querySelectorAll(s)"
+                                            ".forEach(m => { const t = (m.innerText || '').trim(); "
+                                            "if (t) out.push(t); }); } "
+                                            "return [...new Set(out)].join(' | '); }"
+                                        )
                                     })
                                     live_toast = self._extract_result_content(js_res) or ""
+                                    # 剥掉 MCP 包裹前缀，否则 80 字截断全被
+                                    # `Script ran on page and returned:` 吃掉，看不到真实 toast 文案
+                                    live_toast = _strip_mcp_wrapper(live_toast)
                                     if expected_t in live_toast:
                                         break
                                     await asyncio.sleep(0.25)
                                 ar = {"passed": expected_t in live_toast, "type": "toast_visible",
-                                      "expected": expected_t, "detail": f"LiveToast: '{live_toast[:80]}'",
+                                      "expected": expected_t, "detail": f"LiveToast: '{live_toast[:200]}'",
                                       "confidence": "high"}
                             except Exception as _e:
                                 ar = {"passed": False, "type": "toast_visible", "expected": expected_t,
@@ -2830,9 +3528,21 @@ class ActionExecutor:
         wait_type = wait_cfg.get("type", "time")
 
         if wait_type == "time":
-            duration = wait_cfg.get("duration", 1000) / 1000.0
-            # 修复: 放开 1s 硬截断（wait_after 2000ms+ 需真实生效，列表刷新/异步渲染常见 >1s）
-            duration = min(duration, 10.0)
+            # duration 支持两种写法：
+            #   写死整数   10000
+            #   环境变量   "${DWELL_MS}"  （原实现直接做算术，字符串会 TypeError）
+            raw_duration = resolve_env_vars(str(wait_cfg.get("duration", 1000)))
+            try:
+                duration = float(raw_duration) / 1000.0
+            except (TypeError, ValueError):
+                log(f"  ⚠️ wait_after.duration 无法解析({raw_duration!r})，回退 1s", 2)
+                duration = 1.0
+            # 上限从 10s 提到 _MAX_WAIT_AFTER_SEC：原 10s 截断会让 "停留 15 秒"
+            # 这类需求被**静默**砍到 10s，用例作者完全看不出来。
+            if duration > _MAX_WAIT_AFTER_SEC:
+                log(f"  ⚠️ wait_after.duration={duration:.1f}s 超过上限，"
+                    f"截断为 {_MAX_WAIT_AFTER_SEC:.0f}s", 1)
+                duration = _MAX_WAIT_AFTER_SEC
             if duration > 0.2:
                 log(f"  ⏳ 等待 {duration:.1f}s...", 2)
             await asyncio.sleep(duration)
@@ -2899,6 +3609,104 @@ class ActionExecutor:
                         log(f"  ✅ 已切换到新标签页", 3)
             except (ValueError, IndexError):
                 pass
+
+    async def _resolve_page_id(self, mode: Any) -> Optional[int]:
+        """把 close_page 的字符串模式（current / last）解析成真实 pageId。
+
+        chrome-devtools-mcp 的 list_pages 输出每行为：``<id>: <url> [selected]``，
+        id 由 nextPageId++ 单调分配（0,1,2,...），关闭后不复用。
+
+        返回 None 表示不可关闭（含"只剩最后一个标签页"这种 MCP 硬限制），
+        由调用方转成明确失败，而不是把 -32602 这种底层报错抛给用例。
+        """
+        if isinstance(mode, int):
+            return mode
+        mode = str(mode or "current").strip().lower()
+
+        listed = await self._list_pages()
+        pages = [(pid, selected) for pid, _url, selected in listed]
+
+        if not pages:
+            log("  ⚠️ list_pages 未解析到任何标签页", 2)
+            return None
+        if len(pages) == 1:
+            log("  ⚠️ 只剩 1 个标签页，chrome-devtools-mcp 不允许关闭最后一个页", 2)
+            return None
+
+        if mode in ("current", "selected", "this", "active"):
+            for pid, selected in pages:
+                if selected:
+                    return pid
+            # 没有 [selected] 标记时退化为"最新打开的页"
+            return max(p for p, _ in pages)
+        if mode in ("last", "latest", "newest"):
+            return max(p for p, _ in pages)
+
+        try:
+            return int(mode)
+        except ValueError:
+            log(f"  ⚠️ 无法识别的 pageId 模式: {mode!r}（可用 current/last/整数）", 2)
+            return None
+
+    async def _list_pages(self) -> List[Tuple[int, str, bool]]:
+        """读取 list_pages，返回 [(id, url, is_selected), ...]（按 id 升序）。
+
+        chrome-devtools-mcp 的输出行为 ``<id>: <url> [selected]``。
+        """
+        try:
+            res = await self.session.call_tool("list_pages", {})
+        except Exception as e:
+            log(f"  ⚠️ list_pages 调用失败: {e}", 2)
+            return []
+
+        text = ""
+        if res is not None and getattr(res, "content", None):
+            for item in (res.content or []):
+                if hasattr(item, "text"):
+                    text += item.text + "\n"
+
+        pages: List[Tuple[int, str, bool]] = []
+        for line in text.splitlines():
+            m = re.match(r"^\s*(\d+)\s*:\s*(.*)$", line)
+            if not m:
+                continue
+            pid = int(m.group(1))
+            rest = m.group(2)
+            selected = "[selected]" in rest
+            url = rest.replace("[selected]", "").strip()
+            pages.append((pid, url, selected))
+        return sorted(pages, key=lambda p: p[0])
+
+    async def close_extra_pages(self, keep: str = "first") -> int:
+        """关闭多余标签页，只留一个。返回实际关闭的数量。
+
+        用途：循环里跑「新建标签页 → 停留 → 关闭」时，若某轮 `new_page`
+        因为导航超时被判定失败，引擎会**重试**，而首次那个已经建出来的页
+        不会被回收 —— 于是漏一个孤儿标签页（实测抖音 10 轮循环漏了 Page-3）。
+        页面 id 从 0 起单调分配，所以"保留 id 最小的那个"= 保留最初的基底页。
+
+        只做显式调用（走 teardown），不自动挂到每步后面，避免误伤
+        「一个用例故意开多个标签页」的正常场景。
+        """
+        pages = await self._list_pages()
+        if len(pages) <= 1:
+            return 0
+
+        keep_id = pages[0][0]
+        if str(keep).lower() in ("last", "latest", "newest"):
+            keep_id = pages[-1][0]
+
+        closed = 0
+        for pid, url, _ in pages:
+            if pid == keep_id:
+                continue
+            try:
+                await self.session.call_tool("close_page", {"pageId": pid})
+                closed += 1
+                log(f"  🧹 关闭孤儿标签页 Page-{pid} ({url[:60]})", 2)
+            except Exception as e:
+                log(f"  ⚠️ 关闭 Page-{pid} 失败: {e}", 2)
+        return closed
 
     async def _wait_for_assertion_render(self, action_type: str):
         """步骤内部：action执行后、断言前的渲染等待（轻量版）
@@ -3070,59 +3878,88 @@ class ActionExecutor:
 
     async def _execute_readonly_picker_select(self, step: Dict, step_num: int,
                                               picker_uid: str, option_value: str):
-        """readonly选择器: click打开→JS在DOM中找选项→click选中"""
-        _LABEL_TO_CODE = {
-            "市场法": "market", "资产基础法": "cost", "收益法": "income",
-            "假设开发法": "development", "基准地价法": "benchmark", "其他方法": "other",
-        }
-        code_val = _LABEL_TO_CODE.get(option_value, option_value)
+        """el-select 类选择器: click打开 → 在**当前可见**的下拉里点选项
 
+        修复（Bug H，本次造数卡死的真凶）: 必须只在**可见**的 `.el-select-dropdown` 里找选项。
+        页面上常同时存在多个下拉（列表搜索区 + 分页 + 弹窗各一组），Element Plus 只把当前打开的
+        那个置为可见，其余 popper 虽在 DOM 里但 `display:none`。旧实现用
+        `document.querySelectorAll('.el-select-dropdown__item')` 按**文档顺序**取第一个文本命中的，
+        于是点到了搜索区那个**隐藏**下拉 → 写进的是搜索框的 v-model，弹窗必填项依旧「请选择…」
+        → 提交被「所属机房ID不能为空」拦下，pc-003/004/005 全部造不出数据。
+
+        实测铁证: 旧日志 `totalItems:14` = 全页 5 个下拉的项数之和 (2+3+4+2+3)，
+        说明它把 5 个下拉的选项混在一起数了；改成只看可见下拉后 `totalItems:2`（弹窗机房下拉）。
+        """
         log(f"  [Picker] Step1: 点击 uid={picker_uid} 打开下拉框", 2)
-        await self.session.call_tool("click", {
-            "uid": picker_uid, "includeSnapshot": False,
-        })
-        await asyncio.sleep(1.5)
 
         js_code = f"""() => {{
-            const items = document.querySelectorAll('.el-select-dropdown__item');
-            const results = [];
-            for (const item of items) {{
-                const span = item.querySelector('span');
-                const text = span ? span.textContent.trim() : item.textContent.trim();
-                results.push({{text:text, visible:item.offsetParent !== null}});
-                if (text === '{option_value}' || text.includes('{option_value}')) {{
-                    item.click();
-                    return {{ok:true, clicked:text, totalItems:items.length}};
-                }}
-            }}
-            // fallback: try clicking by index (market is 3rd item)
-            if (items.length >= 3) {{
-                items[2].click();
-                return {{ok:true, clicked:'index[2]-fallback', totalItems:items.length, allText:results.map(r=>r.text)}};
-            }}
-            return {{ok:false, error:'option not found', totalItems:items.length, allText:results.map(r=>r.text)}};
+            const target = {json.dumps(option_value, ensure_ascii=False)};
+            const norm = s => (s || '').replace(/\\s+/g, '').trim();
+            const vis = arr => arr.filter(el => el.offsetParent !== null);
+            const zOf = d => {{
+                const p = d.closest('.el-popper');
+                const m = p ? /z-index:\\s*(\\d+)/.exec(p.getAttribute('style') || '') : null;
+                return m ? parseInt(m[1], 10) : 0;
+            }};
+            const dds = vis([...document.querySelectorAll('.el-select-dropdown')]);
+            if (!dds.length) return {{ok:false, error:'no visible dropdown', totalItems:0}};
+            dds.sort((a, b) => zOf(b) - zOf(a));   // 取最上层那个（= 刚打开的那个）
+            const dd = dds[0];
+            const items = vis([...dd.querySelectorAll('.el-select-dropdown__item')]);
+            let hit = items.find(it => norm(it.textContent) === norm(target));
+            if (!hit) hit = items.find(it => norm(it.textContent).includes(norm(target)));
+            if (!hit) return {{ok:false, error:'option not in visible dropdown',
+                              totalItems:items.length,
+                              allText:items.map(i => i.textContent.trim())}};
+            hit.click();
+            return {{ok:true, clicked:hit.textContent.trim(), totalItems:items.length,
+                     visibleDropdowns:dds.length}};
         }}"""
 
-        log(f"  [Picker] Step2: JS查找并点击'{option_value}'选项...", 2)
-        try:
-            result = await self.session.call_tool(
-                "evaluate_script", {"function": js_code})
-            content = self._extract_result_content(result)
-            log(f"  [Picker] JS结果: {content[:120]}", 1)
-            # 修复 Bug G: JS 明确返回 ok:false 时不再假成功，返回 None 走 MCP fill 兜底
-            try:
-                js_payload = self._parse_json_from_mcp_response(content)
-                if isinstance(js_payload, dict) and js_payload.get("ok") is False:
-                    log(f"  ⚠️ [Picker] 选项未找到，走 MCP fill 兜底", 1)
-                    return None
-            except Exception:
-                pass
-        except Exception as e:
-            log(f"  [Picker] JS失败: {e}", 1)
-            return None
+        # 最多两次：首次点击后若下拉仍未展开（no visible dropdown），再点一次重试
+        for attempt_i in range(2):
+            if attempt_i > 0:
+                log(f"  [Picker] 下拉未展开，重试点击 uid={picker_uid}", 1)
+                await self.session.call_tool("click", {
+                    "uid": picker_uid, "includeSnapshot": False,
+                })
+            else:
+                await self.session.call_tool("click", {
+                    "uid": picker_uid, "includeSnapshot": False,
+                })
+            await asyncio.sleep(1.2 if attempt_i == 0 else 0.9)
 
-        await asyncio.sleep(0.8)
-        return [{"type": "text", "text": f"picker selected '{option_value}' via DOM click"}]
+            log(f"  [Picker] Step2: 在「可见」下拉中查找并点击'{option_value}'选项...", 2)
+            try:
+                result = await self.session.call_tool(
+                    "evaluate_script", {"function": js_code})
+                content = self._extract_result_content(result)
+                log(f"  [Picker] JS结果: {content[:160]}", 1)
+                js_payload = None
+                try:
+                    js_payload = self._parse_json_from_mcp_response(content)
+                except Exception:
+                    js_payload = None
+
+                if isinstance(js_payload, dict) and js_payload.get("ok") is True:
+                    log(f"  [Picker] 已选中 '{js_payload.get('clicked')}'"
+                        f"（可见下拉 {js_payload.get('visibleDropdowns')} 个 / 选项 {js_payload.get('totalItems')} 项）", 1)
+                    await asyncio.sleep(0.5)
+                    return [{"type": "text",
+                             "text": f"picker selected '{option_value}' on visible dropdown"}]
+
+                if isinstance(js_payload, dict) and js_payload.get("error") == "no visible dropdown":
+                    continue  # 下拉没展开 → 重试
+
+                # 明确「选项不在可见下拉里」→ 不再假成功，交回 MCP 兜底
+                log(f"  ⚠️ [Picker] 可见下拉中未找到选项，走 MCP fill 兜底", 1)
+                return None
+            except Exception as e:
+                log(f"  [Picker] JS失败: {e}", 1)
+                return None
+
+        log(f"  ⚠️ [Picker] 两次尝试后下拉仍未展开，走 MCP fill 兜底", 1)
+        return None
 
     def _find_picker_option(self, option_value: str, picker_uid: str,
                              target_roles: set, pre_click_uids=None) -> Optional[str]:
@@ -4391,21 +5228,115 @@ class ReportGenerator:
 # 测试用例发现器
 # ============================================================
 
+def collect_yaml_files(dir_path: str) -> List[str]:
+    """递归收集目录下所有 YAML 用例，按路径排序（稳定执行顺序）"""
+    found = []
+    for root, dirs, files in os.walk(dir_path):
+        # 跳过产物/依赖目录，避免误扫
+        dirs[:] = sorted(d for d in dirs
+                         if d not in ("__pycache__", "node_modules", "test-result", "snapshots"))
+        for f in sorted(files):
+            if f.endswith((".yaml", ".yml")):
+                found.append(os.path.join(root, f))
+    return sorted(found)
+
+
+def resolve_dir_arg(arg: str) -> Optional[str]:
+    """把命令行目录参数解析成真实目录路径。
+
+    依次尝试：绝对路径 → 相对项目根 → 相对当前工作目录。
+    都命中不了返回 None（由调用方回退到历史 tc* 约定）。
+    """
+    if os.path.isabs(arg):
+        return arg if os.path.isdir(arg) else None
+    for base in (PROJECT_ROOT, os.getcwd()):
+        cand = os.path.join(base, arg)
+        if os.path.isdir(cand):
+            return cand
+    return None
+
+
 def discover_testcases(root_dir: str) -> Dict[str, List[Dict]]:
-    """扫描 tc-* 目录下的所有 YAML 测试用例"""
+    """扫描根目录下的所有 YAML 测试用例（递归，兼容历史 tc* 约定）"""
     result = {}
     if not os.path.exists(root_dir):
         return result
     for entry in sorted(os.listdir(root_dir)):
         full_path = os.path.join(root_dir, entry)
-        if os.path.isdir(full_path) and entry.startswith("tc"):
-            yamls = sorted([f for f in os.listdir(full_path)
-                           if f.endswith(".yaml") or f.endswith(".yml")])
-            if yamls:
-                result[entry] = [{"dir": entry, "filename": yf,
-                                    "path": os.path.join(full_path, yf)}
-                                  for yf in yamls]
+        if not os.path.isdir(full_path):
+            continue
+        if entry in ("__pycache__", "node_modules", "test-result"):
+            continue
+        yamls = collect_yaml_files(full_path)
+        if yamls:
+            result[entry] = [{"dir": os.path.relpath(os.path.dirname(y), PROJECT_ROOT).replace("\\", "/"),
+                              "filename": os.path.basename(y), "path": y}
+                             for y in yamls]
     return result
+
+
+# ============================================================
+# 截图落盘（跨 MCP 版本安全）
+# ============================================================
+
+async def _take_screenshot_to(session, dest_path: str, full_page: bool = False):
+    """截图并确保文件**真的**落在 dest_path 上。返回 (ok: bool, detail: str)。
+
+    为什么需要这层：chrome-devtools-mcp 用「workspace roots」白名单校验 filePath，
+    而 roots() 永远至少包含 `os.tmpdir()`。如果客户端（本引擎）没有协商 MCP roots
+    能力，文件写入就被**限制在 OS 临时目录内**，写到项目 test-result/ 会直接报：
+        Access denied: path ... is not within any of the configured workspace roots.
+    （本地构建里连 --allow-unrestricted-paths 的解析都没有，所以那个开关靠不住。）
+
+    老引擎拿到这个错误看都不看就打印 "✅ 截图: xxx.png" —— 实测全盘都找不到那个文件。
+    这里改为：先写目标路径 → 被拒就写临时目录再复制过来。
+    与 MCP 版本无关，也不需要动 MCP 启动参数。
+    """
+    dest_path = os.path.abspath(dest_path)
+    try:
+        os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+    except Exception:
+        pass
+
+    async def _shot(path: str) -> str:
+        res = await session.call_tool("take_screenshot", {
+            "fullPage": bool(full_page), "filePath": path})
+        text = ""
+        if res is not None and getattr(res, "content", None):
+            for item in (res.content or []):
+                if hasattr(item, "text"):
+                    text += item.text
+        return text or ""
+
+    text = await _shot(dest_path)
+    if os.path.exists(dest_path):
+        return True, f"{os.path.getsize(dest_path) / 1024.0:.0f} KB"
+
+    denied = ("Access denied" in text) or ("workspace roots" in text)
+    if denied:
+        tmp_dir = os.path.join(tempfile.gettempdir(), "mcp-screenshots")
+        try:
+            os.makedirs(tmp_dir, exist_ok=True)
+        except Exception as e:
+            return False, f"MCP 拒绝目标路径，且临时目录创建失败: {e}"
+        tmp_path = os.path.join(tmp_dir, os.path.basename(dest_path))
+        try:
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
+        except Exception:
+            pass
+        text2 = await _shot(tmp_path)
+        if os.path.exists(tmp_path):
+            try:
+                shutil.copy2(tmp_path, dest_path)
+            except Exception as e:
+                return False, f"临时目录截图成功但复制失败: {e}（临时文件: {tmp_path}）"
+            return True, (f"{os.path.getsize(dest_path) / 1024.0:.0f} KB"
+                          f"（经临时目录中转: {tmp_dir}）")
+        return False, f"MCP 白名单拒绝 + 临时目录回退也失败: {text2.strip()[:150]}"
+
+    return False, (f"文件未落盘，MCP 返回: {text.strip()[:180]}"
+                   if text.strip() else "文件未落盘，且 MCP 未返回任何信息")
 
 
 # ============================================================
@@ -4426,6 +5357,8 @@ async def run_single_testcase(yaml_path: str, result_dir: str = None,
 
     base_dir = str(Path(yaml_path).parent)
     testcase = _resolve_includes(testcase, base_dir)
+    # repeat 展开放在 _include 合并之后：先合并共享步骤，再整体复制循环体
+    testcase = _expand_repeats(testcase)
 
     test_id = testcase.get("test_id", "UNKNOWN")
     title = testcase.get("title", "未命名")
@@ -4522,6 +5455,31 @@ async def run_single_testcase(yaml_path: str, result_dir: str = None,
                                 context_check=context_check
                             )
 
+                            # ===== 补齐「自动登录」 =====
+                            # LoginManager 只能**检测**登录态；action=="login" 表示「未登录，
+                            # 应由调用方完成登录」，但引擎此前在这个分支里什么都不做。
+                            # 后果：所有把登录态寄托在「上一条用例登录过」的用例
+                            # （pc-002~pc-00x / h5-002 / h5-003）在 --isolated 隔离模式
+                            # （每条用例一个全新临时用户目录）下必然跑在登录页上，
+                            # 表现就是「步骤大量失败，但断言仍显示 PASS」。
+                            #
+                            # 保护：用例自身已经写了「填账号/密码 + 点登录」的动作时
+                            # （pc-001 / h5-001），维持原行为，不做任何干预。
+                            if (login_status and login_status.action == "login"
+                                    and not _case_self_handles_login(steps)):
+                                log(f"\n🔐 当前未登录，按 context_check 自动登录...", 1)
+                                _auto_ok = await manager.perform_login(
+                                    session=session,
+                                    context_check=context_check,
+                                    return_url=resolve_env_vars(str(steps[0].get("url", "") or "")),
+                                )
+                                if _auto_ok:
+                                    login_status.action = "skip"
+                                    login_status.reason = "已按 context_check 自动登录"
+                                    login_status.steps_to_skip = []
+                                else:
+                                    login_status.reason = "自动登录失败，后续步骤可能全部落在登录页"
+
                             if login_status:
                                 log(f"\n{'='*55}", 1)
                                 log(f"🔐 登录状态检测结果", 1)
@@ -4614,15 +5572,51 @@ async def run_single_testcase(yaml_path: str, result_dir: str = None,
                             save_path = os.path.join(result_dir, save_name)
                         else:
                             save_path = name
+                        # MCP 的 filePath 允许绝对路径或相对 CWD 的路径。
+                        # 传绝对路径可以避免"文件被写到 MCP 进程的 CWD、而用例
+                        # 在结果目录里找不到"这类定位困难。
+                        save_path = os.path.abspath(save_path)
                         try:
-                            await session.call_tool("take_screenshot", {
-                                "fullPage": td.get("fullPage", False),
-                                "filePath": save_path,
-                            })
-                            result.screenshots.append(save_path)
-                            log(f"  ✅ 截图: {save_name}", 1)
+                            ok, detail = await _take_screenshot_to(
+                                session, save_path, td.get("fullPage", False))
+                            if ok:
+                                result.screenshots.append(save_path)
+                                log(f"  ✅ 截图: {save_name} ({detail})", 1)
+                            else:
+                                log(f"  ⚠️ 截图失败: {detail}", 1)
                         except Exception as e:
-                            log(f"  ⚠️ 截图失败: {e}", 1)
+                            log(f"  ⚠️ 截图异常: {e}", 1)
+
+                    elif td_action in ("close_extra_pages", "close_tabs", "cleanup_tabs"):
+                        # 清理循环用例里因 new_page 重试而漏下的孤儿标签页。
+                        # 原先 teardown 只认 screenshot，写别的 action 会被**静默忽略**，
+                        # 用例作者以为清理跑过了，其实什么都没发生。
+                        try:
+                            closed = await executor.close_extra_pages(
+                                td.get("keep", "first"))
+                            if closed:
+                                log(f"  🧹 关闭多余标签页: {closed} 个", 1)
+                            else:
+                                log(f"  ✅ 无多余标签页（仅剩 1 个）", 1)
+                        except Exception as e:
+                            log(f"  ⚠️ 清理标签页失败: {e}", 1)
+
+                    elif td_action == "log":
+                        # 修复：teardown 的 log 此前是**静默空操作**（只有 screenshot 有分支），
+                        # 用例里写的收尾日志一条都不会出现。
+                        msg = str(td.get("message", ""))
+                        if "{current_url}" in msg:
+                            try:
+                                pages_now = await executor._list_pages()
+                                cur = next((u for _p, u, s in pages_now if s),
+                                           pages_now[0][1] if pages_now else "")
+                            except Exception:
+                                cur = ""
+                            msg = msg.replace("{current_url}", cur or "?")
+                        log(f"  📝 {msg}", 1)
+
+                    else:
+                        log(f"  ⚠️ 未知 teardown action: {td_action!r}（已忽略）", 1)
 
     for var_name, info in env_used.items():
         if info["was"] is not None:
@@ -4730,10 +5724,14 @@ def print_usage():
     print()
     print("用法:")
     print(f"  python testcase-ai.py                          列出用例")
-    print(f"  python testcase-ai.py --all                     全部运行")
-    print(f"  python testcase-ai.py <目录>                     运行目录")
+    print(f"  python testcase-ai.py --all                     全部运行（递归 testcases/ 下所有 YAML）")
+    print(f"  python testcase-ai.py <目录>                     运行目录（递归，支持多级嵌套/绝对路径）")
     print(f"  python testcase-ai.py <yaml路径>                 运行单个文件")
     print(f"  python testcase-ai.py --continue                 失败后继续执行")
+    print()
+    print("目录参数示例:")
+    print(f"  python testcase-ai.py testcases/ProjA/testcases/frontend/pc")
+    print(f"  python testcase-ai.py D:/path/to/testcases/smoke")
     print()
     print("🎬 录制模式 (交互式操作录制):")
     print(f"  python testcase-ai.py --record                   录制到 testcases/recorded/")
@@ -4817,12 +5815,14 @@ if __name__ == "__main__":
         log("🧠 LLM 思维链已启用 (深度模式)", 1)
 
     if "--all" in args or "-a" in args:
-        all_dirs = discover_testcases(TESTCASES_ROOT)
-        if not all_dirs:
+        all_files = collect_yaml_files(TESTCASES_ROOT)
+        if not all_files:
             print(f"[ERROR] 未找到测试用例")
             sys.exit(1)
-        for files in all_dirs.values():
-            targets.extend(files)
+        for y in all_files:
+            targets.append({
+                "dir": os.path.relpath(os.path.dirname(y), PROJECT_ROOT).replace("\\", "/"),
+                "filename": os.path.basename(y), "path": y})
 
     elif args[0].endswith((".yaml", ".yml")):
         p = args[0] if os.path.isabs(args[0]) else os.path.join(PROJECT_ROOT, args[0])
@@ -4832,22 +5832,35 @@ if __name__ == "__main__":
         targets = [{"dir": "", "filename": os.path.basename(p), "path": p}]
 
     else:
-        dn = args[0]
-        if not dn.startswith("tc"):
-            dn = f"tc{dn}" if not dn.startswith("tc-") else dn
-        dp = os.path.join(TESTCASES_ROOT, dn)
-        if not os.path.exists(dp):
-            available = [d for d in os.listdir(TESTCASES_ROOT)
-                        if os.path.isdir(os.path.join(TESTCASES_ROOT, d)) and d.startswith("tc")]
-            print(f"[ERROR] 目录不存在: {dp}")
-            print(f"可用: {available}")
-            sys.exit(1)
-        yfs = [f for f in os.listdir(dp) if f.endswith((".yaml", ".yml"))]
-        if not yfs:
-            print(f"[ERROR] 目录中无YAML: {dp}")
-            sys.exit(1)
-        targets = [{"dir": dn, "filename": yf, "path": os.path.join(dp, yf)}
-                  for yf in sorted(yfs)]
+        # ① 优先按「真实存在的目录」解析：绝对路径 / 相对项目根 / 相对当前目录，递归收集 YAML
+        dp = resolve_dir_arg(args[0])
+        if dp is not None:
+            yfs = collect_yaml_files(dp)
+            if not yfs:
+                print(f"[ERROR] 目录中无YAML: {dp}")
+                sys.exit(1)
+            rel = os.path.relpath(dp, PROJECT_ROOT).replace("\\", "/")
+            if rel.startswith(".."):
+                rel = dp
+            targets = [{"dir": rel, "filename": os.path.basename(y), "path": y} for y in yfs]
+
+        # ② 回退：历史约定 testcases/tc<name>（仅扫该目录顶层 YAML）
+        else:
+            dn = args[0]
+            if not dn.startswith("tc"):
+                dn = f"tc{dn}" if not dn.startswith("tc-") else dn
+            dp2 = os.path.join(TESTCASES_ROOT, dn)
+            if not os.path.exists(dp2):
+                print(f"[ERROR] 目录不存在: {args[0]}")
+                print(f"可用: {list(discover_testcases(TESTCASES_ROOT).keys())}")
+                sys.exit(1)
+            yfs = [os.path.join(dp2, f) for f in os.listdir(dp2)
+                   if f.endswith((".yaml", ".yml"))]
+            if not yfs:
+                print(f"[ERROR] 目录中无YAML: {dp2}")
+                sys.exit(1)
+            targets = [{"dir": dn, "filename": os.path.basename(y), "path": y}
+                       for y in sorted(yfs)]
 
     if "--continue" in args:
         global_config["continue_on_error"] = True

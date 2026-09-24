@@ -1,0 +1,96 @@
+## Latest page snapshot
+uid=2_0 RootWebArea "RuoYi-Vue-Plus后台管理系统" url="http://localhost/login?redirect=/inspect/point"
+  uid=2_1 ignored
+    uid=2_2 ignored
+      uid=2_3 generic
+        uid=2_4 ignored
+          uid=2_5 ignored
+            uid=2_6 generic
+              uid=2_7 ignored
+                uid=2_8 StaticText "PLUS UI WORKSPACE"
+              uid=2_9 heading "企业级后台管理系统" level="1"
+                uid=2_10 StaticText "企业级后台管理系统"
+              uid=2_11 paragraph
+                uid=2_12 StaticText "真正面向企业级的应用框架 组件化 模块化 轻耦合 高扩展 针对企业痛点 业界一流技术栈"
+                uid=2_13 LineBreak "
+"
+                uid=2_14 StaticText "重写 RuoYi-Vue 所有功能 集成 Sa-Token、Mybatis-Plus、WarmFlow、SpringDoc、Hutool、OSS 定期同步。"
+              uid=2_15 ignored
+                uid=2_16 ignored
+                  uid=2_17 StaticText "技术栈全面升级"
+                uid=2_18 ignored
+                  uid=2_19 StaticText "动态菜单"
+                uid=2_20 ignored
+                  uid=2_21 StaticText "多主题布局"
+                uid=2_22 ignored
+                  uid=2_23 StaticText "深浅色主题"
+              uid=2_24 ignored
+                uid=2_25 article
+                  uid=2_26 strong
+                    uid=2_27 StaticText "动态权限控制"
+                  uid=2_28 ignored
+                    uid=2_29 StaticText "细粒度权限管理"
+                uid=2_30 article
+                  uid=2_31 strong
+                    uid=2_32 StaticText "全栈技术集成"
+                  uid=2_33 ignored
+                    uid=2_34 StaticText "主流技术栈"
+                uid=2_35 article
+                  uid=2_36 strong
+                    uid=2_37 StaticText "卡片式"
+                  uid=2_38 ignored
+                    uid=2_39 StaticText "UI样式"
+            uid=2_40 form
+              uid=2_41 ignored
+                uid=2_42 ignored
+                  uid=2_43 paragraph
+                    uid=2_44 StaticText "WORKSPACE SIGN IN"
+                  uid=2_45 heading "RuoYi-Vue-Plus后台管理系统" level="3"
+                    uid=2_46 StaticText "RuoYi-Vue-Plus后台管理系统"
+                  uid=2_47 paragraph
+                    uid=2_48 StaticText "使用当前账号体系登录到业务工作台。"
+                uid=2_49 generic
+                  uid=2_50 button expandable haspopup="menu"
+                    uid=2_51 ignored
+                      uid=2_52 ignored
+                        uid=2_53 ignored
+              uid=2_54 ignored
+                uid=2_55 generic
+                  uid=2_56 generic
+                    uid=2_57 generic
+                      uid=2_58 ignored
+                        uid=2_59 ignored
+                          uid=2_60 ignored
+                      uid=2_61 textbox "用户名" value="admin"
+                        uid=2_62 ignored
+                        uid=2_63 generic
+                          uid=2_64 StaticText "admin"
+              uid=2_65 ignored
+                uid=2_66 generic
+                  uid=2_67 generic
+                    uid=2_68 generic
+                      uid=2_69 ignored
+                        uid=2_70 ignored
+                          uid=2_71 ignored
+                      uid=2_72 textbox "密码" value="••••••••"
+                        uid=2_73 ignored
+                        uid=2_74 generic
+                          uid=2_75 StaticText "••••••••"
+              uid=2_76 ignored
+                uid=2_77 LabelText
+                  uid=2_78 ignored
+                    uid=2_79 checkbox "记住我"
+                    uid=2_80 ignored
+                  uid=2_81 ignored
+                    uid=2_82 StaticText "记住我"
+              uid=2_83 ignored
+                uid=2_84 generic
+                  uid=2_85 button "登 录"
+                    uid=2_86 ignored
+                      uid=2_87 ignored
+                        uid=2_88 StaticText "登 录"
+          uid=2_89 generic
+            uid=2_90 StaticText "Copyright © 2018-2026 All Rights Reserved."
+      uid=2_91 generic
+        uid=2_92 ignored
+
