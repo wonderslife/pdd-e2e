@@ -3,7 +3,7 @@
 基于 `testcase-ai.py` 的 E2E 自动化测试系统，从 pdd-skills-v3 框架中独立拆分。
 通过 Chrome DevTools MCP 驱动真实浏览器，执行 YAML 测试用例，生成 HTML/Markdown 报告。
 
-# 特此声明：本项目来源于https://github.com/wonderslife/pdd-e2e.git
+
 ## 目录结构
 
 ```
