@@ -4,7 +4,6 @@
 通过 Chrome DevTools MCP 驱动真实浏览器，执行 YAML 测试用例，生成 HTML/Markdown 报告。
 
 # 特此声明：本项目来源于https://github.com/wonderslife/pdd-e2e.git
-
 ## 目录结构
 
 ```
@@ -16,14 +15,54 @@ pdd-test-system/
 │   ├── recorder.py            # 操作录制
 │   ├── framework/             # 核心模块（快照解析/定位/执行/断言）
 │   └── .env.test              # 全局环境配置（凭据/LLM）
-├── testcases/                 # 测试用例
-│   ├── frontend/              # 前端 E2E 用例（PRESALE-*）
-│   ├── api/                   # API 测试脚本
-│   ├── examples/              # 示例用例
-│   └── scripts/               # 批量运行脚本
+├── bin/
+│   └── testcase.js            # 测试用例项目脚手架 CLI（v1.1 新增）
+├── skill/                     # Agent 技能包（v1.1 迁移自 pdd-skills-v3）
+│   ├── testcase-modeler/      # 建模师：自然语言 → YAML 用例（自带 examples 样例）
+│   └── testcase-agent/        # 执行专家：YAML → E2E 执行 + HTML 报告
+├── testcases/                 # 测试用例（按项目分目录）
+│   ├── <项目名>/              # init 命令生成的标准结构（见下文脚手架章节）
+│   │   ├── backend/           # 后端 API 用例
+│   │   ├── frontend/          # 前端 E2E 用例（yaml + env 成对）
+│   │   ├── shared/            # 共享测试数据
+│   │   ├── reports/           # 测试报告
+│   │   ├── scripts/           # 批量运行脚本
+│   │   └── examples/          # 样例与 YAML 格式文档
+│   ├── Converged-Publishing-Platform/
+│   ├── Inspection-System-Project/
+│   └── Browser-Demo-Project/
 ├── run-test.cmd               # Windows 启动器（一键运行）
 └── requirements.txt           # Python 依赖
 ```
+
+## 测试用例脚手架（bin/testcase.js，v1.1 新增）
+
+新项目测试用例目录不再手动复制，一条命令生成标准骨架：
+
+```bash
+bin\testcase init <项目名>              # 推荐：cmd 启动器
+bin\testcase init <项目名> -f          # 强制覆盖已存在的模板文件
+bin\testcase list                      # 已有项目 + 用例数 + 报告轮次统计
+bin\testcase help                      # 帮助
+```
+
+> 等价写法 `node bin\testcase.js ...`。
+> ⚠️ 不要**双击** `testcase.js` 直接运行——Windows 会用 Script Host（JScript）而非 node 执行，报 `800A03F6 无效字符`；`.js` 必须经 `bin\testcase.cmd` 启动器或 `node` 命令运行。
+
+`init <项目名>` 生成内容：
+
+| 产物 | 说明 |
+|------|------|
+| `README.md` | 项目用例说明（含执行方式） |
+| `backend/` `frontend/` `shared/` `reports/` | 空目录，按类型归档用例 |
+| `scripts/` | `run-all-tests.ps1` / `run-backend-tests.ps1` / `run-frontend-tests.ps1`（frontend 版自动扫描执行全部 yaml） |
+| `examples/` | 5 个样例（login-flow / asset-eval-apply 的 yaml+env、yaml-format-guide.md），自动从 `skill/testcase-modeler/examples` 复制，项目自包含 |
+
+关键行为：
+
+- **默认合并模式**：已存在的文件/目录跳过不覆盖（防误伤已写好的用例），加 `-f` / `--force` 才强制覆盖
+- **结构对齐** PDD 框架 ruoyi 模板的 testcases 部分
+- 生成后执行方式：`cd tests && python testcase-ai.py ../testcases/<项目名>/frontend/<case>.yaml`
 
 ## 环境要求
 
@@ -155,3 +194,10 @@ snapshots/*.txt         # 每步页面快照
 - 被测后端: `D:\APPPROJECTS\RuoYi-Vue-Plus-v6.0.0`
 - 被测前端: `D:\APPPROJECTS\plus-ui-v6.0.0-Vue`
 - 原始框架: `D:\APPPROJECTS\pdd-skills-v3-main\pdd-skills-v3-main`（本系统已独立，不再依赖）
+
+## 版本历史
+
+| 版本 | 日期 | 变更 | 说明文档 |
+|------|------|------|----------|
+| v1.1 | 2026-10-09 | 新增 `bin/testcase.js` 脚手架 CLI（init/list/help）；迁移 testcase-modeler / testcase-agent 两个 skill 至 `skill/` | [docs/功能升级1.1-测试用例脚手架.md](docs/功能升级1.1-测试用例脚手架.md) |
+| v1.0 | — | 测试引擎独立拆分（testcase-ai.py + 15 bug 修复 + 4 项升级） | docs/testcase-ai-fixes-summary-20260825.md |

@@ -1,0 +1,17 @@
+# ===== 一次性调试脚本 / 备份 / 回收站（不入库） =====
+_probe_*
+_backup_*
+_trash_*/
+
+# ===== Python 缓存 =====
+__pycache__/
+*.pyc
+
+# ===== Node 依赖 =====
+node_modules/
+
+# ===== 测试运行产物（各项目 test-result 目录） =====
+**/test-result/
+
+# ===== IDE =====
+.idea/

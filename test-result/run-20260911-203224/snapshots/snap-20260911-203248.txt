@@ -1,9 +1,0 @@
-## Latest page snapshot
-uid=20_0 RootWebArea "预售商品管理 - RuoYi-Vue-Plus后台管理系统" url="http://localhost/presale/goods"
-  uid=20_1 ignored
-    uid=20_2 ignored
-      uid=20_3 generic
-      uid=20_4 generic
-        uid=20_5 generic
-          uid=20_6 generic
-
