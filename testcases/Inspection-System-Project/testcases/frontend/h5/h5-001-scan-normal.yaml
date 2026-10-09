@@ -145,9 +145,23 @@ steps:
         confidence: low
 
   - step: 11
-    desc: "为第 2 个巡检项选择「正常」（若该点位仅 1 项，此步可跳过）"
-    action: click
-    target: "正常"
+    desc: "为第 2 个巡检项选择「正常」（模板现为单项时自动跳过）"
+    # 演变史：旧写法 click 正常 两次都点第 1 个 → @2 语法修复多点位；但
+    # run-20260930 批次 pc-004 已删除模板「指示灯状态」明细行并保存成功
+    # （DB 实锤：自动化测试模板-0930092802 仅剩「机房温度」1 项），执行页
+    # 只有 1 组判定钮（snap-093453 仅 1 个「正常」StaticText）→「正常@2」
+    # 恒「未定位到目标元素」假失败。改 js 条件点击：内层去重后判定组 ≥2
+    # 才点第 2 组，否则显式 skip（js 返回非 error 前缀 = 步骤 PASS），
+    # 单项/多项点位两种形态都兼容。
+    action: js
+    script: |
+      const norm = s => (s || '').replace(/\s+/g, '');
+      const all = [...document.querySelectorAll('uni-view, uni-text, uni-button, button')]
+        .filter(b => norm(b.textContent) === '正常' && b.offsetParent !== null);
+      // 内层去重：包裹层与内层 textContent 相同会重复计数（1 组被数成 2）
+      const leafs = all.filter(b => !all.some(o => o !== b && b.contains(o)));
+      if (leafs.length >= 2) { leafs[1].click(); return 'ok: clicked 2nd 正常, 判定组=' + leafs.length; }
+      return 'skip: 判定组=' + leafs.length + '（单巡检项点位，pc-004 删除明细行后的预期形态）';
     wait_after:
       type: time
       duration: 500
@@ -185,9 +199,9 @@ steps:
         confidence: high
 
   - step: 14
-    desc: "点击「我的记录」，验证刚提交的记录出现在列表中"
-    action: click
-    target: "我的记录"
+    desc: "打开「我的记录」页，验证刚提交的记录出现在列表中（提交成功后页面常已自动跳转，「我的记录」入口按钮不再在快照里，navigate 直达更稳）"
+    action: navigate
+    url: "${H5_URL}/#/pages/inspect/records"
     wait_after:
       type: time
       duration: 2500

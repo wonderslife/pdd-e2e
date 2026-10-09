@@ -109,12 +109,18 @@ steps:
   # ===== 批量二维码 =====
   - step: 8
     desc: "勾选目标点位所在行的复选框"
+    # 引擎 2026-09-29 前无 checkbox 动作，本步会被静默跳过 → 行未勾选 →
+    # 步骤 9 handleBatchQrcode 的 `if (!ids.value.length) return` 静默返回 →
+    # 「导出成功」断言必挂。checkbox 现按 target 行文本匹配行内复选框。
     action: checkbox
-    target: "选择该行"
+    target: "${POINT_NAME}"
     checked: true
     assertions:
+      # checkbox 动作自带校验（checkbox-ok/checkbox-error）。页面没有「已选中」
+      # 字样（point/index.vue 无该文本），element_visible 断言必然假失败 → 移除，
+      # 改断言工具栏「批量二维码」按钮存在即可
       - type: element_visible
-        expected: "已选中"
+        target: "批量二维码"
         confidence: low
 
   - step: 9

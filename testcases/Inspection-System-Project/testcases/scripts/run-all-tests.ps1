@@ -1,4 +1,4 @@
-# E2E Test Runner - All Tests
+﻿# E2E Test Runner - All Tests
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $rootDir = Split-Path -Parent $scriptDir

@@ -140,6 +140,8 @@ def _create_incognito_server_params() -> StdioServerParameters:
     local_mcp = os.environ.get("PDD_MCP_PATH") or ""
     if not local_mcp:
         for cand in (
+            os.path.join(PROJECT_ROOT, "node_modules", "chrome-devtools-mcp", "build", "src", "bin", "chrome-devtools-mcp.js"),
+            r"E:\ZHAI\APPPROJECT\pdd-test-system\chrome-devtools-mcp-main\build\src\bin\chrome-devtools-mcp.js",
             r"D:\APPPROJECTS\chrome-devtools-mcp-main\chrome-devtools-mcp-main\build\src\bin\chrome-devtools-mcp.js",
         ):
             if os.path.exists(cand):
@@ -165,6 +167,9 @@ def _create_incognito_server_params() -> StdioServerParameters:
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
 os.environ.setdefault("PROJECT_ROOT", PROJECT_ROOT)
+# RUN_TAG：本批次唯一标签（套件 runner 会在外层设置一次，所有用例共享；
+# 单独跑用例时自动生成，保证测试数据名跨运行不撞库唯一索引）
+os.environ.setdefault("RUN_TAG", time.strftime("%m%d%H%M%S"))
 
 # 将项目根加入 sys.path，保证 `from tests.framework.xxx import ...` 包导入可用
 if PROJECT_ROOT not in sys.path:
@@ -246,7 +251,25 @@ class SnapshotElement:
         return " ".join(p for p in parts if p).lower()
 
     @property
+    def is_disabled(self) -> bool:
+        """a11y 行内显式标注 disabled。
+
+        背景（pc-002 步骤13 实测）：机房列表页有**工具栏「修改」按钮（disabled，
+        需先勾选行才启用）**和每行的「修改」按钮，同文本同角色。工具栏按钮的
+        快照行带 `disableable disabled` 标注，但旧逻辑只看 role → 两者
+        is_interactive 同为 True → 打平后「uid 唯一性」把**禁用的工具栏按钮**
+        排到前面 → 点了它 = 无操作，编辑弹窗根本没打开，后续 fill/提交全部
+        落在隐藏 DOM 上静默假阳性。
+        """
+        if str(self.attributes.get("disabled", "")).lower() == "true":
+            return True
+        # \bdisabld\b 不会误伤 "disableable"（后者不含完整的 disabled 词）
+        return bool(re.search(r"\bdisabled\b", self.raw_line or ""))
+
+    @property
     def is_interactive(self) -> bool:
+        if self.is_disabled:
+            return False
         return self.role in INTERACTIVE_ROLES
 
     @property
@@ -612,6 +635,9 @@ def _load_testcase_env(yaml_path: str) -> Dict[str, str]:
                 if (value.startswith('"') and value.endswith('"')) or \
                    (value.startswith("'") and value.endswith("'")):
                     value = value[1:-1]
+                # env 值支持 ${VAR} / ${VAR:-default} 组合（如
+                # ROOM_NAME=自动化测试机房-${RUN_TAG}），未定义的变量原样保留
+                value = resolve_env_vars(value)
                 old_val = os.environ.get(key)
                 os.environ[key] = value
                 loaded[key] = old_val
@@ -950,13 +976,15 @@ def _case_self_handles_login(steps: List[Dict]) -> bool:
 
     只看「动作型」步骤（fill/click 等），不看 navigate 步骤的 desc ——
     h5-002 / h5-003 的步骤 1 描述里写着「完成登录」，但实际只是打开页面。
+    同理** desc 一律不参与判定 **（实测 pc-009 步骤4 desc「…选中当前登录用户」
+    含「登录」二字 → 误判为自带登录 → 跳过自动登录 → 全用例跑在登录页上 45%）。
+    真实登录步骤的 target/value 本身就是「用户名/密码/登 录」，只看它们足够。
     """
     for step in steps or []:
         action = str(step.get("action", "")).lower()
         if action not in _LOGIN_ACTION_TYPES:
             continue
         text = " ".join([
-            str(step.get("desc", "")),
             str(step.get("target", "")),
             str(step.get("value", "")),
         ]).lower()
@@ -1652,11 +1680,27 @@ class SnapshotParser:
         注意此时**不能用 uid 缓存短路**：缓存是按 target 文本存的，第 1 行填完后
         target 仍映射到第 1 行的 uid，第 2 行会被永久跳过。
         """
-        target_lower = (target_description or "").lower().strip()
-        target_raw = (target_description or "").strip()
+        target_description = target_description or ""
+        target_raw = target_description.strip()
+
+        # v3.1: target@N 语法 —— 同文控件歧义消解。
+        # 场景：巡检执行页每个巡检项都有同名「正常/异常/不适用」按钮，旧逻辑
+        # 永远命中第 1 个（快照 DOM 序），第 2 项永远选不上，提交被后端以
+        # 「第 2 项「XX」未选择判定结果」拒绝（实测 h5-001 步骤 10/11）。
+        # 写法：target: "正常@2" = 点第 2 个「正常」（按快照遍历序 = DOM 序）。
+        # @N 目标禁用 uid 缓存：同名控件在不同快照里 uid 会漂移，且同名多击
+        # 必须每次重新解析（prefer_empty 的缓存旁路同理）。
+        nth: Optional[int] = None
+        m_nth = re.search(r"@(\d+)$", target_raw)
+        if m_nth:
+            parsed = int(m_nth.group(1))
+            if parsed >= 1:
+                nth = parsed
+                target_raw = target_raw[: m_nth.start()].strip()
+        target_lower = self._cmp_norm(target_raw)
 
         cached = cache.get(target_lower)
-        if cached and cached in self.elements and not prefer_empty:
+        if cached and cached in self.elements and not prefer_empty and nth is None:
             log(f"[Cache Hit] '{target_description}' -> {cached}", 3)
             return cached
 
@@ -1664,9 +1708,10 @@ class SnapshotParser:
             return None
 
         exact_uid = self._exact_match_uid(target_raw, target_lower, prefer_role, exclude_roles,
-                                          require_interactive, prefer_empty)
+                                          require_interactive, prefer_empty, nth=nth)
         if exact_uid:
-            cache[target_lower] = exact_uid
+            if nth is None:
+                cache[target_lower] = exact_uid
             elem = self.elements[exact_uid]
             log(f"[Exact] '{target_description}' -> {exact_uid} "
                 f"(role={elem.role}, text='{elem.text[:30]}')", 3)
@@ -1683,6 +1728,18 @@ class SnapshotParser:
             return None
 
         best_uid, best_score = candidates[0]
+
+        # @N 落到模糊层：只认最高分并列组里的第 N 个，组不够大就明确失败，
+        # 绝不静默降级到别的元素（宁缺勿错）。
+        if nth is not None:
+            top_group = [u for u, s in candidates if s == best_score]
+            if len(top_group) >= nth:
+                chosen = top_group[nth - 1]
+                log(f"[Fuzzy-Nth] '{target_description}' -> {chosen} "
+                    f"(并列{len(top_group)}个中第{nth}个, score={best_score})", 2)
+                return chosen
+            log(f"[Nth-Miss] '{target_description}' 最高分并列组仅{len(top_group)}个(<{nth})", 2)
+            return None
 
         log(f"[Fuzzy-WARN] '{target_description}' -> {best_uid} (score={best_score}, "
             f"建议YAML使用精确文本匹配以提升可靠性)", 2)
@@ -1710,7 +1767,8 @@ class SnapshotParser:
     def _exact_match_uid(self, target_raw: str, target_lower: str,
                           prefer_role: Optional[str], exclude_roles: Optional[set],
                           require_interactive: bool,
-                          prefer_empty: bool = False) -> Optional[str]:
+                          prefer_empty: bool = False,
+                          nth: Optional[int] = None) -> Optional[str]:
         """Layer 1: 精确文本匹配
 
         排序键是 **(匹配长度, 是否完全相等, 是否交互元素)**，三元组从高到低取优。
@@ -1803,6 +1861,12 @@ class SnapshotParser:
         # 第 1 行，第 2 行仍为空，后端以「第 2 行模板明细的「巡检项名称」不能为空」
         # 直接拒绝提交，模板一条也建不出来（下游 pc-005/h5 全断）。
         # 此时优先取**当前还是空**的那个（= 还没填过的那一行）；一个空的都没有就退回首选。
+        # 「主子表重复行」歧义：同一 target 命中多个**完全打平**的控件时（典型场景是
+        # 明细表每一行都有同名的「请输入XX」输入框），旧实现按遍历顺序取第一个，
+        # 于是第二次 fill 又写回第一行 —— 实测 pc-004 步骤 10 把「指示灯状态」覆盖到
+        # 第 1 行，第 2 行仍为空，后端以「第 2 行模板明细的「巡检项名称」不能为空」
+        # 直接拒绝提交，模板一条也建不出来（下游 pc-005/h5 全断）。
+        # 此时优先取**当前还是空**的那个（= 还没填过的那一行）；一个空的都没有就退回首选。
         if prefer_empty and best_uid is not None and len(best_group) > 1:
             best_elem = self.elements.get(best_uid)
             if best_elem is not None and (best_elem.value or "").strip():
@@ -1813,6 +1877,19 @@ class SnapshotParser:
                             f"改选空值控件 {cand}（原首选 {best_uid} 已有值 "
                             f"'{best_elem.value[:20]}'）", 2)
                         return cand
+
+        # @N（第 N 个同文控件）：打平组按快照遍历序（= DOM 序）排列，
+        # 直接取第 N 个；组不够大时明确返回 None（上层会打 Nth-Miss 日志），
+        # 绝不静默回退到首选——那等于没选第 N 个，正是本语法要消灭的假阳性。
+        if nth is not None and best_group:
+            if len(best_group) >= nth:
+                chosen = best_group[nth - 1]
+                ce = self.elements.get(chosen)
+                log(f"[Nth] '{target_raw}' 第{nth}个同文匹配 -> {chosen} "
+                    f"(组大小={len(best_group)}, role={getattr(ce, 'role', '?')})", 2)
+                return chosen
+            log(f"[Nth-Miss] '{target_raw}' 打平组仅{len(best_group)}个(<{nth})", 2)
+            return None
 
         return best_uid
 
@@ -1843,6 +1920,16 @@ class SnapshotParser:
             return 0
 
         if require_interactive and not elem.is_interactive:
+            return 0
+
+        # 空文本元素不参与模糊兜底（仅 click 类动作，require_interactive=False 时）。
+        # 实测 pc-002 步骤15：「确 定」精确层 Miss（编辑弹窗没开），desc 兜底
+        # 「点击「确 定」保存修改」的关键词给一个**空文本下拉触发器**（uid 5_224）
+        # 打了 20 分并点击 —— 表单没提交、无 toast、无报错的静默假阳性。
+        # 连 text/name/value 都没有的控件跟文本目标毫无语义关联，直接出局。
+        # 填表动作（require_interactive=True）不走这条：输入框自身无文本、
+        # 靠邻近标签匹配（下方 require_interactive 分支）是**有意设计**。
+        if not require_interactive and not (elem.text or elem.name or elem.value):
             return 0
 
         for kw in keywords:
@@ -2571,7 +2658,79 @@ def _build_scroll_args(action, step, parser, cache) -> Dict:
 
 def _build_script_args(action, step, parser, cache) -> Dict:
     fn = step.get("function", step.get("script", step.get("value", "() => {}")))
+    # script 值也过 env 展开：用例 JS 里可直接引用 ${RUN_TAG} 类动态变量
+    # （如 pc-004 步骤16 按行文本 ${TPL_ITEM_NAME_2} 定位明细行）
+    fn = resolve_env_vars(str(fn)).strip()
+    # 用例 YAML 里常写裸语句块（const x = ...; return {...}），而 evaluate_script
+    # 工具要求箭头函数体 —— 不以 "(" 或 "function" 开头的一律包成 () => { ... }，
+    # 已是函数形式的原样透传。（实测 pc-006 步骤5：裸语句被原样下发 → 语法错误
+    # → 步骤被跳过，blob 图片校验从未真正跑过）
+    if not (fn.startswith("(") or fn.startswith("function") or fn.startswith("async")):
+        fn = "() => {\n" + fn + "\n}"
     return {"function": fn}
+
+def _build_checkbox_args(action, step, parser, cache) -> Dict:
+    """checkbox 动作：勾选/取消 el-table 行复选框（evaluate_script 实现）。
+
+    修复（run-20260929 pc-006 步骤 8 被跳过）：引擎此前没有 checkbox 动作，
+    `action: checkbox` 直接被跳过 → 行未勾选 → handleBatchQrcode 的
+    `if (!ids.value.length) return` 静默返回 → 步骤 9「导出成功」toast 断言必挂。
+
+    语义：
+      checked 缺省 True；target（可选）= 行内文本（如点位名称），
+      优先操作包含该文本的行；没有 target / 匹配不到行时退回
+      「第一个处于目标状态之外的可见行」（勾选场景 = 第一个未勾选行）。
+
+    成功返回 "checkbox-ok: ..."；失败返回含 "error:" 的文本，
+    交给 _check_result_has_error 走重试/失败分支（JSON 的 "error" 键带引号、
+    匹配不到 "error:" 子串，所以这里必须用纯文本）。
+    """
+    desired = step.get("checked", True)
+    if isinstance(desired, str):
+        desired = desired.strip().lower() in ("true", "1", "yes", "on")
+    target = resolve_env_vars(str(step.get("target", "") or ""))
+    desired_js = "true" if desired else "false"
+    target_js = json.dumps(target, ensure_ascii=False)
+    fn = f"""() => {{
+        const desired = {desired_js};
+        const target = {target_js};
+        const vis = el => el.offsetParent !== null;
+        const norm = s => (s || '').replace(/\\s+/g, '');
+        const boxes = [...document.querySelectorAll('.el-table__body-wrapper .el-checkbox')].filter(vis);
+        if (!boxes.length) return 'checkbox-error: no visible row checkbox on page';
+        let row = null;
+        if (target) {{
+            row = boxes.find(c => norm(c.closest('.el-table__row')?.textContent || '').includes(norm(target)));
+            if (!row) return 'checkbox-error: no row containing target text: ' + target;
+        }}
+        if (!row) {{
+            row = desired ? boxes.find(c => !c.classList.contains('is-checked'))
+                          : boxes.find(c => c.classList.contains('is-checked'));
+            if (!row) return 'checkbox-ok: already in desired state, no toggle needed';
+        }}
+        const before = row.classList.contains('is-checked');
+        if (before !== desired) {{
+            const input = row.querySelector('input.el-checkbox__original') || row.querySelector('input[type=checkbox]');
+            const inner = row.querySelector('.el-checkbox__inner');
+            (input || inner || row).click();
+            // Vue 响应式渲染是异步微任务：click 同步返回后 classList 仍是旧值
+            // （实测 pc-006 步骤8：首查 before=false,after=false 误报失败、
+            // 重试时已 checked —— 状态其实第一次 click 就改成功了， selection
+            // store 也更新了）。双 rAF 等 Vue flush 后再读，消除假阴性。
+            const rows = boxes.length;
+            return new Promise(resolve => {{
+                requestAnimationFrame(() => requestAnimationFrame(() => {{
+                    const after = row.classList.contains('is-checked');
+                    resolve(after !== desired
+                        ? 'checkbox-error: toggle did not reach desired state (before=' + before + ', after=' + after + ')'
+                        : 'checkbox-ok: checked ' + before + ' -> ' + after + ' (rows=' + rows + ')');
+                }}));
+            }});
+        }}
+        return 'checkbox-ok: checked ' + before + ' -> ' + before + ' (rows=' + boxes.length + ')';
+    }}"""
+    return {"function": fn}
+
 
 def _build_select_page_args(action, step, parser, cache) -> Dict:
     page_id = step.get("pageId", step.get("page_index", 0))
@@ -2593,6 +2752,38 @@ def _build_close_page_args(action, step, parser, cache) -> Dict:
 # ============================================================
 # 内置 Actions 注册
 # ============================================================
+
+# toast 历史 hook：ElMessage / uni.showToast 仅 ~3s 生命期，而 toast_visible
+# 断言在动作 + wait_after 之后才开始查 DOM —— 长 wait + 快请求时 toast 早已
+# 关闭（实测 pc-006 步骤9：t≈0.5s「导出成功」弹出、t≈3.5s 自动关闭，而
+# wait_after=4000ms 后 t=4.0s 才开始轮询 → LiveToast: '' 恒假失败；
+# h5-003 登录 toast 同类竞态）。动作执行前幂等注入 MutationObserver +
+# 300ms 兜底采样，把出现过的 toast 文本记入 window.__insp_toast_history__，
+# 断言侧查「当前 DOM ∪ 历史」。页面刷新/新开 page 后 window 重置，hook 随之
+# 清空，每步动作前重注（幂等守卫挡重复安装）。
+_TOAST_HOOK_JS = (
+    "() => {"
+    # 每步动作前重置历史：断言只看「本步骤动作」产生的 toast，避免上一步的
+    # 迟到 toast 污染断言（实测 pc-005 步骤13/19：步骤10 的「已导入 1 个巡检项」
+    # toast 混进后续 toast_visible 断言的 LiveToast 文本）
+    " window.__insp_toast_history__ = [];"
+    " if (!window.__insp_toast_observer__) {"
+    "  const SELS = '.el-message, .uni-toast, .uni-sample-toast, .uni-toast__content, .el-notification';"
+    "  const vis = m => { const cs = getComputedStyle(m); return cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity) !== 0; };"
+    "  const rec = () => { try { document.querySelectorAll(SELS).forEach(m => {"
+    # Element Plus message 关闭后 DOM 可能残留（实测 pc-002 步骤15/19：已关闭的
+    # 「新增成功」message 仍被 innerText 读出）——离场中的隐藏 toast 不得录入历史
+    "    if (!vis(m)) return;"
+    "    const t = (m.innerText || '').trim();"
+    "    if (t && window.__insp_toast_history__.indexOf(t) === -1) window.__insp_toast_history__.push(t);"
+    "  }); } catch (e) {} };"
+    "  try { new MutationObserver(rec).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}"
+    "  setInterval(rec, 300);"
+    "  window.__insp_toast_observer__ = true;"
+    " }"
+    " return 'toast-hook: reset';"
+    "}"
+)
 
 def register_builtin_actions():
     """注册所有内置 action 类型"""
@@ -2627,6 +2818,10 @@ def register_builtin_actions():
         ("scroll", "evaluate_script", _build_scroll_args, False),
         ("execute_script", "evaluate_script", _build_script_args, False),
         ("js", "evaluate_script", _build_script_args, False),
+        # evaluate_script 同名注册：用例直接写 action: evaluate_script 时不再被跳过
+        # （实测 pc-006 步骤5 曾因只注册了 execute_script/js 别名而 SKIPPED）
+        ("evaluate_script", "evaluate_script", _build_script_args, False),
+        ("checkbox", "evaluate_script", _build_checkbox_args, False),
         ("select_page", "select_page", _build_select_page_args, False),
         ("switch_page", "select_page", _build_select_page_args, False),
         ("close_page", "close_page", _build_close_page_args, False),
@@ -2652,7 +2847,9 @@ def assert_text_contains(assertion: Dict, snapshot_text: str, parser: 'SnapshotP
     return {"passed": passed, "detail": detail}
 
 def assert_element_visible(assertion: Dict, snapshot_text: str, parser: 'SnapshotParser', cache: Dict) -> Dict:
-    target = assertion.get("target", assertion.get("expected", ""))
+    # target/expected 必须过 env 展开：pc-004 步骤16 实测 ${TPL_ITEM_NAME_2}
+    # 以字面量进快照查找（visible 恒 FAIL），env 里的动态名称全部失效
+    target = resolve_env_vars(str(assertion.get("target", assertion.get("expected", ""))))
     if target:
         uid = parser.find_uid(target, cache)
         passed = uid is not None
@@ -2663,10 +2860,21 @@ def assert_element_visible(assertion: Dict, snapshot_text: str, parser: 'Snapsho
     return {"passed": passed, "detail": detail}
 
 def assert_element_hidden(assertion: Dict, snapshot_text: str, parser: 'SnapshotParser', cache: Dict) -> Dict:
-    target = assertion.get("target", assertion.get("expected", ""))
-    uid = parser.find_uid(target, cache) if target else None
-    passed = uid is None
-    detail = f"element '{target}' {'hidden' if passed else 'visible'}"
+    # 同 assert_element_visible：target 需 env 展开（pc-004 实测字面量恒 FAIL）
+    target = resolve_env_vars(str(assertion.get("target", assertion.get("expected", ""))))
+    # 「元素已消失」= 目标文本不在**当前**快照里。绝不能走 find_uid，两条实测死路：
+    #   a) 首查时 parser 持有的还是**步骤起始快照**——js 删除元素后的重渲染尚未
+    #      入快照（run-20260930-093048 步骤16：663→602 元素行已删，旧快照仍 Exact
+    #      命中 81_469 → 恒 FAIL；空 cache 也救不了，因为搜的本来就是旧文本）；
+    #   b) find_uid 模糊层无最低分阈值，'指示灯状态' 能 fuzzy 命中表头
+    #      '选择所有行'（score=10），hidden 语义下任何模糊命中都是假阳性。
+    # 改为对 snapshot_text 做归一化子串判定；首查快照若不新鲜，由外层
+    # Hidden-Retry 轮询（重抓快照后复查）兜底改判。
+    if not target:
+        return {"passed": True, "detail": "no target specified"}
+    _norm = lambda s: re.sub(r"\s+", "", s or "")
+    passed = _norm(target) not in _norm(snapshot_text)
+    detail = f"element '{target}' {'hidden' if passed else 'still visible in snapshot'}"
     return {"passed": passed, "detail": detail}
 
 def assert_url_contains(assertion: Dict, snapshot_text: str, parser: 'SnapshotParser', cache: Dict) -> Dict:
@@ -3080,6 +3288,12 @@ class ActionExecutor:
         except Exception as e:
             log(f"  ⚠️ 快照刷新异常（继续）: {e}", 3)
 
+        # toast 历史 hook（幂等，失败静默——只是断言增强，不该影响动作本身）
+        try:
+            await self.session.call_tool("evaluate_script", {"function": _TOAST_HOOK_JS})
+        except Exception:
+            pass
+
         if not getattr(self, '_auto_save_disabled', False):
             try:
                 url_result = await self.session.call_tool("evaluate_script", {
@@ -3341,7 +3555,7 @@ class ActionExecutor:
                     log(f"\n  🔍 断言验证 ({len(assertions)} 项):", 1)
 
                     has_dom_assertions = any(
-                        a.get("type") in ("element_visible", "text_contains", "url_contains",
+                        a.get("type") in ("element_visible", "element_hidden", "text_contains", "url_contains",
                                               "toast_visible", "element_text", "page_title")
                         for a in assertions
                     )
@@ -3378,15 +3592,25 @@ class ActionExecutor:
                                     # （实测 h5-001「巡检记录已提交」、h5-002「异常说明不能为空」
                                     # 「上传至少 1 张照片」），把「前端到底提示了什么」这条最关键的
                                     # 线索整个丢掉，排查只能去翻后端日志。
+                                    #
+                                    # 2026-09-29 再修：轮询窗口从「wait_after 结束后」才开始，与
+                                    # toast 的 3s 生命期完全不重叠（长 wait + 快请求时 toast 早已
+                                    # 关闭 → LiveToast '' 恒假失败）。故除当前 DOM 外合并查询
+                                    # window.__insp_toast_history__（动作前由 _TOAST_HOOK_JS 录制
+                                    # 的历史，见 execute 注入点），任一时刻出现过的 toast 都能命中。
                                     js_res = await self.session.call_tool("evaluate_script", {
                                         "function": (
                                             "() => { const sels = ['.el-message', '.uni-toast', "
                                             "'.uni-sample-toast', '.uni-toast__content', "
                                             "'.el-notification']; const out = []; "
                                             "for (const s of sels) { document.querySelectorAll(s)"
-                                            ".forEach(m => { const t = (m.innerText || '').trim(); "
+                                            ".forEach(m => { const cs = getComputedStyle(m); "
+                                            "if (cs.display === 'none' || cs.visibility === 'hidden' "
+                                            "|| parseFloat(cs.opacity) === 0) return; "
+                                            "const t = (m.innerText || '').trim(); "
                                             "if (t) out.push(t); }); } "
-                                            "return [...new Set(out)].join(' | '); }"
+                                            "const hist = window.__insp_toast_history__ || []; "
+                                            "return [...new Set([...out, ...hist])].join(' | '); }"
                                         )
                                     })
                                     live_toast = self._extract_result_content(js_res) or ""
@@ -3402,6 +3626,21 @@ class ActionExecutor:
                             except Exception as _e:
                                 ar = {"passed": False, "type": "toast_visible", "expected": expected_t,
                                       "detail": f"live-check-error: {_e}", "confidence": "high"}
+                        elif assertion.get("type") == "element_hidden":
+                            # 修复: element_hidden 首查失败时不立即判负 —— 弹窗关闭/
+                            # 元素隐藏伴随 Vue 重渲染与过渡动画（实测 pc-006 步骤7：
+                            # 点击「关 闭」后 800ms 断言快照里弹窗还在，+1s 才真正消失）。
+                            # 对齐 toast 的轮询策略：2.5s 内每 500ms 重抓快照复查，
+                            # 任一时刻目标消失即 PASS。
+                            ar = self._run_assertion(assertion)
+                            if not ar["passed"]:
+                                poll_deadline = time.time() + 2.5
+                                while not ar["passed"] and time.time() < poll_deadline:
+                                    await asyncio.sleep(0.5)
+                                    await self._take_snapshot()
+                                    ar = self._run_assertion(assertion)
+                                if ar["passed"]:
+                                    log("    [Hidden-Retry] 目标在轮询窗口内消失 → 改判 PASS", 1)
                         else:
                             ar = self._run_assertion(assertion)
                         assertion_results.append(ar)
@@ -3930,30 +4169,45 @@ class ActionExecutor:
             await asyncio.sleep(1.2 if attempt_i == 0 else 0.9)
 
             log(f"  [Picker] Step2: 在「可见」下拉中查找并点击'{option_value}'选项...", 2)
+            # 修复（run-20260929-191550 pc-005 步骤3）：选项由接口异步加载
+            # （form.vue loadRooms → optionselectInspectRoom），点开面板瞬间可能
+            # 还是空数组 —— 旧实现立即判「未找到选项」走 fill 兜底，而 fill 对
+            # el-select 只塞过滤文本不点 option，Vue model 仍为空 → 提交被
+            # 「所属机房不能为空」拦下，后续步骤全部级联（本轮 pc-005 掉到 72%）。
+            # 现在：面板已开但 totalItems==0 时按 0.8s 轮询等选项到达（最多 4 次）。
+            gave_up = False
             try:
-                result = await self.session.call_tool(
-                    "evaluate_script", {"function": js_code})
-                content = self._extract_result_content(result)
-                log(f"  [Picker] JS结果: {content[:160]}", 1)
-                js_payload = None
-                try:
-                    js_payload = self._parse_json_from_mcp_response(content)
-                except Exception:
+                for poll_i in range(4):
+                    result = await self.session.call_tool(
+                        "evaluate_script", {"function": js_code})
+                    content = self._extract_result_content(result)
+                    log(f"  [Picker] JS结果(poll={poll_i}): {content[:160]}", 1)
                     js_payload = None
+                    try:
+                        js_payload = self._parse_json_from_mcp_response(content)
+                    except Exception:
+                        js_payload = None
 
-                if isinstance(js_payload, dict) and js_payload.get("ok") is True:
-                    log(f"  [Picker] 已选中 '{js_payload.get('clicked')}'"
-                        f"（可见下拉 {js_payload.get('visibleDropdowns')} 个 / 选项 {js_payload.get('totalItems')} 项）", 1)
-                    await asyncio.sleep(0.5)
-                    return [{"type": "text",
-                             "text": f"picker selected '{option_value}' on visible dropdown"}]
+                    if isinstance(js_payload, dict) and js_payload.get("ok") is True:
+                        log(f"  [Picker] 已选中 '{js_payload.get('clicked')}'"
+                            f"（可见下拉 {js_payload.get('visibleDropdowns')} 个 / 选项 {js_payload.get('totalItems')} 项）", 1)
+                        await asyncio.sleep(0.5)
+                        return [{"type": "text",
+                                 "text": f"picker selected '{option_value}' on visible dropdown"}]
 
-                if isinstance(js_payload, dict) and js_payload.get("error") == "no visible dropdown":
-                    continue  # 下拉没展开 → 重试
+                    if isinstance(js_payload, dict) and js_payload.get("error") == "no visible dropdown":
+                        break  # 面板没开 → 外层重试点击
 
-                # 明确「选项不在可见下拉里」→ 不再假成功，交回 MCP 兜底
-                log(f"  ⚠️ [Picker] 可见下拉中未找到选项，走 MCP fill 兜底", 1)
-                return None
+                    if isinstance(js_payload, dict) and js_payload.get("totalItems", 0) == 0 and poll_i < 3:
+                        await asyncio.sleep(0.8)  # 选项加载中 → 继续轮询
+                        continue
+
+                    # 选项列表非空但没有目标文本 → 真不存在，不再假成功
+                    log(f"  ⚠️ [Picker] 可见下拉中未找到选项（items={js_payload.get('totalItems') if isinstance(js_payload, dict) else '?'}），走 MCP fill 兜底", 1)
+                    gave_up = True
+                    break
+                if gave_up:
+                    return None
             except Exception as e:
                 log(f"  [Picker] JS失败: {e}", 1)
                 return None

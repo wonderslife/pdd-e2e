@@ -130,9 +130,32 @@ steps:
   # ===== 核心回归点：从模板导入巡检项 =====
   - step: 10
     desc: "在巡检项子表格上方的「从模板导入」下拉中选择「${TPL_NAME}」"
-    action: select_option
-    target: "从模板导入"
-    option: "${TPL_NAME}"
+    # 与步骤28 同因：combobox text=''，模糊匹配脆弱（本轮 score=55 侥幸命中，
+    # 换个 generation 就会 fallback 到搜索区 combobox）→ js 按 placeholder 精确定位
+    action: js
+    script: |
+      const dlg = [...document.querySelectorAll('.el-dialog')].find(d => d.offsetParent !== null);
+      if (!dlg) return 'error: point dialog not found';
+      // 结构定位：「从模板导入」是弹窗里唯一放在 el-divider 内部的 el-select
+      // （form.vue L67-80）。placeholder 属性匹配不可靠（2.14.3 渲染路径不定）。
+      const sel = dlg.querySelector('.el-divider .el-select');
+      if (!sel) return 'error: template import select not found in dialog divider';
+      const wrapper = sel.querySelector('.el-select__wrapper') || sel.querySelector('.el-input__wrapper') || sel;
+      wrapper.dispatchEvent(new MouseEvent('mousedown', {bubbles: true}));
+      wrapper.click();
+      return new Promise(resolve => {
+        let n = 0;
+        const tick = () => {
+          const dds = [...document.querySelectorAll('.el-select-dropdown')].filter(d => d.offsetParent !== null);
+          for (const dd of dds) {
+            const opt = [...dd.querySelectorAll('.el-select-dropdown__item')].find(o => (o.textContent || '').includes('${TPL_NAME}'));
+            if (opt) { opt.click(); resolve('ok: template imported'); return; }
+          }
+          if (++n > 10) { resolve('error: option not appeared, visible dropdowns=' + dds.length); return; }
+          setTimeout(tick, 300);
+        };
+        setTimeout(tick, 300);
+      });
     wait_after:
       type: time
       duration: 1500
@@ -182,7 +205,24 @@ steps:
         confidence: high
 
   # ===== 列表展示回归点 =====
+  # 产品行为：新增点位成功后前端会自动弹出「点位二维码」modal 弹窗（index.vue L293-300
+  # 「新增成功，已生成二维码」→ qrcodeOpen=true）。第 3 轮实测该 modal 遮罩一直没关，
+  # 把步骤16「修改」、步骤19「新增」的点击整个吞掉（Puppeteer 报成功、实际点在遮罩上），
+  # 步骤20-23 全填到列表搜索区控件（element_text 假阳性通过），步骤24 起级联崩
+  # —— 全用例 78.6% 的总根因。必须显式关闭后才能继续操作工具栏。
   - step: 14
+    desc: "关闭新增成功后自动弹出的「点位二维码」弹窗"
+    action: click
+    target: "关 闭"
+    wait_after:
+      type: time
+      duration: 1000
+    assertions:
+      - type: element_hidden
+        target: "下载图片"
+        confidence: high
+
+  - step: 15
     desc: "按点位名称过滤，验证列表的「所属机房」「所属区域」列有值（不是空白或 ID）"
     action: fill
     target: "请输入点位名称"
@@ -191,7 +231,7 @@ steps:
       - type: field_filled
         expected: "字段已填写"
 
-  - step: 15
+  - step: 16
     desc: "点击「搜索」，校验关联名称列与状态列正常展示"
     action: click
     target: "搜索"
@@ -207,7 +247,7 @@ steps:
         confidence: medium
 
   # ===== 修改回显 =====
-  - step: 16
+  - step: 17
     desc: "点击该行「修改」，验证巡检项明细在表单中回显"
     action: click
     target: "修改"
@@ -224,7 +264,7 @@ steps:
         expected: "${TPL_ITEM_NAME_1}"
         confidence: high
 
-  - step: 17
+  - step: 18
     desc: "修改备注后保存"
     action: fill
     target: "请输入备注"
@@ -233,7 +273,7 @@ steps:
       - type: field_filled
         expected: "字段已填写"
 
-  - step: 18
+  - step: 19
     desc: "点击「确 定」保存修改"
     action: click
     target: "确 定"
@@ -250,12 +290,179 @@ steps:
         expected: "成功"
         confidence: high
 
+  # ===== 数据准备：创建第二个点位（自动化测试点位-02） =====
+  # 背景：h5-002（异常提交）与 pc-010（异常处理）依赖「点位-02」，但全套件原本
+  # 没有任何用例创建它 —— h5-002 的注释只写「前置: 点位 2 已配置巡检项」，
+  # cleanup 每轮清空数据后这两条用例必然失败（实测 37.5% / 53.8%）。
+  # 点位名称无唯一索引可静态复用；点位编码全局唯一（uk_point_code），
+  # 必须带 RUN_TAG。此处是纯数据准备，断言从简。
+  - step: 20
+    desc: "点击「新增」，再次打开新增点位窗口（数据准备：点位-02）"
+    action: click
+    target: "新增"
+    wait_after:
+      type: time
+      duration: 1200
+    assertions:
+      # 弹窗特有文本判据。注意：「从模板导入」是 el-select（combobox），
+      # 快照里 text=''（placeholder 不进 accessible text），element_visible 恒找不到
+      # —— 改用弹窗内分组标题「巡检项清单」（divider 文本，列表页无此文本）
+      - type: element_visible
+        target: "巡检项清单"
+        confidence: high
+
+  - step: 21
+    desc: "「所属机房」下拉选择「${ROOM_NAME}」"
+    action: select_option
+    target: "请选择机房"
+    option: "${ROOM_NAME}"
+    assertions:
+      - type: element_text
+        expected: "${ROOM_NAME}"
+        confidence: high
+
+  - step: 22
+    desc: "「所属区域」下拉选择「${AREA_NAME}」"
+    action: select_option
+    target: "请选择区域"
+    option: "${AREA_NAME}"
+    assertions:
+      - type: element_text
+        expected: "${AREA_NAME}"
+        confidence: medium
+
+  - step: 23
+    desc: "填入「点位名称」（静态名，无唯一索引，h5-002/pc-010 按此名引用）"
+    action: fill
+    target: "请输入点位名称"
+    value: "${POINT_2_NAME}"
+    assertions:
+      - type: field_filled
+        expected: "字段已填写"
+
+  - step: 24
+    desc: "填入「点位编码」（uk_point_code 唯一索引 → 必须带 RUN_TAG）"
+    action: fill
+    target: "点位编码"
+    value: "${POINT_CODE_2}"
+    assertions:
+      - type: field_filled
+        expected: "字段已填写"
+
+  - step: 25
+    desc: "填入「位置描述」"
+    action: fill
+    target: "位置描述"
+    value: "${POINT_2_LOCATION}"
+    assertions:
+      - type: field_filled
+        expected: "字段已填写"
+
+  - step: 26
+    desc: "「巡检周期」选择「每日」"
+    action: select_option
+    target: "请选择巡检周期"
+    option: "每日"
+    assertions:
+      - type: element_text
+        expected: "每日"
+        confidence: high
+
+  - step: 27
+    desc: "「点位状态」选择「启用」"
+    action: select_option
+    target: "点位状态"
+    option: "启用"
+    assertions:
+      - type: element_text
+        expected: "启用"
+        confidence: high
+
+  - step: 28
+    desc: "「从模板导入」选择「${TPL_NAME}」（点位-02 需配置巡检项，h5-002 异常提交用）"
+    # select_option 模糊匹配踩坑实录：combobox text=''，弹窗内「从模板导入」下拉
+    # 没进候选，fallback 命中搜索区「所属区域」combobox（score=25，点开是区域选项）
+    # → fill 兜底假成功、模板根本没导入 → 步骤29 被「每个点位至少配置 1 个巡检项」拦截。
+    # 改 js 结构定位 el-divider 内的 el-select 全程自选。
+    #
+    # run-20260930-093204 二坑：点位-01 弹窗选过模板后，点位-02 复用同一 dialog
+    # 组件，v-model="templateId" 是**独立 ref**（form.vue L71，watch editData 整体
+    # 替换 form 时不重置）→ 下拉残留选中值（快照 108_703 StaticText 实锤），
+    # Element Plus 对「同值重选」不触发 change → handleApplyTemplate 不执行 →
+    # 清单空。故先经组件实例发 update:modelValue('') 清残留（只发 update 不发
+    # change，避免 handleApplyTemplate('') 空参调 API），再点 option；
+    # 点完自校验「机房温度」行真的出现在清单里（明细列是 el-input，
+    # textContent 读不到值，须查 input.value）。
+    action: js
+    script: |
+      const dlg = [...document.querySelectorAll('.el-dialog')].find(d => d.offsetParent !== null);
+      if (!dlg) return 'error: point dialog not found';
+      const sel = dlg.querySelector('.el-divider .el-select');
+      if (!sel) return 'error: template import select not found in dialog divider';
+      try {
+        const comp = sel.__vueParentComponent;
+        if (comp && comp.emit) comp.emit('update:modelValue', '');
+      } catch (e) { /* 组件实例不可达时退化为纯 DOM 流程 */ }
+      const wrapper = sel.querySelector('.el-select__wrapper') || sel.querySelector('.el-input__wrapper') || sel;
+      wrapper.dispatchEvent(new MouseEvent('mousedown', {bubbles: true}));
+      wrapper.click();
+      return new Promise(resolve => {
+        let n = 0;
+        const tick = () => {
+          const dds = [...document.querySelectorAll('.el-select-dropdown')].filter(d => d.offsetParent !== null);
+          for (const dd of dds) {
+            const opt = [...dd.querySelectorAll('.el-select-dropdown__item')].find(o => (o.textContent || '').includes('${TPL_NAME}'));
+            if (opt) {
+              opt.click();
+              let m = 0;
+              const verify = () => {
+                const rows = [...dlg.querySelectorAll('.el-table__row')].filter(r => r.offsetParent !== null);
+                const hit = rows.some(r => (r.textContent || '').includes('${TPL_ITEM_NAME_1}') ||
+                  [...r.querySelectorAll('input')].some(i => (i.value || '').includes('${TPL_ITEM_NAME_1}')));
+                if (hit) { resolve('ok: template imported, ${TPL_ITEM_NAME_1} row visible'); return; }
+                if (++m > 6) { resolve('error: option clicked but itemList has no ${TPL_ITEM_NAME_1} row'); return; }
+                setTimeout(verify, 300);
+              };
+              setTimeout(verify, 300);
+              return;
+            }
+          }
+          if (++n > 10) { resolve('error: option not appeared, visible dropdowns=' + dds.length); return; }
+          setTimeout(tick, 300);
+        };
+        setTimeout(tick, 300);
+      });
+    wait_after:
+      type: time
+      duration: 1500
+    assertions:
+      - type: text_contains
+        expected: "${TPL_ITEM_NAME_1}"
+        confidence: high
+
+  - step: 29
+    desc: "点击「确 定」提交点位-02"
+    action: click
+    target: "确 定"
+    wait_after:
+      type: time
+      duration: 2500
+    assertions:
+      - type: network_called
+        url_pattern: "*/inspect/point"
+        method: POST
+        response_code: 200
+        confidence: high
+      - type: toast_visible
+        expected: "成功"
+        confidence: high
+
 teardown:
   - action: screenshot
     name: "point-crud-{timestamp}.png"
     fullPage: true
   - action: log
-    message: "点位 ${POINT_NAME}（${POINT_CODE}）已就绪，供二维码与 H5 扫码用例复用"
+    message: "点位 ${POINT_NAME}（${POINT_CODE}）与 ${POINT_2_NAME}（${POINT_CODE_2}）已就绪，供二维码与 H5 扫码用例复用"
 
 metadata:
   created_by: "testcase-modeler v2.0.1"

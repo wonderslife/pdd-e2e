@@ -206,9 +206,27 @@ steps:
         confidence: high
 
   - step: 16
-    desc: "删除明细行 2（点该行「删除」），保存后明细数应变为 1"
-    action: click
-    target: "删除"
+    desc: "删除明细行 2「${TPL_ITEM_NAME_2}」（按行文本定位该行的删除按钮）"
+    # 原 target:「删除」精确匹配到文档序第一个明细删除按钮 = 行1「机房温度」
+    # （实测快照 74_69 前的序号列是 1）→ 删错行：行2 还在（element_hidden 恒 FAIL），
+    # 且保存后模板只剩「指示灯状态」→ pc-005 从模板导入后没有「机房温度」（连锁失败）。
+    # 改为 JS 按行文本精确删除；el-button @click 用原生 click 即可触发 Vue handler
+    action: js
+    # 明细行「巡检项名称」列是 el-input（itemTemplate/index.vue L70）：
+    # 行文本 textContent 读不到 input 的 value，必须按行内 input.value 匹配
+    script: |
+      const norm = s => (s || '').replace(/\s+/g, '');
+      const target = '${TPL_ITEM_NAME_2}';
+      const rows = [...document.querySelectorAll('.el-dialog .el-table__row')].filter(r => r.offsetParent !== null);
+      const row = rows.find(r => {
+        const inInput = [...r.querySelectorAll('input')].some(i => norm(i.value).includes(norm(target)));
+        return inInput || norm(r.textContent).includes(norm(target));
+      });
+      if (!row) return 'error: detail row not found: ' + target;
+      const btn = [...row.querySelectorAll('button')].find(b => (b.textContent || '').includes('删除'));
+      if (!btn) return 'error: delete button not found in row: ' + target;
+      btn.click();
+      return 'ok: clicked delete of row ' + target;
     wait_after:
       type: time
       duration: 800

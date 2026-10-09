@@ -90,15 +90,24 @@ steps:
         confidence: high
 
   - step: 6
-    desc: "关闭详情弹窗"
-    action: click
-    target: "关 闭"
+    desc: "关闭详情弹窗（js 在弹窗内定位「关 闭」footer 按钮，避免快照文本匹配失灵）"
+    action: js
+    script: |
+      const dlg = [...document.querySelectorAll('.el-dialog')].find(d => d.offsetParent !== null && (d.querySelector('.el-dialog__title') || {}).textContent?.includes('异常项详情'));
+      if (!dlg) return 'error: abnormal detail dialog not found';
+      const btn = [...dlg.querySelectorAll('.el-dialog__footer button')].find(b => (b.textContent || '').replace(/\s+/g, '').includes('关闭'));
+      if (!btn) return 'error: footer 关闭 button not found';
+      btn.click();
+      return 'ok: clicked detail dialog 关闭';
     wait_after:
       type: time
       duration: 1000
     assertions:
+      # 目标必须是弹窗标题「异常项详情」（index.vue L71 弹窗独有），不能用
+      # 「异常说明」——列表页 L42 有常驻「异常说明」列头，弹窗关没关它都在，
+      # hidden 断言按构造永假（run-20260930-093048 实测 FAIL）。
       - type: element_hidden
-        target: "异常说明"
+        target: "异常项详情"
         confidence: low
 
   - step: 7

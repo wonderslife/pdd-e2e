@@ -29,7 +29,7 @@ steps:
       duration: 2500
     assertions:
       - type: text_contains
-        expected: "欢迎使用"
+        expected: "企业级后台管理系统"
         confidence: high
 
   - step: 2

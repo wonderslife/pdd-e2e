@@ -49,7 +49,9 @@ steps:
     desc: "「巡检点位」下拉选择目标点位（选择后应自动带出该点位的巡检项）"
     action: select_option
     target: "请选择点位"
-    option: "${POINT_NAME}"
+    # 选项 label 是「点位名（编码）」（supplement.vue L10）。点位名静态无唯一索引，
+    # 历史 run 会残留多个同名「自动化测试点位-01」→ 必须带本批 RUN_TAG 编码唯一匹配
+    option: "${POINT_NAME}（${POINT_CODE}）"
     wait_after:
       type: time
       duration: 1500
@@ -71,22 +73,117 @@ steps:
         confidence: medium
 
   - step: 5
-    desc: "在用户列表中勾选目标用户并确定"
-    action: click
-    target: "确 定"
+    desc: "在用户选择框中勾选目标用户并点该弹窗的「确定」（js 按「最后打开的可见弹窗」定位；run-20260930-105055 实锤 vxe trigger:'row' 的行合成点击不勾选，改为直点 checkbox 单元格图标）"
+    # run-20260930-100224 实锤：旧写法 click '确 定' 精确命中**补录弹窗自己的**
+    # 确定（DOM 序在前，uid 7_201），用户选择框从未被确认 → inspectorId 空 →
+    # 提交被「请选择巡检员」校验拦截（内联报错、无 toast）→ 步骤9 LiveToast ''。
+    # UserSelect（components/UserSelect，footer 确定 L163）后打开 → DOM 序最后。
+    # 表格是 vxe-table 且 checkbox-config trigger:'row'（L120-125）——点行即勾选。
+    action: js
+    script: |
+      const norm = s => (s || '').replace(/\s+/g, '');
+      const dlgs = [...document.querySelectorAll('.el-dialog')].filter(d => d.offsetParent !== null);
+      if (dlgs.length < 2) return 'error: user-select dialog not visible (visible=' + dlgs.length + ')';
+      const usDlg = dlgs[dlgs.length - 1];
+      const rows = [...usDlg.querySelectorAll('tr.vxe-body--row')].filter(r => r.offsetParent !== null);
+      const row = rows.find(r => (r.textContent || '').includes('${PC_USER}'));
+      if (!row) return 'error: user row not found: ${PC_USER}, rows=' + rows.length;
+      const isChecked = () => !!(row.querySelector('.vxe-cell--checkbox.is--checked') || row.querySelector('input[type=checkbox]').checked);
+      // run-20260930-105055 实锤：trigger:'row' 下 row.click() 合成事件不勾选。
+      // 三级 fallback：checkbox 图标/单元格 → 行 → 原生 input。
+      const cbCell = row.querySelector('.vxe-cell--checkbox');
+      if (!cbCell) return 'error: checkbox cell not found in row';
+      (cbCell.querySelector('i') || cbCell.querySelector('input') || cbCell).click();
+      return new Promise(resolve => {
+        setTimeout(() => {
+          if (!isChecked()) {
+            row.click();
+            setTimeout(() => {
+              if (!isChecked()) {
+                const inp = row.querySelector('input[type=checkbox]');
+                if (inp && !inp.checked) inp.click();
+                setTimeout(() => {
+                  if (!isChecked()) { resolve('error: all 3 click strategies failed to check the row'); return; }
+                  afterCheck();
+                }, 400);
+                return;
+              }
+              afterCheck();
+            }, 400);
+            return;
+          }
+          afterCheck();
+          function afterCheck() {
+            const btn = [...usDlg.querySelectorAll('.el-dialog__footer button')].find(b => norm(b.textContent) === '确定');
+            if (!btn) { resolve('error: user-select footer 确定 not found'); return; }
+            btn.click();
+            setTimeout(() => {
+              const formDlg = [...document.querySelectorAll('.el-dialog')].filter(d => d.offsetParent !== null)[0];
+              const insp = formDlg ? formDlg.querySelector('input[placeholder="请选择巡检员"]') : null;
+              resolve(insp && (insp.value || '').trim() ? 'ok: 巡检员已选中=' + insp.value : 'warn: confirmed but 巡检员 not verified');
+            }, 500);
+          }
+        }, 400);
+      });
     wait_after:
       type: time
-      duration: 1200
+      duration: 800
     assertions:
       - type: element_visible
         target: "请选择巡检员"
         confidence: low
 
   - step: 6
-    desc: "填写「补录原因」"
-    action: fill
-    target: "如：原巡检人漏扫"
-    value: "${SUPPLEMENT_REASON}"
+    desc: "在补录弹窗内填写两个必填字段：「补录原因」+「巡检时间」（js 按弹窗标题结构定位）"
+    # run-20260930-093947 实测两个坑：
+    #   1) fill '如：原巡检人漏扫' fuzzy 30 分命中**列表页搜索框** 22_28
+    #      （placeholder「请输入部门名称」），弹窗内补录原因仍空 → blur 校验
+    #      「补录原因不能为空」内联报错、不弹 toast → 步骤9 LiveToast ''、
+    #      步骤11 查不到 PC补录记录（快照 094034：22_28 value='原巡检人漏扫，事后补录' 实锤）；
+    #   2) 「巡检时间」是必填项（supplement.vue L123），旧用例根本没填 → 即使
+    #      修好原因字段提交仍被拦。
+    # 两个都必须用原生 value setter + input 事件才能进 Vue 响应式（直接赋值
+    # value 不触发 v-model）；时间输入后需 Enter 确认解析。
+    action: js
+    script: |
+      const dlg = [...document.querySelectorAll('.el-dialog')].find(d =>
+        d.offsetParent !== null && (d.querySelector('.el-dialog__title') || {}).textContent?.includes('巡检逾期补录'));
+      if (!dlg) return 'error: supplement dialog not found';
+      const setVal = (el, v) => {
+        const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
+        setter.call(el, v);
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+      };
+      // 1) 补录原因：弹窗内 placeholder 含「原巡检人漏扫」的 input（supplement.vue L39）
+      const reason = [...dlg.querySelectorAll('input')].find(i => (i.placeholder || '').includes('原巡检人漏扫'));
+      if (!reason) return 'error: 补录原因 input not found';
+      setVal(reason, '${SUPPLEMENT_REASON}');
+      reason.dispatchEvent(new Event('blur'));
+      // 2) 巡检时间：必填（supplement.vue L123）。el-date-editor 输入 + Enter 确认
+      const timeInput = dlg.querySelector('.el-date-editor input');
+      if (!timeInput) return 'error: 巡检时间 date input not found';
+      const now = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const ts = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate()) +
+        ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+      setVal(timeInput, ts);
+      timeInput.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      timeInput.dispatchEvent(new Event('change', { bubbles: true }));
+      timeInput.blur();
+      return new Promise(resolve => {
+        let n = 0;
+        const verify = () => {
+          const okReason = (reason.value || '').includes('漏扫');
+          const okTime = /^\d{4}-\d{2}-\d{2}/.test(timeInput.value || '');
+          if (okReason && okTime) { resolve('ok: 补录原因+巡检时间已写入'); return; }
+          if (++n > 6) { resolve('error: verify fail, reason=\'' + reason.value + '\' time=\'' + timeInput.value + '\''); return; }
+          setTimeout(verify, 250);
+        };
+        setTimeout(verify, 250);
+      });
+    wait_after:
+      type: time
+      duration: 800
     assertions:
       - type: field_filled
         expected: "字段已填写"

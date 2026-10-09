@@ -19,16 +19,12 @@ context_check:
 
 steps:
   - step: 1
-    desc: "打开 H5「扫码巡检」页（已有登录态时自动跳过登录）"
+    desc: "打开 H5「扫码巡检」页（引擎时序：本步断言跑在自动登录之前，页面尚在登录页，故不断言登录后内容）"
     action: navigate
     url: "${H5_URL}/#/pages/inspect/scan"
     wait_after:
       type: time
       duration: 2500
-    assertions:
-      - type: text_contains
-        expected: "扫码巡检"
-        confidence: medium
 
   - step: 2
     desc: "输入本周期内已巡检过的点位编码（${POINT_CODE}）"
@@ -77,40 +73,98 @@ steps:
         confidence: medium
 
   - step: 6
-    desc: "再次查询并在确认框中选择「确定」，验证跳转到历史记录页（而非新的巡检执行页）"
-    action: click
-    target: "查询"
+    desc: "【产品缺陷绕过】整页刷新扫码页，复位被卡死的「查询」按钮"
+    # run-20260930-093728 + 第6轮复证实锤产品缺陷：plugins/modal.ts L54-68 的 confirm()
+    # 点「取消」分支既不 resolve 也不 reject → scan.vue handleResolve 的
+    # finally { resolving = false } 永不执行 → 「查询」按钮永久瘫痪
+    # （:disabled="resolving" + guard if(resolving.value) return 双重拦截，5s 等待无效）。
+    # 真实用户此时的自救动作就是刷新页面，故用例以 reload 复位后继续；缺陷单列战报上报。
+    action: js
+    script: |
+      setTimeout(() => location.reload(), 50);
+      return 'ok: reload scheduled (bypass modal.confirm cancel-branch never settles)';
     wait_after:
       type: time
-      duration: 2500
+      duration: 3000
+
+  - step: 7
+    desc: "重载后输入框已清空，重新输入点位编码（${POINT_CODE}）"
+    action: fill
+    target: "例如 RM-A-001"
+    value: "${POINT_CODE}"
+    assertions:
+      - type: field_filled
+        expected: "字段已填写"
+
+  - step: 8
+    desc: "再次点击「查询」，验证重复提示再次出现"
+    action: click
+    target: "查询"
+    # 首次查询实测链路延迟 2~7s（09:37:49 点击 → 09:37:56 快照才见弹窗），
+    # 重载后冷启动更慢，等待保持 5s。
+    wait_after:
+      type: time
+      duration: 5000
     assertions:
       - type: text_contains
         expected: "本周期已巡检"
         confidence: medium
 
-  - step: 7
-    desc: "确认跳转到「我的记录」页查看历史记录"
+  - step: 9
+    desc: "确认跳转到「我的记录」页查看历史记录（页面标题实为「我的巡检记录」，run-20260930-110726 快照实锤跳转成功，旧 target『我的记录』子串不连续恒 FAIL）"
     action: click
     target: "确定"
+    # run-20260930-104831 实锤：点确定后 switchTab 跳转 + 记录页渲染在 2.5s 内未完成
     wait_after:
       type: time
-      duration: 2500
+      duration: 5000
     assertions:
       - type: element_visible
-        target: "我的记录"
+        target: "我的巡检记录"
         confidence: medium
       - type: text_contains
         expected: "${POINT_NAME}"
         confidence: medium
 
   # ===== 兜底通道校验：PC 补录仍可用 =====
-  - step: 8
-    desc: "验证 H5 重复被拦截时，PC 端仍有「逾期补录」通道（切到 PC 记录页确认入口存在）"
+  # run-20260930-110738 快照实锤：H5 用例上下文里 localhost:80 域无登录态，navigate
+  # PC 页被守卫踢到 /login。三步绕过同 h5-002（navigate 首页 → js 注入 token → 进目标页）。
+  - step: 10
+    desc: "切到 PC 管理端首页（触发 80 域上下文；未登录会被守卫重定向到登录页，属预期）"
     action: navigate
-    url: "${PC_URL}/inspect/record"
+    url: "${PC_URL}/index"
     wait_after:
       type: time
-      duration: 2500
+      duration: 2000
+
+  - step: 11
+    desc: "在 PC 域上下文调登录接口注入 token（绕过登录页 UI）"
+    action: js
+    script: |
+      return (async () => {
+        const CLIENT = 'e5cd7e4891bf95d1d19206ce24a7b32e';
+        const r = await fetch('/dev-api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'clientid': CLIENT },
+          body: JSON.stringify({ tenantId: '000000', username: '${PC_USER}', password: '${PC_PASS}', grantType: 'password', clientId: CLIENT })
+        });
+        const j = await r.json();
+        if (j.code !== 200) return 'error: pc login failed: ' + String(j.msg || JSON.stringify(j)).slice(0, 120);
+        localStorage.setItem('Admin-Token', j.data.access_token);
+        return 'ok: pc token injected';
+      })();
+    wait_after:
+      type: time
+      duration: 500
+
+  - step: 12
+    desc: "进入 PC「巡检记录」页，验证 H5 重复被拦截时仍有「逾期补录」兜底通道（按钮实存 record/index.vue L49）"
+    action: navigate
+    url: "${PC_URL}/inspect/record"
+    # run-20260930-104831 实锤：PC 记录页首次加载（菜单+列表+按钮渲染）2.5s 不够
+    wait_after:
+      type: time
+      duration: 5000
     assertions:
       - type: element_visible
         target: "逾期补录"
@@ -131,3 +185,7 @@ metadata:
   risk_level: "medium"
   depends_on:
     - "h5-001（先产生本周期记录）"
+  known_product_bugs:
+    - "modal.confirm 取消分支 Promise 不 settle（RuoYi-App-Plus/src/plugins/modal.ts L54-68）"
+    - "现象：取消后 scan.vue 的 resolving 永久为 true，「查询」按钮 :disabled 永久瘫痪"
+    - "绕过：step6 整页 reload 复位（真实用户自救动作同款）；缺陷需产品侧修复 confirm() 补 reject/resolve"

@@ -1,4 +1,4 @@
-# E2E Test Runner - Inspection System (PC + H5)
+﻿# E2E Test Runner - Inspection System (PC + H5)
 # 按依赖顺序执行：基础数据 -> 点位 -> H5 扫码 -> PC 记录/异常/统计
 #
 # Usage:
@@ -12,9 +12,10 @@
 #   .\run-test testcases\Inspection-System-Project\testcases\frontend\pc
 
 param(
-    [string]$Python = "C:\Users\name\.workbuddy\binaries\python\envs\pdd-test\Scripts\python.exe",
+    [string]$Python = "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Scripts\python.exe",
     [switch]$SkipH5,
     [switch]$SkipValidate,
+    [switch]$SkipClean,
     [string]$Only = ""
 )
 
@@ -51,6 +52,24 @@ if ($LASTEXITCODE -ne 0) {
     Write-Host "[ERROR] Python 依赖缺失，先安装：" -ForegroundColor Red
     Write-Host "        $Python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyyaml mcp openai"
     exit 1
+}
+
+# RUN_TAG：本批次唯一标签，注入所有子进程（cleanup + 每条用例的 python）。
+# 背景：后端是逻辑删除 + 物理唯一索引（uk_*不含 del_flag），同名的机房/点位/
+# 模板删了也永远重建不了 —— 测试数据名必须每批唯一（自动化测试机房-${RUN_TAG}）。
+if (-not $env:RUN_TAG) { $env:RUN_TAG = Get-Date -Format "MMdd-HHmmss" }
+Write-Host "RUN_TAG: $env:RUN_TAG" -ForegroundColor DarkGray
+
+# 前置数据清理：清掉上次运行残留的「自动化测试」前缀数据（机房/区域/模板/点位），
+# 并按当前 RUN_TAG 重建 pc-007 的导入样例 xlsx（机房编码每批不同，静态文件会过期）。
+# 巡检记录/异常项按 BR-011 不可删，保留为历史数据不影响用例判定。
+if (-not $SkipClean) {
+    Write-Host "`n[0/2] 前置数据清理" -ForegroundColor Cyan
+    & $Python (Join-Path $scriptDir "cleanup-inspect-data.py")
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[ABORT] 数据清理失败（后端未启动/接口异常/删除被拒），先排查再跑 E2E。" -ForegroundColor Red
+        exit 1
+    }
 }
 
 # 静态校验：秒级完成，不启浏览器

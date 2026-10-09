@@ -4,11 +4,11 @@
 
 ## 文件列表
 
-| 文件 | 说明 | 步骤数 |
-|------|------|--------|
-| `login-flow.yaml` | 统一门户登录流程 | 4 |
-| `asset-eval-apply.yaml` | 资产评估申请提交流程 | 13 |
-| `asset-eval-approval-flow.yaml` | 资产评估审批流程 | - |
+| 文件                              | 说明         | 步骤数 |
+| ------------------------------- | ---------- | --- |
+| `login-flow.yaml`               | 统一门户登录流程   | 4   |
+| `asset-eval-apply.yaml`         | 资产评估申请提交流程 | 13  |
+| `asset-eval-approval-flow.yaml` | 资产评估审批流程   | -   |
 
 ## 目录结构
 
@@ -36,22 +36,22 @@ python testcase-ai.py ../testcases/asset-eval-apply.yaml
 
 ### 必填字段
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
+| 字段        | 类型     | 说明                                      |
+| --------- | ------ | --------------------------------------- |
 | `test_id` | string | 唯一标识符，如 `"ASSET-EVAL-001-apply-normal"` |
-| `title` | string | 测试用例标题 |
-| `steps` | list | 测试步骤列表（核心） |
+| `title`   | string | 测试用例标题                                  |
+| `steps`   | list   | 测试步骤列表（核心）                              |
 
 ### 可选字段
 
-| 字段 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `priority` | string | `"P1"` | 优先级: P0/P1/P2/P3 |
-| `tags` | list | `[]` | 标签，用于分类筛选 |
-| `author` | string | `""` | 作者 |
-| `smart_skip` | bool | `true` | 是否启用智能登录跳过 |
-| `context_check` | dict | `{}` | 前置状态感知配置 |
-| `teardown` | list | `[]` | 后置清理操作 |
+| 字段              | 类型     | 默认值    | 说明               |
+| --------------- | ------ | ------ | ---------------- |
+| `priority`      | string | `"P1"` | 优先级: P0/P1/P2/P3 |
+| `tags`          | list   | `[]`   | 标签，用于分类筛选        |
+| `author`        | string | `""`   | 作者               |
+| `smart_skip`    | bool   | `true` | 是否启用智能登录跳过       |
+| `context_check` | dict   | `{}`   | 前置状态感知配置         |
+| `teardown`      | list   | `[]`   | 后置清理操作           |
 
 ### 步骤 (step) 结构
 
