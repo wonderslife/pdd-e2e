@@ -15,3 +15,6 @@ node_modules/
 
 # ===== IDE =====
 .idea/
+
+# ===== Chrome DevTools MCP 本地构建目录 =====
+chrome-devtools-mcp-main/
